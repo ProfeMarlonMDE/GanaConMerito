@@ -1,0 +1,54 @@
+export type SessionMode = "practice" | "exam" | "review";
+
+export type SessionState =
+  | "onboarding"
+  | "diagnostic"
+  | "practice"
+  | "remediation"
+  | "review"
+  | "session_close"
+  | "expired"
+  | "error";
+
+export type SessionProcess =
+  | "evaluating_response"
+  | "updating_memory"
+  | "selecting_next_item"
+  | "generating_feedback";
+
+export interface SessionContext {
+  sessionId: string;
+  profileId: string;
+  mode: SessionMode;
+  currentState: SessionState;
+  currentItemId?: string;
+  hintLevel: number;
+  activeArea?: string;
+  activeCompetency?: string;
+  activeProcess?: SessionProcess;
+}
+
+export interface StartSessionRequest {
+  mode: SessionMode;
+  area?: string;
+  competency?: string;
+}
+
+export interface StartSessionResponse {
+  sessionId: string;
+  currentState: SessionState;
+  mode: SessionMode;
+  currentItemId?: string;
+  hintLevel: number;
+  activeArea?: string;
+  activeCompetency?: string;
+}
+
+export interface AdvanceSessionRequest {
+  sessionId: string;
+  itemId: string;
+  selectedOption?: "A" | "B" | "C" | "D";
+  userRationale?: string;
+  responseTimeMs?: number;
+  confidenceSelfReport?: 1 | 2 | 3 | 4 | 5;
+}
