@@ -22,5 +22,8 @@
   "homepage": "https://github.com/ProfeMarlonMDE/GanaConMerito#readme",
   "devDependencies": {
     "supabase": "^2.77.0"
+  },
+  "dependencies": {
+    "pg": "^8.20.0"
   }
 }

@@ -1,64 +1,12 @@
 -- seed.sql
 -- Seed mínimo para el MVP
--- Nota: ajusta el auth_user_id del admin después de autenticarte por primera vez en Supabase Auth.
+-- Este seed inserta únicamente contenido base.
+-- El bootstrap de perfiles debe hacerse después de que exista un usuario real en auth.users.
 
 begin;
 
 -- =========================================================
--- 1) ADMIN PROFILE BOOTSTRAP
--- =========================================================
--- Reemplaza el UUID por el auth.users.id real del admin.
-insert into public.profiles (
-  auth_user_id,
-  full_name,
-  email,
-  is_admin
-)
-values (
-  '11111111-1111-1111-1111-111111111111',
-  'Marlon David Arcila',
-  'ia@csimedellin.com',
-  true
-)
-on conflict (auth_user_id) do update set
-  full_name = excluded.full_name,
-  email = excluded.email,
-  is_admin = excluded.is_admin,
-  updated_at = now();
-
-insert into public.learning_profiles (
-  profile_id,
-  target_role,
-  exam_type,
-  country_context,
-  preferred_feedback_style,
-  active_goal,
-  active_areas,
-  onboarding_completed
-)
-select
-  p.id,
-  'docente',
-  'docente',
-  'colombia',
-  'socratic',
-  'Validar MVP de práctica adaptativa',
-  array['normatividad','pedagogia']::text[],
-  true
-from public.profiles p
-where p.auth_user_id = '11111111-1111-1111-1111-111111111111'
-on conflict (profile_id) do update set
-  target_role = excluded.target_role,
-  exam_type = excluded.exam_type,
-  country_context = excluded.country_context,
-  preferred_feedback_style = excluded.preferred_feedback_style,
-  active_goal = excluded.active_goal,
-  active_areas = excluded.active_areas,
-  onboarding_completed = excluded.onboarding_completed,
-  updated_at = now();
-
--- =========================================================
--- 2) SAMPLE ITEMS
+-- 1) SAMPLE ITEMS
 -- =========================================================
 with upsert_item_1 as (
   insert into public.item_bank (
