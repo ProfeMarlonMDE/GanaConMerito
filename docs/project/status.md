@@ -27,6 +27,12 @@
 - bootstrap automático de `profiles`
 - bootstrap conservador de `learning_profiles`
 
+### Flujo auth visible
+- página real de login en `src/app/login/page.tsx`
+- botón Google real en `src/components/auth/google-sign-in-button.tsx`
+- home protegida en `src/app/home/page.tsx`
+- middleware de protección básica en `src/middleware.ts`
+
 ## Ya versionado
 
 - `v0.1.0` — esquema y seed iniciales
@@ -36,16 +42,16 @@
 - `v0.2.3` — seed remoto funcional
 - `v0.2.4` — integración real de Supabase y preparación de Google Auth
 - `v0.2.5` — bootstrap de perfiles tras callback Google
+- `v0.2.6` — hardening de auth
 
 ## Próximo trabajo recomendado
 
 1. prueba E2E real de login
-2. página/login real
-3. protección de rutas privadas
-4. sign out
-5. parser Markdown real
-6. carga persistente de contenido
-7. sesiones con DB real
+2. sign out
+3. parser Markdown real
+4. carga persistente de contenido
+5. sesiones con DB real
+6. dashboard con datos reales
 
 ## Documentos relevantes
 
@@ -58,4 +64,4 @@
 
 ## Observación importante
 
-El bloque auth quedó más seguro y consistente, pero todavía requiere validación E2E y endurecimiento adicional si se quiere considerar listo para producción.
+El flujo auth ya es visible y utilizable a nivel base, pero todavía requiere prueba E2E real y pulido de UX/sesión.
