@@ -28,6 +28,7 @@
 - carga persistente de contenido en `src/app/api/content/upload/route.ts`
 - inicio real de sesión en `src/app/api/session/start/route.ts`
 - avance real de sesión en `src/app/api/session/advance/route.ts`
+- endpoint para cargar ítem de sesión en `src/app/api/session/item/route.ts`
 - dashboard real en `src/app/api/dashboard/summary/route.ts`
 
 ### Supabase en proyecto
@@ -53,6 +54,7 @@
 - `src/app/dashboard/page.tsx`
 - `src/app/layout.tsx`
 - formulario real para iniciar práctica en `src/components/practice/start-practice-form.tsx`
+- sesión de práctica real en `src/components/practice/practice-session.tsx`
 
 ### Contenido Markdown mínimo
 - estructura inicial `content/`
@@ -88,13 +90,14 @@
 - `v0.3.3` — cierre de Fase R2 núcleo de sesiones
 - `v0.3.4` — cierre de Fase R3 DB y contenido
 - `v0.3.5` — cierre de Fase R4 robustez de API y producto
+- `v0.3.6` — dashboard real base y práctica base
 
 ## Próximo trabajo recomendado
 
 1. prueba E2E real de login y sesión
-2. dashboard con métricas más ricas
+2. práctica con razonamiento textual y feedback más rico
 3. onboarding real ligado a `learning_profiles`
-4. práctica real con ciclo de respuesta completo
+4. dashboard con métricas más ricas
 
 ## Documentos relevantes
 
@@ -108,4 +111,4 @@
 
 ## Observación importante
 
-El plan de remediación ya quedó cerrado. El proyecto entra ahora a fase de desarrollo post-remediación.
+El plan de remediación ya quedó cerrado. El proyecto está en fase de desarrollo post-remediación con flujo de práctica cada vez más real.
