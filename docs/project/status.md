@@ -19,6 +19,7 @@
 - selector base de ítems en `src/domain/item-selection/select-next-item.ts`
 - importador de contenido desde archivo en `src/domain/content/import-from-file.ts`
 - actualización básica de estadísticas en `src/domain/session/update-topic-stats.ts`
+- validación runtime con Zod en endpoints críticos
 
 ### Backend HTTP
 - callback auth endurecido en `src/app/api/auth/callback/route.ts`
@@ -44,6 +45,12 @@
 - botón de cierre de sesión en `src/components/auth/sign-out-button.tsx`
 - middleware SSR/cookies ajustado y protección básica ampliada en `src/middleware.ts`
 
+### Frontend mínimo de producto
+- `src/app/onboarding/page.tsx`
+- `src/app/practice/page.tsx`
+- `src/app/dashboard/page.tsx`
+- `src/app/layout.tsx`
+
 ### Contenido Markdown mínimo
 - estructura inicial `content/`
 - 3 ítems canónicos de ejemplo
@@ -57,6 +64,7 @@
 - fase R1: `docs/project/remediation/r1-security-auth.md`
 - fase R2: `docs/project/remediation/r2-sessions.md`
 - fase R3: `docs/project/remediation/r3-db-content.md`
+- fase R4: `docs/project/remediation/r4-runtime-product.md`
 
 ## Ya versionado
 
@@ -75,14 +83,14 @@
 - `v0.3.1` — importación real de contenido y flujo de sesiones con DB
 - `v0.3.2` — cierre de Fase R1 seguridad/auth crítica
 - `v0.3.3` — cierre de Fase R2 núcleo de sesiones
+- `v0.3.4` — cierre de Fase R3 DB y contenido
 
 ## Próximo trabajo recomendado
 
-1. cerrar formalmente Fase R3
-2. pasar a Fase R4 — robustez de API y producto
-3. prueba E2E real de login
-4. dashboard con datos reales
-5. frontend real de práctica/onboarding
+1. cerrar formalmente Fase R4
+2. prueba E2E real de login y sesión
+3. dashboard con datos reales
+4. frontend real de práctica/onboarding
 
 ## Documentos relevantes
 
@@ -96,4 +104,4 @@
 
 ## Observación importante
 
-La remediación estructural sigue en marcha por fases. La prioridad activa es cerrar DB y contenido.
+La remediación estructural está en su fase final. La prioridad activa es cerrar robustez de API y producto.

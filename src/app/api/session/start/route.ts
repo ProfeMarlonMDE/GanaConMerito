@@ -1,10 +1,21 @@
 import { NextResponse } from "next/server";
 import { selectNextItem } from "@/domain/item-selection/select-next-item";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
-import type { StartSessionRequest, StartSessionResponse, SessionState } from "@/types/session";
+import { startSessionSchema } from "@/lib/validation/session";
+import type { StartSessionResponse, SessionState } from "@/types/session";
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as StartSessionRequest;
+  const json = await request.json();
+  const parsedBody = startSessionSchema.safeParse(json);
+
+  if (!parsedBody.success) {
+    return NextResponse.json(
+      { error: parsedBody.error.issues.map((issue) => issue.message).join(" | ") },
+      { status: 400 },
+    );
+  }
+
+  const body = parsedBody.data;
   const supabase = await getSupabaseServerClient();
 
   const {

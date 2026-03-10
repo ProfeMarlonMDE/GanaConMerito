@@ -73,9 +73,10 @@ Las rutas existen en `src/app/api/`.
 
 ### Ya implementado realmente
 - `content/validate` parsea y valida Markdown real
-- `content/upload` persiste `item_bank` e `item_options` en Supabase
+- `content/upload` persiste contenido de forma atómica y exige admin
+- `session/start` y `session/advance` persisten contra Supabase real
+- endpoints críticos ya tienen validación runtime con Zod
 
 ### Aún pendiente
-- persistencia real de sesiones
-- auth avanzada por roles
 - dashboard con datos reales
+- validación E2E formal de flujos

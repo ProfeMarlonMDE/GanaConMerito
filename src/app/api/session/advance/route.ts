@@ -4,11 +4,22 @@ import { selectNextItem } from "@/domain/item-selection/select-next-item";
 import { getNextState } from "@/domain/orchestrator/session-machine";
 import { updateUserTopicStats } from "@/domain/session/update-topic-stats";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { advanceSessionSchema } from "@/lib/validation/session";
 import type { AdvanceSessionResponse } from "@/types/evaluation";
-import type { AdvanceSessionRequest, SessionState } from "@/types/session";
+import type { SessionState } from "@/types/session";
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as AdvanceSessionRequest;
+  const json = await request.json();
+  const parsedBody = advanceSessionSchema.safeParse(json);
+
+  if (!parsedBody.success) {
+    return NextResponse.json(
+      { error: parsedBody.error.issues.map((issue) => issue.message).join(" | ") },
+      { status: 400 },
+    );
+  }
+
+  const body = parsedBody.data;
   const supabase = await getSupabaseServerClient();
 
   const { data: session, error: sessionError } = await supabase

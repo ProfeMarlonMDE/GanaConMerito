@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { parseMarkdownItem } from "@/domain/content/parse-md";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { rawMarkdownSchema } from "@/lib/validation/content";
 
 export async function POST(request: Request) {
   const supabase = await getSupabaseServerClient();
@@ -27,8 +28,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, errors: ["Forbidden"] }, { status: 403 });
   }
 
-  const body = (await request.json()) as { rawMarkdown: string };
-  const result = parseMarkdownItem(body.rawMarkdown);
+  const json = await request.json();
+  const parsedBody = rawMarkdownSchema.safeParse(json);
+
+  if (!parsedBody.success) {
+    return NextResponse.json(
+      {
+        ok: false,
+        itemId: undefined,
+        version: undefined,
+        errors: parsedBody.error.issues.map((issue) => issue.message),
+      },
+      { status: 400 },
+    );
+  }
+
+  const result = parseMarkdownItem(parsedBody.data.rawMarkdown);
 
   if (!result.ok || !result.item) {
     return NextResponse.json(
