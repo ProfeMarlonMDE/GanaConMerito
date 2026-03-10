@@ -4,6 +4,8 @@
 
 ### Base de datos
 - migración inicial: `supabase/migrations/0001_init_mvp.sql`
+- remediación R3 en `supabase/migrations/0002_remediation_r3.sql`
+- corrección de función atómica en `supabase/migrations/0003_fix_upsert_content_item_return.sql`
 - seed mínimo funcional: `supabase/seed.sql`
 - proyecto remoto Supabase enlazado y migración aplicada
 - seed remoto aplicado con éxito
@@ -48,11 +50,13 @@
 - 2 referencias normativas base
 - checklist editorial mínima
 - script de importación de contenido: `scripts/import-content.ts`
+- persistencia atómica vía RPC SQL para `item_bank` + `item_options`
 
 ## Plan de remediación
 - plan maestro: `docs/project/remediation/plan.md`
 - fase R1: `docs/project/remediation/r1-security-auth.md`
 - fase R2: `docs/project/remediation/r2-sessions.md`
+- fase R3: `docs/project/remediation/r3-db-content.md`
 
 ## Ya versionado
 
@@ -70,11 +74,12 @@
 - `v0.3.0` — parser Markdown y carga persistente de contenido
 - `v0.3.1` — importación real de contenido y flujo de sesiones con DB
 - `v0.3.2` — cierre de Fase R1 seguridad/auth crítica
+- `v0.3.3` — cierre de Fase R2 núcleo de sesiones
 
 ## Próximo trabajo recomendado
 
-1. cerrar formalmente Fase R2
-2. pasar a Fase R3 — DB y contenido
+1. cerrar formalmente Fase R3
+2. pasar a Fase R4 — robustez de API y producto
 3. prueba E2E real de login
 4. dashboard con datos reales
 5. frontend real de práctica/onboarding
@@ -91,4 +96,4 @@
 
 ## Observación importante
 
-La remediación estructural sigue en marcha por fases. La prioridad activa es cerrar el núcleo de sesiones.
+La remediación estructural sigue en marcha por fases. La prioridad activa es cerrar DB y contenido.

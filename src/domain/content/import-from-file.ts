@@ -18,54 +18,31 @@ export async function importMarkdownFile(filePath: string) {
   const admin = getSupabaseAdminClient();
   const item = result.item;
 
-  const { data: savedItem, error: itemError } = await admin
-    .from("item_bank")
-    .upsert(
-      {
-        slug: item.slug,
-        title: item.title,
-        area: item.area,
-        subarea: item.subarea ?? null,
-        exam_type: item.examType,
-        competency: item.competency,
-        difficulty: item.difficulty,
-        target_level: item.targetLevel ?? null,
-        item_type: item.itemType,
-        stem: item.stem,
-        correct_option: item.correctOption,
-        explanation: item.explanation,
-        normative_refs: item.normativeRefs,
-        is_published: item.published,
-        version: item.version,
-      },
-      { onConflict: "slug" },
-    )
-    .select("id")
-    .single();
+  const { data, error } = await admin.rpc("upsert_content_item", {
+    p_content_id: item.id,
+    p_slug: item.slug,
+    p_title: item.title,
+    p_area: item.area,
+    p_subarea: item.subarea ?? null,
+    p_exam_type: item.examType,
+    p_competency: item.competency,
+    p_difficulty: item.difficulty,
+    p_target_level: item.targetLevel ?? null,
+    p_item_type: item.itemType,
+    p_stem: item.stem,
+    p_correct_option: item.correctOption,
+    p_explanation: item.explanation,
+    p_normative_refs: item.normativeRefs,
+    p_is_published: item.published,
+    p_version: item.version,
+    p_options: item.options,
+  });
 
-  if (itemError || !savedItem) {
+  if (error || !data || data.length === 0) {
     return {
       ok: false,
       filePath,
-      errors: [itemError?.message ?? "No se pudo persistir item_bank."],
-      warnings: result.warnings,
-    };
-  }
-
-  const { error: optionsError } = await admin.from("item_options").upsert(
-    item.options.map((option) => ({
-      item_id: savedItem.id,
-      option_key: option.key,
-      option_text: option.text,
-    })),
-    { onConflict: "item_id,option_key" },
-  );
-
-  if (optionsError) {
-    return {
-      ok: false,
-      filePath,
-      errors: [optionsError.message],
+      errors: [error?.message ?? "No se pudo persistir el contenido de forma atómica."],
       warnings: result.warnings,
     };
   }

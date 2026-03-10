@@ -38,8 +38,23 @@ Memoria comprimida por usuario.
 - `unique(item_id, option_key)` en `item_options`
 - `unique(session_id, turn_number)` en `session_turns`
 - `unique(profile_id, area, competency)` en `user_topic_stats`
+- `content_id` único en `item_bank`
+- `target_role` y `exam_type` restringidos por CHECK para el dominio actual
+
+## Trazabilidad operativa
+
+Tienen `updated_at`:
+- `profiles`
+- `learning_profiles`
+- `item_bank`
+- `user_topic_stats`
+- `sessions`
+- `session_turns`
+- `user_skill_snapshots`
+- `evaluation_events`
 
 ## Fuente ejecutable
 
 La definición real vive en:
 - `supabase/migrations/0001_init_mvp.sql`
+- `supabase/migrations/0002_remediation_r3.sql`

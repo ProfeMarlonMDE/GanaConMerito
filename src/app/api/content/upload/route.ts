@@ -45,60 +45,31 @@ export async function POST(request: Request) {
   const admin = getSupabaseAdminClient();
   const item = result.item;
 
-  const { data: savedItem, error: itemError } = await admin
-    .from("item_bank")
-    .upsert(
-      {
-        slug: item.slug,
-        title: item.title,
-        area: item.area,
-        subarea: item.subarea ?? null,
-        exam_type: item.examType,
-        competency: item.competency,
-        difficulty: item.difficulty,
-        target_level: item.targetLevel ?? null,
-        item_type: item.itemType,
-        stem: item.stem,
-        correct_option: item.correctOption,
-        explanation: item.explanation,
-        normative_refs: item.normativeRefs,
-        is_published: item.published,
-        version: item.version,
-      },
-      {
-        onConflict: "slug",
-      },
-    )
-    .select("id, version")
-    .single();
-
-  if (itemError || !savedItem) {
-    return NextResponse.json(
-      {
-        ok: false,
-        errors: [itemError?.message ?? "No se pudo persistir item_bank."],
-      },
-      { status: 500 },
-    );
-  }
-
-  const optionRows = item.options.map((option) => ({
-    item_id: savedItem.id,
-    option_key: option.key,
-    option_text: option.text,
-  }));
-
-  const { error: optionsError } = await admin.from("item_options").upsert(optionRows, {
-    onConflict: "item_id,option_key",
+  const { data, error } = await admin.rpc("upsert_content_item", {
+    p_content_id: item.id,
+    p_slug: item.slug,
+    p_title: item.title,
+    p_area: item.area,
+    p_subarea: item.subarea ?? null,
+    p_exam_type: item.examType,
+    p_competency: item.competency,
+    p_difficulty: item.difficulty,
+    p_target_level: item.targetLevel ?? null,
+    p_item_type: item.itemType,
+    p_stem: item.stem,
+    p_correct_option: item.correctOption,
+    p_explanation: item.explanation,
+    p_normative_refs: item.normativeRefs,
+    p_is_published: item.published,
+    p_version: item.version,
+    p_options: item.options,
   });
 
-  if (optionsError) {
+  if (error || !data || data.length === 0) {
     return NextResponse.json(
       {
         ok: false,
-        itemId: savedItem.id,
-        version: savedItem.version,
-        errors: [optionsError.message],
+        errors: [error?.message ?? "No se pudo persistir el contenido de forma atómica."],
       },
       { status: 500 },
     );
@@ -107,8 +78,8 @@ export async function POST(request: Request) {
   return NextResponse.json(
     {
       ok: true,
-      itemId: savedItem.id,
-      version: savedItem.version,
+      itemId: data[0].item_id,
+      version: data[0].item_version,
       errors: [],
     },
     { status: 200 },
