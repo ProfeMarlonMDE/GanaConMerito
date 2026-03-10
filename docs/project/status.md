@@ -35,6 +35,12 @@
 - botón de cierre de sesión en `src/components/auth/sign-out-button.tsx`
 - middleware de protección básica ampliado en `src/middleware.ts`
 
+### Contenido Markdown mínimo
+- estructura inicial `content/`
+- 3 ítems canónicos de ejemplo
+- 2 referencias normativas base
+- checklist editorial mínima
+
 ## Ya versionado
 
 - `v0.1.0` — esquema y seed iniciales
@@ -46,14 +52,16 @@
 - `v0.2.5` — bootstrap de perfiles tras callback Google
 - `v0.2.6` — hardening de auth
 - `v0.2.7` — UI base de login y ruta protegida
+- `v0.2.8` — sign out y ampliación de rutas protegidas
 
 ## Próximo trabajo recomendado
 
-1. prueba E2E real de login
-2. parser Markdown real
+1. parser Markdown real
+2. validación estructural completa
 3. carga persistente de contenido
-4. sesiones con DB real
-5. dashboard con datos reales
+4. prueba E2E real de login
+5. sesiones con DB real
+6. dashboard con datos reales
 
 ## Documentos relevantes
 
@@ -66,4 +74,4 @@
 
 ## Observación importante
 
-El flujo auth ya cubre login visible, bootstrap y cierre de sesión base, pero todavía requiere prueba E2E real y pulido de UX/sesión.
+Ya existe base documental y contenido mínimo suficiente para pasar al parser Markdown y a la carga persistente.
