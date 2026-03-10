@@ -14,18 +14,21 @@
 - scoring heurístico base en `src/domain/evaluation/score-response.ts`
 - validador inicial de opciones en `src/domain/content/validate-item.ts`
 - parser Markdown real en `src/domain/content/parse-md.ts`
+- selector base de ítems en `src/domain/item-selection/select-next-item.ts`
+- importador de contenido desde archivo en `src/domain/content/import-from-file.ts`
 
 ### Backend HTTP
-- stubs de rutas en `src/app/api/`
 - callback auth endurecido en `src/app/api/auth/callback/route.ts`
 - validación real de contenido en `src/app/api/content/validate/route.ts`
 - carga persistente de contenido en `src/app/api/content/upload/route.ts`
+- inicio real de sesión en `src/app/api/session/start/route.ts`
+- avance real de sesión en `src/app/api/session/advance/route.ts`
 
 ### Supabase en proyecto
 - variables de entorno locales configuradas
 - cliente browser Supabase listo
 - cliente server Supabase listo
-- cliente admin Supabase separado de SSR/cookies
+- cliente admin puro compartido entre backend y scripts
 - helper `signInWithGoogle` creado
 - helper `signOut` creado
 - bootstrap automático de `profiles`
@@ -43,6 +46,7 @@
 - 3 ítems canónicos de ejemplo
 - 2 referencias normativas base
 - checklist editorial mínima
+- script de importación de contenido: `scripts/import-content.ts`
 
 ## Ya versionado
 
@@ -57,12 +61,13 @@
 - `v0.2.7` — UI base de login y ruta protegida
 - `v0.2.8` — sign out y ampliación de rutas protegidas
 - `v0.2.9` — plantillas canónicas de contenido Markdown
+- `v0.3.0` — parser Markdown y carga persistente de contenido
 
 ## Próximo trabajo recomendado
 
-1. probar `content/validate` y `content/upload` con archivos reales
+1. ejecutar importación real desde `content/`
 2. prueba E2E real de login
-3. sesiones con DB real
+3. probar ciclo real `session/start` -> `session/advance`
 4. dashboard con datos reales
 5. frontend real de práctica/onboarding
 
@@ -77,4 +82,4 @@
 
 ## Observación importante
 
-Ya existe base funcional suficiente para empezar a probar el flujo de contenido contra Supabase real.
+Ya existe base funcional suficiente para empezar a probar el flujo de contenido y sesiones contra Supabase real.

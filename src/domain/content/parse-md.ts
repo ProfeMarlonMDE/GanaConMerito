@@ -1,6 +1,6 @@
 import matter from "gray-matter";
-import type { ContentItem, ItemOption, OptionKey, ParsedContentSummary } from "@/types/content";
-import { validateOptions } from "@/domain/content/validate-item";
+import type { ContentItem, ItemOption, OptionKey, ParsedContentSummary } from "../../types/content";
+import { validateOptions } from "./validate-item";
 
 export interface ContentValidationResult {
   ok: boolean;

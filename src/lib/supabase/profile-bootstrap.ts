@@ -1,5 +1,5 @@
 import type { User } from "@supabase/supabase-js";
-import { getSupabaseAdminClient } from "@/lib/supabase/server";
+import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 function inferDisplayName(user: User) {
   return (

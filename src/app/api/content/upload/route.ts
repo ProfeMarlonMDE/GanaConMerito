@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { parseMarkdownItem } from "@/domain/content/parse-md";
-import { getSupabaseAdminClient } from "@/lib/supabase/server";
+import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export async function POST(request: Request) {
   const body = (await request.json()) as { rawMarkdown: string };
