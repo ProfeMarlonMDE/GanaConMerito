@@ -1,8 +1,32 @@
 import { NextResponse } from "next/server";
 import { parseMarkdownItem } from "@/domain/content/parse-md";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function POST(request: Request) {
+  const supabase = await getSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ ok: false, errors: ["Unauthorized"] }, { status: 401 });
+  }
+
+  const { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("id, is_admin")
+    .eq("auth_user_id", user.id)
+    .single();
+
+  if (profileError || !profile) {
+    return NextResponse.json({ ok: false, errors: ["Profile not found"] }, { status: 404 });
+  }
+
+  if (!profile.is_admin) {
+    return NextResponse.json({ ok: false, errors: ["Forbidden"] }, { status: 403 });
+  }
+
   const body = (await request.json()) as { rawMarkdown: string };
   const result = parseMarkdownItem(body.rawMarkdown);
 

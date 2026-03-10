@@ -31,15 +31,15 @@
 - cliente admin puro compartido entre backend y scripts
 - helper `signInWithGoogle` creado
 - helper `signOut` creado
-- bootstrap automático de `profiles`
-- bootstrap conservador de `learning_profiles`
+- bootstrap automático/reparador de `profiles`
+- bootstrap reparador de `learning_profiles`
 
 ### Flujo auth visible
 - página real de login en `src/app/login/page.tsx`
 - botón Google real en `src/components/auth/google-sign-in-button.tsx`
 - home protegida en `src/app/home/page.tsx`
 - botón de cierre de sesión en `src/components/auth/sign-out-button.tsx`
-- middleware de protección básica ampliado en `src/middleware.ts`
+- middleware SSR/cookies ajustado y protección básica ampliada en `src/middleware.ts`
 
 ### Contenido Markdown mínimo
 - estructura inicial `content/`
@@ -47,6 +47,10 @@
 - 2 referencias normativas base
 - checklist editorial mínima
 - script de importación de contenido: `scripts/import-content.ts`
+
+## Plan de remediación
+- plan maestro: `docs/project/remediation/plan.md`
+- fase R1: `docs/project/remediation/r1-security-auth.md`
 
 ## Ya versionado
 
@@ -62,12 +66,13 @@
 - `v0.2.8` — sign out y ampliación de rutas protegidas
 - `v0.2.9` — plantillas canónicas de contenido Markdown
 - `v0.3.0` — parser Markdown y carga persistente de contenido
+- `v0.3.1` — importación real de contenido y flujo de sesiones con DB
 
 ## Próximo trabajo recomendado
 
-1. ejecutar importación real desde `content/`
-2. prueba E2E real de login
-3. probar ciclo real `session/start` -> `session/advance`
+1. cerrar formalmente Fase R1
+2. pasar a Fase R2 — núcleo de sesiones
+3. prueba E2E real de login
 4. dashboard con datos reales
 5. frontend real de práctica/onboarding
 
@@ -79,7 +84,8 @@
 - `docs/project/google-auth-setup.md`
 - `docs/project/auth-hardening-audit.md`
 - `docs/project/tooling-stack.md`
+- `docs/project/remediation/plan.md`
 
 ## Observación importante
 
-Ya existe base funcional suficiente para empezar a probar el flujo de contenido y sesiones contra Supabase real.
+La remediación estructural está en marcha por fases. La prioridad activa es Seguridad/Auth crítica.

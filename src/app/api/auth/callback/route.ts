@@ -31,14 +31,21 @@ export async function GET(request: Request) {
     } = await supabase.auth.getUser();
 
     if (userError || !user) {
+      await supabase.auth.signOut();
       return NextResponse.redirect(`${origin}/login?error=user_not_available`);
     }
 
-    await bootstrapUserProfile(user);
+    try {
+      await bootstrapUserProfile(user);
+    } catch (bootstrapError) {
+      console.error("Auth callback bootstrap error", bootstrapError);
+      await supabase.auth.signOut();
+      return NextResponse.redirect(`${origin}/login?error=profile_bootstrap_failed`);
+    }
 
     return NextResponse.redirect(`${origin}${next}`);
   } catch (error) {
-    console.error("Auth callback bootstrap error", error);
-    return NextResponse.redirect(`${origin}/login?error=profile_bootstrap_failed`);
+    console.error("Auth callback fatal error", error);
+    return NextResponse.redirect(`${origin}/login?error=auth_flow_failed`);
   }
 }
