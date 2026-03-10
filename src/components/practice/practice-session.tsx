@@ -26,6 +26,7 @@ interface AdvanceResult {
     isCorrect: boolean;
     reasoningScore: number;
     competencyScore: number;
+    qualitativeFeedback?: string;
   };
 }
 
@@ -33,6 +34,7 @@ export function PracticeSession() {
   const [session, setSession] = useState<SessionStartResult | null>(null);
   const [item, setItem] = useState<PracticeItem | null>(null);
   const [selectedOption, setSelectedOption] = useState<"A" | "B" | "C" | "D" | null>(null);
+  const [userRationale, setUserRationale] = useState("");
   const [feedback, setFeedback] = useState<AdvanceResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -47,6 +49,7 @@ export function PracticeSession() {
 
     setItem(data);
     setSelectedOption(null);
+    setUserRationale("");
   }
 
   async function handleStart() {
@@ -94,6 +97,7 @@ export function PracticeSession() {
         sessionId: session.sessionId,
         itemId: item.id,
         selectedOption,
+        userRationale: userRationale.trim() || undefined,
       }),
     });
 
@@ -157,6 +161,15 @@ export function PracticeSession() {
               </li>
             ))}
           </ul>
+          <label>
+            Justificación / razonamiento
+            <textarea
+              value={userRationale}
+              onChange={(event) => setUserRationale(event.target.value)}
+              placeholder="Explica brevemente por qué elegiste esa respuesta"
+              rows={5}
+            />
+          </label>
           <button onClick={handleSubmitAnswer} disabled={loading || !selectedOption}>
             {loading ? "Enviando..." : "Responder"}
           </button>
@@ -170,6 +183,9 @@ export function PracticeSession() {
           <p>Reasoning score: {feedback.evaluation.reasoningScore}</p>
           <p>Competency score: {feedback.evaluation.competencyScore}</p>
           <p>Hint level: {feedback.hintLevel}</p>
+          {feedback.evaluation.qualitativeFeedback ? (
+            <p>Nota cualitativa: {feedback.evaluation.qualitativeFeedback}</p>
+          ) : null}
         </div>
       ) : null}
     </section>

@@ -66,7 +66,13 @@ export async function POST(request: Request) {
     selectedOption: body.selectedOption,
     correctOption: item.correct_option,
     difficulty: Number(item.difficulty),
+    userRationale: body.userRationale,
   });
+
+  const feedbackText = evaluation.qualitativeFeedback ??
+    (evaluation.isCorrect
+      ? "Respuesta correcta. Continuemos."
+      : "Necesitas refuerzo en este punto. Revisemos la premisa clave.");
 
   const turnNumber = (existingTurns?.length ?? 0) + 1;
 
@@ -80,9 +86,7 @@ export async function POST(request: Request) {
       user_rationale: body.userRationale ?? null,
       response_time_ms: body.responseTimeMs ?? null,
       confidence_self_report: body.confidenceSelfReport ?? null,
-      model_feedback: evaluation.isCorrect
-        ? "Respuesta correcta. Continuemos."
-        : "Necesitas refuerzo en este punto. Revisemos la premisa clave.",
+      model_feedback: feedbackText,
     })
     .select("id")
     .single();
@@ -145,9 +149,7 @@ export async function POST(request: Request) {
     previousState,
     currentState,
     evaluation,
-    feedbackText: evaluation.isCorrect
-      ? "Respuesta correcta. Continuemos."
-      : "Necesitas refuerzo en este punto. Revisemos la premisa clave.",
+    feedbackText,
     hintLevel: evaluation.remediationNeeded ? 1 : 0,
     nextItemId: nextItem?.id,
     shouldTransition: previousState !== currentState,

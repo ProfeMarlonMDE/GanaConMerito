@@ -94,13 +94,14 @@
 - `v0.3.5` — cierre de Fase R4 robustez de API y producto
 - `v0.3.6` — dashboard real base y práctica base
 - `v0.3.7` — práctica real con interacción de respuesta
+- `v0.3.8` — onboarding real conectado a learning_profiles
 
 ## Próximo trabajo recomendado
 
-1. onboarding real ligado a `learning_profiles` y navegación de usuario
-2. práctica con razonamiento textual y feedback más rico
-3. dashboard con métricas más ricas
-4. prueba E2E real de login y sesión
+1. práctica con razonamiento textual y feedback más rico
+2. dashboard con métricas más ricas
+3. prueba E2E real de login y sesión
+4. refinamiento de onboarding y práctica
 
 ## Documentos relevantes
 
