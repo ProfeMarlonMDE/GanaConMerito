@@ -23,6 +23,9 @@
 - cliente browser Supabase listo
 - cliente server Supabase listo
 - cliente admin Supabase listo
+- helper `signInWithGoogle` creado
+- bootstrap automático de `profiles`
+- bootstrap automático de `learning_profiles`
 
 ## Ya versionado
 
@@ -31,16 +34,16 @@
 - `v0.2.1` — documentación de arquitectura organizada
 - `v0.2.2` — inicialización local de Supabase
 - `v0.2.3` — seed remoto funcional
+- `v0.2.4` — integración real de Supabase y preparación de Google Auth
 
 ## Próximo trabajo recomendado
 
-1. helper de login con Google
+1. página/login real
 2. protección de rutas privadas
-3. bootstrap real de `profiles`
-4. bootstrap real de `learning_profiles`
-5. parser Markdown real
-6. carga persistente de contenido
-7. sesiones con DB real
+3. sign out
+4. parser Markdown real
+5. carga persistente de contenido
+6. sesiones con DB real
 
 ## Documentos relevantes
 
@@ -52,4 +55,4 @@
 
 ## Observación importante
 
-Google Auth aún requiere activación manual en dashboard de Supabase y Google Cloud Console.
+Google Auth ya está preparado en código, pero aún debe probarse extremo a extremo desde la UI real.

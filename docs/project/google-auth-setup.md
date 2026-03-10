@@ -6,6 +6,17 @@ El proyecto ya tiene:
 - variables de entorno locales para Supabase
 - cliente browser y server listos
 - callback route en `src/app/api/auth/callback/route.ts`
+- helper `signInWithGoogle` en `src/lib/supabase/auth.ts`
+- bootstrap automático de `profiles` y `learning_profiles`
+
+## Lo que ya hace el código
+
+Después del callback exitoso:
+1. intercambia el `code` por sesión
+2. obtiene el usuario autenticado
+3. crea o actualiza `profiles`
+4. crea o actualiza `learning_profiles`
+5. redirige al destino solicitado
 
 ## Lo que falta habilitar manualmente
 
@@ -23,8 +34,6 @@ Usar como URI principal:
 https://tsyutluozccpltygdrlb.supabase.co/auth/v1/callback
 ```
 
-Si luego se requiere callback propia en frontend, se mantiene además la ruta de la app para retorno posterior.
-
 ## Paso 3. Activar Google provider en Supabase
 
 En Supabase:
@@ -40,10 +49,6 @@ Configurar:
 ## Paso 4. Configurar Site URL y Redirect URLs
 
 Definir al menos:
-- entorno local de desarrollo
-- URL pública futura
-
-Ejemplo local:
 
 ```text
 http://localhost:3000
@@ -53,14 +58,16 @@ http://localhost:3000/api/auth/callback
 ## Paso 5. Flujo esperado en app
 
 1. usuario elige login con Google
-2. Supabase redirige a Google
-3. Google vuelve al callback
-4. la ruta `src/app/api/auth/callback/route.ts` intercambia el code por sesión
-5. el usuario vuelve a la app autenticado
+2. helper `signInWithGoogle()` inicia OAuth
+3. Supabase redirige a Google
+4. Google vuelve al callback
+5. la ruta `src/app/api/auth/callback/route.ts` intercambia el code por sesión
+6. el sistema bootstrappea `profiles` y `learning_profiles`
+7. el usuario vuelve a la app autenticado
 
-## Siguiente trabajo técnico después de habilitarlo
+## Trabajo siguiente recomendado
 
-- crear helper `signInWithGoogle`
+- crear página/login real
 - proteger rutas privadas
-- bootstrap automático de `profiles`
-- bootstrap automático de `learning_profiles`
+- implementar sign out
+- decidir redirección post-login definitiva (`/home` u onboarding)

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { bootstrapUserProfile } from "@/lib/supabase/profile-bootstrap";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function GET(request: Request) {
@@ -16,6 +17,17 @@ export async function GET(request: Request) {
   if (error) {
     return NextResponse.redirect(`${origin}/login?error=auth_callback_failed`);
   }
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    return NextResponse.redirect(`${origin}/login?error=user_not_available`);
+  }
+
+  await bootstrapUserProfile(user);
 
   return NextResponse.redirect(`${origin}${next}`);
 }
