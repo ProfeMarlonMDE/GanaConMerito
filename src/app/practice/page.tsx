@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { StartPracticeForm } from "@/components/practice/start-practice-form";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export default async function PracticePage() {
@@ -14,7 +15,8 @@ export default async function PracticePage() {
   return (
     <main>
       <h1>Práctica</h1>
-      <p>Base lista para conectar con el flujo real de sesiones e ítems.</p>
+      <p>Inicia una sesión real de práctica contra el backend.</p>
+      <StartPracticeForm />
     </main>
   );
 }

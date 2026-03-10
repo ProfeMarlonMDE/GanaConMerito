@@ -20,6 +20,7 @@
 - importador de contenido desde archivo en `src/domain/content/import-from-file.ts`
 - actualización básica de estadísticas en `src/domain/session/update-topic-stats.ts`
 - validación runtime con Zod en endpoints críticos
+- cálculo real de resumen en dashboard (`src/lib/dashboard/summary.ts`)
 
 ### Backend HTTP
 - callback auth endurecido en `src/app/api/auth/callback/route.ts`
@@ -27,6 +28,7 @@
 - carga persistente de contenido en `src/app/api/content/upload/route.ts`
 - inicio real de sesión en `src/app/api/session/start/route.ts`
 - avance real de sesión en `src/app/api/session/advance/route.ts`
+- dashboard real en `src/app/api/dashboard/summary/route.ts`
 
 ### Supabase en proyecto
 - variables de entorno locales configuradas
@@ -50,6 +52,7 @@
 - `src/app/practice/page.tsx`
 - `src/app/dashboard/page.tsx`
 - `src/app/layout.tsx`
+- formulario real para iniciar práctica en `src/components/practice/start-practice-form.tsx`
 
 ### Contenido Markdown mínimo
 - estructura inicial `content/`
@@ -84,13 +87,14 @@
 - `v0.3.2` — cierre de Fase R1 seguridad/auth crítica
 - `v0.3.3` — cierre de Fase R2 núcleo de sesiones
 - `v0.3.4` — cierre de Fase R3 DB y contenido
+- `v0.3.5` — cierre de Fase R4 robustez de API y producto
 
 ## Próximo trabajo recomendado
 
-1. cerrar formalmente Fase R4
-2. prueba E2E real de login y sesión
-3. dashboard con datos reales
-4. frontend real de práctica/onboarding
+1. prueba E2E real de login y sesión
+2. dashboard con métricas más ricas
+3. onboarding real ligado a `learning_profiles`
+4. práctica real con ciclo de respuesta completo
 
 ## Documentos relevantes
 
@@ -104,4 +108,4 @@
 
 ## Observación importante
 
-La remediación estructural está en su fase final. La prioridad activa es cerrar robustez de API y producto.
+El plan de remediación ya quedó cerrado. El proyecto entra ahora a fase de desarrollo post-remediación.
