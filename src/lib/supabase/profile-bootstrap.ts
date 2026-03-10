@@ -17,6 +17,16 @@ function inferAvatar(user: User) {
 export async function bootstrapUserProfile(user: User) {
   const admin = getSupabaseAdminClient();
 
+  const { data: existingProfile, error: existingProfileError } = await admin
+    .from("profiles")
+    .select("id")
+    .eq("auth_user_id", user.id)
+    .maybeSingle();
+
+  if (existingProfileError) {
+    throw existingProfileError;
+  }
+
   const { data: profile, error: profileError } = await admin
     .from("profiles")
     .upsert(
@@ -37,10 +47,11 @@ export async function bootstrapUserProfile(user: User) {
     throw profileError;
   }
 
-  const { error: learningProfileError } = await admin
-    .from("learning_profiles")
-    .upsert(
-      {
+  const learningProfilePayload = existingProfile
+    ? {
+        profile_id: profile.id,
+      }
+    : {
         profile_id: profile.id,
         target_role: "docente",
         exam_type: "docente",
@@ -49,11 +60,13 @@ export async function bootstrapUserProfile(user: User) {
         active_goal: "Completar onboarding inicial",
         active_areas: [],
         onboarding_completed: false,
-      },
-      {
-        onConflict: "profile_id",
-      },
-    );
+      };
+
+  const { error: learningProfileError } = await admin
+    .from("learning_profiles")
+    .upsert(learningProfilePayload, {
+      onConflict: "profile_id",
+    });
 
   if (learningProfileError) {
     throw learningProfileError;

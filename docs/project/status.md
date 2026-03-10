@@ -16,16 +16,16 @@
 
 ### Backend HTTP
 - stubs de rutas en `src/app/api/`
-- callback auth preparado en `src/app/api/auth/callback/route.ts`
+- callback auth endurecido en `src/app/api/auth/callback/route.ts`
 
 ### Supabase en proyecto
 - variables de entorno locales configuradas
 - cliente browser Supabase listo
 - cliente server Supabase listo
-- cliente admin Supabase listo
+- cliente admin Supabase separado de SSR/cookies
 - helper `signInWithGoogle` creado
 - bootstrap automático de `profiles`
-- bootstrap automático de `learning_profiles`
+- bootstrap conservador de `learning_profiles`
 
 ## Ya versionado
 
@@ -35,15 +35,17 @@
 - `v0.2.2` — inicialización local de Supabase
 - `v0.2.3` — seed remoto funcional
 - `v0.2.4` — integración real de Supabase y preparación de Google Auth
+- `v0.2.5` — bootstrap de perfiles tras callback Google
 
 ## Próximo trabajo recomendado
 
-1. página/login real
-2. protección de rutas privadas
-3. sign out
-4. parser Markdown real
-5. carga persistente de contenido
-6. sesiones con DB real
+1. prueba E2E real de login
+2. página/login real
+3. protección de rutas privadas
+4. sign out
+5. parser Markdown real
+6. carga persistente de contenido
+7. sesiones con DB real
 
 ## Documentos relevantes
 
@@ -51,8 +53,9 @@
 - `docs/architecture/decisions.md`
 - `docs/api/contracts.md`
 - `docs/project/google-auth-setup.md`
+- `docs/project/auth-hardening-audit.md`
 - `docs/project/tooling-stack.md`
 
 ## Observación importante
 
-Google Auth ya está preparado en código, pero aún debe probarse extremo a extremo desde la UI real.
+El bloque auth quedó más seguro y consistente, pero todavía requiere validación E2E y endurecimiento adicional si se quiere considerar listo para producción.

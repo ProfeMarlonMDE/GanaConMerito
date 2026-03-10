@@ -1,3 +1,4 @@
+import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 
@@ -36,14 +37,10 @@ export function getSupabaseAdminClient() {
     throw new Error("Missing Supabase admin environment variables.");
   }
 
-  return createServerClient(url, serviceRoleKey, {
-    cookies: {
-      getAll() {
-        return [];
-      },
-      setAll() {
-        // Admin client does not use request cookies.
-      },
+  return createClient(url, serviceRoleKey, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
     },
   });
 }
