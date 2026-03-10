@@ -44,6 +44,12 @@ Los ítems se modelan en Markdown con frontmatter.
 
 ## Estado actual
 
-- ya existe validador básico de opciones en:
-  - `src/domain/content/validate-item.ts`
-- todavía falta parser Markdown real y carga persistente
+Ya existe:
+- validador básico de opciones en `src/domain/content/validate-item.ts`
+- parser real Markdown en `src/domain/content/parse-md.ts`
+- endpoint real de validación en `src/app/api/content/validate/route.ts`
+- endpoint de carga persistente en `src/app/api/content/upload/route.ts`
+
+## Observación
+
+Las referencias normativas aún se conservan en `normativeRefs` dentro del ítem. La persistencia estructurada de normativa queda como evolución posterior.

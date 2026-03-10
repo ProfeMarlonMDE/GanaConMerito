@@ -13,10 +13,13 @@
 - máquina de estados MVP en `src/domain/orchestrator/session-machine.ts`
 - scoring heurístico base en `src/domain/evaluation/score-response.ts`
 - validador inicial de opciones en `src/domain/content/validate-item.ts`
+- parser Markdown real en `src/domain/content/parse-md.ts`
 
 ### Backend HTTP
 - stubs de rutas en `src/app/api/`
 - callback auth endurecido en `src/app/api/auth/callback/route.ts`
+- validación real de contenido en `src/app/api/content/validate/route.ts`
+- carga persistente de contenido en `src/app/api/content/upload/route.ts`
 
 ### Supabase en proyecto
 - variables de entorno locales configuradas
@@ -53,15 +56,15 @@
 - `v0.2.6` — hardening de auth
 - `v0.2.7` — UI base de login y ruta protegida
 - `v0.2.8` — sign out y ampliación de rutas protegidas
+- `v0.2.9` — plantillas canónicas de contenido Markdown
 
 ## Próximo trabajo recomendado
 
-1. parser Markdown real
-2. validación estructural completa
-3. carga persistente de contenido
-4. prueba E2E real de login
-5. sesiones con DB real
-6. dashboard con datos reales
+1. probar `content/validate` y `content/upload` con archivos reales
+2. prueba E2E real de login
+3. sesiones con DB real
+4. dashboard con datos reales
+5. frontend real de práctica/onboarding
 
 ## Documentos relevantes
 
@@ -74,4 +77,4 @@
 
 ## Observación importante
 
-Ya existe base documental y contenido mínimo suficiente para pasar al parser Markdown y a la carga persistente.
+Ya existe base funcional suficiente para empezar a probar el flujo de contenido contra Supabase real.

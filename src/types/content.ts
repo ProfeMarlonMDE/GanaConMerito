@@ -45,3 +45,25 @@ export interface ParsedContentSummary {
   correctOption: OptionKey;
   optionCount: number;
 }
+
+export interface ValidateContentRequest {
+  rawMarkdown: string;
+}
+
+export interface ValidateContentResponse {
+  ok: boolean;
+  errors: string[];
+  warnings: string[];
+  parsed?: ParsedContentSummary;
+}
+
+export interface UploadContentRequest {
+  rawMarkdown: string;
+}
+
+export interface UploadContentResponse {
+  ok: boolean;
+  itemId?: string;
+  version?: number;
+  errors: string[];
+}

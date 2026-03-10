@@ -1,36 +1,17 @@
 import { NextResponse } from "next/server";
-import { validateOptions } from "@/domain/content/validate-item";
+import { parseMarkdownItem } from "@/domain/content/parse-md";
 
 export async function POST(request: Request) {
   const body = (await request.json()) as { rawMarkdown: string };
-
-  const options = [
-    { key: "A", text: "Opción A" },
-    { key: "B", text: "Opción B" },
-    { key: "C", text: "Opción C" },
-    { key: "D", text: "Opción D" },
-  ];
-
-  const result = validateOptions(options);
+  const result = parseMarkdownItem(body.rawMarkdown);
 
   return NextResponse.json(
     {
-      ok: result.errors.length === 0,
+      ok: result.ok,
       errors: result.errors,
       warnings: result.warnings,
-      parsed: body.rawMarkdown
-        ? {
-            id: "draft-item",
-            slug: "draft-item",
-            title: "Draft item",
-            area: "normatividad",
-            competency: "interpretacion_normativa",
-            difficulty: 0.5,
-            correctOption: "A",
-            optionCount: options.length,
-          }
-        : undefined,
+      parsed: result.parsed,
     },
-    { status: 200 },
+    { status: result.ok ? 200 : 400 },
   );
 }

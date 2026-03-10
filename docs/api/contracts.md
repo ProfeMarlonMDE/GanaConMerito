@@ -69,11 +69,13 @@ Salida:
 
 ## Estado real
 
-Las rutas existen como stubs tipados en:
-- `src/app/api/`
+Las rutas existen en `src/app/api/`.
 
-Todavía faltan:
-- persistencia real
-- auth real
-- parser Markdown real
-- integración Supabase completa
+### Ya implementado realmente
+- `content/validate` parsea y valida Markdown real
+- `content/upload` persiste `item_bank` e `item_options` en Supabase
+
+### Aún pendiente
+- persistencia real de sesiones
+- auth avanzada por roles
+- dashboard con datos reales
