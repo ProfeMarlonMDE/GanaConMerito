@@ -57,6 +57,7 @@
 - formulario real para iniciar práctica en `src/components/practice/start-practice-form.tsx`
 - sesión de práctica real en `src/components/practice/practice-session.tsx`
 - formulario real de onboarding en `src/components/onboarding/onboarding-form.tsx`
+- dashboard con desglose real por tema y métricas derivadas
 
 ### Contenido Markdown mínimo
 - estructura inicial `content/`
@@ -95,13 +96,14 @@
 - `v0.3.6` — dashboard real base y práctica base
 - `v0.3.7` — práctica real con interacción de respuesta
 - `v0.3.8` — onboarding real conectado a learning_profiles
+- `v0.3.9` — práctica con razonamiento textual y feedback más rico
 
 ## Próximo trabajo recomendado
 
-1. práctica con razonamiento textual y feedback más rico
-2. dashboard con métricas más ricas
-3. prueba E2E real de login y sesión
-4. refinamiento de onboarding y práctica
+1. dashboard con métricas más ricas
+2. prueba E2E real de login y sesión
+3. refinamiento de onboarding y práctica
+4. dashboard por área / competencia más visual
 
 ## Documentos relevantes
 
@@ -115,4 +117,4 @@
 
 ## Observación importante
 
-El plan de remediación ya quedó cerrado. El proyecto está en fase de desarrollo post-remediación con flujo de práctica y onboarding cada vez más reales.
+El plan de remediación ya quedó cerrado. El proyecto está en fase de desarrollo post-remediación con flujo de práctica, onboarding y dashboard cada vez más reales.

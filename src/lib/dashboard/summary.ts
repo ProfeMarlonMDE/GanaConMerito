@@ -39,7 +39,9 @@ export async function getDashboardSummaryForCurrentUser(): Promise<DashboardSumm
 
   const { data: topicStats } = await supabase
     .from("user_topic_stats")
-    .select("competency, attempts, correct_count, avg_reasoning_score, estimated_level, percentile_segment")
+    .select(
+      "area, competency, attempts, correct_count, avg_reasoning_score, avg_difficulty, estimated_level, percentile_segment, updated_at",
+    )
     .eq("profile_id", profile.id);
 
   const stats = topicStats ?? [];
@@ -56,6 +58,20 @@ export async function getDashboardSummaryForCurrentUser(): Promise<DashboardSumm
 
   const sortedByLevel = [...stats].sort((a, b) => Number(b.estimated_level) - Number(a.estimated_level));
 
+  const recentWindow = [...stats]
+    .filter((row) => row.updated_at)
+    .sort((a, b) => String(b.updated_at).localeCompare(String(a.updated_at)));
+
+  let recentTrend: DashboardSummaryResponse["recentTrend"] = "stable";
+  if (recentWindow.length >= 2) {
+    const latest = Number(recentWindow[0].estimated_level);
+    const previous = Number(recentWindow[1].estimated_level);
+    if (latest > previous) recentTrend = "up";
+    else if (latest < previous) recentTrend = "down";
+  } else if (totalAttempts > 0) {
+    recentTrend = "up";
+  }
+
   return {
     estimatedLevel,
     percentileSegment: stats[0]?.percentile_segment ?? undefined,
@@ -63,7 +79,34 @@ export async function getDashboardSummaryForCurrentUser(): Promise<DashboardSumm
     totalCorrect,
     avgReasoningScore,
     strongestCompetencies: sortedByLevel.slice(0, 3).map((row) => row.competency),
-    weakestCompetencies: sortedByLevel.slice(-3).map((row) => row.competency),
-    recentTrend: totalAttempts > 0 ? "up" : "stable",
+    weakestCompetencies: [...sortedByLevel].reverse().slice(0, 3).map((row) => row.competency),
+    recentTrend,
   };
+}
+
+export async function getDashboardTopicBreakdownForCurrentUser() {
+  const supabase = await getSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return [];
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("id")
+    .eq("auth_user_id", user.id)
+    .single();
+
+  if (!profile) return [];
+
+  const { data } = await supabase
+    .from("user_topic_stats")
+    .select(
+      "area, competency, attempts, correct_count, avg_reasoning_score, avg_difficulty, estimated_level",
+    )
+    .eq("profile_id", profile.id)
+    .order("estimated_level", { ascending: false });
+
+  return data ?? [];
 }
