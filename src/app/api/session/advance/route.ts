@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { scoreResponseBaselineHeuristicV1 } from "@/domain/evaluation/score-response";
-import { selectNextItem } from "@/domain/item-selection/select-next-item";
-import { getNextState } from "@/domain/orchestrator/session-machine";
-import { updateUserTopicStats } from "@/domain/session/update-topic-stats";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
-import { advanceSessionSchema } from "@/lib/validation/session";
-import type { AdvanceSessionResponse } from "@/types/evaluation";
-import type { SessionState } from "@/types/session";
+import { scoreResponseBaselineHeuristicV1 } from "../../../../domain/evaluation/score-response";
+import { selectNextItem } from "../../../../domain/item-selection/select-next-item";
+import { getNextState } from "../../../../domain/orchestrator/session-machine";
+import { updateUserTopicStats } from "../../../../domain/session/update-topic-stats";
+import { getSupabaseServerClient } from "../../../../lib/supabase/server";
+import { advanceSessionSchema } from "../../../../lib/validation/session";
+import type { AdvanceSessionResponse } from "../../../../types/evaluation";
+import type { SessionState } from "../../../../types/session";
 
 export async function POST(request: Request) {
   const json = await request.json();
@@ -69,7 +69,8 @@ export async function POST(request: Request) {
     userRationale: body.userRationale,
   });
 
-  const feedbackText = evaluation.qualitativeFeedback ??
+  const feedbackText =
+    evaluation.qualitativeFeedback ??
     (evaluation.isCorrect
       ? "Respuesta correcta. Continuemos."
       : "Necesitas refuerzo en este punto. Revisemos la premisa clave.");
@@ -136,7 +137,9 @@ export async function POST(request: Request) {
 
   await supabase.from("sessions").update({ current_state: currentState }).eq("id", body.sessionId);
 
-  const seenItemIds = [...new Set([...(existingTurns?.map((turn) => turn.item_id).filter(Boolean) ?? []), body.itemId])];
+  const seenItemIds = [
+    ...new Set([...(existingTurns?.map((turn) => turn.item_id).filter(Boolean) ?? []), body.itemId]),
+  ];
 
   const nextItem = await selectNextItem({
     activeArea: item.area,

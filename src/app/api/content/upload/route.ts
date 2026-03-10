@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { parseMarkdownItem } from "@/domain/content/parse-md";
-import { getSupabaseAdminClient } from "@/lib/supabase/admin";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
-import { rawMarkdownSchema } from "@/lib/validation/content";
+import { parseMarkdownItem } from "../../../../domain/content/parse-md";
+import { getSupabaseAdminClient } from "../../../../lib/supabase/admin";
+import { getSupabaseServerClient } from "../../../../lib/supabase/server";
+import { rawMarkdownSchema } from "../../../../lib/validation/content";
 
 export async function POST(request: Request) {
   const supabase = await getSupabaseServerClient();

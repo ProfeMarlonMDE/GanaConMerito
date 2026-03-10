@@ -1,16 +1,8 @@
-import { redirect } from "next/navigation";
 import { PracticeSession } from "@/components/practice/practice-session";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { requireAuthenticatedUser } from "@/lib/supabase/guards";
 
 export default async function PracticePage() {
-  const supabase = await getSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login");
-  }
+  await requireAuthenticatedUser();
 
   return (
     <main>

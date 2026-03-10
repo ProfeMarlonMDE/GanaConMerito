@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { selectNextItem } from "@/domain/item-selection/select-next-item";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
-import { startSessionSchema } from "@/lib/validation/session";
-import type { StartSessionResponse, SessionState } from "@/types/session";
+import { selectNextItem } from "../../../../domain/item-selection/select-next-item";
+import { getSupabaseServerClient } from "../../../../lib/supabase/server";
+import { startSessionSchema } from "../../../../lib/validation/session";
+import type { StartSessionResponse, SessionState } from "../../../../types/session";
 
 export async function POST(request: Request) {
   const json = await request.json();

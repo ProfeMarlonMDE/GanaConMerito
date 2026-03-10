@@ -1,19 +1,11 @@
-import { redirect } from "next/navigation";
 import {
   getDashboardSummaryForCurrentUser,
   getDashboardTopicBreakdownForCurrentUser,
 } from "@/lib/dashboard/summary";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { requireAuthenticatedUser } from "@/lib/supabase/guards";
 
 export default async function DashboardPage() {
-  const supabase = await getSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login");
-  }
+  await requireAuthenticatedUser();
 
   const summary = await getDashboardSummaryForCurrentUser();
   const breakdown = await getDashboardTopicBreakdownForCurrentUser();

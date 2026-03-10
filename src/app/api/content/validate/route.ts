@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { parseMarkdownItem } from "@/domain/content/parse-md";
-import { rawMarkdownSchema } from "@/lib/validation/content";
+import { parseMarkdownItem } from "../../../../domain/content/parse-md";
+import { rawMarkdownSchema } from "../../../../lib/validation/content";
 
 export async function POST(request: Request) {
   const json = await request.json();

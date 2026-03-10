@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { getSupabaseServerClient } from "../../../../lib/supabase/server";
 
 const onboardingSchema = z.object({
   targetRole: z.string().min(1),
