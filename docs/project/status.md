@@ -16,6 +16,7 @@
 - parser Markdown real en `src/domain/content/parse-md.ts`
 - selector base de ítems en `src/domain/item-selection/select-next-item.ts`
 - importador de contenido desde archivo en `src/domain/content/import-from-file.ts`
+- actualización básica de estadísticas en `src/domain/session/update-topic-stats.ts`
 
 ### Backend HTTP
 - callback auth endurecido en `src/app/api/auth/callback/route.ts`
@@ -51,6 +52,7 @@
 ## Plan de remediación
 - plan maestro: `docs/project/remediation/plan.md`
 - fase R1: `docs/project/remediation/r1-security-auth.md`
+- fase R2: `docs/project/remediation/r2-sessions.md`
 
 ## Ya versionado
 
@@ -67,11 +69,12 @@
 - `v0.2.9` — plantillas canónicas de contenido Markdown
 - `v0.3.0` — parser Markdown y carga persistente de contenido
 - `v0.3.1` — importación real de contenido y flujo de sesiones con DB
+- `v0.3.2` — cierre de Fase R1 seguridad/auth crítica
 
 ## Próximo trabajo recomendado
 
-1. cerrar formalmente Fase R1
-2. pasar a Fase R2 — núcleo de sesiones
+1. cerrar formalmente Fase R2
+2. pasar a Fase R3 — DB y contenido
 3. prueba E2E real de login
 4. dashboard con datos reales
 5. frontend real de práctica/onboarding
@@ -88,4 +91,4 @@
 
 ## Observación importante
 
-La remediación estructural está en marcha por fases. La prioridad activa es Seguridad/Auth crítica.
+La remediación estructural sigue en marcha por fases. La prioridad activa es cerrar el núcleo de sesiones.

@@ -1,4 +1,4 @@
-import { getSupabaseAdminClient } from "@/lib/supabase/server";
+import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 interface SelectNextItemParams {
   activeArea?: string;
@@ -25,7 +25,8 @@ export async function selectNextItem(params: SelectNextItemParams) {
   }
 
   if (params.excludeItemIds && params.excludeItemIds.length > 0) {
-    query = query.not("id", "in", `(${params.excludeItemIds.join(",")})`);
+    const quotedIds = params.excludeItemIds.map((id) => `"${id}"`).join(",");
+    query = query.not("id", "in", `(${quotedIds})`);
   }
 
   const { data, error } = await query.maybeSingle();

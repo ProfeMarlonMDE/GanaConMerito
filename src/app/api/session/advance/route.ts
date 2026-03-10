@@ -2,18 +2,34 @@ import { NextResponse } from "next/server";
 import { scoreResponseBaselineHeuristicV1 } from "@/domain/evaluation/score-response";
 import { selectNextItem } from "@/domain/item-selection/select-next-item";
 import { getNextState } from "@/domain/orchestrator/session-machine";
+import { updateUserTopicStats } from "@/domain/session/update-topic-stats";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import type { AdvanceSessionResponse } from "@/types/evaluation";
-import type { AdvanceSessionRequest } from "@/types/session";
+import type { AdvanceSessionRequest, SessionState } from "@/types/session";
 
 export async function POST(request: Request) {
   const body = (await request.json()) as AdvanceSessionRequest;
   const supabase = await getSupabaseServerClient();
 
-  const { data: turnCountData } = await supabase
-    .from("session_turns")
-    .select("id", { count: "exact", head: true })
-    .eq("session_id", body.sessionId);
+  const { data: session, error: sessionError } = await supabase
+    .from("sessions")
+    .select("id, profile_id, current_state")
+    .eq("id", body.sessionId)
+    .single();
+
+  if (sessionError || !session) {
+    return NextResponse.json({ error: "Session not found" }, { status: 404 });
+  }
+
+  const { data: learningProfile, error: learningProfileError } = await supabase
+    .from("learning_profiles")
+    .select("onboarding_completed")
+    .eq("profile_id", session.profile_id)
+    .single();
+
+  if (learningProfileError || !learningProfile) {
+    return NextResponse.json({ error: "Learning profile not found" }, { status: 404 });
+  }
 
   const { data: item, error: itemError } = await supabase
     .from("item_bank")
@@ -25,13 +41,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Item not found" }, { status: 404 });
   }
 
+  const { data: existingTurns, error: existingTurnsError } = await supabase
+    .from("session_turns")
+    .select("id, item_id")
+    .eq("session_id", body.sessionId)
+    .order("turn_number", { ascending: true });
+
+  if (existingTurnsError) {
+    return NextResponse.json({ error: "Could not load session turns" }, { status: 500 });
+  }
+
   const evaluation = scoreResponseBaselineHeuristicV1({
     selectedOption: body.selectedOption,
     correctOption: item.correct_option,
     difficulty: Number(item.difficulty),
   });
 
-  const turnNumber = (turnCountData?.length ?? 0) + 1;
+  const turnNumber = (existingTurns?.length ?? 0) + 1;
 
   const { data: savedTurn, error: turnError } = await supabase
     .from("session_turns")
@@ -71,10 +97,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Could not create evaluation event" }, { status: 500 });
   }
 
-  const previousState = "practice" as const;
+  await updateUserTopicStats({
+    profileId: session.profile_id,
+    area: item.area,
+    competency: item.competency,
+    isCorrect: evaluation.isCorrect,
+    reasoningScore: evaluation.reasoningScore,
+    difficulty: Number(item.difficulty),
+    estimatedThetaDelta: evaluation.estimatedThetaDelta,
+  });
+
+  const previousState = session.current_state as SessionState;
   const currentState = getNextState({
     currentState: previousState,
-    onboardingCompleted: true,
+    onboardingCompleted: learningProfile.onboarding_completed,
     hasBaseline: true,
     remediationNeeded: evaluation.remediationNeeded,
     shouldReview: false,
@@ -83,15 +119,14 @@ export async function POST(request: Request) {
     hasError: false,
   });
 
-  await supabase
-    .from("sessions")
-    .update({ current_state: currentState })
-    .eq("id", body.sessionId);
+  await supabase.from("sessions").update({ current_state: currentState }).eq("id", body.sessionId);
+
+  const seenItemIds = [...new Set([...(existingTurns?.map((turn) => turn.item_id).filter(Boolean) ?? []), body.itemId])];
 
   const nextItem = await selectNextItem({
     activeArea: item.area,
     activeCompetency: item.competency,
-    excludeItemIds: [body.itemId],
+    excludeItemIds: seenItemIds as string[],
   });
 
   const response: AdvanceSessionResponse = {

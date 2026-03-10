@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { selectNextItem } from "@/domain/item-selection/select-next-item";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
-import type { StartSessionRequest, StartSessionResponse } from "@/types/session";
+import type { StartSessionRequest, StartSessionResponse, SessionState } from "@/types/session";
 
 export async function POST(request: Request) {
   const body = (await request.json()) as StartSessionRequest;
@@ -25,12 +25,27 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Profile not found" }, { status: 404 });
   }
 
+  const { data: learningProfile, error: learningProfileError } = await supabase
+    .from("learning_profiles")
+    .select("onboarding_completed")
+    .eq("profile_id", profile.id)
+    .single();
+
+  if (learningProfileError || !learningProfile) {
+    return NextResponse.json({ error: "Learning profile not found" }, { status: 404 });
+  }
+
   const nextItem = await selectNextItem({
     activeArea: body.area,
     activeCompetency: body.competency,
   });
 
-  const currentState = nextItem ? "practice" : "onboarding";
+  let currentState: SessionState = "onboarding";
+  if (learningProfile.onboarding_completed && nextItem) {
+    currentState = "practice";
+  } else if (learningProfile.onboarding_completed && !nextItem) {
+    currentState = "diagnostic";
+  }
 
   const { data: session, error: sessionError } = await supabase
     .from("sessions")
@@ -49,7 +64,7 @@ export async function POST(request: Request) {
 
   const response: StartSessionResponse = {
     sessionId: session.id,
-    currentState: currentState as StartSessionResponse["currentState"],
+    currentState,
     mode: body.mode,
     currentItemId: nextItem?.id,
     hintLevel: 0,
