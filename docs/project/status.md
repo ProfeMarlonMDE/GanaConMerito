@@ -24,6 +24,7 @@
 - cliente server Supabase listo
 - cliente admin Supabase separado de SSR/cookies
 - helper `signInWithGoogle` creado
+- helper `signOut` creado
 - bootstrap automático de `profiles`
 - bootstrap conservador de `learning_profiles`
 
@@ -31,7 +32,8 @@
 - página real de login en `src/app/login/page.tsx`
 - botón Google real en `src/components/auth/google-sign-in-button.tsx`
 - home protegida en `src/app/home/page.tsx`
-- middleware de protección básica en `src/middleware.ts`
+- botón de cierre de sesión en `src/components/auth/sign-out-button.tsx`
+- middleware de protección básica ampliado en `src/middleware.ts`
 
 ## Ya versionado
 
@@ -43,15 +45,15 @@
 - `v0.2.4` — integración real de Supabase y preparación de Google Auth
 - `v0.2.5` — bootstrap de perfiles tras callback Google
 - `v0.2.6` — hardening de auth
+- `v0.2.7` — UI base de login y ruta protegida
 
 ## Próximo trabajo recomendado
 
 1. prueba E2E real de login
-2. sign out
-3. parser Markdown real
-4. carga persistente de contenido
-5. sesiones con DB real
-6. dashboard con datos reales
+2. parser Markdown real
+3. carga persistente de contenido
+4. sesiones con DB real
+5. dashboard con datos reales
 
 ## Documentos relevantes
 
@@ -64,4 +66,4 @@
 
 ## Observación importante
 
-El flujo auth ya es visible y utilizable a nivel base, pero todavía requiere prueba E2E real y pulido de UX/sesión.
+El flujo auth ya cubre login visible, bootstrap y cierre de sesión base, pero todavía requiere prueba E2E real y pulido de UX/sesión.

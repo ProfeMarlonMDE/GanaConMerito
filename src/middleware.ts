@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
+const PROTECTED_PREFIXES = ["/home", "/dashboard", "/practice", "/exam", "/history"];
+
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
     request,
@@ -27,7 +29,9 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isProtectedRoute = request.nextUrl.pathname.startsWith("/home");
+  const isProtectedRoute = PROTECTED_PREFIXES.some((prefix) =>
+    request.nextUrl.pathname.startsWith(prefix),
+  );
   const isAuthRoute = request.nextUrl.pathname.startsWith("/login");
 
   if (isProtectedRoute && !user) {
@@ -46,5 +50,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/home/:path*", "/login"],
+  matcher: ["/home/:path*", "/dashboard/:path*", "/practice/:path*", "/exam/:path*", "/history/:path*", "/login"],
 };

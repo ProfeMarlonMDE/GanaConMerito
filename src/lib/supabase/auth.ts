@@ -13,3 +13,8 @@ export async function signInWithGoogle(next = "/home") {
 
   return { data, error };
 }
+
+export async function signOut() {
+  const supabase = getSupabaseBrowserClient();
+  return supabase.auth.signOut();
+}
