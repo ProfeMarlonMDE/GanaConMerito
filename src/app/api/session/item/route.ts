@@ -1,15 +1,25 @@
 import { NextResponse } from "next/server";
-import { getSupabaseServerClient } from "../../../../lib/supabase/server";
+import { requireOwnedSession } from "../../../../lib/supabase/guards";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const itemId = searchParams.get("itemId");
+  const sessionId = searchParams.get("sessionId");
 
   if (!itemId) {
     return NextResponse.json({ error: "itemId is required" }, { status: 400 });
   }
 
-  const supabase = await getSupabaseServerClient();
+  if (!sessionId) {
+    return NextResponse.json({ error: "sessionId is required" }, { status: 400 });
+  }
+
+  const auth = await requireOwnedSession({ sessionId });
+  if (!auth.ok) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
+  }
+
+  const { supabase } = auth;
   const { data: item, error: itemError } = await supabase
     .from("item_bank")
     .select("id, title, area, competency, stem, correct_option")

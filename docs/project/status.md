@@ -100,10 +100,19 @@
 
 ## Próximo trabajo recomendado
 
-1. dashboard con métricas más ricas
-2. prueba E2E real de login y sesión
+1. completar validación funcional remota tras primer login real (profiles/learning_profiles aún están en 0 en Supabase remoto)
+2. remediación RA2: semántica de flujo y contratos
 3. refinamiento de onboarding y práctica
 4. dashboard por área / competencia más visual
+
+## Remediación de auditoría en curso
+
+### RA1 — Seguridad e integridad de sesión
+- guards de ownership/autenticación añadidos a rutas de sesión
+- `session/item` ahora exige `sessionId`
+- `session/advance` ya delega persistencia a la RPC `public.advance_session_atomic(...)`
+- migración remota `0004_atomic_session_advance.sql` aplicada con éxito
+- validación funcional remota completa bloqueada temporalmente porque el proyecto remoto aún no tiene `profiles` ni `learning_profiles` reales creados por login
 
 ## Documentos relevantes
 

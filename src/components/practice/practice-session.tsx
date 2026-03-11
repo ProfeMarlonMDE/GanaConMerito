@@ -39,8 +39,10 @@ export function PracticeSession() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function loadItem(itemId: string) {
-    const response = await fetch(`/api/session/item?itemId=${encodeURIComponent(itemId)}`);
+  async function loadItem(sessionId: string, itemId: string) {
+    const response = await fetch(
+      `/api/session/item?sessionId=${encodeURIComponent(sessionId)}&itemId=${encodeURIComponent(itemId)}`,
+    );
     const data = await response.json();
 
     if (!response.ok) {
@@ -75,7 +77,7 @@ export function PracticeSession() {
 
     if (data.currentItemId) {
       try {
-        await loadItem(data.currentItemId);
+        await loadItem(data.sessionId, data.currentItemId);
       } catch (loadError) {
         setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el ítem inicial.");
       }
@@ -113,7 +115,7 @@ export function PracticeSession() {
 
     if (data.nextItemId) {
       try {
-        await loadItem(data.nextItemId);
+        await loadItem(session.sessionId, data.nextItemId);
       } catch (loadError) {
         setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el siguiente ítem.");
       }

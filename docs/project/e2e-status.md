@@ -32,4 +32,5 @@ Bloque técnico de build/arranque cerrado. Pendiente E2E autenticada completa.
 
 ## Siguiente paso
 - ejecutar E2E autenticada real: login → onboarding → practice → dashboard
-- cerrar este bloque con commit, tag y push
+- usar ese primer login real también para validar RA1 contra Supabase remoto, ya que hoy `profiles` y `learning_profiles` están en 0 en el proyecto remoto
+- cerrar RA1 y el siguiente bloque con commit, tag y push

@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import { scoreResponseBaselineHeuristicV1 } from "../../../../domain/evaluation/score-response";
 import { selectNextItem } from "../../../../domain/item-selection/select-next-item";
 import { getNextState } from "../../../../domain/orchestrator/session-machine";
-import { updateUserTopicStats } from "../../../../domain/session/update-topic-stats";
-import { getSupabaseServerClient } from "../../../../lib/supabase/server";
+import { requireOwnedSession } from "../../../../lib/supabase/guards";
 import { advanceSessionSchema } from "../../../../lib/validation/session";
 import type { AdvanceSessionResponse } from "../../../../types/evaluation";
 import type { SessionState } from "../../../../types/session";
@@ -20,17 +19,12 @@ export async function POST(request: Request) {
   }
 
   const body = parsedBody.data;
-  const supabase = await getSupabaseServerClient();
-
-  const { data: session, error: sessionError } = await supabase
-    .from("sessions")
-    .select("id, profile_id, current_state")
-    .eq("id", body.sessionId)
-    .single();
-
-  if (sessionError || !session) {
-    return NextResponse.json({ error: "Session not found" }, { status: 404 });
+  const auth = await requireOwnedSession({ sessionId: body.sessionId });
+  if (!auth.ok) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
   }
+
+  const { supabase, profile, session } = auth;
 
   const { data: learningProfile, error: learningProfileError } = await supabase
     .from("learning_profiles")
@@ -75,54 +69,6 @@ export async function POST(request: Request) {
       ? "Respuesta correcta. Continuemos."
       : "Necesitas refuerzo en este punto. Revisemos la premisa clave.");
 
-  const turnNumber = (existingTurns?.length ?? 0) + 1;
-
-  const { data: savedTurn, error: turnError } = await supabase
-    .from("session_turns")
-    .insert({
-      session_id: body.sessionId,
-      item_id: body.itemId,
-      turn_number: turnNumber,
-      selected_option: body.selectedOption ?? null,
-      user_rationale: body.userRationale ?? null,
-      response_time_ms: body.responseTimeMs ?? null,
-      confidence_self_report: body.confidenceSelfReport ?? null,
-      model_feedback: feedbackText,
-    })
-    .select("id")
-    .single();
-
-  if (turnError || !savedTurn) {
-    return NextResponse.json({ error: "Could not create session turn" }, { status: 500 });
-  }
-
-  const { error: evaluationError } = await supabase.from("evaluation_events").insert({
-    session_turn_id: savedTurn.id,
-    item_id: body.itemId,
-    is_correct: evaluation.isCorrect,
-    reasoning_score: evaluation.reasoningScore,
-    normative_consistency_score: evaluation.normativeConsistencyScore,
-    competency_score: evaluation.competencyScore,
-    estimated_theta_delta: evaluation.estimatedThetaDelta,
-    remediation_needed: evaluation.remediationNeeded,
-    evaluation_source: evaluation.evaluationSource,
-    evaluation_version: evaluation.evaluationVersion,
-  });
-
-  if (evaluationError) {
-    return NextResponse.json({ error: "Could not create evaluation event" }, { status: 500 });
-  }
-
-  await updateUserTopicStats({
-    profileId: session.profile_id,
-    area: item.area,
-    competency: item.competency,
-    isCorrect: evaluation.isCorrect,
-    reasoningScore: evaluation.reasoningScore,
-    difficulty: Number(item.difficulty),
-    estimatedThetaDelta: evaluation.estimatedThetaDelta,
-  });
-
   const previousState = session.current_state as SessionState;
   const currentState = getNextState({
     currentState: previousState,
@@ -135,7 +81,30 @@ export async function POST(request: Request) {
     hasError: false,
   });
 
-  await supabase.from("sessions").update({ current_state: currentState }).eq("id", body.sessionId);
+  const { error: advanceError } = await supabase.rpc("advance_session_atomic", {
+    p_profile_id: profile.id,
+    p_session_id: body.sessionId,
+    p_item_id: body.itemId,
+    p_selected_option: body.selectedOption ?? null,
+    p_user_rationale: body.userRationale ?? null,
+    p_response_time_ms: body.responseTimeMs ?? null,
+    p_confidence_self_report: body.confidenceSelfReport ?? null,
+    p_feedback_text: feedbackText,
+    p_is_correct: evaluation.isCorrect,
+    p_reasoning_score: evaluation.reasoningScore,
+    p_normative_consistency_score: evaluation.normativeConsistencyScore,
+    p_competency_score: evaluation.competencyScore,
+    p_estimated_theta_delta: evaluation.estimatedThetaDelta,
+    p_remediation_needed: evaluation.remediationNeeded,
+    p_evaluation_source: evaluation.evaluationSource,
+    p_evaluation_version: evaluation.evaluationVersion,
+    p_previous_state: previousState,
+    p_current_state: currentState,
+  });
+
+  if (advanceError) {
+    return NextResponse.json({ error: "Could not persist session advance atomically" }, { status: 500 });
+  }
 
   const seenItemIds = [
     ...new Set([...(existingTurns?.map((turn) => turn.item_id).filter(Boolean) ?? []), body.itemId]),
