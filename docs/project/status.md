@@ -104,9 +104,9 @@
 ## Próximo trabajo recomendado
 
 1. completar validación funcional remota tras primer login real (profiles/learning_profiles aún están en 0 en Supabase remoto)
-2. remediación RA3: honestidad funcional y cierre de trazabilidad
+2. E2E autenticada real completa
 3. refinamiento de práctica y dashboard
-4. E2E autenticada real
+4. despliegue funcional y validación pública
 
 ## Remediación de auditoría en curso
 
@@ -122,6 +122,11 @@
 - `evaluationSource` corregido a `deterministic`
 - máquina de estados reconciliada con reglas mínimas reales del MVP
 - build local validada con éxito
+
+### RA3 — Honestidad funcional y cierre de trazabilidad
+- práctica con estados borde más explícitos
+- `package.json` reconciliado con versión publicada
+- `supabase/.gitignore` añadido para ignorar `.temp/`
 
 ## Documentos relevantes
 

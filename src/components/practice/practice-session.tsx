@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 interface PracticeItem {
   id: string;
@@ -38,6 +38,12 @@ export function PracticeSession() {
   const [feedback, setFeedback] = useState<AdvanceResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [sessionMessage, setSessionMessage] = useState<string | null>(null);
+
+  const sessionEnded = useMemo(() => {
+    const currentState = feedback?.currentState ?? session?.currentState;
+    return currentState === "session_close";
+  }, [feedback?.currentState, session?.currentState]);
 
   async function loadItem(sessionId: string, itemId: string) {
     const response = await fetch(
@@ -58,6 +64,8 @@ export function PracticeSession() {
     setLoading(true);
     setError(null);
     setFeedback(null);
+    setSessionMessage(null);
+    setItem(null);
 
     const response = await fetch("/api/session/start", {
       method: "POST",
@@ -75,12 +83,22 @@ export function PracticeSession() {
 
     setSession(data);
 
-    if (data.currentItemId) {
-      try {
-        await loadItem(data.sessionId, data.currentItemId);
-      } catch (loadError) {
-        setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el ítem inicial.");
-      }
+    if (data.currentState === "onboarding") {
+      setSessionMessage("Debes completar el onboarding antes de iniciar una práctica real.");
+      setLoading(false);
+      return;
+    }
+
+    if (!data.currentItemId) {
+      setSessionMessage("La sesión fue creada, pero no hay un ítem disponible todavía para continuar.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await loadItem(data.sessionId, data.currentItemId);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el ítem inicial.");
     }
 
     setLoading(false);
@@ -91,6 +109,7 @@ export function PracticeSession() {
 
     setLoading(true);
     setError(null);
+    setSessionMessage(null);
 
     const response = await fetch("/api/session/advance", {
       method: "POST",
@@ -113,6 +132,13 @@ export function PracticeSession() {
 
     setFeedback(data);
 
+    if (data.currentState === "session_close") {
+      setItem(null);
+      setSessionMessage("La sesión terminó correctamente. Ya puedes revisar tu progreso en el dashboard.");
+      setLoading(false);
+      return;
+    }
+
     if (data.nextItemId) {
       try {
         await loadItem(session.sessionId, data.nextItemId);
@@ -121,8 +147,20 @@ export function PracticeSession() {
       }
     } else {
       setItem(null);
+      setSessionMessage("No hay un siguiente ítem disponible en este momento.");
     }
 
+    setLoading(false);
+  }
+
+  function resetPractice() {
+    setSession(null);
+    setItem(null);
+    setSelectedOption(null);
+    setUserRationale("");
+    setFeedback(null);
+    setError(null);
+    setSessionMessage(null);
     setLoading(false);
   }
 
@@ -135,6 +173,7 @@ export function PracticeSession() {
       ) : null}
 
       {error ? <p>{error}</p> : null}
+      {sessionMessage ? <p>{sessionMessage}</p> : null}
 
       {session ? (
         <div>
@@ -157,6 +196,7 @@ export function PracticeSession() {
                     value={option.key}
                     checked={selectedOption === option.key}
                     onChange={() => setSelectedOption(option.key)}
+                    disabled={loading}
                   />
                   {option.key}. {option.text}
                 </label>
@@ -170,6 +210,7 @@ export function PracticeSession() {
               onChange={(event) => setUserRationale(event.target.value)}
               placeholder="Explica brevemente por qué elegiste esa respuesta"
               rows={5}
+              disabled={loading}
             />
           </label>
           <button onClick={handleSubmitAnswer} disabled={loading || !selectedOption}>
@@ -189,6 +230,12 @@ export function PracticeSession() {
             <p>Nota cualitativa: {feedback.evaluation.qualitativeFeedback}</p>
           ) : null}
         </div>
+      ) : null}
+
+      {session && !item ? (
+        <button onClick={resetPractice} disabled={loading || !sessionEnded && !sessionMessage}>
+          Iniciar una nueva sesión
+        </button>
       ) : null}
     </section>
   );
