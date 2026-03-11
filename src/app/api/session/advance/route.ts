@@ -70,13 +70,15 @@ export async function POST(request: Request) {
       : "Necesitas refuerzo en este punto. Revisemos la premisa clave.");
 
   const previousState = session.current_state as SessionState;
+  const shouldReview = existingTurns.length > 0 && !evaluation.remediationNeeded;
+  const isSessionEnding = existingTurns.length + 1 >= 3;
   const currentState = getNextState({
     currentState: previousState,
     onboardingCompleted: learningProfile.onboarding_completed,
-    hasBaseline: true,
+    hasBaseline: existingTurns.length > 0 || previousState !== "diagnostic",
     remediationNeeded: evaluation.remediationNeeded,
-    shouldReview: false,
-    isSessionEnding: false,
+    shouldReview,
+    isSessionEnding,
     isExpired: false,
     hasError: false,
   });
@@ -110,11 +112,13 @@ export async function POST(request: Request) {
     ...new Set([...(existingTurns?.map((turn) => turn.item_id).filter(Boolean) ?? []), body.itemId]),
   ];
 
-  const nextItem = await selectNextItem({
-    activeArea: item.area,
-    activeCompetency: item.competency,
-    excludeItemIds: seenItemIds as string[],
-  });
+  const nextItem = currentState === "session_close"
+    ? null
+    : await selectNextItem({
+        activeArea: item.area,
+        activeCompetency: item.competency,
+        excludeItemIds: seenItemIds as string[],
+      });
 
   const response: AdvanceSessionResponse = {
     sessionId: body.sessionId,

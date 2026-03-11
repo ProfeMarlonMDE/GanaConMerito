@@ -33,6 +33,7 @@ Convención recomendada:
 
 El motor actual se considera explícitamente:
 - `baseline heuristic scoring v1`
+- `evaluationSource = "deterministic"`
 
 No se presenta todavía como motor definitivo ni como TRI/IRT formal.
 
@@ -52,7 +53,16 @@ Se prioriza:
 5. persistencia real de sesiones
 6. auth integrada
 
-## 8. Deuda futura explícita
+## 8. Semántica mínima actual del flujo de sesión
+
+- sin onboarding completo -> `onboarding`
+- onboarding completo y sin baseline ni ítem siguiente -> `diagnostic`
+- onboarding completo con ítem disponible -> `practice`
+- error de respuesta con bajo desempeño -> `remediation`
+- práctica con continuidad y suficiente historial -> `review`
+- sesión con 3 turnos o condición de cierre -> `session_close`
+
+## 9. Deuda futura explícita
 
 Queda fuera de esta fase:
 - scoring formal dividido en deterministic + llm-assisted rubric

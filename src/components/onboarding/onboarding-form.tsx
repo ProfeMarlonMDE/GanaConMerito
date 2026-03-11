@@ -11,12 +11,10 @@ export function OnboardingForm(props: {
   initialActiveAreas: string[];
 }) {
   const router = useRouter();
-  const [targetRole, setTargetRole] = useState(props.initialTargetRole || "docente");
-  const [examType, setExamType] = useState(props.initialExamType || "docente");
+  const [targetRole] = useState("docente");
+  const [examType] = useState("docente");
   const [activeGoal, setActiveGoal] = useState(props.initialActiveGoal || "");
-  const [preferredFeedbackStyle, setPreferredFeedbackStyle] = useState(
-    props.initialPreferredFeedbackStyle || "socratic",
-  );
+  const [preferredFeedbackStyle] = useState("socratic");
   const [activeAreas, setActiveAreas] = useState((props.initialActiveAreas || []).join(", "));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,11 +55,11 @@ export function OnboardingForm(props: {
     <form onSubmit={handleSubmit}>
       <label>
         Rol objetivo
-        <input value={targetRole} onChange={(e) => setTargetRole(e.target.value)} />
+        <input value={targetRole} disabled readOnly />
       </label>
       <label>
         Tipo de prueba
-        <input value={examType} onChange={(e) => setExamType(e.target.value)} />
+        <input value={examType} disabled readOnly />
       </label>
       <label>
         Meta activa
@@ -69,10 +67,7 @@ export function OnboardingForm(props: {
       </label>
       <label>
         Estilo de feedback
-        <input
-          value={preferredFeedbackStyle}
-          onChange={(e) => setPreferredFeedbackStyle(e.target.value)}
-        />
+        <input value={preferredFeedbackStyle} disabled readOnly />
       </label>
       <label>
         Áreas activas (separadas por coma)

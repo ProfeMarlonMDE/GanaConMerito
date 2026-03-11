@@ -65,7 +65,7 @@ export function scoreResponseBaselineHeuristicV1(
     competencyScore,
     estimatedThetaDelta,
     remediationNeeded,
-    evaluationSource: "hybrid",
+    evaluationSource: "deterministic",
     evaluationVersion: "baseline-heuristic-v1",
     qualitativeFeedback: buildQualitativeFeedback({
       isCorrect,

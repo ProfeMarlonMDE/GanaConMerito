@@ -25,7 +25,8 @@ generating_feedback
 ## Reglas principales
 
 - si no hay onboarding completo -> `onboarding`
-- si no hay línea base -> `diagnostic`
+- si no hay línea base y no hay ítem siguiente -> `diagnostic`
+- si hay onboarding completo y existe ítem -> `practice`
 - si hay error -> `error`
 - si expira la sesión -> `expired`
 - si termina la sesión -> `session_close`
@@ -39,9 +40,9 @@ Archivo fuente:
 - `src/domain/orchestrator/session-machine.ts`
 
 Resumen:
-- `onboarding -> diagnostic`
-- `diagnostic -> practice`
-- `practice -> remediation | review | practice`
+- `onboarding -> diagnostic | practice`
+- `diagnostic -> diagnostic | practice`
+- `practice -> remediation | review | session_close | practice`
 - `remediation -> remediation | practice`
 - `review -> session_close | practice`
 - `session_close -> session_close`
@@ -53,6 +54,6 @@ Resumen:
 La máquina actual ya es usable para MVP, pero todavía no contiene toda la gobernanza futura del orquestador.
 Lo que falta formalizar después:
 - expiración real por tiempo
-- errores recuperables vs no recuperables
+- condiciones pedagógicas más fuertes para `review`
 - política formal de `hintLevel`
-- transición ligada a persistencia y selección de ítems
+- transición ligada a snapshots y analítica más rica

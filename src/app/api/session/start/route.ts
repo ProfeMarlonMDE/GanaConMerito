@@ -39,10 +39,8 @@ export async function POST(request: Request) {
   });
 
   let currentState: SessionState = "onboarding";
-  if (learningProfile.onboarding_completed && nextItem) {
-    currentState = "practice";
-  } else if (learningProfile.onboarding_completed && !nextItem) {
-    currentState = "diagnostic";
+  if (learningProfile.onboarding_completed) {
+    currentState = nextItem ? "practice" : "diagnostic";
   }
 
   const { data: session, error: sessionError } = await supabase

@@ -3,11 +3,11 @@ import { z } from "zod";
 import { getSupabaseServerClient } from "../../../../lib/supabase/server";
 
 const onboardingSchema = z.object({
-  targetRole: z.string().min(1),
-  examType: z.string().min(1),
-  activeGoal: z.string().min(1),
-  activeAreas: z.array(z.string()).default([]),
-  preferredFeedbackStyle: z.string().min(1).default("socratic"),
+  targetRole: z.literal("docente"),
+  examType: z.literal("docente"),
+  activeGoal: z.string().trim().min(1).max(240),
+  activeAreas: z.array(z.string().trim().min(1)).max(20).default([]),
+  preferredFeedbackStyle: z.enum(["socratic"]).default("socratic"),
 });
 
 export async function POST(request: Request) {

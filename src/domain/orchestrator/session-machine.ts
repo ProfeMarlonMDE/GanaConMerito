@@ -15,12 +15,11 @@ export function getNextState(input: NextStateInput): SessionState {
   if (input.hasError) return "error";
   if (input.isExpired) return "expired";
   if (!input.onboardingCompleted) return "onboarding";
-  if (!input.hasBaseline) return "diagnostic";
   if (input.isSessionEnding) return "session_close";
 
   switch (input.currentState) {
     case "onboarding":
-      return input.onboardingCompleted ? "diagnostic" : "onboarding";
+      return input.hasBaseline ? "practice" : "diagnostic";
     case "diagnostic":
       return input.hasBaseline ? "practice" : "diagnostic";
     case "practice":
@@ -36,6 +35,6 @@ export function getNextState(input: NextStateInput): SessionState {
     case "error":
       return input.currentState;
     default:
-      return "practice";
+      return input.hasBaseline ? "practice" : "diagnostic";
   }
 }

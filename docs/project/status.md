@@ -41,6 +41,7 @@
 - helper `signOut` creado
 - bootstrap automático/reparador de `profiles`
 - bootstrap reparador de `learning_profiles`
+- RA1 aplicado: ownership explícito en rutas de sesión y RPC atómica `advance_session_atomic(...)`
 
 ### Flujo auth visible
 - página real de login en `src/app/login/page.tsx`
@@ -58,6 +59,8 @@
 - sesión de práctica real en `src/components/practice/practice-session.tsx`
 - formulario real de onboarding en `src/components/onboarding/onboarding-form.tsx`
 - dashboard con desglose real por tema y métricas derivadas
+- onboarding endurecido al dominio realmente soportado por DB (`docente`)
+- semántica actual de evaluación declarada como `deterministic`
 
 ### Contenido Markdown mínimo
 - estructura inicial `content/`
@@ -101,9 +104,9 @@
 ## Próximo trabajo recomendado
 
 1. completar validación funcional remota tras primer login real (profiles/learning_profiles aún están en 0 en Supabase remoto)
-2. remediación RA2: semántica de flujo y contratos
-3. refinamiento de onboarding y práctica
-4. dashboard por área / competencia más visual
+2. remediación RA3: honestidad funcional y cierre de trazabilidad
+3. refinamiento de práctica y dashboard
+4. E2E autenticada real
 
 ## Remediación de auditoría en curso
 
@@ -113,6 +116,12 @@
 - `session/advance` ya delega persistencia a la RPC `public.advance_session_atomic(...)`
 - migración remota `0004_atomic_session_advance.sql` aplicada con éxito
 - validación funcional remota completa bloqueada temporalmente porque el proyecto remoto aún no tiene `profiles` ni `learning_profiles` reales creados por login
+
+### RA2 — Semántica de flujo y contratos
+- onboarding alineado con restricciones reales de DB
+- `evaluationSource` corregido a `deterministic`
+- máquina de estados reconciliada con reglas mínimas reales del MVP
+- build local validada con éxito
 
 ## Documentos relevantes
 
