@@ -105,6 +105,20 @@ export async function POST(request: Request) {
   });
 
   if (advanceError) {
+    console.error("advance_session_atomic failed", {
+      message: advanceError.message,
+      details: advanceError.details,
+      hint: advanceError.hint,
+      code: advanceError.code,
+      sessionId: body.sessionId,
+      itemId: body.itemId,
+      profileId: profile.id,
+      previousState,
+      currentState,
+      evaluationSource: evaluation.evaluationSource,
+      evaluationVersion: evaluation.evaluationVersion,
+    });
+
     return NextResponse.json({ error: "Could not persist session advance atomically" }, { status: 500 });
   }
 
