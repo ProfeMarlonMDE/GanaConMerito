@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { bootstrapUserProfile } from "@/lib/supabase/profile-bootstrap";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
@@ -8,10 +9,24 @@ function sanitizeNext(rawNext: string | null) {
   return rawNext;
 }
 
+async function getRequestOrigin(request: Request) {
+  const fallback = new URL(request.url).origin;
+  const headerStore = await headers();
+  const forwardedHost = headerStore.get("x-forwarded-host");
+  const forwardedProto = headerStore.get("x-forwarded-proto") ?? "https";
+
+  if (!forwardedHost) {
+    return fallback;
+  }
+
+  return `${forwardedProto}://${forwardedHost}`;
+}
+
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url);
+  const { searchParams } = new URL(request.url);
   const code = searchParams.get("code");
   const next = sanitizeNext(searchParams.get("next"));
+  const origin = await getRequestOrigin(request);
 
   if (!code) {
     return NextResponse.redirect(`${origin}/login?error=missing_code`);
