@@ -18,10 +18,16 @@ export default async function OnboardingPage() {
   const { data: learningProfile } = await supabase
     .from("learning_profiles")
     .select(
-      "target_role, exam_type, active_goal, preferred_feedback_style, active_areas, onboarding_completed",
+      "target_role, exam_type, professional_profile_id, active_goal, preferred_feedback_style, active_areas, onboarding_completed",
     )
     .eq("profile_id", profile.id)
     .single();
+
+  const { data: professionalProfiles } = await supabase
+    .from("professional_profiles")
+    .select("id, code, name")
+    .eq("is_active", true)
+    .order("name", { ascending: true });
 
   if (learningProfile?.onboarding_completed) {
     redirect("/practice");
@@ -34,6 +40,12 @@ export default async function OnboardingPage() {
       <OnboardingForm
         initialTargetRole={learningProfile?.target_role ?? "docente"}
         initialExamType={learningProfile?.exam_type ?? "docente"}
+        initialProfessionalProfileId={learningProfile?.professional_profile_id ?? professionalProfiles?.[0]?.id ?? ""}
+        professionalProfiles={(professionalProfiles ?? []).map((profile) => ({
+          id: profile.id,
+          code: profile.code,
+          name: profile.name,
+        }))}
         initialActiveGoal={learningProfile?.active_goal ?? ""}
         initialPreferredFeedbackStyle={learningProfile?.preferred_feedback_style ?? "socratic"}
         initialActiveAreas={learningProfile?.active_areas ?? []}

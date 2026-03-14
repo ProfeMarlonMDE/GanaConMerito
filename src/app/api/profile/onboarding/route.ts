@@ -5,6 +5,7 @@ import { getSupabaseServerClient } from "../../../../lib/supabase/server";
 const onboardingSchema = z.object({
   targetRole: z.literal("docente"),
   examType: z.literal("docente"),
+  professionalProfileId: z.string().uuid(),
   activeGoal: z.string().trim().min(1).max(240),
   activeAreas: z.array(z.string().trim().min(1)).max(20).default([]),
   preferredFeedbackStyle: z.enum(["socratic"]).default("socratic"),
@@ -40,11 +41,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Profile not found" }, { status: 404 });
   }
 
+  const { data: professionalProfile, error: professionalProfileError } = await supabase
+    .from("professional_profiles")
+    .select("id")
+    .eq("id", parsed.data.professionalProfileId)
+    .eq("is_active", true)
+    .single();
+
+  if (professionalProfileError || !professionalProfile) {
+    return NextResponse.json({ error: "Professional profile not found" }, { status: 400 });
+  }
+
   const { error: updateError } = await supabase
     .from("learning_profiles")
     .update({
       target_role: parsed.data.targetRole,
       exam_type: parsed.data.examType,
+      professional_profile_id: parsed.data.professionalProfileId,
       active_goal: parsed.data.activeGoal,
       active_areas: parsed.data.activeAreas,
       preferred_feedback_style: parsed.data.preferredFeedbackStyle,

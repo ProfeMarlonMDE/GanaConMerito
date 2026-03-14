@@ -3,18 +3,29 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+interface ProfessionalProfileOption {
+  id: string;
+  code: string;
+  name: string;
+}
+
 export function OnboardingForm(props: {
   initialTargetRole: string;
   initialExamType: string;
+  initialProfessionalProfileId: string;
+  professionalProfiles: ProfessionalProfileOption[];
   initialActiveGoal: string;
   initialPreferredFeedbackStyle: string;
   initialActiveAreas: string[];
 }) {
   const router = useRouter();
-  const [targetRole] = useState("docente");
-  const [examType] = useState("docente");
+  const [targetRole] = useState(props.initialTargetRole || "docente");
+  const [examType] = useState(props.initialExamType || "docente");
+  const [professionalProfileId, setProfessionalProfileId] = useState(
+    props.initialProfessionalProfileId || props.professionalProfiles[0]?.id || "",
+  );
   const [activeGoal, setActiveGoal] = useState(props.initialActiveGoal || "");
-  const [preferredFeedbackStyle] = useState("socratic");
+  const [preferredFeedbackStyle] = useState(props.initialPreferredFeedbackStyle || "socratic");
   const [activeAreas, setActiveAreas] = useState((props.initialActiveAreas || []).join(", "));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -30,6 +41,7 @@ export function OnboardingForm(props: {
       body: JSON.stringify({
         targetRole,
         examType,
+        professionalProfileId,
         activeGoal,
         preferredFeedbackStyle,
         activeAreas: activeAreas
@@ -62,6 +74,23 @@ export function OnboardingForm(props: {
         <input value={examType} disabled readOnly />
       </label>
       <label>
+        Perfil profesional
+        <select
+          value={professionalProfileId}
+          onChange={(event) => setProfessionalProfileId(event.target.value)}
+          disabled={loading || props.professionalProfiles.length === 0}
+        >
+          {props.professionalProfiles.length === 0 ? (
+            <option value="">No hay perfiles disponibles</option>
+          ) : null}
+          {props.professionalProfiles.map((profile) => (
+            <option key={profile.id} value={profile.id}>
+              {profile.name}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
         Meta activa
         <input value={activeGoal} onChange={(e) => setActiveGoal(e.target.value)} />
       </label>
@@ -73,7 +102,7 @@ export function OnboardingForm(props: {
         Áreas activas (separadas por coma)
         <input value={activeAreas} onChange={(e) => setActiveAreas(e.target.value)} />
       </label>
-      <button type="submit" disabled={loading}>
+      <button type="submit" disabled={loading || !professionalProfileId}>
         {loading ? "Guardando..." : "Guardar onboarding"}
       </button>
       {error ? <p>{error}</p> : null}
