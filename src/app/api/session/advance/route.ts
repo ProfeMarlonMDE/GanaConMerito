@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
   const { data: learningProfile, error: learningProfileError } = await supabase
     .from("learning_profiles")
-    .select("onboarding_completed")
+    .select("onboarding_completed, professional_profile_id")
     .eq("profile_id", session.profile_id)
     .single();
 
@@ -129,6 +129,7 @@ export async function POST(request: Request) {
   const nextItem = currentState === "session_close"
     ? null
     : await selectNextItem({
+        professionalProfileId: learningProfile.professional_profile_id,
         activeArea: item.area,
         activeCompetency: item.competency,
         excludeItemIds: seenItemIds as string[],

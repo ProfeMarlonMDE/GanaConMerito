@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
   const { data: learningProfile, error: learningProfileError } = await supabase
     .from("learning_profiles")
-    .select("onboarding_completed")
+    .select("onboarding_completed, professional_profile_id")
     .eq("profile_id", profile.id)
     .single();
 
@@ -34,6 +34,7 @@ export async function POST(request: Request) {
   }
 
   const nextItem = await selectNextItem({
+    professionalProfileId: learningProfile.professional_profile_id,
     activeArea: body.area,
     activeCompetency: body.competency,
   });
