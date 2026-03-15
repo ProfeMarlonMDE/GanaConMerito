@@ -1,0 +1,20 @@
+server {
+    listen 80;
+    server_name bot.iagent.com.co;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name bot.iagent.com.co;
+
+    ssl_certificate /etc/ssl/cloudflare/iagent-origin-cert.pem;
+    ssl_certificate_key /etc/ssl/cloudflare/iagent-origin-key.pem;
+
+    root /var/www/bot.iagent.com.co/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

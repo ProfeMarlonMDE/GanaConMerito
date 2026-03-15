@@ -1,0 +1,4 @@
+Host vps-scraping
+    HostName 149.130.185.37
+    User root
+    IdentityFile /home/mdav/GIT-ANTIGRAVITY-WSL/AdminVPS/id_vps_re
