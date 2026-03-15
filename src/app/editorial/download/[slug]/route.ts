@@ -16,7 +16,7 @@ export async function GET(_: Request, props: { params: Promise<{ slug: string }>
   const { slug } = await props.params;
   const doc = await readEditorialDocBySlug(slug);
 
-  if (!doc) {
+  if (!doc || !doc.available) {
     return new NextResponse("Not found", { status: 404 });
   }
 

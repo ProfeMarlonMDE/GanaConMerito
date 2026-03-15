@@ -43,7 +43,14 @@ export default async function EditorialDocPage(props: { params: Promise<{ slug: 
               background: "rgba(255,255,255,0.02)",
             }}
           >
-            {isPreviewableDoc(doc) && doc.raw ? (
+            {!doc.available ? (
+              <div>
+                <p>Este archivo aún no está disponible en este entorno de despliegue.</p>
+                <p>
+                  La referencia existe en el catálogo, pero el archivo físico no se encuentra todavía en el servidor actual.
+                </p>
+              </div>
+            ) : isPreviewableDoc(doc) && doc.raw ? (
               <pre
                 style={{
                   whiteSpace: "pre-wrap",

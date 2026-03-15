@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 
 export type EditorialCategory = "project" | "architecture" | "database" | "api" | "content" | "misc";
@@ -281,11 +281,20 @@ export async function readEditorialDocBySlug(slug: string) {
   }
 
   const absolutePath = getEditorialDocAbsolutePath(doc.relativePath);
-  const raw = isPreviewableDoc(doc) ? await readFile(absolutePath, "utf8") : null;
+  let available = true;
+  let raw: string | null = null;
+
+  try {
+    await access(absolutePath);
+    raw = isPreviewableDoc(doc) ? await readFile(absolutePath, "utf8") : null;
+  } catch {
+    available = false;
+  }
 
   return {
     ...doc,
     absolutePath,
+    available,
     raw,
   };
 }
