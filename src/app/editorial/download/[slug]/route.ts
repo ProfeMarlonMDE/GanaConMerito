@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
 import { readEditorialDocBySlug } from "@/lib/editorial/docs";
@@ -21,11 +22,15 @@ export async function GET(_: Request, props: { params: Promise<{ slug: string }>
   }
 
   const filename = path.basename(doc.relativePath);
+  const fileBuffer = await readFile(doc.absolutePath);
+  const contentType = filename.endsWith('.md') || filename.endsWith('.txt') || filename.endsWith('.nginx') || filename === 'config' || filename.endsWith('.sh')
+    ? 'text/plain; charset=utf-8'
+    : 'application/octet-stream';
 
-  return new NextResponse(doc.raw, {
+  return new NextResponse(fileBuffer, {
     status: 200,
     headers: {
-      "Content-Type": "text/markdown; charset=utf-8",
+      "Content-Type": contentType,
       "Content-Disposition": `attachment; filename="${filename}"`,
     },
   });
