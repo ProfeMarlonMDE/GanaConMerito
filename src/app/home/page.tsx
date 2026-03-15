@@ -15,6 +15,7 @@ export default async function HomePage() {
           <li><Link href="/onboarding">Onboarding</Link></li>
           <li><Link href="/practice">Práctica</Link></li>
           <li><Link href="/dashboard">Dashboard</Link></li>
+          <li><Link href="/editorial">Biblioteca editorial</Link></li>
         </ul>
       </nav>
       <SignOutButton />
