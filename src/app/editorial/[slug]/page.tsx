@@ -17,21 +17,43 @@ export default async function EditorialDocPage(props: { params: Promise<{ slug: 
   return (
     <main>
       <p><Link href="/editorial">← Volver a biblioteca editorial</Link></p>
-      <h1>{doc.title}</h1>
-      <p>{doc.description}</p>
-      <p>
-        <strong>Categoría:</strong> {doc.category}
-        <br />
-        <strong>Archivo:</strong> <code>docs/{doc.relativePath}</code>
-        <br />
-        <Link href={`/editorial/download/${doc.slug}`}>Descargar .md</Link>
-      </p>
-      <hr />
       <div style={{ display: "grid", gap: 24, gridTemplateColumns: "280px 1fr" }}>
-        <EditorialNav docs={docs} />
-        <article>
-          <pre style={{ whiteSpace: "pre-wrap", overflowX: "auto" }}>{doc.raw}</pre>
-        </article>
+        <EditorialNav docs={docs} currentSlug={slug} />
+
+        <section>
+          <header style={{ marginBottom: 16 }}>
+            <h1 style={{ marginBottom: 8 }}>{doc.title}</h1>
+            <p style={{ marginTop: 0 }}>{doc.description}</p>
+            <p style={{ fontSize: 13, opacity: 0.75 }}>
+              <strong>Categoría:</strong> {doc.category}
+              <br />
+              <strong>Archivo:</strong> <code>docs/{doc.relativePath}</code>
+              <br />
+              <Link href={`/editorial/download/${doc.slug}`}>Descargar .md</Link>
+            </p>
+          </header>
+
+          <article
+            style={{
+              border: "1px solid rgba(0,0,0,0.12)",
+              borderRadius: 12,
+              padding: 18,
+              background: "rgba(255,255,255,0.02)",
+            }}
+          >
+            <pre
+              style={{
+                whiteSpace: "pre-wrap",
+                overflowX: "auto",
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                lineHeight: 1.55,
+                margin: 0,
+              }}
+            >
+              {doc.raw}
+            </pre>
+          </article>
+        </section>
       </div>
     </main>
   );
