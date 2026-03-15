@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CopyDocButton } from "@/components/editorial/copy-doc-button";
 import { EditorialNav } from "@/components/editorial/editorial-nav";
 import { isPreviewableDoc, listEditorialDocs, readEditorialDocBySlug } from "@/lib/editorial/docs";
 import { requireAuthenticatedUser } from "@/lib/supabase/guards";
@@ -32,6 +33,12 @@ export default async function EditorialDocPage(props: { params: Promise<{ slug: 
               <strong>Archivo:</strong> <code>docs/{doc.relativePath}</code>
               <br />
               <Link href={`/editorial/download/${doc.slug}`}>Descargar archivo</Link>
+              {doc.raw ? (
+                <>
+                  <br />
+                  <CopyDocButton content={doc.raw} />
+                </>
+              ) : null}
             </p>
           </header>
 
