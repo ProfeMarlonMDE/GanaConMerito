@@ -14,8 +14,8 @@ export interface EditorialDocDefinition {
   source: "docs" | "inbox";
 }
 
-const WORKSPACE_ROOT = "/home/node/.openclaw/workspace";
-const DOCS_ROOT = path.join(WORKSPACE_ROOT, "docs");
+const PROJECT_ROOT = process.cwd();
+const DOCS_ROOT = path.join(PROJECT_ROOT, "docs");
 
 export const EDITORIAL_DOCS: EditorialDocDefinition[] = [
   {
