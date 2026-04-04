@@ -26,10 +26,10 @@ Crear primero estas sesiones persistentes:
 
 1. `techlead-architecture`
 2. `data-supabase`
-3. `frontend-product`
+3. `infra-devops`
 4. `backend-services`
-5. `qa-validation`
-6. `infra-devops`
+5. `frontend-product`
+6. `qa-validation`
 
 ## Sesión opcional posterior
 
