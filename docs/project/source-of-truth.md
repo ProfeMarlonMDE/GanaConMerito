@@ -18,11 +18,16 @@ Definir con claridad cuál es la fuente de verdad en cada capa del proyecto para
 
 ### Código temporal / laboratorio
 **Fuente de verdad temporal:**
-- `/home/node/.openclaw/workspace`
+- `/home/ubuntu/.openclaw/workspace`
 
-### Producción / despliegue operativo
-**Fuente de verdad operativa:**
-- `/var/www/cnsc`
+### Repo de aplicación en VPS
+**Fuente de verdad operativa de código en este host:**
+- `/opt/gcm/app`
+
+### Despliegue operativo
+**Fuente de verdad de runtime/despliegue:**
+- `/opt/gcm/docker-compose.yml`
+- contenedores Docker activos en este host
 
 ### Estado del servidor real
 **Fuente de verdad de infraestructura:**
@@ -36,8 +41,9 @@ Definir con claridad cuál es la fuente de verdad en cada capa del proyecto para
 ## 2. Regla principal
 Nada importante debe quedarse únicamente en:
 - Telegram
-- `/home/node/.openclaw/workspace`
-- `/var/www/cnsc`
+- `/home/ubuntu/.openclaw/workspace`
+- `/opt/gcm/app`
+- contenedores/runtimes activos no consolidados en Git
 
 Todo cambio serio debe terminar en:
 1. commit limpio
@@ -48,11 +54,12 @@ Todo cambio serio debe terminar en:
 
 ## 3. Realidad actual del proyecto
 Actualmente existen varios centros de trabajo:
-- Telegram (dirección y coordinación)
-- Google Antigravity / consola con acceso al VPS (ejecución)
-- workspace OpenClaw (trabajo temporal)
-- GitHub (respaldo/versionado)
-- `/var/www/cnsc` en VPS (repo/productivo desplegado)
+- Telegram / control UI (dirección y coordinación)
+- consola con acceso al VPS (ejecución)
+- workspace OpenClaw en `/home/ubuntu/.openclaw/workspace` (trabajo temporal, docs y operación de agencia)
+- GitHub (respaldo/versionado canónico)
+- repo de aplicación en `/opt/gcm/app` (código vivo en este host)
+- stack Docker gobernado por `/opt/gcm/docker-compose.yml` (runtime real)
 
 Esto obliga a mantener una disciplina explícita para no perder cambios.
 
@@ -79,9 +86,11 @@ Esto obliga a mantener una disciplina explícita para no perder cambios.
 ## 5. Decisión estratégica
 La meta operativa estable debe ser:
 - **GitHub = repo canónico**
+- **`/opt/gcm/app` = copia de trabajo/despliegue del código de aplicación en el VPS**
+- **`/opt/gcm/docker-compose.yml` = orquestación del runtime en este host**
 - **VPS = ejecución**
-- **Telegram = dirección técnica**
-- **workspace = temporal / laboratorio**
+- **Telegram / control UI = dirección técnica**
+- **workspace OpenClaw = temporal / laboratorio para agencia y documentación operativa**
 
 ---
 
