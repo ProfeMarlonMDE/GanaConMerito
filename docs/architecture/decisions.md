@@ -62,7 +62,20 @@ Se prioriza:
 - práctica con continuidad y suficiente historial -> `review`
 - sesión con 3 turnos o condición de cierre -> `session_close`
 
-## 9. Deuda futura explícita
+## 9. Decisión de trazabilidad operativa
+
+El sistema no debe declarar éxito funcional por intención, inferencia o narrativa de UI si el efecto real no fue confirmado.
+
+Reglas mínimas:
+- una operación crítica solo se considera exitosa si su efecto observable quedó confirmado en DB, respuesta backend o estado visible verificable
+- frontend no debe maquillar persistencia no confirmada como éxito definitivo
+- los reportes técnicos deben diferenciar entre acción intentada, acción confirmada y acción pendiente de verificación
+- los flujos sensibles deben dejar evidencia suficiente para distinguir auth, persistencia, autorización y error operativo
+
+Motivo:
+El proyecto ya detectó riesgo de trazabilidad engañosa y estados aparentes de éxito sin confirmación suficiente. Esta decisión busca volver estructural la honestidad funcional.
+
+## 10. Deuda futura explícita
 
 Queda fuera de esta fase:
 - scoring formal dividido en deterministic + llm-assisted rubric

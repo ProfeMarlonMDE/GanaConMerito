@@ -1,7 +1,21 @@
 # Plan de remediación ejecutable
 
 ## Estado
-En ejecución.
+Plan base de remediación ejecutable.
+
+Nota importante:
+Este documento describe el orden lógico/histórico de la remediación.
+No debe leerse como tablero vivo del estado actual de cada frente.
+
+Para estado vigente y remediaciones ya absorbidas, usar además:
+- `docs/project/status.md`
+- `docs/project/remediation/r1-security-auth.md`
+- `docs/project/remediation/r2-sessions.md`
+- `docs/project/remediation/r3-db-content.md`
+- `docs/project/remediation/r4-runtime-product.md`
+- `docs/project/remediation/ra1-session-security.md`
+- `docs/project/remediation/ra2-flow-contracts.md`
+- `docs/project/remediation/ra3-honesty-traceability.md`
 
 ## Orden exacto
 
