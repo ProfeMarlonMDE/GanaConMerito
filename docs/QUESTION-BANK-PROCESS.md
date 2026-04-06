@@ -18,6 +18,15 @@ Llevar cada ítem `multiple_choice` a un estado final controlado:
 Regla:
 **ningún ítem pasa a BD sin validación por capas**.
 
+## Mandato obligatorio de calidad
+**No enviar ni promover a la siguiente capa preguntas que no cumplan con las características definidas en el proyecto.**
+
+Traducción operativa:
+- si un ítem no cumple criterios editoriales, semánticos, estructurales o normativos del banco, se bloquea
+- no se maquilla como listo
+- no se empuja a QA/Data/Backend para “ver si allá lo arreglan”
+- se marca explícitamente como `needs_fix`, `rejected` o `blocked_waiting_full_item` según corresponda
+
 ## Orden operativo recomendado
 Procesar por bloques de área y por criticidad de revisión:
 
@@ -39,6 +48,99 @@ Procesar por bloques de área y por criticidad de revisión:
 5. Consolidación Gauss
 
 No mezclar capas dentro del mismo micro-lote hasta cerrar la salida de la capa activa.
+
+## Pipeline operativo completo
+
+### Capa 0 — Intake y prechequeo
+Entrada:
+- archivo fuente del banco
+- micro-lote de 2 ítems
+
+Validar antes de Editorial:
+- `item_id` presente
+- `area` consistente
+- enunciado visible y completo
+- opciones A/B/C/D visibles
+- metadata mínima presente
+
+Salida permitida:
+- `input_ready`
+- `blocked_waiting_full_item`
+
+### Capa 1 — Editorial
+Validar:
+- claridad del enunciado
+- alineación con el área y competencia
+- unicidad de respuesta correcta si aplica
+- calidad lingüística
+- ausencia de ambigüedad innecesaria
+- calidad de distractores
+- consistencia de dificultad
+
+Salida permitida:
+- `editorial_done`
+- `needs_fix`
+- `rejected`
+
+Regla de bloqueo:
+- si no cumple los criterios definidos en el proyecto, no pasa a QA
+
+### Capa 2 — QA
+Validar:
+- coherencia lógica
+- integridad de opciones
+- verificabilidad de la respuesta esperada
+- ausencia de defectos críticos
+- consistencia del ítem ya curado
+
+Salida permitida:
+- `qa_pass`
+- `qa_fix`
+- `rejected`
+
+Regla de bloqueo:
+- un `qa_fix` no pasa a Data hasta quedar resuelto y reconfirmado
+
+### Capa 3 — Data
+Validar/completar:
+- slug
+- taxonomía
+- metadata
+- enums
+- `normativeRefs`
+- integridad semántica
+
+Salida permitida:
+- `data_ready`
+- `needs_fix`
+- `rejected`
+
+Regla de bloqueo:
+- si faltan metadatos críticos o la clasificación no es sólida, no pasa a Backend
+
+### Capa 4 — Backend
+Validar:
+- shape del payload
+- campos requeridos
+- enums válidos
+- consistencia estructural
+- criterio final de ingestión
+
+Salida permitida:
+- `backend_ready`
+- `ready_for_insert`
+- `needs_fix`
+- `rejected`
+
+Regla de bloqueo:
+- solo `ready_for_insert` puede considerarse apto para BD
+
+### Capa 5 — Consolidación
+Gauss actualiza:
+- índice maestro
+- historial por área
+- estado del micro-lote
+- siguiente acción
 
 ## Tamaño de unidad de trabajo
 - Unidad recomendada: `2` ítems por ejecución
@@ -95,6 +197,7 @@ Registrar hitos relevantes también en memoria diaria o archivo de sesión si el
 - `blocked`
 
 ### Por ítem
+- `input_ready`
 - `blocked_waiting_full_item`
 - `editorial_done`
 - `needs_fix`
