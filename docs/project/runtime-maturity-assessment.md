@@ -267,6 +267,7 @@ Sin embargo, todavía no alcanza el umbral de producción temprana confiable por
 - validación operativa extremo a extremo
 - cierre real del flujo auth → onboarding → practice → dashboard
 - capacidad de declarar “producción temprana” sin contradicción documental/técnica
+- validación ejecutada del runtime Docker desde un contexto con permisos suficientes
 - alineación estricta entre repo local, docs y runtime vivo
 
 ### Condición para subir a producción temprana
@@ -276,6 +277,7 @@ Para subir de etapa sin autoengaño, el proyecto debe demostrar como mínimo:
 3. contrato funcional visible y backend suficientemente claro
 4. repo limpio o drift explicado y consolidado
 5. deploy y validación reproducibles
+6. validación real del artefacto Docker/compose en un contexto con acceso al daemon
 
 ---
 
@@ -325,8 +327,55 @@ El proyecto ya pasó la etapa de MVP de laboratorio y tiene suficiente implement
 El proyecto está en una franja madura de preproducción, no en producción temprana limpia. Ya construyó suficiente producto real, pero todavía no cerró el circuito completo de operación confiable.
 
 ### Siguiente movimiento exacto
-1. limpiar o explicar el drift local del repo
-2. revisar Docker/compose como artefactos reales de despliegue y no como piezas sueltas
-3. cerrar E2E autenticada real sobre flujo principal
-4. actualizar la fuente de verdad documental de rutas y entorno
-5. correr un nuevo corte de madurez después de esa validación
+1. validar build/run Docker desde un contexto con acceso real al daemon
+2. cerrar E2E autenticada real sobre flujo principal
+3. registrar evidencia de login → onboarding → practice → dashboard
+4. correr un nuevo corte de madurez con esa evidencia
+
+## [2026-04-06 01:18 UTC] Corte de madurez
+
+### Etapa declarada
+Producción temprana.
+
+### Etapa real estimada
+Preproducción avanzada con despliegue funcional parcial.
+
+### Diagnóstico ejecutivo
+El proyecto mejoró de forma material en higiene de repo, trazabilidad de versión y coherencia de despliegue. Aun así, la etapa no sube porque el cuello ya no es documental sino operativo: falta validación real del flujo principal y falta confirmar el build/runtime Docker desde un contexto con permisos efectivos.
+
+### Evidencia a favor de esta etapa
+- se eliminó del repo de aplicación la contaminación histórica de OpenClaw/workspace.
+- `Dockerfile` y `.dockerignore` quedaron consolidados en git como artefactos válidos del producto.
+- `source-of-truth.md` fue alineado con rutas reales: `/opt/gcm/app`, `/opt/gcm/docker-compose.yml` y `/home/ubuntu/.openclaw/workspace`.
+- `package.json` quedó reconciliado con la versión publicada `v0.4.8`.
+- el repo quedó empujado a `origin/master` con estos ajustes.
+
+### Evidencia que impide subir de etapa
+- la E2E autenticada completa sigue pendiente como condición de verdad operativa.
+- no hay evidencia nueva de login real → onboarding → practice → dashboard cerrada de extremo a extremo.
+- la validación de build Docker no pudo completarse desde esta sesión por falta de permisos sobre el daemon (`docker.sock`).
+- aún no existe prueba observable de que el runtime contenedorizado haya sido reconstruido y validado tras consolidar `Dockerfile` y `.dockerignore`.
+
+### Riesgos de lectura equivocada
+- interpretar la limpieza del repo como equivalente a validación de producto.
+- asumir que tener `Dockerfile` versionado equivale a build operativo confirmado.
+- subir la etapa por mejoras de disciplina sin cerrar todavía el flujo principal real.
+
+### Cambios nuevos desde la corrida anterior
+- repo de aplicación limpiado de artefactos ajenos al producto.
+- artefactos Docker consolidados en el repo.
+- fuente de verdad documental corregida para reflejar rutas reales.
+- trazabilidad de versión alineada a `v0.4.8`.
+
+### Drift / inconsistencias detectadas
+- ya no persiste el drift histórico de archivos OpenClaw en el repo de aplicación.
+- el bloqueo actual no es drift documental sino restricción de permisos para validar Docker desde este contexto.
+
+### Veredicto
+El proyecto está más limpio, más trazable y más coherente que en la corrida anterior, pero sigue en preproducción avanzada. La barrera actual para subir de etapa es operativa: validar runtime real y flujo principal autenticado.
+
+### Siguiente movimiento exacto
+1. correr `docker compose -f /opt/gcm/docker-compose.yml build gcm-app` desde un contexto con acceso al daemon
+2. levantar o reciclar el contenedor con ese artefacto validado
+3. ejecutar login real y completar onboarding → practice → dashboard
+4. registrar esa evidencia y volver a correr el assessment
