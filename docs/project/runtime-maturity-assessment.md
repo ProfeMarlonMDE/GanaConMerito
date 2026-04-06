@@ -243,18 +243,20 @@ Hacer dos movimientos:
 Producción temprana.
 
 ### Etapa real estimada vigente
-**Preproducción avanzada con despliegue funcional parcial**.
+**Producción temprana controlada**.
 
 ### Lectura consolidada
 El proyecto ya superó un MVP técnico simple.
 Tiene base de datos real, auth integrada, onboarding/práctica/dashboard implementados, remediaciones estructurales ejecutadas, versionado consistente y señales claras de endurecimiento técnico.
 
-Sin embargo, todavía no alcanza el umbral de producción temprana confiable porque persisten huecos en:
-- validación E2E autenticada completa,
-- cierre operativo del flujo real,
-- contratos funcionales completamente explicitados,
-- disciplina estricta de fuente de verdad,
-- y limpieza del drift local del repo.
+El proyecto ya cruzó el umbral de preproducción avanzada porque existe evidencia real de despliegue operativo, login autenticado, onboarding, práctica, dashboard y persistencia observable.
+
+Sin embargo, todavía no alcanza una producción temprana madura porque persisten huecos en:
+- calidad operativa del runtime tras arranque,
+- trazabilidad de despliegue (`Build/Commit unknown`),
+- endurecimiento de contratos funcionales como onboarding,
+- continuidad real de práctica más allá del primer turno,
+- y disciplina de seguridad sobre secretos operativos expuestos en auditorías externas.
 
 ### Qué sí está sólido
 - arquitectura y modelo base definidos
@@ -264,20 +266,20 @@ Sin embargo, todavía no alcanza el umbral de producción temprana confiable por
 - flujo pedagógico base ya materializado en producto real
 
 ### Qué sigue inestable
-- validación operativa extremo a extremo
-- cierre real del flujo auth → onboarding → practice → dashboard
-- capacidad de declarar “producción temprana” sin contradicción documental/técnica
-- validación ejecutada del runtime Docker desde un contexto con permisos suficientes
-- alineación estricta entre repo local, docs y runtime vivo
+- estabilidad observable del runtime inmediatamente post-arranque
+- trazabilidad de despliegue visible en UI/runtime
+- endurecimiento del contrato de onboarding
+- continuidad real de práctica cuando el banco de contenido es pequeño
+- disciplina de seguridad sobre secretos y material sensible
 
-### Condición para subir a producción temprana
-Para subir de etapa sin autoengaño, el proyecto debe demostrar como mínimo:
-1. E2E autenticada real cerrada
-2. flujo principal validado sobre entorno real
-3. contrato funcional visible y backend suficientemente claro
-4. repo limpio o drift explicado y consolidado
-5. deploy y validación reproducibles
-6. validación real del artefacto Docker/compose en un contexto con acceso al daemon
+### Condición para consolidar la producción temprana
+Para pasar de producción temprana controlada a una producción temprana más madura, el proyecto debe demostrar como mínimo:
+1. runtime Docker estable y verificable sin resets tempranos ambiguos
+2. trazabilidad de build/commit visible y correcta en el despliegue
+3. onboarding con contrato validado explícitamente
+4. continuidad de práctica más allá del primer turno o manejo honesto del límite de contenido
+5. disciplina de seguridad reforzada sobre credenciales, logs y artefactos sensibles
+6. repetición exitosa del flujo principal con evidencia reproducible
 
 ---
 
@@ -327,10 +329,64 @@ El proyecto ya pasó la etapa de MVP de laboratorio y tiene suficiente implement
 El proyecto está en una franja madura de preproducción, no en producción temprana limpia. Ya construyó suficiente producto real, pero todavía no cerró el circuito completo de operación confiable.
 
 ### Siguiente movimiento exacto
-1. validar build/run Docker desde un contexto con acceso real al daemon
-2. cerrar E2E autenticada real sobre flujo principal
-3. registrar evidencia de login → onboarding → practice → dashboard
-4. correr un nuevo corte de madurez con esa evidencia
+1. corregir `Build/Commit unknown` en el despliegue
+2. decidir y endurecer la validación de `Áreas activas` en onboarding
+3. ampliar banco de ítems o ajustar selector para continuidad real de práctica
+4. revisar y rotar secretos si se consideran comprometidos por auditorías previas
+5. correr una nueva validación E2E repetible después de esos ajustes
+
+## [2026-04-06 02:00 UTC] Corte de madurez
+
+### Etapa declarada
+Producción temprana.
+
+### Etapa real estimada
+Producción temprana controlada.
+
+### Diagnóstico ejecutivo
+El proyecto cruzó el umbral de preproducción avanzada porque ya existe evidencia real de build, contenedor levantado, login Google, onboarding, práctica, dashboard y persistencia observable en entorno desplegado. La conversación cambia: ya no se trata de demostrar que el flujo principal existe, sino de endurecer su calidad operativa, su trazabilidad y su continuidad.
+
+### Evidencia a favor de esta etapa
+- `npm ci` y `npm run build` pasaron en el checkout del repo.
+- `docker compose build gcm-app` pasó y el contenedor quedó `Up`.
+- el flujo visible real confirmó login Google con callback funcional y aterrizaje en `/home`.
+- el onboarding real funcionó y permitió continuar al producto.
+- la práctica real generó una sesión visible con transición de estado y feedback.
+- el dashboard mostró métricas coherentes con la práctica recién realizada.
+- auditoría cruzada de VPS/producción confirmó actividad real en Supabase (`profiles`, `item_bank`, `user_topic_stats` y tablas asociadas).
+- se confirmó que el `connection reset by peer` previo correspondía a latencia momentánea de arranque y no a caída sostenida del servicio.
+
+### Evidencia que impide considerar la etapa como madura
+- el despliegue todavía muestra `Build: unknown` / `Commit desplegado: unknown`.
+- `onboarding` permitió guardar con `Áreas activas` vacío; ese contrato sigue ambiguo.
+- la práctica se corta prematuramente por ausencia de siguiente ítem disponible.
+- una auditoría externa expuso secretos operativos; eso obliga a reforzar higiene y posible rotación.
+- aún falta repetir el flujo con criterio más controlado para asegurar reproducibilidad, no solo éxito puntual.
+
+### Riesgos de lectura equivocada
+- confundir una E2E exitosa puntual con estabilidad ya consolidada.
+- asumir que el runtime está completamente endurecido solo porque el flujo principal respondió una vez.
+- minimizar el riesgo operacional de secretos expuestos durante auditorías paralelas.
+
+### Cambios nuevos desde la corrida anterior
+- build local validado en el checkout real.
+- build Docker validado y contenedor levantado en el host.
+- E2E autenticada mínima real confirmada en dominio desplegado.
+- evidencia adicional desde VPS/Supabase de actividad real en tablas operativas.
+
+### Drift / inconsistencias detectadas
+- ya no domina el drift documental o de repo; el frente principal se movió a calidad operativa del runtime y a seguridad de credenciales.
+- sigue habiendo una inconsistencia de trazabilidad visible en UI/runtime (`Build/Commit unknown`).
+
+### Veredicto
+El proyecto ya no debe leerse como preproducción avanzada. La lectura correcta ahora es producción temprana controlada: el producto principal existe y opera de verdad, pero todavía necesita endurecimiento antes de considerarse una operación temprana madura.
+
+### Siguiente movimiento exacto
+1. corregir trazabilidad de build/commit en despliegue
+2. endurecer contrato de onboarding
+3. ampliar continuidad real de práctica
+4. rotar secretos si se consideran expuestos
+5. repetir E2E controlada y registrar una nueva corrida
 
 ## [2026-04-06 01:18 UTC] Corte de madurez
 

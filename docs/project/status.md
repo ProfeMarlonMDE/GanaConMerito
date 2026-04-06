@@ -103,10 +103,10 @@
 
 ## Próximo trabajo recomendado
 
-1. completar validación funcional remota tras primer login real (profiles/learning_profiles aún están en 0 en Supabase remoto)
-2. E2E autenticada real completa
-3. refinamiento de práctica y dashboard
-4. despliegue funcional y validación pública
+1. corregir trazabilidad de despliegue para eliminar `Build: unknown` / `Commit desplegado: unknown`
+2. decidir y endurecer la validación de onboarding si `Áreas activas` no debe permitirse vacío
+3. ampliar banco de ítems o ajustar selector para evitar corte de práctica por ausencia de siguiente ítem
+4. consolidar validación pública postdeploy con evidencia repetible
 
 ## Remediación de auditoría en curso
 
@@ -115,7 +115,7 @@
 - `session/item` ahora exige `sessionId`
 - `session/advance` ya delega persistencia a la RPC `public.advance_session_atomic(...)`
 - migración remota `0004_atomic_session_advance.sql` aplicada con éxito
-- validación funcional remota completa bloqueada temporalmente porque el proyecto remoto aún no tiene `profiles` ni `learning_profiles` reales creados por login
+- validación funcional remota mínima ya confirmada con login real, sesión real y persistencia operativa básica
 
 ### RA2 — Semántica de flujo y contratos
 - onboarding alineado con restricciones reales de DB
@@ -140,4 +140,4 @@
 
 ## Observación importante
 
-El plan de remediación ya quedó cerrado. El proyecto está en fase de desarrollo post-remediación con flujo de práctica, onboarding y dashboard cada vez más reales.
+El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada mínima real en entorno desplegado: login Google, onboarding, práctica y dashboard funcionando con persistencia observable. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue y continuidad del producto”.
