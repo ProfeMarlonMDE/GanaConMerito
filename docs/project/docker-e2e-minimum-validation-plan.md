@@ -49,7 +49,8 @@ Verificar manualmente:
 ### Paso 2. Construir imagen
 
 ```bash
-docker compose -f /opt/gcm/docker-compose.yml build gcm-app
+APP_COMMIT=$(git -C /opt/gcm/app rev-parse --short HEAD)
+docker compose -f /opt/gcm/docker-compose.yml build --build-arg APP_COMMIT=$APP_COMMIT gcm-app
 ```
 
 Criterio de éxito:
@@ -61,6 +62,10 @@ Criterio de éxito:
 ```bash
 docker compose -f /opt/gcm/docker-compose.yml up -d gcm-app
 ```
+
+### Paso 3.1. Verificar trazabilidad visible de despliegue
+
+Confirmar que login/layout ya no muestran `unknown` como commit/build desplegado.
 
 ### Paso 4. Confirmar contenedor arriba
 
