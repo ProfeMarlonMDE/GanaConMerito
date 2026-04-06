@@ -10,7 +10,7 @@ Cerrar el bloque visible/operativo del MVP dejando la práctica más honesta ant
   - sesión terminada
   - ausencia de siguiente ítem
   - reinicio manual de nueva sesión
-- `package.json` alineado con la versión publicada `v0.4.3`
+- `package.json` alineado con la versión publicada `v0.4.8`
 - `supabase/.gitignore` añadido para ignorar `.temp/`
 
 ## Validación prevista
