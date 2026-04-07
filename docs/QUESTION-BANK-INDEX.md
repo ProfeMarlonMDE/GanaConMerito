@@ -23,12 +23,12 @@ Ruta activa:
 ## Tabla de control
 | archivo | área | rango_items | estado | última_capa | siguiente_acción | updated_at_utc |
 |---|---|---|---|---|---|---|
-| `docs/banco-preguntas/matematicas.md` | Matemáticas | 001-005 | in_review | none | procesar 001-002 en Editorial | 2026-04-06T21:52:00Z |
-| `docs/banco-preguntas/pedagogia.md` | Pedagogía | 006-010 | pending | none | preparar micro-lote 006-007 | 2026-04-06T21:52:00Z |
-| `docs/banco-preguntas/normatividad.md` | Normatividad | 011-015 | pending | none | preparar micro-lote 011-012 | 2026-04-06T21:52:00Z |
-| `docs/banco-preguntas/gestion.md` | Gestión | 016-020 | pending | none | preparar micro-lote 016-017 | 2026-04-06T21:52:00Z |
-| `docs/banco-preguntas/lectura-critica.md` | Lectura crítica | 021-025 | pending | none | preparar micro-lote 021-022 | 2026-04-06T21:52:00Z |
-| `docs/banco-preguntas/ciudadanas.md` | Competencias ciudadanas | 026-030 | pending | none | preparar micro-lote 026-027 | 2026-04-06T21:52:00Z |
+| `docs/banco-preguntas/matematicas.md` | Matemáticas | 001-005 | blocked | editorial | corregir 001, 002 y 004; adjuntar tabla/gráfico faltante para 003 y 005 | 2026-04-07T02:11:00Z |
+| `docs/banco-preguntas/pedagogia.md` | Pedagogía | 006-010 | partial_ready | editorial | abrir QA para 006-010 por micro-lotes | 2026-04-07T02:15:00Z |
+| `docs/banco-preguntas/normatividad.md` | Normatividad | 011-015 | partial_ready | editorial | abrir QA para 011, 013 y 014; corregir 012 y 015 | 2026-04-07T02:19:00Z |
+| `docs/banco-preguntas/gestion.md` | Gestión | 016-020 | partial_ready | editorial | abrir QA para 016-019; corregir 020 | 2026-04-07T02:23:00Z |
+| `docs/banco-preguntas/lectura-critica.md` | Lectura crítica | 021-025 | partial_ready | editorial | abrir QA para 021-025 por micro-lotes | 2026-04-07T02:27:00Z |
+| `docs/banco-preguntas/ciudadanas.md` | Competencias ciudadanas | 026-030 | partial_ready | editorial | abrir QA para 028-030; corregir 026-027 | 2026-04-07T02:31:00Z |
 
 ## Regla operativa
 - Unidad base: `2` ítems por ejecución
