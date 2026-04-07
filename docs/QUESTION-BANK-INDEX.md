@@ -23,12 +23,12 @@ Ruta activa:
 ## Tabla de control
 | archivo | área | rango_items | estado | última_capa | siguiente_acción | updated_at_utc |
 |---|---|---|---|---|---|---|
-| `docs/banco-preguntas/matematicas.md` | Matemáticas | 001-005 | blocked | editorial | corregir 001, 002 y 004; adjuntar tabla/gráfico faltante para 003 y 005 | 2026-04-07T02:11:00Z |
+| `docs/banco-preguntas/matematicas.md` | Matemáticas | 001-005 | in_review | editorial | 001, 002 y 004 reingresados y aprobados en Editorial; 003 y 005 siguen bloqueados por insumo | 2026-04-07T02:58:00Z |
 | `docs/banco-preguntas/pedagogia.md` | Pedagogía | 006-010 | completed | backend | consolidado; 006-010 ready_for_insert | 2026-04-07T02:39:00Z |
-| `docs/banco-preguntas/normatividad.md` | Normatividad | 011-015 | completed | backend | consolidado parcial: 011, 013, 014 ready_for_insert; corregir 012 y 015 | 2026-04-07T02:40:00Z |
-| `docs/banco-preguntas/gestion.md` | Gestión | 016-020 | completed | backend | consolidado parcial: 016-019 ready_for_insert; corregir 020 | 2026-04-07T02:42:00Z |
+| `docs/banco-preguntas/normatividad.md` | Normatividad | 011-015 | in_review | correction | 012 y 015 reescritos; listos para reingreso por Editorial | 2026-04-07T02:51:00Z |
+| `docs/banco-preguntas/gestion.md` | Gestión | 016-020 | in_review | correction | 020 reescrito; listo para reingreso por Editorial | 2026-04-07T02:52:00Z |
 | `docs/banco-preguntas/lectura-critica.md` | Lectura crítica | 021-025 | completed | backend | consolidado; 021-025 ready_for_insert | 2026-04-07T02:45:00Z |
-| `docs/banco-preguntas/ciudadanas.md` | Competencias ciudadanas | 026-030 | completed | backend | consolidado parcial: 028-030 ready_for_insert; corregir 026-027 | 2026-04-07T02:46:00Z |
+| `docs/banco-preguntas/ciudadanas.md` | Competencias ciudadanas | 026-030 | in_review | correction | 026 reescrito; pendiente reescritura controlada de 027 | 2026-04-07T02:53:00Z |
 
 ## Regla operativa
 - Unidad base: `2` ítems por ejecución

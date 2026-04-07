@@ -37,7 +37,7 @@ Actualizar:
 
 ## Estado inicial
 - pipeline_status: `active`
-- active_micro_lot: `consolidación final`
+- active_micro_lot: `consolidación final total`
 - active_layer: `Consolidación`
-- next_after_active: `pendiente corrección de ítems bloqueados`
-- updated_at_utc: `2026-04-07T02:46:00Z`
+- next_after_active: `solo quedan 003 y 005 bloqueados por insumo`
+- updated_at_utc: `2026-04-07T03:02:00Z`

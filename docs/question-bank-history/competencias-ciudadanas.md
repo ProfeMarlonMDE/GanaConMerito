@@ -4,9 +4,9 @@
 - `/home/ubuntu/.openclaw/workspace/docs/banco-preguntas/ciudadanas.md`
 
 ## Estado actual
-- estado_archivo: `completed`
-- ultima_capa: `backend`
-- siguiente_micro_lote: `consolidado_parcial_listo_para_bd`
+- estado_archivo: `in_review`
+- ultima_capa: `correction`
+- siguiente_micro_lote: `Correccion_027`
 
 ## 2026-04-07T02:29:00Z
 - micro-lote: `026-027`
@@ -101,6 +101,90 @@
     - `027 -> needs_fix`
 - siguiente_paso:
   - consolidación final del pipeline
+
+## 2026-04-07T02:47:00Z
+- micro-lote: `026`
+- capa_ejecutada: `correction_review`
+- resultado:
+  - `026 -> recoverable`
+- ajuste_definido:
+  - cerrar el propósito pedagógico hacia participación y construcción propositiva, eliminando amplitud excesiva
+- siguiente_paso:
+  - ejecutar corrección sobre `027`
+
+## 2026-04-07T02:48:00Z
+- micro-lote: `027`
+- capa_ejecutada: `correction_review`
+- resultado:
+  - `027 -> recoverable`
+- ajuste_definido:
+  - cerrar la acción hacia proyecto ambiental con resolución comunitaria, separándola del diagnóstico y de la reflexión docente interna
+- siguiente_paso:
+  - mover corrección a `matematicas.md` ítems `001,002,004`
+
+## 2026-04-07T02:53:00Z
+- micro-lote: `026`
+- capa_ejecutada: `controlled_rewrite`
+- resultado:
+  - `026 -> rewritten_ready_for_editorial`
+- cambio_aplicado:
+  - reformulación para que la opción correcta se concentre en desarrollo de capacidades propositivas y participación
+- siguiente_paso:
+  - reescribir `027`
+
+## 2026-04-07T02:54:00Z
+- micro-lote: `027`
+- capa_ejecutada: `controlled_rewrite`
+- resultado:
+  - `027 -> rewritten_ready_for_editorial`
+- cambio_aplicado:
+  - reformulación para que la acción correcta se centre en proyecto ambiental comunitario y solución compartida del problema
+- siguiente_paso:
+  - mover reescritura a `matematicas.md` ítem `001`
+
+## 2026-04-07T02:59:00Z
+- micro-lote: `026-027`
+- capa_ejecutada: `editorial_reentry`
+- resultado:
+  - `026 -> editorial_done`
+  - `027 -> editorial_done`
+- validaciones:
+  - propósito y acción correcta ya quedaron cerrados sin colisión crítica entre distractores
+- siguiente_paso:
+  - abrir QA de `026-027`
+
+## 2026-04-07T03:00:00Z
+- micro-lote: `026-027`
+- capa_ejecutada: `qa_reentry`
+- resultado:
+  - `026 -> qa_pass`
+  - `027 -> qa_pass`
+- validaciones:
+  - unicidad y verificabilidad restauradas
+- siguiente_paso:
+  - abrir Data de `026-027`
+
+## 2026-04-07T03:01:00Z
+- micro-lote: `026-027`
+- capa_ejecutada: `data_reentry`
+- resultado:
+  - `026 -> data_ready`
+  - `027 -> data_ready`
+- validaciones:
+  - metadata mínima suficiente para continuidad
+- siguiente_paso:
+  - abrir Backend de `026-027`
+
+## 2026-04-07T03:02:00Z
+- micro-lote: `026-027`
+- capa_ejecutada: `backend_reentry`
+- resultado:
+  - `026 -> ready_for_insert`
+  - `027 -> ready_for_insert`
+- validaciones:
+  - payload consistente para ingestión
+- siguiente_paso:
+  - consolidar Ciudadanas completa
 
 ## 2026-04-06T21:52:00Z
 - micro-lote: `026-027`

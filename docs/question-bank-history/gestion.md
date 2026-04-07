@@ -4,9 +4,9 @@
 - `/home/ubuntu/.openclaw/workspace/docs/banco-preguntas/gestion.md`
 
 ## Estado actual
-- estado_archivo: `completed`
-- ultima_capa: `backend`
-- siguiente_micro_lote: `consolidado_parcial_listo_para_bd`
+- estado_archivo: `in_review`
+- ultima_capa: `correction`
+- siguiente_micro_lote: `Correccion_020_done`
 
 ## 2026-04-07T02:21:00Z
 - micro-lote: `016-017`
@@ -140,6 +140,68 @@
     - `020 -> needs_fix`
 - siguiente_paso:
   - abrir Backend para `021-022`
+
+## 2026-04-07T02:46:00Z
+- micro-lote: `020`
+- capa_ejecutada: `correction_review`
+- resultado:
+  - `020 -> recoverable`
+- ajuste_definido:
+  - unificar referencia a `SIEE`
+  - cerrar mejor la relación entre indicadores comparables, rúbricas e instrumentos comunes
+- siguiente_paso:
+  - mover corrección a `ciudadanas.md` ítems `026-027`
+
+## 2026-04-07T02:52:00Z
+- micro-lote: `020`
+- capa_ejecutada: `controlled_rewrite`
+- resultado:
+  - `020 -> rewritten_ready_for_editorial`
+- cambio_aplicado:
+  - reformulación para que la opción correcta quede alineada con indicadores comparables e instrumentos coherentes con el SIEE
+- siguiente_paso:
+  - mover reescritura a `ciudadanas.md` ítems `026-027`
+
+## 2026-04-07T02:59:00Z
+- micro-lote: `020`
+- capa_ejecutada: `editorial_reentry`
+- resultado:
+  - `020 -> editorial_done`
+- validaciones:
+  - opción correcta mejor cerrada
+  - consistencia terminológica corregida
+- siguiente_paso:
+  - abrir QA de `020`
+
+## 2026-04-07T03:00:00Z
+- micro-lote: `020`
+- capa_ejecutada: `qa_reentry`
+- resultado:
+  - `020 -> qa_pass`
+- validaciones:
+  - integridad y consistencia restauradas
+- siguiente_paso:
+  - abrir Data de `020`
+
+## 2026-04-07T03:01:00Z
+- micro-lote: `020`
+- capa_ejecutada: `data_reentry`
+- resultado:
+  - `020 -> data_ready`
+- validaciones:
+  - metadata mínima suficiente para Backend
+- siguiente_paso:
+  - abrir Backend de `020`
+
+## 2026-04-07T03:02:00Z
+- micro-lote: `020`
+- capa_ejecutada: `backend_reentry`
+- resultado:
+  - `020 -> ready_for_insert`
+- validaciones:
+  - payload consistente para ingestión
+- siguiente_paso:
+  - consolidar Gestión completa
 
 ## 2026-04-06T21:52:00Z
 - micro-lote: `016-017`

@@ -4,9 +4,9 @@
 - `/home/ubuntu/.openclaw/workspace/docs/banco-preguntas/normatividad.md`
 
 ## Estado actual
-- estado_archivo: `completed`
-- ultima_capa: `backend`
-- siguiente_micro_lote: `consolidado_parcial_listo_para_bd`
+- estado_archivo: `in_review`
+- ultima_capa: `correction`
+- siguiente_micro_lote: `Correccion_015`
 
 ## 2026-04-07T02:17:00Z
 - micro-lote: `011-012`
@@ -103,6 +103,91 @@
     - `015 -> needs_fix`
 - siguiente_paso:
   - abrir Backend para `016-017`
+
+## 2026-04-07T02:44:00Z
+- micro-lote: `012`
+- capa_ejecutada: `correction_review`
+- resultado:
+  - `012 -> recoverable`
+- ajuste_definido:
+  - cerrar redacción normativa para que la opción correcta se centre en ingreso, permanencia y ascenso mediante evaluación y formación, sin sobreextender afirmaciones institucionales débiles
+- siguiente_paso:
+  - ejecutar corrección sobre `015`
+
+## 2026-04-07T02:45:00Z
+- micro-lote: `015`
+- capa_ejecutada: `correction_review`
+- resultado:
+  - `015 -> recoverable`
+- ajuste_definido:
+  - unificar terminología institucional en `SIEE`
+  - cerrar la decisión conforme al criterio ya fijado por el sistema institucional, sin abrir excepciones ad hoc
+- siguiente_paso:
+  - mover corrección a `gestion.md` ítem `020`
+
+## 2026-04-07T02:50:00Z
+- micro-lote: `012`
+- capa_ejecutada: `controlled_rewrite`
+- resultado:
+  - `012 -> rewritten_ready_for_editorial`
+- cambio_aplicado:
+  - reformulación dirigida para que la respuesta correcta quede centrada en evaluación, formación y carrera docente sin ambigüedad institucional lateral
+- siguiente_paso:
+  - reescribir `015`
+
+## 2026-04-07T02:51:00Z
+- micro-lote: `015`
+- capa_ejecutada: `controlled_rewrite`
+- resultado:
+  - `015 -> rewritten_ready_for_editorial`
+- cambio_aplicado:
+  - unificación terminológica en `SIEE` y cierre explícito del criterio de inasistencia como regla institucional aplicable a la promoción
+- siguiente_paso:
+  - mover reescritura a `gestion.md` ítem `020`
+
+## 2026-04-07T02:59:00Z
+- micro-lote: `012-015`
+- capa_ejecutada: `editorial_reentry`
+- resultado:
+  - `012 -> editorial_done`
+  - `015 -> editorial_done`
+- validaciones:
+  - redacción cerrada y sin ambigüedad normativa crítica
+- siguiente_paso:
+  - abrir QA de `012-015`
+
+## 2026-04-07T03:00:00Z
+- micro-lote: `012-015`
+- capa_ejecutada: `qa_reentry`
+- resultado:
+  - `012 -> qa_pass`
+  - `015 -> qa_pass`
+- validaciones:
+  - consistencia normativa recuperada
+- siguiente_paso:
+  - abrir Data de `012-015`
+
+## 2026-04-07T03:01:00Z
+- micro-lote: `012-015`
+- capa_ejecutada: `data_reentry`
+- resultado:
+  - `012 -> data_ready`
+  - `015 -> data_ready`
+- validaciones:
+  - metadata y referencias suficientes para continuidad
+- siguiente_paso:
+  - abrir Backend de `012-015`
+
+## 2026-04-07T03:02:00Z
+- micro-lote: `012-015`
+- capa_ejecutada: `backend_reentry`
+- resultado:
+  - `012 -> ready_for_insert`
+  - `015 -> ready_for_insert`
+- validaciones:
+  - payload consistente para ingestión
+- siguiente_paso:
+  - consolidar Normatividad completa
 
 ## 2026-04-06T21:52:00Z
 - micro-lote: `011-012`
