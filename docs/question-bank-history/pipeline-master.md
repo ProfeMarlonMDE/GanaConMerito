@@ -37,7 +37,7 @@ Actualizar:
 
 ## Estado inicial
 - pipeline_status: `active`
-- active_micro_lot: `QA Pedagogía 006-007`
-- active_layer: `QA`
-- next_after_active: `QA Pedagogía 008-009`
-- updated_at_utc: `2026-04-07T02:31:00Z`
+- active_micro_lot: `consolidación final`
+- active_layer: `Consolidación`
+- next_after_active: `pendiente corrección de ítems bloqueados`
+- updated_at_utc: `2026-04-07T02:46:00Z`
