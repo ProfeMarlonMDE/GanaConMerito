@@ -20,10 +20,10 @@ version: 1
 La profesora Andrea es la encargada de organizar un viaje educativo para 90 estudiantes de secundaria a un museo de ciencias. Tiene tres buses disponibles, cada uno con capacidad máxima de 36 pasajeros, incluyendo docentes y acompañantes. Deben viajar al menos cuatro docentes y dos guías del museo en total. Andrea necesita distribuir a los estudiantes de manera equitativa sin superar la capacidad y asegurando que haya al menos un docente en cada vehículo. ¿Cuál de las siguientes distribuciones permite que todos los estudiantes y acompañantes viajen sin exceder la capacidad de los buses?
 
 #### Opciones
-* A. Distribuir 30 estudiantes en cada bus asegurando que en los dos primeros viajen un docente y en el tercero dos docentes junto con los guías del museo garantizando un uso equitativo del espacio.
-* B. Asignar 32 estudiantes a los dos primeros buses y 26 al tercero priorizando la comodidad de un grupo Sin superar el límite de pasajeros en ningún vehículo.
-* C. Distribuir 29 estudiantes en cada bus dejando espacio para los docentes y guías sin sobrepasar la capacidad y permitiendo cierta flexibilidad en la organización.
-* D. Ubicar 36 pasajeros en los dos primeros buses incluyendo docentes y guías, y los estudiantes restantes en el tercer vehículo asegurando la supervisión básica.
+* A. Ubicar 30 estudiantes en cada bus; en el primero viaja 1 docente, en el segundo 1 docente y en el tercero 2 docentes junto con los 2 guías, sin superar los 36 pasajeros por vehículo.
+* B. Asignar 32 estudiantes a los dos primeros buses y 26 al tercero, además de distribuir los 4 docentes y los 2 guías entre los tres vehículos, manteniendo una repartición equitativa.
+* C. Distribuir 29 estudiantes en cada bus dejando espacio para los docentes y guías, aunque eso implique revisar después cuántos estudiantes faltan por ubicar.
+* D. Ubicar 30 estudiantes en cada bus y repartir 2 docentes y 1 guía en cada uno de los dos primeros vehículos, dejando el resto de acompañantes para el tercero.
 
 ---
 
@@ -49,10 +49,10 @@ version: 1
 Partiendo del caso del viaje al museo (90 estudiantes, 4 docentes, 2 guías), si la institución educativa decide alquilar un bus adicional con capacidad para 20 pasajeros y se suman seis estudiantes más al viaje, ¿cuál de las siguientes estrategias de reasignación mantiene el equilibrio y cumple con las restricciones iniciales?
 
 #### Opciones
-* A. Reasignar a seis estudiantes de los tres buses originales al nuevo vehículo junto con el docente adicional o los guías liberando espacio equitativamente.
-* B. Distribuir a todos los estudiantes equitativamente colocando 24 en cada uno de los cuatro buses y asignando al menos un docente o guía en el bus nuevo o tercero asegurando que ningún vehículo supere su capacidad y manteniendo la presencia docente en cada unidad.
-* C. Reorganizando los grupos de manera que en cada bus viajen 30 estudiantes sumando los seis adicionales y verificando que los docentes se distribuyan de manera equitativa.
-* D. Asignar los seis estudiantes adicionales exclusivamente al nuevo bus junto con un docente, manteniendo intacta la distribución de los vehículos originales.
+* A. Trasladar 20 estudiantes al bus adicional junto con 1 docente, para dejar 26 estudiantes en cada uno de los tres buses originales y reorganizar allí a los demás acompañantes.
+* B. Dejar 26 estudiantes en cada uno de los tres buses de 36 puestos y ubicar 18 estudiantes en el bus adicional; asignar 1 docente por vehículo y distribuir 1 guía en el bus adicional y 1 guía en uno de los buses originales.
+* C. Reorganizar el viaje poniendo 24 estudiantes en cada uno de los cuatro buses y luego distribuir a los 4 docentes y 2 guías según convenga.
+* D. Enviar solo a los 6 estudiantes nuevos al bus adicional y mantener sin redistribución la asignación de docentes y guías en los tres buses originales.
 
 ---
 
