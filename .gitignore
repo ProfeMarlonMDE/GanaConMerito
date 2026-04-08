@@ -1,1 +1,9 @@
 .openclaw/
+
+# Local operational and sensitive artifacts
+.tmp-importer-origin-master/
+keys/
+memory/.dreams/
+memory/*.md
+!memory/README.md
+scripts-safe-push.sh
