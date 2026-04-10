@@ -21,12 +21,17 @@ Entregable:
 
 ### 2. Implementar
 Lugar principal:
-- repo de trabajo controlado
-- temporalmente: workspace o VPS si no existe repo local usable
+- worktree de producto en `/home/ubuntu/.openclaw/product` para cambios de producto
+- workspace en `/home/ubuntu/.openclaw/workspace` solo para agencia, documentación operativa, memoria y orquestación
 
 Entregable:
 - archivos modificados
 - cambios verificables
+
+Regla obligatoria:
+- no implementar cambios canónicos de producto en `/home/ubuntu/.openclaw/workspace`
+- no usar el VPS como base normal de desarrollo
+- si existe una excepción de emergencia, debe documentarse y luego consolidarse en `master`
 
 ---
 
@@ -104,10 +109,11 @@ Si el cambio solo existe en el VPS:
 ---
 
 ## Estado ideal futuro
-- repo local o controlado para desarrollo
+- worktree de producto controlado para desarrollo
 - GitHub como canónico
 - VPS solo como destino de despliegue
-- docs siempre actualizados en repo
+- docs de producto actualizados en `master`
+- docs operativos de agencia actualizados en `openclaw-workspace`
 
 ---
 
