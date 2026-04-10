@@ -65,6 +65,11 @@ No requiere migración inmediata, solo decisión de ownership y posible normaliz
 - `docs/supabase-secret-remediation.md`
 
 ## Criterio operativo
+- Política canónica vigente:
+  - producto en `master` y `/home/ubuntu/.openclaw/product`
+  - agencia, memoria y operación en `openclaw-workspace` y `/home/ubuntu/.openclaw/workspace`
+  - el workspace no es source of truth de producto
+  - los documentos operativos deben referenciar los artefactos canónicos de producto cuando corresponda
 - No empujar `226d4ab` hasta migrar primero Bloque A o decidir exclusiones.
 - No usar `master` local como base.
 - Trabajar producto solo desde `/home/ubuntu/.openclaw/product`.

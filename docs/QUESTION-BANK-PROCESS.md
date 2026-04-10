@@ -6,8 +6,14 @@ Definir el orden operativo para procesar todos los archivos del banco de pregunt
 ## Fuente de verdad
 Cuando exista la carpeta del banco de preguntas, cada archivo debe tratarse como input persistido de un lote temático de 5 preguntas.
 
-Ruta esperada informada por Marlon:
-- `/home/ubuntu/.openclaw/workspace/docs/banco-preguntas`
+Fuente canónica de producto:
+- `/home/ubuntu/.openclaw/product/docs/banco-preguntas`
+
+En este workspace solo deben vivir:
+- prompts de operación
+- índices de seguimiento
+- historial de ejecución
+- contexto de agencia
 
 ## Objetivo del pipeline
 Llevar cada ítem `multiple_choice` a un estado final controlado:
@@ -224,7 +230,7 @@ Registrar hitos relevantes también en memoria diaria o archivo de sesión si el
 ```
 
 ## Regla de control
-Si la carpeta o los archivos no aparecen en la ruta esperada:
+Si la carpeta o los archivos no aparecen en la ruta canónica esperada:
 - no inventar inventario
 - confirmar ubicación real antes de consolidar el orden definitivo archivo por archivo
 - sí mantener esta metodología lista para activarse apenas exista la ruta correcta
