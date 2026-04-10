@@ -156,3 +156,10 @@ También quedó ajustado lo siguiente:
 
 Pendiente residual no bloqueante:
 - decidir el destino del worktree `/home/ubuntu/.openclaw/workspace-product-048-fix` para cerrar la última ambigüedad topológica
+
+## Referencia de versionado operativo vigente
+- App declarada: `0.4.8`
+- App operativa: `v0.4.8-31-ga9522e6`
+- Workspace operativo relacionado: `openclaw-workspace@77d1c87`
+
+Mientras no se haga un release formal nuevo, esta es la forma correcta de reportar el estado real para seguir desarrollo sin ambigüedad.
