@@ -141,3 +141,18 @@
 ## Observación importante
 
 El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada mínima real en entorno desplegado: login Google, onboarding, práctica y dashboard funcionando con persistencia observable. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue y continuidad del producto”.
+
+## Cierre de remediación de dominios y workspaces
+
+Quedó consolidada la separación operativa vigente:
+- `master` y `/home/ubuntu/.openclaw/product` = dominio canónico de producto
+- `openclaw-workspace` y `/home/ubuntu/.openclaw/workspace` = dominio de agencia, memoria, prompts y operación
+
+También quedó ajustado lo siguiente:
+- documentación normativa y de workflow alineada a esa separación
+- documentación operativa del question pipeline apuntando al corpus canónico de producto
+- `supabase/config.toml` normalizado a `project_id = "gcm-product"`
+- residuos menores saneados en workspace sin afectar trazabilidad
+
+Pendiente residual no bloqueante:
+- decidir el destino del worktree `/home/ubuntu/.openclaw/workspace-product-048-fix` para cerrar la última ambigüedad topológica
