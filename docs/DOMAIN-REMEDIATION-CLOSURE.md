@@ -22,3 +22,10 @@ No se modificó en esta fase porque requiere validación explícita de propósit
 - el workspace no es source of truth de producto
 - los artefactos operativos del workspace deben referenciar el estado canónico de producto cuando corresponda
 - todo cambio canónico de app debe consolidarse en `master`
+
+## Referencia operativa para seguir en modo dev
+- App declarada: `0.4.8`
+- App operativa: `v0.4.8-31-ga9522e6`
+- Workspace operativo: `openclaw-workspace@77d1c87`
+
+Mientras no se haga un cierre formal de release, reportar usando ese formato y seguir desarrollo normal en `/home/ubuntu/.openclaw/product`.

@@ -164,6 +164,18 @@ La acción concreta recomendada.
 
 ---
 
+## Regla de versionado operativo
+
+Cuando un reporte toque estado de release o continuidad de desarrollo, usar este estándar:
+- **App declarada:** versión de `package.json`
+- **App operativa:** salida de `git describe --tags --always`
+- **Workspace operativo:** `openclaw-workspace@<commit-corto>`
+
+Ejemplo vigente tras este cierre:
+- App declarada: `0.4.8`
+- App operativa: `v0.4.8-31-ga9522e6`
+- Workspace operativo: `openclaw-workspace@77d1c87`
+
 ## Regla final
 
 Si el especialista no puede decir con honestidad qué está pasando, qué riesgo existe y qué hacer después, todavía no terminó de pensar el caso.
