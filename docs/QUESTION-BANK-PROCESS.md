@@ -15,6 +15,11 @@ En este workspace solo deben vivir:
 - historial de ejecución
 - contexto de agencia
 
+## Ownership de artefactos
+- Fuente canónica de preguntas y corpus: producto (`/home/ubuntu/.openclaw/product`)
+- Índices, prompts e historial operativo: workspace de agencia (`/home/ubuntu/.openclaw/workspace`)
+- Este documento describe operación, no reemplaza la fuente de verdad de producto
+
 ## Objetivo del pipeline
 Llevar cada ítem `multiple_choice` a un estado final controlado:
 - `ready_for_insert`

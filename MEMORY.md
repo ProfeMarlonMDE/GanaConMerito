@@ -2,7 +2,7 @@
 
 ## Marlon Arcila
 
-- Marlon Arcila es el humano principal de esta workspace.
+- Marlon Arcila es el humano principal de esta operación.
 - Prefiere que lo llame Marlon.
 - Está construyendo/liderando el ecosistema GanaConMerito.
 

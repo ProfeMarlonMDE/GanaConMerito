@@ -1,7 +1,7 @@
 # QUESTION-BANK-INDEX
 
 ## Estado general
-Inventario confirmado desde el repositorio remoto y referenciado operativamente desde este workspace.
+Inventario confirmado desde el repositorio remoto y mantenido como tablero operativo en el workspace de agencia.
 
 Ruta canónica de producto:
 - `/home/ubuntu/.openclaw/product/docs/banco-preguntas`

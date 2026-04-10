@@ -4,6 +4,11 @@
 
 Definir cómo pasar de estructura documental a runtime operativo mediante sesiones persistentes por rol, con orden de creación, criterio de activación, mensaje de bootstrap y validación inicial.
 
+> Regla vigente de dominios:
+> - `~/.openclaw/workspace` gobierna agencia, memoria, coordinación y documentación operativa.
+> - `~/.openclaw/product` gobierna código y artefactos canónicos de producto.
+> - las sesiones deben leer el workspace para alineación operativa y consultar product cuando la tarea toque artefactos canónicos de producto.
+
 Este archivo no define solo “qué sesiones existen”. Define **cuándo se prenden, por qué se prenden, con qué mandato nacen y cómo se verifica que quedaron alineadas**.
 
 ---
@@ -140,7 +145,7 @@ No activar para:
 
 ## Documentos base que debe conocer cada sesión
 
-Antes de operar, cada sesión debe alinearse con estos archivos del workspace:
+Antes de operar, cada sesión debe alinearse con estos archivos del workspace de agencia:
 - `AGENCY.md`
 - `AGENT-ROLES.md`
 - `DELEGATION-RULES.md`

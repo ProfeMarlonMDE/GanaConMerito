@@ -2,9 +2,14 @@
 
 ## Descripción
 
-Este documento describe el proceso completo para crear y configurar agentes persistentes en OpenClaw apuntando a un **workspace compartido**, de forma que múltiples agentes especializados operen sobre la misma fuente de verdad.
+Este documento describe el proceso completo para crear y configurar agentes persistentes en OpenClaw apuntando a un **workspace compartido de agencia**, de forma que múltiples agentes especializados operen sobre la misma base operativa.
 
 Este patrón es el que utiliza la agencia interna de GanaConMerito.
+
+> Regla vigente de dominios:
+> - `~/.openclaw/workspace` = agencia, memoria, coordinación y documentación operativa
+> - `~/.openclaw/product` = producto canónico local
+> - el workspace compartido no reemplaza la fuente de verdad de producto
 
 ---
 
@@ -12,7 +17,7 @@ Este patrón es el que utiliza la agencia interna de GanaConMerito.
 
 ```
 /home/ubuntu/.openclaw/
-├── workspace/                   ← Workspace compartido (única fuente de verdad)
+├── workspace/                   ← Workspace compartido de agencia (fuente operativa común)
 │   ├── AGENCY.md
 │   ├── AGENT-ROLES.md
 │   ├── DELEGATION-RULES.md
@@ -31,7 +36,9 @@ Este patrón es el que utiliza la agencia interna de GanaConMerito.
     └── qa-validation/           ← Agente 6 (apunta al workspace compartido)
 ```
 
-**Principio clave:** los agentes son entidades separadas con sesiones y estado propios, pero **todos comparten el mismo workspace**. Esto garantiza que todos lean la misma documentación operativa, roles, reglas de delegación y contexto del proyecto.
+**Principio clave:** los agentes son entidades separadas con sesiones y estado propios, pero **todos comparten el mismo workspace de agencia**. Esto garantiza que todos lean la misma documentación operativa, roles, reglas de delegación y contexto del proyecto.
+
+Ese workspace compartido gobierna operación y memoria. Los artefactos canónicos de producto deben leerse y modificarse desde `~/.openclaw/product`.
 
 ---
 
@@ -49,9 +56,9 @@ openclaw --version
 
 ---
 
-## Paso 1 — Verificar el workspace compartido
+## Paso 1 — Verificar el workspace compartido de agencia
 
-Antes de crear agentes, confirmar que el workspace base existe y contiene los documentos operativos:
+Antes de crear agentes, confirmar que el workspace base de agencia existe y contiene los documentos operativos:
 
 ```bash
 ls ~/.openclaw/workspace/
@@ -81,7 +88,7 @@ openclaw agents add \
   --workspace ~/.openclaw/workspace
 ```
 
-> **Regla crítica:** nunca omitir `--workspace ~/.openclaw/workspace`. Sin esto, OpenClaw crea un workspace aislado nuevo por agente, rompiendo la fuente de verdad compartida.
+> **Regla crítica:** nunca omitir `--workspace ~/.openclaw/workspace`. Sin esto, OpenClaw crea un workspace aislado nuevo por agente, rompiendo la base operativa compartida.
 
 ### Creación de los 6 agentes de la agencia GanaConMerito
 
@@ -411,6 +418,11 @@ Marlon
 ---
 
 ## Notas de operación
+
+> Nota de ownership:
+> - `~/.openclaw/workspace` centraliza memoria, prompts, reglas y coordinación de agentes.
+> - `~/.openclaw/product` centraliza código y documentación canónica de producto.
+
 
 - **CLI path:** `/home/ubuntu/.npm-global/bin/openclaw` (usar si `openclaw` no está en PATH)
 - **Session files:** `~/.openclaw/agents/<id>/sessions/<sessionId>.jsonl`

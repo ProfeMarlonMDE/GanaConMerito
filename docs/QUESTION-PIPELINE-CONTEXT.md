@@ -64,12 +64,13 @@ Sí usar:
 - máximo 5 si el contexto está muy limpio
 - prompts mínimos
 - sesiones frescas
-- preguntas persistidas en archivos locales
+- preguntas fuente persistidas en artefactos canónicos de producto
+- trazabilidad operativa persistida en archivos del workspace
 - Gauss como coordinadora central de handoffs
 
 ## Estado real de la ejecución al cierre
-- El lote `001–015` quedó consolidado en archivo local.
-- El micro-lote `001–005` quedó separado en archivo local.
+- El lote `001–015` quedó consolidado como insumo operativo local.
+- El micro-lote `001–005` quedó separado y luego archivado para trazabilidad.
 - Hubo intentos de lanzar subagentes sobre ítems individuales y sobre el micro-lote inicial.
 - No hay salida final confiable todavía para marcar ítems como `ready_for_insert`.
 - La siguiente ejecución debe retomarse desde archivos persistidos, no desde historial de chat.
@@ -81,9 +82,10 @@ Si un ítem está incompleto:
 - no pasarlo a la siguiente capa
 
 ## Archivos de referencia
+- `/home/ubuntu/.openclaw/product/docs/banco-preguntas/`
 - `/home/ubuntu/.openclaw/workspace/OPERACION-30-PREGUNTAS.md`
 - `/home/ubuntu/.openclaw/workspace/lotes-input/lote-001-015.md`
-- `/home/ubuntu/.openclaw/workspace/lotes-input/micro-lote-001-005.md`
+- `/home/ubuntu/.openclaw/workspace/archive/lotes-input/micro-lote-001-005.md`
 - `/home/ubuntu/.openclaw/workspace/memory/2026-04-06-question-pipeline.md`
 
 ## Siguiente movimiento recomendado

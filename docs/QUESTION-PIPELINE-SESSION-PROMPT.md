@@ -44,12 +44,13 @@ La mejor estrategia para seguir es:
 - máximo 5 si el contexto está limpio
 - prompts mínimos
 - sesiones frescas
-- input persistido en archivos locales
+- input canónico persistido en archivos de producto
+- trazabilidad operativa en workspace
 - Gauss como coordinadora central
 
 ## Estado real al cierre de la sesión anterior
 - Se consolidó un archivo con el lote `001–015`
-- Se separó un micro-lote `001–005`
+- Se separó un micro-lote `001–005`, hoy archivado para trazabilidad
 - Se lanzaron intentos de subagentes sobre algunos ítems y sobre ese micro-lote
 - Los intentos no dejaron una salida final confiable por overflow / timeout
 - No hay todavía decisiones finales confiables por ítem en `ready_for_insert`
@@ -63,12 +64,13 @@ Si un ítem llega incompleto:
 ## Archivos con contexto útil (rutas absolutas)
 - `/home/ubuntu/.openclaw/workspace/docs/QUESTION-PIPELINE-CONTEXT.md`
 - `/home/ubuntu/.openclaw/workspace/OPERACION-30-PREGUNTAS.md`
+- `/home/ubuntu/.openclaw/product/docs/banco-preguntas/`
 - `/home/ubuntu/.openclaw/workspace/lotes-input/lote-001-015.md`
-- `/home/ubuntu/.openclaw/workspace/lotes-input/micro-lote-001-005.md`
+- `/home/ubuntu/.openclaw/workspace/archive/lotes-input/micro-lote-001-005.md`
 - `/home/ubuntu/.openclaw/workspace/memory/2026-04-06-question-pipeline.md`
 
 ## Qué quiero que hagas ahora
-1. Lee esos archivos
+1. Lee primero los artefactos canónicos de producto y luego el contexto operativo del workspace
 2. Dame el siguiente movimiento operativo exacto
 3. Propón el tamaño de micro-lote a usar en esta sesión fresca
 4. Trabaja con prompts mínimos para evitar overflow

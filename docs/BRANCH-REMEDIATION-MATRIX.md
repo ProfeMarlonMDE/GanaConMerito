@@ -1,5 +1,9 @@
 # BRANCH REMEDIATION MATRIX
 
+> Estado: documento de remediación histórica.
+> La política vigente ya fue absorbida por la documentación activa de producto y workspace.
+> Úsalo como registro de transición, no como fuente principal de verdad.
+
 ## Estado base
 - Producto canónico: `origin/master`
 - Agencia canónica: `origin/openclaw-workspace`
@@ -7,7 +11,8 @@
 - Producto limpio montado en: `/home/ubuntu/.openclaw/product`
 
 ## Bloque A — mover a producto (`master`)
-Estos artefactos existían en `openclaw-workspace` y no existen hoy en `origin/master`. Deben migrarse al árbol de producto.
+Estado histórico del momento en que estos artefactos aún no estaban consolidados en producto.
+Parte de este bloque ya quedó resuelta y se conserva aquí solo como trazabilidad.
 
 ### Contenido canónico
 - `content/items/_transform-report.md`
