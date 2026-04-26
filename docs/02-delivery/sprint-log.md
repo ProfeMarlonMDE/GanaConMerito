@@ -40,6 +40,7 @@ last_reviewed: 2026-04-26
 3. Convertir backlog actual en lista priorizada con criterio `Now / Next / Later`.
 4. Clasificar el legado documental en lotes A/B/C con decisión por artefacto: conservar, consolidar, archivar o reemplazar.
 5. Dejar una lista corta de riesgos inmediatos y decisiones pendientes no bloqueantes.
+6. Acompañar la entrada en ejecución del frente `banco activo` con trazabilidad explícita para vista activa, adopción en runtime y smoke test.
 
 ## Entregado
 - Hecho: estructura base documental inicial.
@@ -55,6 +56,19 @@ last_reviewed: 2026-04-26
 - Pendiente: issue list operativa con owner e impacto.
 - Pendiente: definición de tratamiento para `item-doc-003`, `item-doc-005` e `item-doc-021` excluidos por dependencia visual/imagen.
 - Pendiente: decisión sobre manejo de ítems legados `item-doc-0001..0003`.
+- En progreso: frente `banco activo` ya en ejecución a nivel documental/operativo, sin cierre todavía de vista activa, adopción en runtime ni smoke test.
+
+## Frente en ejecución: banco activo
+- Estado: EN PROGRESO.
+- Alcance confirmado del bloque:
+  1. habilitar o dejar trazable la `vista activa` del banco;
+  2. adoptar el banco activo en `runtime` sin asumir despliegue total no verificado;
+  3. completar un `smoke test` mínimo con evidencia verificable.
+- Criterio de cierre del bloque:
+  1. existe evidencia en repo, entorno o validación humana de la vista activa;
+  2. el runtime queda apuntando al flujo/dataset activo esperado;
+  3. el smoke test deja resultado documentado con estado pasa/falla y observaciones.
+- Regla de control documental: mientras no exista esa evidencia, el bloque debe permanecer marcado `en progreso`.
 
 ## Fuera de alcance
 - Rediseño de arquitectura.
@@ -74,6 +88,7 @@ last_reviewed: 2026-04-26
 - Documentación quede desacoplada del repo real.
 - Persistencia de doble canon documental durante la transición.
 - Se ejecuten cambios sin disciplina de referencia al ADR aprobado.
+- El frente `banco activo` se dé por adoptado en runtime sin evidencia suficiente de configuración y smoke test.
 
 ## Criterio de cierre
 - ADR-001 en `approved` y referenciado correctamente.
@@ -88,9 +103,10 @@ last_reviewed: 2026-04-26
 - Orden documental sin autoridad formal no alcanza; el baseline aprobado es obligatorio.
 
 ## Siguientes acciones
-1. Resolver tratamiento de los ítems excluidos por dependencia visual/imagen.
-2. Definir manejo de los ítems legados `item-doc-0001..0003`.
-3. Reordenar backlog a `Now / Next / Later`.
-4. Clasificar legado documental en lotes A/B/C.
-5. Operativizar known issues y riesgos con owner.
-6. Preparar siguiente bloque de normalización documental controlada.
+1. Acompañar ejecución del frente `banco activo` y capturar evidencia de vista activa, adopción en runtime y smoke test.
+2. Resolver tratamiento de los ítems excluidos por dependencia visual/imagen.
+3. Definir manejo de los ítems legados `item-doc-0001..0003`.
+4. Reordenar backlog a `Now / Next / Later`.
+5. Clasificar legado documental en lotes A/B/C.
+6. Operativizar known issues y riesgos con owner.
+7. Preparar siguiente bloque de normalización documental controlada.

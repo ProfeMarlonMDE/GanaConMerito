@@ -8,6 +8,10 @@ Entrada:
 - `area?`
 - `competency?`
 
+Lectura de banco recomendada:
+- usar `public.v_item_bank_active` (ver `docs/database/active-question-bank-contract.md`)
+- no leer `item_bank` crudo como contrato funcional por defecto
+
 Salida:
 - `sessionId`
 - `currentState`
@@ -25,6 +29,10 @@ Entrada:
 - `userRationale?`
 - `responseTimeMs?`
 - `confidenceSelfReport?`
+
+Lectura de banco recomendada:
+- resolver ítem y elegibilidad desde `public.v_item_bank_active`
+- reservar `item_bank` como tabla base de escritura/transición
 
 Salida:
 - `sessionId`
@@ -55,6 +63,15 @@ Salida:
 - `itemId?`
 - `version?`
 - `errors[]`
+
+### `GET /api/session/item`
+Entrada:
+- `sessionId`
+- `itemId`
+
+Lectura de banco recomendada:
+- metadatos del ítem desde `public.v_item_bank_active`
+- opciones desde `item_options` mientras no exista una vista de detalle consolidada
 
 ### `GET /api/dashboard/summary`
 Salida:

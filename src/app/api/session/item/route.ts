@@ -1,5 +1,15 @@
 import { NextResponse } from "next/server";
+import { applyActiveItemBankFilters, runWithActiveItemBankFallback } from "../../../../lib/supabase/active-item-bank";
 import { requireOwnedSession } from "../../../../lib/supabase/guards";
+
+interface SessionItemRecord {
+  id: string;
+  title: string | null;
+  area: string | null;
+  competency: string | null;
+  stem: string | null;
+  correct_option: string | null;
+}
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -20,11 +30,12 @@ export async function GET(request: Request) {
   }
 
   const { supabase } = auth;
-  const { data: item, error: itemError } = await supabase
-    .from("item_bank")
-    .select("id, title, area, competency, stem, correct_option")
-    .eq("id", itemId)
-    .single();
+  const { data: item, error: itemError } = await runWithActiveItemBankFallback<SessionItemRecord>((source) =>
+    applyActiveItemBankFilters(
+      supabase.from(source).select("id, title, area, competency, stem, correct_option").eq("id", itemId),
+      source,
+    ).single(),
+  );
 
   if (itemError || !item) {
     return NextResponse.json({ error: "Item not found" }, { status: 404 });

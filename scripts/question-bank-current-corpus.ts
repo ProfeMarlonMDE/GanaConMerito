@@ -28,15 +28,49 @@ export const CURRENT_QUESTION_BANK_FILES = [
   "content/items/pedagogia/pedagogia-planeacion-aula-001.md",
 ] as const;
 
+export const EXPECTED_ACTIVE_CORPUS_COUNT = 27;
+
+export const BLOCKED_CONTENT_IDS = ["item-doc-003", "item-doc-005", "item-doc-021"] as const;
+
+export const LEGACY_CONTENT_IDS = ["item-doc-0001", "item-doc-0002", "item-doc-0003"] as const;
+
 export const CURRENT_QUESTION_BANK_EXCLUDED_FILES = [
   {
+    contentId: "item-doc-021",
     file: "content/items/lectura_critica/lectura-critica-proposito-comunicativo-001.md",
     reason: "bloqueado por dependencia visual/imagen (item-doc-021)",
   },
 ] as const;
 
+export const BLOCKED_SOURCE_ITEMS = [
+  {
+    contentId: "item-doc-003",
+    source: "docs/banco-preguntas/matematicas.md",
+    reason: "bloqueado por dependencia visual/imagen",
+  },
+  {
+    contentId: "item-doc-005",
+    source: "docs/banco-preguntas/matematicas.md",
+    reason: "bloqueado por dependencia visual/imagen",
+  },
+  {
+    contentId: "item-doc-021",
+    source: "content/items/lectura_critica/lectura-critica-proposito-comunicativo-001.md",
+    reason: "bloqueado por dependencia visual/imagen",
+  },
+] as const;
+
 export const LEGACY_SAMPLE_FILES = [
-  "content/items/matematicas/razonamiento-matematico-001.md",
-  "content/items/normatividad/caso-convivencia-001.md",
-  "content/items/pedagogia/planeacion-aula-001.md",
+  {
+    contentId: "item-doc-0001",
+    file: "content/items/normatividad/caso-convivencia-001.md",
+  },
+  {
+    contentId: "item-doc-0002",
+    file: "content/items/pedagogia/planeacion-aula-001.md",
+  },
+  {
+    contentId: "item-doc-0003",
+    file: "content/items/matematicas/razonamiento-matematico-001.md",
+  },
 ] as const;

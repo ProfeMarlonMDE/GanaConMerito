@@ -8,6 +8,7 @@
     "start": "next start",
     "content:validate": "tsx scripts/validate-question-bank.ts",
     "content:validate:all": "tsx scripts/validate-question-bank.ts --all",
+    "content:smoke:active": "tsx scripts/smoke-test-active-question-bank.ts",
     "content:import:current": "tsx scripts/import-current-question-bank.ts"
   },
   "devDependencies": {

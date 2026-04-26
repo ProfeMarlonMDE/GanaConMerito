@@ -25,15 +25,23 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 - Mejorar madurez operativa del runtime.
 - Alinear documentación del banco de preguntas con implementación real.
 - Mantener consistencia entre migraciones de Supabase y modelo de datos activo.
+- Activar el frente `banco activo` con tres líneas en ejecución: vista activa, adopción en runtime y smoke test controlado.
+
+### Frente activo: banco activo
+- Estado: EN PROGRESO.
+- Alcance del bloque: exponer la vista activa del banco, adoptar el flujo en runtime sin asumir rollout completo, y dejar smoke test mínimo definido/ejecutado cuando exista evidencia.
+- Criterio de cierre: evidencia en repo o validación operativa de que la vista activa está disponible, el runtime apunta al banco activo esperado y el smoke test deja resultado verificable.
+- Restricción documental: no marcar como entregado hasta contar con evidencia técnica o validación humana explícita.
 
 ## Prioridad ejecutiva
 
 ### Now
-1. Formalizar mapa de features activas con estado real.
-2. Consolidar owner humano mínimo del producto y roles operativos de apoyo.
-3. Separar deuda heredada de deuda nueva en calidad y arquitectura.
-4. Aplicar disciplina operativa sobre ADR-001 ya aprobado.
-5. Definir tratamiento para `item-doc-003`, `item-doc-005` e `item-doc-021` excluidos de la carga actual por dependencia visual/imagen.
+1. Ejecutar el frente `banco activo`: vista activa, adopción en runtime y smoke test con trazabilidad de cierre.
+2. Formalizar mapa de features activas con estado real.
+3. Consolidar owner humano mínimo del producto y roles operativos de apoyo.
+4. Separar deuda heredada de deuda nueva en calidad y arquitectura.
+5. Aplicar disciplina operativa sobre ADR-001 ya aprobado.
+6. Definir tratamiento para `item-doc-003`, `item-doc-005` e `item-doc-021` excluidos de la carga actual por dependencia visual/imagen.
 
 ### Next
 1. Definir política operativa para cambios estructurales y releases.

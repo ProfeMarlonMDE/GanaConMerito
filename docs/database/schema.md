@@ -53,8 +53,17 @@ Tienen `updated_at`:
 - `user_skill_snapshots`
 - `evaluation_events`
 
+## Contrato activo de lectura del banco
+
+Para consumo seguro de la app, la lectura del banco no debe quedar acoplada a `item_bank` crudo.
+
+Referencia canónica de diseño:
+- `docs/database/active-question-bank-contract.md`
+
 ## Fuente ejecutable
 
 La definición real vive en:
 - `supabase/migrations/0001_init_mvp.sql`
 - `supabase/migrations/0002_remediation_r3.sql`
+- migraciones posteriores de segmentación/editorial (`0006` y `0007`)
+- `supabase/migrations/0008_create_v_item_bank_active.sql` para el contrato ejecutable `public.v_item_bank_active`

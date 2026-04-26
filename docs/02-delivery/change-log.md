@@ -17,6 +17,13 @@ last_reviewed: 2026-04-26
 ## 2026-04-26
 - tipo: docs
 - modulo: question-bank
+- resumen: se registra la entrada en ejecución del frente `banco activo`; se deja trazabilidad de estado en progreso para vista activa, adopción en runtime y smoke test, sin marcar entregables no verificados.
+- sprint: Sprint 1 - Gobernanza mínima y baseline operable del producto
+- relacionados: DEL-SPRINT-LOG, PROD-BACKLOG
+
+## 2026-04-26
+- tipo: docs
+- modulo: question-bank
 - resumen: se registra el cierre documental de la fase operativa de carga del banco de preguntas con 27 ítems cargados en Supabase y 3 exclusiones por dependencia visual.
 - sprint: Sprint 1 - Gobernanza mínima y baseline operable del producto
 - relacionados: DEL-QB-LOAD-CLOSE-2026-04-26, DEL-SPRINT-LOG, PROD-BACKLOG

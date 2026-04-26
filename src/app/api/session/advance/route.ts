@@ -2,10 +2,19 @@ import { NextResponse } from "next/server";
 import { scoreResponseBaselineHeuristicV1 } from "../../../../domain/evaluation/score-response";
 import { selectNextItem } from "../../../../domain/item-selection/select-next-item";
 import { getNextState } from "../../../../domain/orchestrator/session-machine";
+import { applyActiveItemBankFilters, runWithActiveItemBankFallback } from "../../../../lib/supabase/active-item-bank";
 import { requireOwnedSession } from "../../../../lib/supabase/guards";
 import { advanceSessionSchema } from "../../../../lib/validation/session";
 import type { AdvanceSessionResponse } from "../../../../types/evaluation";
 import type { SessionState } from "../../../../types/session";
+
+interface SessionAdvanceItemRecord {
+  id: string;
+  correct_option: string;
+  difficulty: number | string | null;
+  area: string | null;
+  competency: string | null;
+}
 
 export async function POST(request: Request) {
   const json = await request.json();
@@ -36,11 +45,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Learning profile not found" }, { status: 404 });
   }
 
-  const { data: item, error: itemError } = await supabase
-    .from("item_bank")
-    .select("id, correct_option, difficulty, area, competency")
-    .eq("id", body.itemId)
-    .single();
+  const { data: item, error: itemError } = await runWithActiveItemBankFallback<SessionAdvanceItemRecord>((source) =>
+    applyActiveItemBankFilters(
+      supabase.from(source).select("id, correct_option, difficulty, area, competency").eq("id", body.itemId),
+      source,
+    ).single(),
+  );
 
   if (itemError || !item) {
     return NextResponse.json({ error: "Item not found" }, { status: 404 });
@@ -130,8 +140,8 @@ export async function POST(request: Request) {
     ? null
     : await selectNextItem({
         professionalProfileId: learningProfile.professional_profile_id,
-        activeArea: item.area,
-        activeCompetency: item.competency,
+        activeArea: item.area ?? undefined,
+        activeCompetency: item.competency ?? undefined,
         excludeItemIds: seenItemIds as string[],
       });
 

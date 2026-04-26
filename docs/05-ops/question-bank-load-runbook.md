@@ -33,13 +33,13 @@ Desde `/home/ubuntu/.openclaw/product`:
 
 ```bash
 npm run content:validate
+npm run content:smoke:active
 ```
 
 Resultado esperado:
-- exit code `0`
-- resumen JSON con `scope = current-corpus`
-- `validatedFiles = 27`
-- `errorCount = 0`
+- ambos comandos con exit code `0`
+- `content:validate` devuelve resumen JSON con `scope = current-corpus`, `validatedFiles = 27` y `errorCount = 0`
+- `content:smoke:active` devuelve `summary.errorCount = 0` y confirma exclusión de bloqueados/legacy del banco activo
 
 Si se necesita auditar todo `content/items`, incluyendo legados:
 
@@ -62,10 +62,11 @@ Comportamiento:
 
 ## Secuencia operativa recomendada
 1. Ejecutar `npm run content:validate`
-2. Confirmar variables Supabase del entorno real
-3. Ejecutar `npm run content:import:current`
-4. Guardar evidencia del resumen de salida si la carga fue parte de una operación real
-5. Si cambia el corpus aprobado, actualizar primero `question-bank-current-corpus.ts`
+2. Ejecutar `npm run content:smoke:active`
+3. Confirmar variables Supabase del entorno real
+4. Ejecutar `npm run content:import:current`
+5. Guardar evidencia del resumen de salida si la carga fue parte de una operación real
+6. Si cambia el corpus aprobado, actualizar primero `question-bank-current-corpus.ts`
 
 ## Qué no hace este runbook
 - no resuelve ítems con dependencia visual
