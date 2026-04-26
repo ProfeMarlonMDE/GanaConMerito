@@ -2,6 +2,32 @@
 
 Este directorio centraliza la arquitectura y el estado técnico del MVP.
 
+## Estado del sistema documental
+
+### Taxonomía canónica objetivo
+La estructura canónica objetivo del producto vive en:
+- `docs/01-product/`
+- `docs/02-delivery/`
+- `docs/03-architecture/`
+- `docs/04-quality/`
+- `docs/05-ops/`
+- `docs/06-governance/`
+- `docs/07-compliance/`
+- `docs/08-context/`
+
+### Canónico puente por tema
+Mientras se completa la normalización, estos directorios siguen siendo fuente válida por tema:
+- `docs/database/`
+- `docs/api/`
+
+### Transición controlada
+Estos directorios contienen mezcla de material vigente, puente e histórico:
+- `docs/architecture/`
+- `docs/project/`
+
+### No canónico
+- `docs/temp/` es inbox temporal y no debe usarse como fuente de verdad sin promoción explícita a la taxonomía formal.
+
 ## Índice
 
 ### Arquitectura

@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>editorial-module-plan</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.835420Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Módulo editorial / biblioteca web del corpus</h1>
+
+<p>&gt; Estado: complementado por `docs/architecture/editorial-admin-implementation-plan.md`, que extiende este diseño hacia segmentación por perfil profesional, núcleos temáticos y módulo administrativo `/admin/editorial/*`.</p>
+
+
+<h2>Objetivo</h2>
+
+<p>Diseñar una característica del producto que permita exponer por web la documentación editorial del banco de preguntas, con estas condiciones:</p>
+
+<p>1. debe ser accesible vía web</p>
+<p>2. debe poder eliminarse fácilmente si solo se requiere de forma temporal</p>
+<p>3. debe poder evolucionar después a un módulo de administración interno</p>
+<p>4. debe integrarse de forma limpia con la arquitectura actual de la app</p>
+
+<p>---</p>
+
+<h1>1. Decisión arquitectónica</h1>
+
+<h2>Recomendación</h2>
+
+<p>Implementar esta capacidad como un **módulo independiente de biblioteca editorial**, no como páginas sueltas incrustadas sin estructura.</p>
+
+<h2>Nombre sugerido del módulo</h2>
+<li>`editorial-library`</li>
+<li>o en español funcional: `biblioteca-editorial`</li>
+
+<h2>Motivo</h2>
+
+<p>Porque este bloque tiene identidad propia:</p>
+<li>documenta el corpus</li>
+<li>puede ser público, semiprivado o privado</li>
+<li>puede desaparecer sin romper el núcleo del producto</li>
+<li>puede crecer hacia un panel editorial/admin después</li>
+
+<p>---</p>
+
+<h1>2. Ubicación en la arquitectura</h1>
+
+<h2>Propuesta</h2>
+
+<p>Agregar un módulo nuevo dentro del producto web.</p>
+
+<h3>Nivel de app</h3>
+<pre><code>
+src/app/editorial/
+</code></pre>
+
+<h3>Nivel documental asociado</h3>
+<pre><code>
+docs/project/reference/
+</code></pre>
+
+<h3>Nivel de componentes</h3>
+<pre><code>
+src/components/editorial/
+</code></pre>
+
+<h3>Nivel de lectura/renderizado</h3>
+<pre><code>
+src/lib/editorial/
+</code></pre>
+
+<p>---</p>
+
+<h1>3. Fases del módulo</h1>
+
+<h2>Fase 1 — Biblioteca web de solo lectura</h2>
+
+<h3>Objetivo</h3>
+<p>Publicar una vista web navegable de los documentos editoriales ya creados.</p>
+
+<h3>Alcance</h3>
+<li>índice general</li>
+<li>páginas renderizadas desde markdown local</li>
+<li>navegación por documentos</li>
+<li>acceso simple vía URL</li>
+
+<h3>Documentos a exponer inicialmente</h3>
+<li>resumen ejecutivo del corpus</li>
+<li>descripción del corpus</li>
+<li>plantillas y estructura</li>
+<li>taxonomía y nomenclatura</li>
+<li>ejemplos modelo</li>
+<li>checklist editorial</li>
+
+<h3>Rutas sugeridas</h3>
+<pre><code>
+/editorial
+/editorial/corpus
+/editorial/plantillas
+/editorial/taxonomia
+/editorial/ejemplos
+/editorial/checklist
+</code></pre>
+
+<h3>Fuente inicial</h3>
+<p>Los `.md` ya existentes en:</p>
+<pre><code>
+docs/project/reference/
+</code></pre>
+
+<p>---</p>
+
+<h2>Fase 2 — Biblioteca controlable (activable/desactivable)</h2>
+
+<h3>Objetivo</h3>
+<p>Poder mostrar u ocultar el módulo sin borrar el código.</p>
+
+<h3>Mecanismo sugerido</h3>
+<p>Feature flag simple por entorno.</p>
+
+<h3>Variable sugerida</h3>
+<pre><code>
+ENABLE_EDITORIAL_LIBRARY=true
+</code></pre>
+
+<h3>Comportamiento</h3>
+<li>si `true`: las rutas `/editorial/*` existen</li>
+<li>si `false`: responder `404` o redirigir</li>
+
+<h3>Beneficio</h3>
+<li>puedes exponerlo temporalmente</li>
+<li>puedes quitarlo sin tocar el núcleo de práctica/auth/dashboard</li>
+<li>puedes usarlo solo en staging o en producción según convenga</li>
+
+<p>---</p>
+
+<h2>Fase 3 — Biblioteca privada</h2>
+
+<h3>Objetivo</h3>
+<p>Restringir acceso solo a usuarios autenticados o admins.</p>
+
+<h3>Opciones</h3>
+<p>1. solo usuarios autenticados</p>
+<p>2. solo `is_admin = true`</p>
+<p>3. combinación: lectura privada para equipo editorial</p>
+
+<h3>Recomendación</h3>
+<p>Si el material es estratégico o interno, este debería ser el estado final mínimo antes del módulo admin.</p>
+
+<p>---</p>
+
+<h2>Fase 4 — Módulo de administración editorial</h2>
+
+<h3>Objetivo</h3>
+<p>Evolucionar la biblioteca a un módulo real de administración.</p>
+
+<h3>Capacidades futuras</h3>
+<li>listar ítems</li>
+<li>filtrar por área/subárea/competencia</li>
+<li>ver detalle del item</li>
+<li>validar markdown</li>
+<li>cargar nuevo ítem</li>
+<li>editar borradores</li>
+<li>previsualización</li>
+<li>revisar checklist editorial</li>
+<li>publicar/despublicar</li>
+<li>trazabilidad por versión</li>
+
+<h3>Ruta sugerida</h3>
+<pre><code>
+/admin/editorial
+</code></pre>
+
+<h3>Separación recomendada</h3>
+<li>`/editorial/*` -&gt; biblioteca / documentación / referencia</li>
+<li>`/admin/editorial/*` -&gt; operaciones de administración</li>
+
+<p>---</p>
+
+<h1>4. Estructura técnica sugerida</h1>
+
+<h2>App routes</h2>
+<pre><code>
+src/app/editorial/page.tsx
+src/app/editorial/corpus/page.tsx
+src/app/editorial/plantillas/page.tsx
+src/app/editorial/taxonomia/page.tsx
+src/app/editorial/ejemplos/page.tsx
+src/app/editorial/checklist/page.tsx
+</code></pre>
+
+<h2>Componentes</h2>
+<pre><code>
+src/components/editorial/editorial-layout.tsx
+src/components/editorial/editorial-nav.tsx
+src/components/editorial/markdown-doc-page.tsx
+src/components/editorial/doc-card.tsx
+</code></pre>
+
+<h2>Librería</h2>
+<pre><code>
+src/lib/editorial/docs.ts
+src/lib/editorial/markdown.ts
+</code></pre>
+
+<h2>Fuente de contenido</h2>
+<p>Inicialmente:</p>
+<pre><code>
+docs/project/reference/*.md
+</code></pre>
+
+<p>---</p>
+
+<h1>5. Estrategia de implementación recomendada</h1>
+
+<h2>Opción recomendada</h2>
+<p>Renderizar los `.md` locales del workspace como páginas de solo lectura.</p>
+
+<h2>Beneficios</h2>
+<li>cero duplicación de contenido</li>
+<li>los docs siguen siendo la fuente de verdad</li>
+<li>fácil de eliminar después</li>
+<li>fácil de mover luego a `/admin/editorial`</li>
+
+<h2>Cómo hacerlo</h2>
+<p>Crear un pequeño registro interno tipo:</p>
+
+<pre><code>
+[
+  {
+    slug: &quot;corpus&quot;,
+    title: &quot;Descripción del corpus&quot;,
+    filePath: &quot;docs/project/reference/descripcion-del-corpus-de-preguntas.md&quot;,
+  },
+  ...
+]
+</code></pre>
+
+<p>Y un renderer Markdown server-side.</p>
+
+<p>---</p>
+
+<h1>6. Recomendación de acceso</h1>
+
+<h2>Fase inicial sugerida</h2>
+<p>Acceso autenticado, no público abierto.</p>
+
+<h3>Razón</h3>
+<p>Aunque el contenido es editorial y útil, todavía forma parte del diseño interno del producto.</p>
+<p>No conviene asumir desde ya que debe ser público universal.</p>
+
+<h2>Política sugerida</h2>
+<li>`/editorial/*` -&gt; requiere login</li>
+<li>luego decidir si:</li>
+<p>  - se abre públicamente</p>
+<p>  - se deja interno</p>
+<p>  - se migra a admin</p>
+
+<p>---</p>
+
+<h1>7. Criterio de modularidad</h1>
+
+<p>Este módulo debe cumplir estas reglas:</p>
+
+<h2>1. Bajo acoplamiento</h2>
+<p>No debe romper:</p>
+<li>auth</li>
+<li>práctica</li>
+<li>dashboard</li>
+<li>API de sesiones</li>
+
+<h2>2. Fuente de verdad única</h2>
+<p>Los markdown editoriales ya existentes deben seguir siendo la fuente principal.</p>
+
+<h2>3. Removible</h2>
+<p>Si decides eliminarlo, debe bastar con:</p>
+<li>desactivar el feature flag</li>
+<li>quitar rutas/components del módulo</li>
+
+<h2>4. Evolutivo</h2>
+<p>Debe poder crecer a módulo admin sin rehacer la base.</p>
+
+<p>---</p>
+
+<h1>8. Recomendación de producto</h1>
+
+<h2>Fase inmediata recomendada</h2>
+<p>Construir primero:</p>
+<li>índice `/editorial`</li>
+<li>5 páginas server-side renderizadas desde markdown local</li>
+<li>navegación simple</li>
+<li>acceso con login</li>
+<li>feature flag `ENABLE_EDITORIAL_LIBRARY`</li>
+
+<p>Eso da:</p>
+<li>utilidad inmediata</li>
+<li>bajo riesgo</li>
+<li>alta mantenibilidad</li>
+<li>posibilidad real de evolucionar a admin</li>
+
+<p>---</p>
+
+<h1>9. Decisión sugerida</h1>
+
+<h2>Decisión arquitectónica</h2>
+
+<p>Implementar una **biblioteca editorial web desacoplada**, de solo lectura en su primera fase, alimentada por los markdown de `docs/project/reference/`, protegida por autenticación y controlada por feature flag, con evolución posterior a módulo de administración en `/admin/editorial`.</p>
+
+<p>---</p>
+
+<h1>10. Siguiente paso recomendado</h1>
+
+<h2>Bloque de implementación sugerido</h2>
+
+<h3>Objetivo</h3>
+<p>Crear el módulo inicial `editorial-library`.</p>
+
+<h3>Primera entrega mínima</h3>
+<li>`/editorial`</li>
+<li>navegación interna</li>
+<li>render de los md ya existentes</li>
+<li>feature flag</li>
+<li>guard de autenticación</li>
+
+<h3>Segunda entrega</h3>
+<li>endurecer acceso por admin si lo decides</li>
+<li>preparar transición a `/admin/editorial`</li>
+</main>
+</body>
+</html>

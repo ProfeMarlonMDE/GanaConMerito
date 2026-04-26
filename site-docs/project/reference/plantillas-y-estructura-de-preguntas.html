@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>plantillas-y-estructura-de-preguntas</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.853882Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Plantillas y estructura de preguntas para GanaConMerito</h1>
+
+<h2>Objetivo</h2>
+
+<p>Definir una estructura clara, consistente y reutilizable para crear todas las preguntas del proyecto, alineada con el modelo actual del sistema.</p>
+
+<p>Esta guía responde tres cosas:</p>
+
+<p>1. qué campos debe tener cada pregunta</p>
+<p>2. cómo se redacta cada sección</p>
+<p>3. cómo conviene organizar el banco de preguntas</p>
+
+<p>---</p>
+
+<h1>1. Principio rector de organización</h1>
+
+<h2>Recomendación principal</h2>
+
+<p>**Organiza primero por contenido/área/competencia**, no por aspirante o cargo como eje principal del banco.</p>
+
+<h2>Por qué</h2>
+
+<p>Porque el modelo actual del proyecto está basado en:</p>
+<li>`area`</li>
+<li>`subarea`</li>
+<li>`competency`</li>
+<li>`difficulty`</li>
+<li>`examType`</li>
+<li>`targetLevel`</li>
+
+<p>Y porque una misma pregunta puede servir para:</p>
+<li>distintos cargos</li>
+<li>distintos aspirantes</li>
+<li>distintas fases del entrenamiento</li>
+
+<p>si el contenido y la competencia evaluada son pertinentes.</p>
+
+<h2>Entonces</h2>
+
+<h3>Eje primario recomendado</h3>
+<li>**área**</li>
+<li>**subárea**</li>
+<li>**competencia**</li>
+
+<h3>Ejes secundarios recomendados</h3>
+<li>`examType`</li>
+<li>`targetLevel`</li>
+<li>dificultad</li>
+<li>contexto normativo o pedagógico</li>
+
+<h3>Ejes terciarios opcionales</h3>
+<li>tipo de aspirante</li>
+<li>cargo</li>
+<li>convocatoria específica</li>
+<li>entidad</li>
+
+<p>---</p>
+
+<h1>2. Estructura canónica actual de una pregunta</h1>
+
+<p>Cada pregunta en el proyecto debe seguir el modelo editorial actual del sistema.</p>
+
+<h2>Campos canónicos del frontmatter</h2>
+
+<li>`id`</li>
+<li>`slug`</li>
+<li>`title`</li>
+<li>`area`</li>
+<li>`subarea`</li>
+<li>`examType`</li>
+<li>`competency`</li>
+<li>`difficulty`</li>
+<li>`targetLevel`</li>
+<li>`itemType`</li>
+<li>`normativeRefs`</li>
+<li>`published`</li>
+<li>`version`</li>
+
+<h2>Secciones mínimas del cuerpo</h2>
+
+<li>`Enunciado`</li>
+<li>`Opciones`</li>
+<li>`RespuestaCorrecta`</li>
+<li>`Explicacion`</li>
+
+<h2>Sección recomendada</h2>
+
+<li>`ErroresFrecuentes`</li>
+
+<p>---</p>
+
+<h1>3. Definición de cada campo</h1>
+
+<h2>3.1 `id`</h2>
+<h3>Qué es</h3>
+<p>Identificador editorial estable de la pregunta.</p>
+
+<h3>Regla</h3>
+<li>no debe cambiar aunque el texto evolucione</li>
+<li>debe ser único</li>
+<li>sirve como identidad canónica del contenido</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+id: item-doc-0007
+</code></pre>
+
+<p>---</p>
+
+<h2>3.2 `slug`</h2>
+<h3>Qué es</h3>
+<p>Identificador funcional, humano y legible.</p>
+
+<h3>Regla</h3>
+<li>único</li>
+<li>corto pero descriptivo</li>
+<li>estable en lo posible</li>
+<li>útil para rastreo editorial</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+slug: pedagogia-evaluacion-formativa-001
+</code></pre>
+
+<p>---</p>
+
+<h2>3.3 `title`</h2>
+<h3>Qué es</h3>
+<p>Nombre breve y claro del ítem.</p>
+
+<h3>Regla</h3>
+<li>no debe ser demasiado largo</li>
+<li>debe describir el foco cognitivo del ítem</li>
+<li>sirve para identificarlo rápidamente en listados</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+title: Uso pedagógico de la evaluación formativa
+</code></pre>
+
+<p>---</p>
+
+<h2>3.4 `area`</h2>
+<h3>Qué es</h3>
+<p>Área temática principal.</p>
+
+<h3>Regla</h3>
+<p>Debe pertenecer al dominio real del proyecto.</p>
+
+<h3>Valores actuales conocidos</h3>
+<li>`matematicas`</li>
+<li>`pedagogia`</li>
+<li>`normatividad`</li>
+<li>`gestion`</li>
+<li>`lectura_critica`</li>
+<li>`competencias_ciudadanas`</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+area: pedagogia
+</code></pre>
+
+<p>---</p>
+
+<h2>3.5 `subarea`</h2>
+<h3>Qué es</h3>
+<p>Subdominio más específico dentro del área.</p>
+
+<h3>Regla</h3>
+<li>ayuda a clasificar mejor el banco</li>
+<li>no debe inventarse sin criterio</li>
+<li>debe ser consistente dentro de cada área</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+subarea: evaluacion_del_aprendizaje
+</code></pre>
+
+<p>---</p>
+
+<h2>3.6 `examType`</h2>
+<h3>Qué es</h3>
+<p>Tipo general de examen o población objetivo.</p>
+
+<h3>Regla actual</h3>
+<p>En el estado actual del proyecto, el valor realmente soportado es:</p>
+<li>`docente`</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+examType: docente
+</code></pre>
+
+<p>---</p>
+
+<h2>3.7 `competency`</h2>
+<h3>Qué es</h3>
+<p>Competencia específica que la pregunta evalúa.</p>
+
+<h3>Regla</h3>
+<p>Debe expresar el proceso o capacidad central medida por el ítem.</p>
+
+<h3>Ejemplos</h3>
+<pre><code>
+competency: razonamiento_cuantitativo
+competency: interpretacion_normativa
+competency: planeacion_pedagogica
+</code></pre>
+
+<p>---</p>
+
+<h2>3.8 `difficulty`</h2>
+<h3>Qué es</h3>
+<p>Nivel de dificultad en escala numérica continua.</p>
+
+<h3>Regla</h3>
+<li>valor entre `0.00` y `1.00`</li>
+<li>no usar etiquetas en vez del número</li>
+<li>el número debe reflejar dificultad relativa esperada</li>
+
+<h3>Sugerencia de interpretación</h3>
+<li>`0.00 - 0.29` baja</li>
+<li>`0.30 - 0.59` media</li>
+<li>`0.60 - 0.79` alta</li>
+<li>`0.80 - 1.00` muy alta</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+difficulty: 0.45
+</code></pre>
+
+<p>---</p>
+
+<h2>3.9 `targetLevel`</h2>
+<h3>Qué es</h3>
+<p>Nivel esperado del ítem como orientación editorial.</p>
+
+<h3>Regla</h3>
+<p>No sustituye la dificultad, la complementa.</p>
+
+<h3>Ejemplos</h3>
+<pre><code>
+targetLevel: basico
+targetLevel: intermedio
+targetLevel: avanzado
+</code></pre>
+
+<p>---</p>
+
+<h2>3.10 `itemType`</h2>
+<h3>Qué es</h3>
+<p>Tipo de pregunta.</p>
+
+<h3>Regla actual</h3>
+<p>Actualmente el sistema soporta:</p>
+<li>`multiple_choice`</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+itemType: multiple_choice
+</code></pre>
+
+<p>---</p>
+
+<h2>3.11 `normativeRefs`</h2>
+<h3>Qué es</h3>
+<p>Lista de referencias normativas asociadas al ítem.</p>
+
+<h3>Regla</h3>
+<li>usar lista</li>
+<li>puede ir vacía si no aplica</li>
+<li>si aplica, referenciar la fuente normativa de forma consistente</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+normativeRefs:
+  - ley_1098
+  - decreto_1075
+</code></pre>
+
+<p>---</p>
+
+<h2>3.12 `published`</h2>
+<h3>Qué es</h3>
+<p>Indica si el ítem está publicado para uso efectivo.</p>
+
+<h3>Regla</h3>
+<li>`true` o `false`</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+published: true
+</code></pre>
+
+<p>---</p>
+
+<h2>3.13 `version`</h2>
+<h3>Qué es</h3>
+<p>Versión editorial del ítem.</p>
+
+<h3>Regla</h3>
+<li>iniciar en `1`</li>
+<li>aumentar cuando el contenido cambie de forma sustancial</li>
+
+<h3>Ejemplo</h3>
+<pre><code>
+version: 1
+</code></pre>
+
+<p>---</p>
+
+<h1>4. Definición de cada sección del cuerpo</h1>
+
+<h2>4.1 `Enunciado`</h2>
+<h3>Qué es</h3>
+<p>La situación, problema o pregunta central que debe resolver el aspirante.</p>
+
+<h3>Regla</h3>
+<li>debe ser clara</li>
+<li>debe evaluar una sola intención principal</li>
+<li>debe evitar ruido innecesario</li>
+<li>debe contener suficiente contexto, pero sin exceso</li>
+<li>debe evitar ambigüedad estructural</li>
+
+<h3>Buena práctica</h3>
+<p>Si es un caso, primero plantea el contexto y luego la pregunta.</p>
+
+<p>---</p>
+
+<h2>4.2 `Opciones`</h2>
+<h3>Qué es</h3>
+<p>Las cuatro alternativas de respuesta.</p>
+
+<h3>Regla</h3>
+<li>exactamente 4 opciones</li>
+<li>A, B, C, D</li>
+<li>no vacías</li>
+<li>no repetidas</li>
+<li>distractores plausibles</li>
+<li>no deben delatar la respuesta correcta por forma, longitud o tono</li>
+
+<h3>Regla editorial fuerte</h3>
+<p>Cada distractor debe representar un error razonable, no una tontería evidente.</p>
+
+<p>---</p>
+
+<h2>4.3 `RespuestaCorrecta`</h2>
+<h3>Qué es</h3>
+<p>La clave de la opción correcta.</p>
+
+<h3>Regla</h3>
+<li>solo una</li>
+<li>debe ser una de: `A`, `B`, `C`, `D`</li>
+
+<p>---</p>
+
+<h2>4.4 `Explicacion`</h2>
+<h3>Qué es</h3>
+<p>Justificación clara de por qué la respuesta correcta es correcta.</p>
+
+<h3>Regla</h3>
+<li>no limitarse a repetir la letra</li>
+<li>explicar el criterio</li>
+<li>si aplica, justificar por competencia, lógica o norma</li>
+<li>útil para retroalimentación formativa</li>
+
+<p>---</p>
+
+<h2>4.5 `ErroresFrecuentes`</h2>
+<h3>Qué es</h3>
+<p>Lista de fallos típicos que explican por qué alguien podría equivocarse.</p>
+
+<h3>Regla</h3>
+<li>no es obligatoria, pero sí muy recomendable</li>
+<li>útil para diseñar distractores y retroalimentación</li>
+
+<h3>Ejemplos</h3>
+<li>confundir norma aplicable</li>
+<li>interpretar literalmente sin analizar contexto</li>
+<li>aplicar una fórmula incorrecta</li>
+<li>elegir una opción intuitiva pero no sustentada</li>
+
+<p>---</p>
+
+<h1>5. Plantilla maestra de pregunta</h1>
+
+<pre><code>
+---
+id: item-doc-0001
+slug: area-subtema-001
+title: Título breve y claro
+area: pedagogia
+subarea: subarea_correspondiente
+examType: docente
+competency: competencia_especifica
+difficulty: 0.45
+targetLevel: intermedio
+itemType: multiple_choice
+normativeRefs: []
+published: true
+version: 1
+---
+
+## Enunciado
+Aquí va el enunciado completo de la pregunta.
+
+## Opciones
+- A. Opción A
+- B. Opción B
+- C. Opción C
+- D. Opción D
+
+## RespuestaCorrecta
+B
+
+## Explicacion
+Aquí va la explicación clara de por qué la respuesta correcta es la adecuada.
+
+## ErroresFrecuentes
+- Error frecuente 1
+- Error frecuente 2
+- Error frecuente 3
+</code></pre>
+
+<p>---</p>
+
+<h1>6. Plantillas por tipo de contenido</h1>
+
+<h2>6.1 Plantilla de pregunta conceptual</h2>
+<p>Úsala cuando se evalúa comprensión de conceptos, principios o criterios.</p>
+
+<h3>Estructura sugerida</h3>
+<li>título centrado en el concepto</li>
+<li>enunciado breve</li>
+<li>opciones que distingan comprensión real de memorización superficial</li>
+<li>explicación centrada en el criterio conceptual</li>
+
+<h3>Ejemplo de uso</h3>
+<li>pedagogía</li>
+<li>lectura crítica</li>
+<li>competencias ciudadanas</li>
+
+<p>---</p>
+
+<h2>6.2 Plantilla de pregunta basada en caso</h2>
+<p>Úsala cuando se evalúa análisis aplicado, toma de decisión o juicio contextual.</p>
+
+<h3>Estructura sugerida</h3>
+<p>1. contexto del caso</p>
+<p>2. tensión o problema</p>
+<p>3. pregunta final explícita</p>
+<p>4. distractores plausibles basados en errores de criterio</p>
+
+<h3>Ejemplo de uso</h3>
+<li>gestión</li>
+<li>normatividad</li>
+<li>pedagogía</li>
+
+<p>---</p>
+
+<h2>6.3 Plantilla de pregunta procedimental</h2>
+<p>Úsala cuando se evalúa una secuencia, regla, método o procedimiento.</p>
+
+<h3>Estructura sugerida</h3>
+<li>situación o dato inicial</li>
+<li>procedimiento esperado</li>
+<li>opciones basadas en errores comunes del proceso</li>
+
+<h3>Ejemplo de uso</h3>
+<li>matemáticas</li>
+<li>planeación</li>
+<li>procesos administrativos o normativos</li>
+
+<p>---</p>
+
+<h2>6.4 Plantilla de pregunta normativa</h2>
+<p>Úsala cuando el núcleo es interpretar o aplicar una norma.</p>
+
+<h3>Estructura sugerida</h3>
+<li>contexto concreto</li>
+<li>norma o marco implícito o explícito</li>
+<li>pregunta orientada a aplicación correcta</li>
+<li>explicación sustentada en la referencia normativa</li>
+
+<h3>Recomendación adicional</h3>
+<p>Aquí sí conviene usar `normativeRefs` con rigor.</p>
+
+<p>---</p>
+
+<h1>7. Cómo conviene organizar el banco de preguntas</h1>
+
+<h2>Recomendación principal de árbol editorial</h2>
+
+<pre><code>
+content/items/
+  matematicas/
+  pedagogia/
+  normatividad/
+  gestion/
+  lectura_critica/
+  competencias_ciudadanas/
+</code></pre>
+
+<h2>Dentro de cada área</h2>
+<p>Conviene agrupar por combinación lógica de:</p>
+<li>subárea</li>
+<li>competencia</li>
+<li>consecutivo</li>
+
+<h3>Ejemplo de slug</h3>
+<pre><code>
+pedagogia-evaluacion-formativa-001
+normatividad-convivencia-escolar-001
+matematicas-pensamiento-numerico-001
+</code></pre>
+
+<p>---</p>
+
+<h1>8. ¿Conviene organizarlas por aspirante, tipo de cargo o convocatoria?</h1>
+
+<h2>Respuesta breve</h2>
+<p>**No como eje principal. Sí como metadato secundario si luego hace falta.**</p>
+
+<h2>Recomendación</h2>
+
+<h3>No hacer esto como estructura primaria</h3>
+<pre><code>
+content/items/
+  rector/
+  docente/
+  coordinador/
+</code></pre>
+
+<h3>Mejor hacer esto</h3>
+<pre><code>
+content/items/
+  area/
+    item...
+</code></pre>
+
+<p>y si luego necesitas diferenciar por convocatoria o cargo, agregar un metadato posterior o una capa de clasificación adicional.</p>
+
+<h2>Razón</h2>
+<p>Porque:</p>
+<li>el contenido es más reusable que el cargo</li>
+<li>la competencia es más estable que la convocatoria</li>
+<li>el motor adaptativo funciona mejor con ejes cognitivos que con etiquetas administrativas</li>
+
+<p>---</p>
+
+<h1>9. Esquema recomendado de clasificación</h1>
+
+<h2>Eje 1 — obligatorio</h2>
+<li>área</li>
+<li>subárea</li>
+<li>competencia</li>
+
+<h2>Eje 2 — obligatorio</h2>
+<li>dificultad</li>
+<li>targetLevel</li>
+
+<h2>Eje 3 — actual del sistema</h2>
+<li>examType</li>
+
+<h2>Eje 4 — futuro opcional</h2>
+<li>cargo</li>
+<li>aspirante</li>
+<li>convocatoria</li>
+<li>entidad</li>
+<li>contexto territorial</li>
+
+<p>---</p>
+
+<h1>10. Checklist de calidad por pregunta</h1>
+
+<h2>Obligatorio</h2>
+<li>frontmatter completo</li>
+<li>`difficulty` entre 0 y 1</li>
+<li>`itemType` válido</li>
+<li>exactamente 4 opciones</li>
+<li>una sola correcta</li>
+<li>explicación clara</li>
+<li>slug único</li>
+<li>competencia definida</li>
+<li>área y subárea coherentes</li>
+<li>`published` definido</li>
+
+<h2>Recomendado</h2>
+<li>errores frecuentes documentados</li>
+<li>distractores plausibles</li>
+<li>redacción clara</li>
+<li>sin ambigüedad innecesaria</li>
+<li>referencia normativa si aplica</li>
+
+<p>---</p>
+
+<h1>11. Recomendación final</h1>
+
+<h2>Cómo organizar hoy</h2>
+<p>Organiza las preguntas así:</p>
+
+<h3>Primario</h3>
+<li>por **contenido**</li>
+<li>por **área**</li>
+<li>por **competencia**</li>
+
+<h3>Secundario</h3>
+<li>por **dificultad**</li>
+<li>por **nivel objetivo**</li>
+<li>por **tipo de examen**</li>
+
+<h3>Futuro</h3>
+<p>Agrega luego filtros por:</p>
+<li>cargo</li>
+<li>aspirante</li>
+<li>convocatoria</li>
+<li>entidad</li>
+
+<h2>Decisión editorial recomendada</h2>
+
+<p>**El contenido debe ser la base del banco.**</p>
+
+<p>No construyas primero un banco “por cargo”; construye primero un banco **por competencias y áreas**, y después etiquetas o filtras según el cargo o aspirante.</p>
+</main>
+</body>
+</html>

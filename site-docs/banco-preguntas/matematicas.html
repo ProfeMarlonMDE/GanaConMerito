@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>matematicas</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.840222Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+
+<pre><code>
+---
+id: item-doc-001
+slug: matematicas-resolucion-problemas-001
+title: Distribución de estudiantes en buses
+area: matematicas
+subarea: resolucion_de_problemas
+examType: docente
+competency: razonamiento_cuantitativo
+difficulty: 0.20
+targetLevel: basico
+itemType: multiple_choice
+normativeRefs: []
+published: true
+version: 1
+---
+
+#### Enunciado
+La profesora Andrea es la encargada de organizar un viaje educativo para 90 estudiantes de secundaria a un museo de ciencias. Tiene tres buses disponibles, cada uno con capacidad máxima de 36 pasajeros, incluyendo docentes y acompañantes. Deben viajar al menos cuatro docentes y dos guías del museo en total. Andrea necesita distribuir a los estudiantes de manera equitativa sin superar la capacidad y asegurando que haya al menos un docente en cada vehículo. ¿Cuál de las siguientes distribuciones permite que todos los estudiantes y acompañantes viajen sin exceder la capacidad de los buses?
+
+#### Opciones
+* A. Distribuir 30 estudiantes en cada bus asegurando que en los dos primeros viajen un docente y en el tercero dos docentes junto con los guías del museo garantizando un uso equitativo del espacio.
+* B. Asignar 32 estudiantes a los dos primeros buses y 26 al tercero priorizando la comodidad de un grupo Sin superar el límite de pasajeros en ningún vehículo.
+* C. Distribuir 29 estudiantes en cada bus dejando espacio para los docentes y guías sin sobrepasar la capacidad y permitiendo cierta flexibilidad en la organización.
+* D. Ubicar 36 pasajeros en los dos primeros buses incluyendo docentes y guías, y los estudiantes restantes en el tercer vehículo asegurando la supervisión básica.
+
+---
+
+### Pregunta 2: Reorganización de buses por alquiler adicional
+
+---
+id: item-doc-002
+slug: matematicas-resolucion-problemas-002
+title: Reorganización de buses por alquiler adicional
+area: matematicas
+subarea: resolucion_de_problemas
+examType: docente
+competency: razonamiento_cuantitativo
+difficulty: 0.30
+targetLevel: basico
+itemType: multiple_choice
+normativeRefs: []
+published: true
+version: 1
+---
+
+#### Enunciado
+Partiendo del caso del viaje al museo (90 estudiantes, 4 docentes, 2 guías), si la institución educativa decide alquilar un bus adicional con capacidad para 20 pasajeros y se suman seis estudiantes más al viaje, ¿cuál de las siguientes estrategias de reasignación mantiene el equilibrio y cumple con las restricciones iniciales?
+
+#### Opciones
+* A. Reasignar a seis estudiantes de los tres buses originales al nuevo vehículo junto con el docente adicional o los guías liberando espacio equitativamente.
+* B. Distribuir a todos los estudiantes equitativamente colocando 24 en cada uno de los cuatro buses y asignando al menos un docente o guía en el bus nuevo o tercero asegurando que ningún vehículo supere su capacidad y manteniendo la presencia docente en cada unidad.
+* C. Reorganizando los grupos de manera que en cada bus viajen 30 estudiantes sumando los seis adicionales y verificando que los docentes se distribuyan de manera equitativa.
+* D. Asignar los seis estudiantes adicionales exclusivamente al nuevo bus junto con un docente, manteniendo intacta la distribución de los vehículos originales.
+
+---
+
+### Pregunta 3: Producción mensual de hortalizas
+
+---
+id: item-doc-003
+slug: matematicas-analisis-datos-001
+title: Producción mensual de hortalizas
+area: matematicas
+subarea: analisis_de_datos
+examType: docente
+competency: interpretacion_de_datos
+difficulty: 0.50
+targetLevel: intermedio
+itemType: multiple_choice
+normativeRefs: []
+published: true
+version: 1
+---
+
+#### Enunciado
+El docente Julián fue invitado a intervenir con una lectura técnica de una tabla sobre la evolución mensual de producción de hortalizas por tipo de cultivo en la huerta escolar (kilogramos). ¿Cuál interpretación representa adecuadamente una característica relevante de la información contenida en la tabla de producción de hortalizas?
+
+#### Opciones
+* A. Determinar que el tomate es el cultivo con mayor aumento progresivo y que tuvo su mayor pico de crecimiento en febrero marcando un punto crítico en la producción.
+* B. Concluir que todas las hortalizas mostraron un crecimiento continuo entre enero y marzo lo que refleja un modelo de producción exitoso e ininterrumpido.
+* C. Determinar que los cultivos tienen variaciones constantes cada mes y que marzo representa el periodo más equilibrado para toda la producción total.
+* D. Establecer que la producción total disminuye drásticamente en el último mes evaluado afectando el promedio general de la huerta escolar.
+
+---
+
+### Pregunta 4: Consumo eléctrico institucional
+
+---
+id: item-doc-004
+slug: matematicas-analisis-datos-002
+title: Consumo eléctrico institucional
+area: matematicas
+subarea: analisis_de_datos
+examType: docente
+competency: toma_de_decisiones
+difficulty: 0.60
+targetLevel: intermedio
+itemType: multiple_choice
+normativeRefs: []
+published: true
+version: 1
+---
+
+#### Enunciado
+La docente Carolina analiza los consumos mensuales de electricidad. En enero el salón A consumió 220 kWh, el B 210 y el C 230. En febrero el A 240, el B 195 y el C 220. En marzo el A 250, el B 205 y el C 210. ¿Qué acción representa mejor el diseño de un plan para intervenir pedagógicamente el problema del consumo eléctrico en la institución?
+
+#### Opciones
+* A. Realizar encuestas sobre hábitos eléctricos en toda la sede y vincular los resultados con actividades de sensibilización desde áreas académicas transversales.
+* B. Establecer campañas informativas en los tres salones para incentivar el ahorro energético priorizando aquellos con menor consumo durante los últimos dos meses.
+* C. Proponer estrategias de concientización en el salón que muestra aumento progresivo y mayor gasto acumulado orientadas al uso eficiente de la energía.
+* D. Restringir el uso de dispositivos eléctricos en el salón A durante el último trimestre para forzar una disminución inmediata en los indicadores de consumo.
+
+---
+
+### Pregunta 5: Validación del rendimiento académico
+
+---
+id: item-doc-005
+slug: matematicas-pensamiento-aleatorio-001
+title: Validación del rendimiento académico
+area: matematicas
+subarea: pensamiento_aleatorio
+examType: docente
+competency: argumentacion_matematica
+difficulty: 0.85
+targetLevel: avanzado
+itemType: multiple_choice
+normativeRefs: []
+published: true
+version: 1
+---
+
+#### Enunciado
+El gráfico de desempeño académico mensual entre marzo y junio revelaba una tendencia decreciente en el porcentaje de aprobación de los estudiantes. Sin embargo, un docente expresó: &quot;Podemos afirmar que el rendimiento ha sido estable y controlado durante todo el semestre&quot;. La profesora Luisa fue invitada a analizar la validez de dicha interpretación. ¿Qué afirmación refleja una validación crítica y fundamentada frente la interpretación hecha sobre el rendimiento académico?
+
+#### Opciones
+* A. Refutar la afirmación planteada ya que el gráfico muestra una tendencia descendente en los resultados que contradice la percepción de estabilidad.
+* B. Considerar que los datos reflejan una ligera variación lo cual permite mantener la idea de estabilidad general en el proceso académico institucional.
+* C. Reconocer que existen altos y bajos en los porcentajes de aprobación aunque podría mantenerse la percepción de rendimiento positivo durante el semestre completo.
+* D. Apoyar la afirmación argumentando que el rendimiento inicial en marzo compensa las caídas posteriores manteniendo el promedio general del semestre.
+</main>
+</body>
+</html>

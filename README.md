@@ -1,0 +1,83 @@
+---
+id: ROOT-README
+name: repository-readme
+project: ganaconmerito
+owner: marlon-arcila
+status: active
+artifact_type: product
+modules: [core, platform]
+tags: [repositorio, onboarding, fuente-de-verdad]
+related:
+  - GOV-WORKING-AGREEMENT
+  - ARCH-SYSTEM-OVERVIEW
+last_reviewed: 2026-04-23
+---
+
+# GanaConMerito
+
+Repositorio principal del producto GanaConMerito.
+
+## Propósito
+Este repositorio concentra código, documentación operativa, decisiones técnicas, artefactos de calidad y lineamientos de operación para el producto. La fuente de verdad es Git. No se deben usar wikis paralelas como referencia oficial.
+
+## Objetivos operativos
+- Reducir pérdida de contexto entre sesiones, agentes y ciclos de desarrollo.
+- Hacer trazables las decisiones de producto, arquitectura y operación.
+- Evitar cambios estructurales sin ADR aprobado.
+- Separar deuda heredada de deuda nueva.
+- Permitir recuperación selectiva de contexto por agentes.
+
+## Stack actual observado
+- Frontend y servidor: Next.js
+- Base de datos y auth: Supabase
+- Contenedorización: Docker
+- Scripts auxiliares: Node.js, TypeScript y Python estándar
+
+## Estructura documental objetivo
+- `docs/01-product/`: visión, backlog, requerimientos
+- `docs/02-delivery/`: sprint log, changelog, releases
+- `docs/03-architecture/`: overview, modelo de datos, ADRs
+- `docs/04-quality/`: deuda, issues, riesgos, pruebas
+- `docs/05-ops/`: runbooks y operación
+- `docs/06-governance/`: acuerdos, roster, políticas
+- `docs/07-compliance/`: seguridad, secretos, costos, datos
+- `docs/08-context/`: indexación y recuperación selectiva
+
+## Reglas no negociables
+1. Ningún cambio estructural se implementa sin ADR aprobado.
+2. Toda excepción temporal debe registrarse como deuda técnica.
+3. Todo documento crítico debe tener owner humano.
+4. Ningún secreto debe entrar a markdown público, prompts o logs.
+5. Antes de tocar código, agentes y personas deben leer el contexto mínimo definido por gobernanza.
+
+## Lectura mínima antes de actuar
+1. `README.md`
+2. `docs/06-governance/working-agreement.md`
+3. `docs/03-architecture/system-overview.md`
+4. `docs/01-product/backlog.md`
+5. Spec o documento del módulo afectado
+6. ADRs relacionados
+7. Deuda técnica e issues asociados
+
+## Estado de implantación documental
+- Estado: inicializado
+- Origen del ordenamiento: operación nueva sobre base heredada
+- Vacíos actuales:
+  - TODO: confirmar owners por módulo
+  - TODO: consolidar mapa oficial de features activas
+  - TODO: clasificar deuda heredada vs nueva en todos los módulos
+
+## Comandos de apoyo
+- Instalar dependencias: `npm install`
+- Desarrollo: `npm run dev` si existe script definido
+- Validación documental: `python3 scripts/validate_docs.py`
+- Índice contextual: `python3 scripts/build_context_index.py`
+
+## Aprobación humana obligatoria
+Requieren aprobación humana explícita:
+- ADRs nuevos o modificados
+- cambios de auth, permisos o base de datos
+- cambios de stack o integraciones críticas
+- releases a producción
+- cierre de deuda crítica
+- cambios sobre secretos, costos o seguridad

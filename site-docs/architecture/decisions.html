@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>decisions</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.831656Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Decisiones técnicas cerradas</h1>
+
+<h2>1. Estados persistidos oficiales</h2>
+
+<p>Estos son los únicos valores válidos para `sessions.current_state`:</p>
+
+<pre><code>
+onboarding | diagnostic | practice | remediation | review | session_close | expired | error
+</code></pre>
+
+<h2>2. Procesos transversales no persistidos</h2>
+
+<pre><code>
+evaluating_response | updating_memory | selecting_next_item | generating_feedback
+</code></pre>
+
+<h2>3. Escala de dificultad</h2>
+
+<p>La dificultad oficial del ítem va de `0.00` a `1.00`.</p>
+
+<p>Convención recomendada:</p>
+<li>`0.00 - 0.29` baja</li>
+<li>`0.30 - 0.59` media</li>
+<li>`0.60 - 0.79` alta</li>
+<li>`0.80 - 1.00` muy alta</li>
+
+<h2>4. Semántica de respuestas</h2>
+
+<li>`selected_option`: respuesta objetiva evaluable</li>
+<li>`user_rationale`: razonamiento libre del usuario</li>
+
+<h2>5. Evaluación actual</h2>
+
+<p>El motor actual se considera explícitamente:</p>
+<li>`baseline heuristic scoring v1`</li>
+<li>`evaluationSource = &quot;deterministic&quot;`</li>
+
+<p>No se presenta todavía como motor definitivo ni como TRI/IRT formal.</p>
+
+<h2>6. Modelo de permisos MVP</h2>
+
+<li>`is_admin boolean` es suficiente para esta versión</li>
+<li>lectura de ítems publicados: usuarios autenticados</li>
+<li>escritura de contenido: solo admin</li>
+
+<h2>7. Estrategia de producto actual</h2>
+
+<p>Se prioriza:</p>
+<p>1. base de datos estable</p>
+<p>2. contratos tipados</p>
+<p>3. backend utilizable</p>
+<p>4. parser y carga de contenido</p>
+<p>5. persistencia real de sesiones</p>
+<p>6. auth integrada</p>
+
+<h2>8. Semántica mínima actual del flujo de sesión</h2>
+
+<li>sin onboarding completo -&gt; `onboarding`</li>
+<li>onboarding completo y sin baseline ni ítem siguiente -&gt; `diagnostic`</li>
+<li>onboarding completo con ítem disponible -&gt; `practice`</li>
+<li>error de respuesta con bajo desempeño -&gt; `remediation`</li>
+<li>práctica con continuidad y suficiente historial -&gt; `review`</li>
+<li>sesión con 3 turnos o condición de cierre -&gt; `session_close`</li>
+
+<h2>9. Decisión de trazabilidad operativa</h2>
+
+<p>El sistema no debe declarar éxito funcional por intención, inferencia o narrativa de UI si el efecto real no fue confirmado.</p>
+
+<p>Reglas mínimas:</p>
+<li>una operación crítica solo se considera exitosa si su efecto observable quedó confirmado en DB, respuesta backend o estado visible verificable</li>
+<li>frontend no debe maquillar persistencia no confirmada como éxito definitivo</li>
+<li>los reportes técnicos deben diferenciar entre acción intentada, acción confirmada y acción pendiente de verificación</li>
+<li>los flujos sensibles deben dejar evidencia suficiente para distinguir auth, persistencia, autorización y error operativo</li>
+
+<p>Motivo:</p>
+<p>El proyecto ya detectó riesgo de trazabilidad engañosa y estados aparentes de éxito sin confirmación suficiente. Esta decisión busca volver estructural la honestidad funcional.</p>
+
+<h2>10. Deuda futura explícita</h2>
+
+<p>Queda fuera de esta fase:</p>
+<li>scoring formal dividido en deterministic + llm-assisted rubric</li>
+<li>percentiles cercanos a TRI/IRT</li>
+<li>permisos más ricos que `is_admin`</li>
+<li>otros tipos de ítem</li>
+<li>importación CSV/XLSX</li>
+<li>multimodalidad/voz</li>
+</main>
+</body>
+</html>

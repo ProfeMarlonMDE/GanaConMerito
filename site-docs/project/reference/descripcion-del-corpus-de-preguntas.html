@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>descripcion-del-corpus-de-preguntas</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.850263Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Descripción del corpus de preguntas</h1>
+
+<h2>Objetivo</h2>
+
+<p>Definir qué es el corpus de preguntas de GanaConMerito, cómo se estructura, cuáles son sus núcleos temáticos y qué principios deben gobernar su crecimiento.</p>
+
+<p>Este documento sirve como marco conceptual para construir un banco de preguntas consistente, reutilizable y útil para práctica adaptativa.</p>
+
+<p>---</p>
+
+<h1>1. Qué es el corpus</h1>
+
+<p>El corpus de preguntas es el conjunto organizado de ítems evaluativos que alimentan el sistema de práctica, diagnóstico, refuerzo y revisión del proyecto.</p>
+
+<p>No debe entenderse como una colección suelta de preguntas, sino como una **estructura de contenido pedagógico y evaluativo** diseñada para:</p>
+<li>medir competencias</li>
+<li>entrenar razonamiento</li>
+<li>generar retroalimentación</li>
+<li>construir trazabilidad del progreso del usuario</li>
+
+<p>---</p>
+
+<h1>2. Principio estructural del corpus</h1>
+
+<h2>Regla principal</h2>
+
+<p>El corpus debe organizarse **por contenido y competencia**, no por listas administrativas de cargos o aspirantes.</p>
+
+<h2>Razón</h2>
+
+<p>Porque el valor más estable y reusable del banco está en:</p>
+<li>el área de conocimiento</li>
+<li>la subárea</li>
+<li>la competencia evaluada</li>
+<li>el nivel de dificultad</li>
+<li>el tipo de razonamiento exigido</li>
+
+<p>Mientras que variables como:</p>
+<li>cargo</li>
+<li>aspirante</li>
+<li>convocatoria</li>
+<li>entidad</li>
+
+<p>son útiles, pero deben operar como capas secundarias o filtros posteriores.</p>
+
+<p>---</p>
+
+<h1>3. Estructura conceptual del corpus</h1>
+
+<h2>Nivel 1 — Área</h2>
+<p>Corresponde al gran dominio temático del ítem.</p>
+
+<p>Áreas actuales del proyecto:</p>
+<li>`matematicas`</li>
+<li>`pedagogia`</li>
+<li>`normatividad`</li>
+<li>`gestion`</li>
+<li>`lectura_critica`</li>
+<li>`competencias_ciudadanas`</li>
+
+<h2>Nivel 2 — Subárea</h2>
+<p>Especifica el subdominio dentro del área.</p>
+
+<p>Ejemplos:</p>
+<li>`pensamiento_numerico`</li>
+<li>`evaluacion_del_aprendizaje`</li>
+<li>`convivencia_escolar`</li>
+<li>`planeacion_institucional`</li>
+<li>`inferencia_textual`</li>
+<li>`resolucion_de_conflictos`</li>
+
+<h2>Nivel 3 — Competencia</h2>
+<p>Expresa la capacidad evaluada.</p>
+
+<p>Ejemplos:</p>
+<li>`razonamiento_cuantitativo`</li>
+<li>`planeacion_pedagogica`</li>
+<li>`interpretacion_normativa`</li>
+<li>`lectura_de_indicadores`</li>
+<li>`inferencia`</li>
+<li>`resolucion_dialogica`</li>
+
+<h2>Nivel 4 — Dificultad</h2>
+<p>Determina la exigencia relativa del ítem dentro del banco.</p>
+
+<p>Escala actual:</p>
+<li>`0.00` a `1.00`</li>
+
+<h2>Nivel 5 — Nivel objetivo</h2>
+<p>Orienta el tipo de dominio esperado del usuario.</p>
+
+<p>Ejemplos:</p>
+<li>`basico`</li>
+<li>`intermedio`</li>
+<li>`avanzado`</li>
+
+<p>---</p>
+
+<h1>4. Núcleos temáticos del corpus</h1>
+
+<h2>4.1 Núcleo matemático</h2>
+<p>Evalúa capacidades de:</p>
+<li>razonamiento cuantitativo</li>
+<li>identificación de patrones</li>
+<li>resolución de problemas</li>
+<li>análisis de relaciones y estructuras</li>
+
+<h3>Subnúcleos sugeridos</h3>
+<li>pensamiento numérico</li>
+<li>algebraico</li>
+<li>variacional</li>
+<li>aleatorio</li>
+<li>espacial</li>
+
+<p>---</p>
+
+<h2>4.2 Núcleo pedagógico</h2>
+<p>Evalúa capacidades de:</p>
+<li>diseño pedagógico</li>
+<li>evaluación formativa</li>
+<li>planeación de aula</li>
+<li>selección de estrategias didácticas</li>
+<li>atención a la diversidad</li>
+
+<h3>Subnúcleos sugeridos</h3>
+<li>didáctica</li>
+<li>evaluación del aprendizaje</li>
+<li>planeación de aula</li>
+<li>currículo</li>
+<li>inclusión</li>
+<li>ambientes de aprendizaje</li>
+
+<p>---</p>
+
+<h2>4.3 Núcleo normativo</h2>
+<p>Evalúa capacidades de:</p>
+<li>interpretación normativa</li>
+<li>aplicación del marco legal</li>
+<li>decisiones institucionales ajustadas a norma</li>
+<li>lectura contextual de obligaciones y rutas</li>
+
+<h3>Subnúcleos sugeridos</h3>
+<li>convivencia escolar</li>
+<li>función docente</li>
+<li>organización del servicio educativo</li>
+<li>inclusión y derechos</li>
+<li>procedimientos institucionales</li>
+
+<p>---</p>
+
+<h2>4.4 Núcleo de gestión</h2>
+<p>Evalúa capacidades de:</p>
+<li>planeación institucional</li>
+<li>lectura de indicadores</li>
+<li>toma de decisiones organizacionales</li>
+<li>seguimiento y mejora</li>
+<li>liderazgo y articulación institucional</li>
+
+<h3>Subnúcleos sugeridos</h3>
+<li>gestión directiva</li>
+<li>gestión académica</li>
+<li>gestión comunitaria</li>
+<li>planeación institucional</li>
+<li>seguimiento y mejora</li>
+
+<p>---</p>
+
+<h2>4.5 Núcleo de lectura crítica</h2>
+<p>Evalúa capacidades de:</p>
+<li>comprensión e inferencia</li>
+<li>análisis argumentativo</li>
+<li>interpretación textual</li>
+<li>evaluación de información</li>
+<li>lectura de propósito y estructura</li>
+
+<h3>Subnúcleos sugeridos</h3>
+<li>comprensión literal</li>
+<li>inferencia textual</li>
+<li>análisis argumentativo</li>
+<li>propósito comunicativo</li>
+<li>evaluación de fuentes</li>
+
+<p>---</p>
+
+<h2>4.6 Núcleo de competencias ciudadanas</h2>
+<p>Evalúa capacidades de:</p>
+<li>convivencia</li>
+<li>diálogo</li>
+<li>juicio ético</li>
+<li>resolución de conflictos</li>
+<li>reconocimiento de perspectivas</li>
+<li>participación democrática</li>
+
+<h3>Subnúcleos sugeridos</h3>
+<li>convivencia</li>
+<li>resolución de conflictos</li>
+<li>pluralidad y diversidad</li>
+<li>participación</li>
+<li>responsabilidad democrática</li>
+
+<p>---</p>
+
+<h1>5. Tipos funcionales de preguntas dentro del corpus</h1>
+
+<p>Aunque el sistema actual soporta `multiple_choice`, el corpus debe entenderse funcionalmente en varias familias editoriales.</p>
+
+<h2>5.1 Preguntas conceptuales</h2>
+<p>Evalúan comprensión de principios, categorías o ideas.</p>
+
+<h2>5.2 Preguntas basadas en caso</h2>
+<p>Evalúan análisis situado y toma de decisión contextual.</p>
+
+<h2>5.3 Preguntas procedimentales</h2>
+<p>Evalúan reglas, secuencias, operaciones o métodos.</p>
+
+<h2>5.4 Preguntas normativas</h2>
+<p>Evalúan interpretación y aplicación del marco regulatorio.</p>
+
+<p>---</p>
+
+<h1>6. Qué no debe ser el corpus</h1>
+
+<p>El corpus no debe convertirse en:</p>
+<li>una lista plana de preguntas sin taxonomía</li>
+<li>un archivo por cargo como eje único</li>
+<li>un banco armado solo por temas vagos</li>
+<li>un conjunto de preguntas memorizables sin valor formativo</li>
+<li>una colección de ítems sin explicación ni trazabilidad</li>
+
+<p>---</p>
+
+<h1>7. Organización recomendada</h1>
+
+<h2>Organización primaria</h2>
+<li>área</li>
+<li>subárea</li>
+<li>competencia</li>
+
+<h2>Organización secundaria</h2>
+<li>dificultad</li>
+<li>nivel objetivo</li>
+<li>tipo de examen (`examType`)</li>
+
+<h2>Organización terciaria futura</h2>
+<li>cargo</li>
+<li>perfil de aspirante</li>
+<li>convocatoria</li>
+<li>entidad</li>
+<li>territorio</li>
+<li>etiquetas temáticas adicionales</li>
+
+<p>---</p>
+
+<h1>8. Estrategia de crecimiento del corpus</h1>
+
+<h2>Etapa 1 — base sólida</h2>
+<p>Construir un banco pequeño, pero consistente y limpio.</p>
+
+<h3>Prioridades</h3>
+<li>claridad editorial</li>
+<li>taxonomía consistente</li>
+<li>distractores plausibles</li>
+<li>explicaciones útiles</li>
+<li>dificultad razonable</li>
+
+<h2>Etapa 2 — cobertura temática</h2>
+<p>Expandir por:</p>
+<li>áreas</li>
+<li>subáreas</li>
+<li>competencias</li>
+<li>niveles de dificultad</li>
+
+<h2>Etapa 3 — especialización</h2>
+<p>Agregar capas secundarias como:</p>
+<li>cargo</li>
+<li>convocatoria</li>
+<li>segmento poblacional</li>
+<li>contexto institucional</li>
+
+<h2>Etapa 4 — adaptatividad más rica</h2>
+<p>Usar el corpus no solo como banco estático, sino como materia prima para:</p>
+<li>selección adaptativa</li>
+<li>retroalimentación diferenciada</li>
+<li>remediación por error frecuente</li>
+<li>analítica por competencia</li>
+
+<p>---</p>
+
+<h1>9. Recomendación editorial final</h1>
+
+<h2>Decisión central</h2>
+
+<p>**El corpus debe crecer por competencia y contenido, no por burocracia de convocatoria.**</p>
+
+<p>La convocatoria, el cargo o el aspirante pueden ser filtros útiles después, pero no deben romper la coherencia del banco.</p>
+
+<h2>Fórmula práctica</h2>
+
+<p>Construye primero preguntas que respondan a esta lógica:</p>
+
+<p>&gt; área -&gt; subárea -&gt; competencia -&gt; dificultad -&gt; feedback útil</p>
+
+<p>Y solo después añade:</p>
+
+<p>&gt; cargo -&gt; aspirante -&gt; convocatoria -&gt; entidad</p>
+
+<p>---</p>
+
+<h1>10. Síntesis breve</h1>
+
+<h2>El corpus debe ser</h2>
+<li>coherente</li>
+<li>reusable</li>
+<li>escalable</li>
+<li>pedagógicamente útil</li>
+<li>técnicamente importable</li>
+<li>analíticamente explotable</li>
+
+<h2>El núcleo del diseño debe estar en</h2>
+<li>contenidos</li>
+<li>competencias</li>
+<li>dificultad</li>
+<li>trazabilidad editorial</li>
+
+<h2>El eje de organización recomendado es</h2>
+<li>**contenido primero**</li>
+<li>**segmentación administrativa después**</li>
+</main>
+</body>
+</html>

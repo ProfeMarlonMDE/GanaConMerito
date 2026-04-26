@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>ciudadanas</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.838265Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<p>---</p>
+<p>id: item-doc-026</p>
+<p>slug: ciudadanas-participacion-001</p>
+<p>title: Escenarios de participación</p>
+<p>area: competencias_ciudadanas</p>
+<p>subarea: participacion</p>
+<p>examType: docente</p>
+<p>competency: convivencia_democratica</p>
+<p>difficulty: 0.25</p>
+<p>targetLevel: basico</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>Un profesor implementa en sus clases actividades de reflexión sobre situaciones cotidianas reconociendo que este tipo de actividades fomentan significativamente la formación ciudadana y social. El profesor decide incluir en sus clases escenarios de participación para propiciar un espacio en el cual sus estudiantes puedan reflexionar. De acuerdo con lo anterior, el propósito de incluir escenarios de participación es:</p>
+
+<p>#### Opciones</p>
+<p>* A. Favorecer adquisición de destrezas propositivas en sus estudiantes.</p>
+<p>* B. Contrastar su práctica educativa con las actividades que él ha propuesto.</p>
+<p>* C. Mejorar su relación con los estudiantes y con la comunidad educativa.</p>
+<p>* D. Garantizar el cumplimiento estricto del currículo sin alterar la planificación anual.</p>
+
+<p>---</p>
+
+<h3>Pregunta 2: Contaminación visual y proyectos ambientales</h3>
+
+<p>---</p>
+<p>id: item-doc-027</p>
+<p>slug: ciudadanas-participacion-002</p>
+<p>title: Contaminación visual y proyectos ambientales</p>
+<p>area: competencias_ciudadanas</p>
+<p>subarea: participacion</p>
+<p>examType: docente</p>
+<p>competency: toma_de_perspectiva</p>
+<p>difficulty: 0.30</p>
+<p>targetLevel: basico</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>El entorno de una institución educativa se ha llenado de afiches, pendones y vallas con información. Los profesores ven en esta contaminación visual una oportunidad para integrar problemas y prevención en las prácticas ambientales previstas en el PEI y las políticas de educación ambiental. Para ello deciden:</p>
+
+<p>#### Opciones</p>
+<p>* A. Realizar con los estudiantes un recuento ubicación y categorización de los afiches pendones pasacalles y vallas de la localidad.</p>
+<p>* B. Proporcionar espacios de reflexión con todos los profesores de ciencias naturales y sociales para incorporar el tema de la contaminación visual.</p>
+<p>* C. Propiciar el desarrollo de proyectos de educación ambiental en la comunidad con miras a la resolución conjunta de esta problemática.</p>
+<p>* D. Imponer sanciones a los grupos externos responsables para mantener el orden estético de la institución.</p>
+
+<p>---</p>
+
+<h3>Pregunta 3: Proyecto Mi Territorio Decide</h3>
+
+<p>---</p>
+<p>id: item-doc-028</p>
+<p>slug: ciudadanas-responsabilidad-democratica-001</p>
+<p>title: Proyecto Mi Territorio Decide</p>
+<p>area: competencias_ciudadanas</p>
+<p>subarea: responsabilidad_democratica</p>
+<p>examType: docente</p>
+<p>competency: juicio_etico</p>
+<p>difficulty: 0.50</p>
+<p>targetLevel: intermedio</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>El docente Daniel diseña el proyecto &quot;Mi territorio decide&quot;, donde los estudiantes investigan problemáticas comunitarias y proponen soluciones mediante simulaciones de cabildos abiertos y peticiones. Incorpora la Constitución y planes de desarrollo. Daniel plantea rúbricas basadas en argumentación e incidencia. ¿Cuál de las siguientes acciones evidencia que el docente Daniel toma como referente la política pública para favorecer la formación ciudadana?</p>
+
+<p>#### Opciones</p>
+<p>* A. Redacta una secuencia de actividades en la que los estudiantes estudian la historia de los partidos políticos colombianos en el siglo XIX.</p>
+<p>* B. Diseña un proyecto pedagógico donde se articulan problemas locales con ejercicios de participación ciudadana inspirados en normas y planes oficiales.</p>
+<p>* C. Organiza una serie de lecturas sobre la democracia liberal y la separación de poderes como marco teórico para las clases del periodo.</p>
+<p>* D. Aplica evaluaciones de opción múltiple exclusivas sobre los artículos de la Constitución sin incluir dinámicas de análisis social.</p>
+
+<p>---</p>
+
+<h3>Pregunta 4: Articulación con políticas públicas</h3>
+
+<p>---</p>
+<p>id: item-doc-029</p>
+<p>slug: ciudadanas-responsabilidad-democratica-002</p>
+<p>title: Articulación con políticas públicas</p>
+<p>area: competencias_ciudadanas</p>
+<p>subarea: responsabilidad_democratica</p>
+<p>examType: docente</p>
+<p>competency: resolucion_dialogica</p>
+<p>difficulty: 0.60</p>
+<p>targetLevel: intermedio</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>Basado en el enfoque de construcción de ciudadanía (proyecto &quot;Mi territorio decide&quot; de Daniel), ¿qué evidencia muestra que el docente articula su planeación con políticas públicas nacionales y locales en la práctica educativa?</p>
+
+<p>#### Opciones</p>
+<p>* A. Está incluyendo referencias a documentos oficiales como la Constitución y el plan decenal de Educación para sustentar su proyecto pedagógico.</p>
+<p>* B. Está organizando el cronograma de clases conforme al calendario cívico escolar y a las fechas conmemorativas institucionales.</p>
+<p>* C. Utiliza las guías del Ministerio de Educación como material complementario de lectura durante el periodo académico.</p>
+<p>* D. Sanciona a los estudiantes que no memorizan los principios fundamentales del marco legal colombiano.</p>
+
+<p>---</p>
+
+<h3>Pregunta 5: Justificación del marco normativo</h3>
+
+<p>---</p>
+<p>id: item-doc-030</p>
+<p>slug: ciudadanas-pluralidad-diversidad-001</p>
+<p>title: Justificación del marco normativo</p>
+<p>area: competencias_ciudadanas</p>
+<p>subarea: pluralidad_y_diversidad</p>
+<p>examType: docente</p>
+<p>competency: toma_de_perspectiva</p>
+<p>difficulty: 0.75</p>
+<p>targetLevel: avanzado</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>Algunos colegas de Daniel consideran que temas como los planes de desarrollo y acuerdos del consejo son complejos para el nivel escolar, pero él insiste en vincular la pedagogía ciudadana con lo normativo. ¿Qué afirmación fundamenta pedagógicamente la vinculación entre los documentos normativos y los contenidos escolares del área?</p>
+
+<p>#### Opciones</p>
+<p>* A. Permite organizar las unidades temáticas conforme al marco jurídico nacional y distribuir los contenidos de forma equitativa entre grados.</p>
+<p>* B. Fortalece la coherencia entre los contenidos escolares y los marcos normativos que orientan la construcción de ciudadanía en Colombia.</p>
+<p>* C. Garantiza que los estudiantes conozcan las instituciones públicas y sus funciones para efectos de las pruebas estandarizadas.</p>
+<p>* D. Asegura que el docente mantenga el control disciplinario del aula respaldándose en figuras legales inobjetables.</p>
+</main>
+</body>
+</html>

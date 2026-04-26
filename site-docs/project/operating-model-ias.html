@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>operating-model-ias</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.848018Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Operating Model — uso de IAs en GanaConMerito</h1>
+
+<h2>Objetivo</h2>
+<p>Definir qué papel cumple cada IA o entorno conversacional para reducir duplicación, desorden y pérdidas de contexto.</p>
+
+<p>---</p>
+
+<h2>1. Telegram + Ágora</h2>
+<h3>Rol</h3>
+<li>arquitectura</li>
+<li>análisis</li>
+<li>revisión crítica</li>
+<li>orden del trabajo</li>
+<li>diagnóstico</li>
+<li>diseño de planes</li>
+<li>definición de prioridades</li>
+
+<h3>Usos recomendados</h3>
+<li>pensar antes de ejecutar</li>
+<li>revisar decisiones</li>
+<li>convertir caos en plan</li>
+<li>auditar propuestas de otras IAs</li>
+
+<h3>No usar como flujo principal para</h3>
+<li>dejar código vivo solo en conversación</li>
+<li>depender de respuestas sueltas como única memoria del proyecto</li>
+
+<p>---</p>
+
+<h2>2. Google Antigravity / IA con acceso al VPS</h2>
+<h3>Rol</h3>
+<li>ejecución real en servidor</li>
+<li>build</li>
+<li>restart</li>
+<li>logs</li>
+<li>systemd</li>
+<li>nginx</li>
+<li>Supabase CLI</li>
+<li>copias entre rutas</li>
+<li>validación del entorno vivo</li>
+
+<h3>Usos recomendados</h3>
+<li>comandos reales</li>
+<li>aplicar migraciones</li>
+<li>revisar servicios</li>
+<li>hacer despliegues</li>
+<li>verificar filesystem y procesos</li>
+
+<h3>Riesgo</h3>
+<p>Si ejecuta cambios sin pasarlos luego al repo canónico, el VPS se convierte en una trampa de conocimiento.</p>
+
+<p>---</p>
+
+<h2>3. Otras IAs de auditoría</h2>
+<h3>Rol</h3>
+<li>segunda opinión</li>
+<li>auditoría técnica</li>
+<li>revisión de riesgos</li>
+<li>validación conceptual</li>
+<li>crítica de arquitectura</li>
+
+<h3>Usos recomendados</h3>
+<li>auditar decisiones importantes</li>
+<li>tensionar propuestas antes de implementar</li>
+
+<h3>No usar para</h3>
+<li>controlar el proyecto día a día</li>
+<li>reemplazar la fuente de verdad documental</li>
+
+<p>---</p>
+
+<h2>4. Regla de especialización</h2>
+
+<h3>Ágora</h3>
+<li>piensa</li>
+<li>ordena</li>
+<li>revisa</li>
+<li>decide</li>
+
+<h3>IA con VPS</h3>
+<li>ejecuta</li>
+<li>valida</li>
+<li>despliega</li>
+<li>inspecciona</li>
+
+<h3>IA de auditoría</h3>
+<li>cuestiona</li>
+<li>detecta riesgos</li>
+<li>propone ajustes</li>
+
+<p>---</p>
+
+<h2>5. Regla de transferencia</h2>
+<p>Cuando una IA produce algo útil:</p>
+<li>debe transformarse en archivo o commit</li>
+<li>no debe quedarse solo en chat</li>
+
+<p>---</p>
+
+<h2>6. Regla de coordinación</h2>
+<p>Antes de ejecutar una tarea importante, debe quedar claro:</p>
+<li>quién la hace</li>
+<li>en qué entorno</li>
+<li>cuál es el repo afectado</li>
+<li>qué archivo/documento será actualizado</li>
+<li>cuál será la validación final</li>
+</main>
+</body>
+</html>

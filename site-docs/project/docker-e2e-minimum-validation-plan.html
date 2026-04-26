@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>docker-e2e-minimum-validation-plan</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.846281Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Docker + E2E Minimum Validation Plan — GanaConMerito</h1>
+
+<h2>Propósito</h2>
+
+<p>Definir la secuencia mínima, realista y verificable para validar:</p>
+<p>1. que el artefacto Docker de la app es construible,</p>
+<p>2. que el runtime levantado corresponde al repo actual,</p>
+<p>3. y que el flujo principal autenticado puede ejecutarse de extremo a extremo.</p>
+
+<p>Este plan no busca observabilidad enterprise ni cobertura exhaustiva.</p>
+<p>Busca cerrar la verdad operativa mínima.</p>
+
+<p>---</p>
+
+<h2>Objetivo de validación</h2>
+
+<p>Cerrar estas tres preguntas:</p>
+<li>¿el contenedor de la app realmente builda con el código actual?</li>
+<li>¿el contenedor levantado corresponde a ese build?</li>
+<li>¿el flujo principal `login -&gt; onboarding -&gt; practice -&gt; dashboard` funciona de verdad?</li>
+
+<p>---</p>
+
+<h2>Precondiciones</h2>
+
+<p>Antes de ejecutar este plan, confirmar:</p>
+<li>acceso al daemon Docker en el host</li>
+<li>`docker compose` funcional sobre `/opt/gcm/docker-compose.yml`</li>
+<li>variables de entorno presentes en `/opt/gcm/app/.env.production`</li>
+<li>proveedor de auth real habilitado si la prueba será con Google</li>
+<li>un usuario real de prueba o ruta controlada para primer login</li>
+
+<p>---</p>
+
+<h2>Fase 1 — Validación Docker mínima</h2>
+
+<h3>Paso 1. Confirmar configuración efectiva</h3>
+
+<pre><code>
+docker compose -f /opt/gcm/docker-compose.yml config &gt;/tmp/gcm-compose.resolved.yml
+</code></pre>
+
+<p>Verificar manualmente:</p>
+<li>servicio `gcm-app` presente</li>
+<li>`build.context = /opt/gcm/app`</li>
+<li>`dockerfile = Dockerfile`</li>
+<li>puerto `127.0.0.1:3000:3000`</li>
+
+<h3>Paso 2. Construir imagen</h3>
+
+<pre><code>
+APP_COMMIT=$(git -C /opt/gcm/app rev-parse --short HEAD)
+docker compose -f /opt/gcm/docker-compose.yml build --build-arg APP_COMMIT=$APP_COMMIT gcm-app
+</code></pre>
+
+<p>Criterio de éxito:</p>
+<li>build termina sin error</li>
+<li>`npm run build` dentro de imagen completa con éxito</li>
+
+<h3>Paso 3. Levantar runtime</h3>
+
+<pre><code>
+docker compose -f /opt/gcm/docker-compose.yml up -d gcm-app
+</code></pre>
+
+<h3>Paso 3.1. Verificar trazabilidad visible de despliegue</h3>
+
+<p>Confirmar que login/layout ya no muestran `unknown` como commit/build desplegado.</p>
+
+<h3>Paso 4. Confirmar contenedor arriba</h3>
+
+<pre><code>
+docker compose -f /opt/gcm/docker-compose.yml ps
+docker logs --tail=200 gcm-app
+</code></pre>
+
+<p>Criterio de éxito:</p>
+<li>contenedor `Up`</li>
+<li>sin crash loop</li>
+<li>sin error fatal de variables, build o arranque</li>
+
+<h3>Paso 5. Smoke HTTP mínimo</h3>
+
+<pre><code>
+curl -I http://127.0.0.1:3000/login
+curl -I http://127.0.0.1:3000/home
+curl -I http://127.0.0.1:3000/onboarding
+curl -I http://127.0.0.1:3000/practice
+curl -I http://127.0.0.1:3000/dashboard
+</code></pre>
+
+<p>Criterio de éxito mínimo esperado:</p>
+<li>`/login` responde `200`</li>
+<li>rutas privadas redirigen o protegen consistentemente si no hay sesión</li>
+
+<p>---</p>
+
+<h2>Fase 2 — E2E autenticada mínima real</h2>
+
+<h2>Flujo bajo prueba</h2>
+<p>`login -&gt; onboarding -&gt; practice -&gt; dashboard`</p>
+
+<h3>Evidencia obligatoria a capturar</h3>
+<li>video o capturas del flujo</li>
+<li>URL/ruta final por etapa</li>
+<li>primer error visible si aparece</li>
+<li>evidencia de sesión creada</li>
+<li>evidencia de primera escritura/lectura útil post-login</li>
+
+<h3>Paso 1. Login real</h3>
+<p>Validar:</p>
+<li>el usuario inicia auth correctamente</li>
+<li>vuelve al callback sin error fatal</li>
+<li>aterriza en la ruta esperada</li>
+
+<p>Capturar:</p>
+<li>ruta final</li>
+<li>mensaje visible</li>
+<li>si existen `profiles` y `learning_profiles` tras login</li>
+
+<h3>Paso 2. Onboarding real</h3>
+<p>Validar:</p>
+<li>el formulario carga</li>
+<li>acepta solo el dominio realmente soportado</li>
+<li>persiste el onboarding</li>
+<li>la transición siguiente es coherente</li>
+
+<p>Capturar:</p>
+<li>datos enviados</li>
+<li>resultado visible</li>
+<li>evidencia de persistencia</li>
+
+<h3>Paso 3. Practice real</h3>
+<p>Validar:</p>
+<li>se crea sesión</li>
+<li>se obtiene ítem inicial</li>
+<li>se responde al menos un turno</li>
+<li>`session/advance` persiste sin ambigüedad</li>
+
+<p>Capturar:</p>
+<li>`sessionId`</li>
+<li>`currentState` antes y después</li>
+<li>feedback visible</li>
+<li>evidencia de `session_turns` / `evaluation_events` / `user_topic_stats` si aplica</li>
+
+<h3>Paso 4. Dashboard real</h3>
+<p>Validar:</p>
+<li>carga sin error</li>
+<li>refleja datos compatibles con la interacción previa</li>
+<li>no depende de stubs viejos o placeholders engañosos</li>
+
+<p>Capturar:</p>
+<li>métricas visibles</li>
+<li>coherencia con la práctica realizada</li>
+
+<p>---</p>
+
+<h2>Criterios de cierre</h2>
+
+<p>La validación mínima se considera cerrada solo si queda evidencia de que:</p>
+<p>1. el build Docker terminó bien</p>
+<p>2. el contenedor arrancó sin error fatal</p>
+<p>3. login real funcionó</p>
+<p>4. onboarding real persistió</p>
+<p>5. practice real generó sesión y al menos un avance válido</p>
+<p>6. dashboard respondió con datos coherentes</p>
+
+<p>---</p>
+
+<h2>Si falla, cómo reportarlo</h2>
+
+<p>No reportar solo “falló login” o “falló Docker”.</p>
+<p>Separar el fallo así:</p>
+
+<h3>Falla de Docker</h3>
+<li>build</li>
+<li>arranque</li>
+<li>variables</li>
+<li>crash loop</li>
+
+<h3>Falla de auth</h3>
+<li>redirección</li>
+<li>callback</li>
+<li>bootstrap de perfil</li>
+<li>sesión creada o no</li>
+
+<h3>Falla de onboarding</h3>
+<li>UI</li>
+<li>validación</li>
+<li>persistencia</li>
+<li>transición</li>
+
+<h3>Falla de practice</h3>
+<li>creación de sesión</li>
+<li>ítem inicial</li>
+<li>avance</li>
+<li>persistencia</li>
+
+<h3>Falla de dashboard</h3>
+<li>carga</li>
+<li>cálculo</li>
+<li>inconsistencia de datos</li>
+
+<p>---</p>
+
+<h2>Siguiente uso documental</h2>
+
+<p>Cuando este plan se ejecute, debe actualizar:</p>
+<li>`docs/project/e2e-status.md`</li>
+<li>`docs/project/status.md`</li>
+<li>`docs/project/runtime-maturity-assessment.md`</li>
+
+<p>Y si hay hallazgos estructurales:</p>
+<li>`docs/api/contracts.md`</li>
+<li>`docs/architecture/decisions.md`</li>
+<li>documentos de remediación aplicables</li>
+
+<p>---</p>
+
+<h2>Regla final</h2>
+
+<p>No declarar producción temprana por tener Dockerfile, compose o rutas montadas.</p>
+<p>Solo subir la lectura de madurez cuando exista evidencia real del flujo autenticado completo sobre el runtime validado.</p>
+</main>
+</body>
+</html>

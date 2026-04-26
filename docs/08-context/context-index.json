@@ -1,0 +1,424 @@
+{
+  "documents": [
+    {
+      "id": "PROD-BACKLOG",
+      "path": "docs/01-product/backlog.md",
+      "type": "product",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "core",
+        "editorial",
+        "auth",
+        "evaluacion"
+      ],
+      "tags": [
+        "backlog",
+        "prioridades",
+        "trazabilidad"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "PROD-VISION",
+        "DEL-SPRINT-LOG",
+        "QUAL-DEBT-REGISTER"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "PROD-VISION",
+      "path": "docs/01-product/vision.md",
+      "type": "product",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "core",
+        "editorial",
+        "evaluacion"
+      ],
+      "tags": [
+        "vision",
+        "producto",
+        "prioridad"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "PROD-BACKLOG",
+        "ARCH-SYSTEM-OVERVIEW"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "DEL-CHANGE-LOG",
+      "path": "docs/02-delivery/change-log.md",
+      "type": "delivery",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "core",
+        "platform"
+      ],
+      "tags": [
+        "changelog",
+        "cambios",
+        "entregas"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "DEL-SPRINT-LOG"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "DEL-SPRINT-LOG",
+      "path": "docs/02-delivery/sprint-log.md",
+      "type": "delivery",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "core",
+        "platform"
+      ],
+      "tags": [
+        "sprint",
+        "entrega",
+        "seguimiento"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "PROD-BACKLOG",
+        "DEL-CHANGE-LOG",
+        "QUAL-RISK-REGISTER"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "ADR-001-stack-base",
+      "path": "docs/03-architecture/adrs/ADR-001-stack-base.md",
+      "type": "adr",
+      "status": "approved",
+      "project": "ganaconmerito",
+      "modules": [
+        "platform",
+        "auth",
+        "data"
+      ],
+      "tags": [
+        "adr",
+        "stack",
+        "arquitectura"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "ARCH-SYSTEM-OVERVIEW",
+        "GOV-HUMAN-APPROVAL"
+      ],
+      "last_reviewed": "2026-04-24"
+    },
+    {
+      "id": "ARCH-SYSTEM-OVERVIEW",
+      "path": "docs/03-architecture/system-overview.md",
+      "type": "ops",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "platform",
+        "editorial",
+        "auth",
+        "data"
+      ],
+      "tags": [
+        "arquitectura",
+        "overview",
+        "herencia"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "ADR-001-stack-base",
+        "QUAL-DEBT-REGISTER"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "QUAL-KNOWN-ISSUES",
+      "path": "docs/04-quality/known-issues.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "platform",
+        "editorial",
+        "auth",
+        "data"
+      ],
+      "tags": [
+        "issues",
+        "calidad",
+        "riesgos"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "QUAL-DEBT-REGISTER"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "QUAL-DEBT-REGISTER",
+      "path": "docs/04-quality/technical-debt-register.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "platform",
+        "editorial",
+        "auth",
+        "data"
+      ],
+      "tags": [
+        "deuda-tecnica",
+        "calidad",
+        "herencia"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "ARCH-SYSTEM-OVERVIEW",
+        "DEL-SPRINT-LOG"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "OPS-RUNBOOK",
+      "path": "docs/05-ops/runbook.md",
+      "type": "runbook",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "platform",
+        "auth",
+        "data"
+      ],
+      "tags": [
+        "runbook",
+        "operacion",
+        "soporte"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "ARCH-SYSTEM-OVERVIEW",
+        "COMP-SECURITY-GUARDRAILS"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "GOV-AGENT-ROSTER",
+      "path": "docs/06-governance/agent-roster.md",
+      "type": "governance",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "core",
+        "platform"
+      ],
+      "tags": [
+        "agentes",
+        "responsabilidades",
+        "gobernanza"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "GOV-WORKING-AGREEMENT"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "GOV-HUMAN-APPROVAL",
+      "path": "docs/06-governance/human-approval-policy.md",
+      "type": "governance",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "core",
+        "platform",
+        "auth",
+        "data"
+      ],
+      "tags": [
+        "aprobacion",
+        "hitl",
+        "control"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "GOV-WORKING-AGREEMENT",
+        "ADR-001-stack-base"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "GOV-WORKING-AGREEMENT",
+      "path": "docs/06-governance/working-agreement.md",
+      "type": "governance",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "core",
+        "platform"
+      ],
+      "tags": [
+        "gobernanza",
+        "acuerdos",
+        "operacion"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "GOV-AGENT-ROSTER",
+        "GOV-HUMAN-APPROVAL"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "COMP-SECURITY-GUARDRAILS",
+      "path": "docs/07-compliance/security-guardrails.md",
+      "type": "ops",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "auth",
+        "data",
+        "platform"
+      ],
+      "tags": [
+        "seguridad",
+        "guardrails",
+        "cumplimiento"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "GOV-HUMAN-APPROVAL"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "CTX-RETRIEVAL-POLICY",
+      "path": "docs/08-context/retrieval-policy.md",
+      "type": "ops",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "core"
+      ],
+      "tags": [
+        "contexto",
+        "retrieval",
+        "ia"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "CTX-TAGGING-SCHEMA",
+        "CTX-CONTEXT-INDEX"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "CTX-TAGGING-SCHEMA",
+      "path": "docs/08-context/tagging-schema.md",
+      "type": "ops",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "core"
+      ],
+      "tags": [
+        "contexto",
+        "metadatos",
+        "retrieval"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "CTX-RETRIEVAL-POLICY"
+      ],
+      "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "item-doc-026",
+      "path": "docs/banco-preguntas/ciudadanas.md",
+      "type": "",
+      "status": "",
+      "project": "",
+      "modules": [],
+      "tags": [],
+      "owner": "",
+      "related": [],
+      "last_reviewed": ""
+    }
+  ],
+  "missing": [
+    "docs/README.md",
+    "docs/api/contracts.md",
+    "docs/architecture/decisions.md",
+    "docs/architecture/editorial-admin-consolidated-plan.md",
+    "docs/architecture/editorial-admin-implementation-plan.md",
+    "docs/architecture/editorial-library-temporary-web-module.md",
+    "docs/architecture/editorial-module-plan.md",
+    "docs/architecture/editorial-runtime-paths-fix.md",
+    "docs/architecture/overview.md",
+    "docs/architecture/project-structure.md",
+    "docs/architecture/state-machine.md",
+    "docs/arquitectura-mvp.md",
+    "docs/banco-preguntas/ciudadanas.md :: missing field name",
+    "docs/banco-preguntas/ciudadanas.md :: missing field project",
+    "docs/banco-preguntas/ciudadanas.md :: missing field owner",
+    "docs/banco-preguntas/ciudadanas.md :: missing field status",
+    "docs/banco-preguntas/ciudadanas.md :: missing field artifact_type",
+    "docs/banco-preguntas/ciudadanas.md :: missing field modules",
+    "docs/banco-preguntas/ciudadanas.md :: missing field tags",
+    "docs/banco-preguntas/ciudadanas.md :: missing field related",
+    "docs/banco-preguntas/ciudadanas.md :: missing field last_reviewed",
+    "docs/banco-preguntas/gestion.md",
+    "docs/banco-preguntas/lectura-critica.md",
+    "docs/banco-preguntas/matematicas.md",
+    "docs/banco-preguntas/normatividad.md",
+    "docs/banco-preguntas/pedagogia.md",
+    "docs/database/content-model.md",
+    "docs/database/schema.md",
+    "docs/database/security.md",
+    "docs/project/audit-brief-editorial-segmentation.md",
+    "docs/project/auth-hardening-audit.md",
+    "docs/project/current-workflow.md",
+    "docs/project/docker-e2e-minimum-validation-plan.md",
+    "docs/project/e2e-status.md",
+    "docs/project/google-auth-setup.md",
+    "docs/project/operating-model-ias.md",
+    "docs/project/reference/README-banco-de-preguntas.md",
+    "docs/project/reference/checklist-de-validacion-editorial.md",
+    "docs/project/reference/descripcion-del-corpus-de-preguntas.md",
+    "docs/project/reference/ejemplos-modelo-de-preguntas.md",
+    "docs/project/reference/plantillas-y-estructura-de-preguntas.md",
+    "docs/project/reference/resumen-ejecutivo-del-corpus.md",
+    "docs/project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md",
+    "docs/project/remediation/plan.md",
+    "docs/project/remediation/r1-security-auth.md",
+    "docs/project/remediation/r2-sessions.md",
+    "docs/project/remediation/r3-db-content.md",
+    "docs/project/remediation/r4-runtime-product.md",
+    "docs/project/remediation/ra1-session-security.md",
+    "docs/project/remediation/ra2-flow-contracts.md",
+    "docs/project/remediation/ra3-honesty-traceability.md",
+    "docs/project/runtime-maturity-assessment-runbook.md",
+    "docs/project/runtime-maturity-assessment.md",
+    "docs/project/segmentation-rollout-checklist.md",
+    "docs/project/source-of-truth.md",
+    "docs/project/status.md",
+    "docs/project/tooling-stack.md",
+    "docs/question-bank-implementation-roadmap.md",
+    "docs/question-bank-technical-architecture.md",
+    "docs/temp/inbox/content/audit-definitiva-gemini-pro.md",
+    "docs/temp/inbox/misc/antigravity-pc.md",
+    "docs/temp/inbox/misc/claude-sonet.md",
+    "docs/temp/inbox/misc/claude.md",
+    "docs/temp/inbox/misc/codex-pc.md",
+    "docs/temp/inbox/misc/gemini-pc.md",
+    "docs/temp/inbox/project/audit-brief-editorial-segmentation.md",
+    "docs/temp/inbox/project/dominios.md"
+  ]
+}

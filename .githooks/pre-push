@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+python3 scripts/validate_docs.py
+
+changed_files=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || true)
+
+if echo "$changed_files" | grep -Eq '(^supabase/|^src/middleware.ts$|auth|permission)'; then
+  if ! grep -R "status: approved" docs/03-architecture/adrs >/dev/null 2>&1; then
+    echo "[pre-push] Bloqueado: hay cambios sensibles o estructurales sin ADR aprobado."
+    exit 1
+  fi
+fi
+
+echo "[pre-push] Validaciones OK."

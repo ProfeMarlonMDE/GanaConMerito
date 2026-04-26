@@ -1,5 +1,8 @@
 # Arquitectura MVP — visión general
 
+> Estado documental: HISTORICO-REFERENCIA
+> Resumen vigente en: `docs/03-architecture/system-overview.md`
+
 ## Objetivo
 
 Construir una PWA individual de práctica y evaluación adaptativa con:

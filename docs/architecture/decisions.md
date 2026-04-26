@@ -1,5 +1,9 @@
 # Decisiones técnicas cerradas
 
+> Estado documental: CANONICO-PUENTE
+> Este documento sigue vigente hasta que sus decisiones se migren a ADRs o a `docs/03-architecture/`.
+> Ver también: `docs/03-architecture/adrs/ADR-001-stack-base.md`
+
 ## 1. Estados persistidos oficiales
 
 Estos son los únicos valores válidos para `sessions.current_state`:

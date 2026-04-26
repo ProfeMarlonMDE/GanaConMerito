@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>audit-definitiva-gemini-pro</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.870386Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<p>Hola, profesor Marlon. Es un ejercicio brillante haber sometido el diseño a múltiples &quot;pares&quot; analíticos. Al cruzar las cuatro auditorías, se hace evidente que **hay un consenso absoluto**: la decisión de usar el &quot;núcleo temático&quot; como puente es la correcta y responde perfectamente a tu pregunta central (es la mínima complejidad necesaria).</p>
+
+<p>Sin embargo, también hay un consenso unánime en que **la migración `0006` y el acoplamiento con el modelo actual tienen fisuras peligrosas**.</p>
+
+<p>Aquí tienes la síntesis definitiva de los hallazgos críticos y sus soluciones directas, listos para integrarse en tu plan.</p>
+
+<p>---</p>
+
+<h3>🚨 Consolidado de Hallazgos Críticos</h3>
+
+<p>Al cruzar los análisis, destacan 5 problemas fundamentales que todas las IAs detectaron:</p>
+
+<p>1. **Ubicación errónea del Perfil Profesional (Fricción de negocio)**</p>
+<p>La propuesta inyecta `professional_profile_id` en la tabla `profiles` (identidad del usuario). Todas las auditorías coinciden en que esto es un error. El perfil profesional es una &quot;meta pedagógica&quot;, por lo que pertenece a `learning_profiles`, donde actualmente ya existe y compite semánticamente con `target_role` y `exam_type`.</p>
+<p>2. **Bug Crítico: Doble fuente de verdad editorial**</p>
+<p>Al introducir la columna `status` (&#x27;draft&#x27;, &#x27;published&#x27;, etc.) pero dejar viva la columna booleana `is_published`, se rompe la seguridad. La política RLS actual y el motor `selectNextItem` siguen leyendo `is_published`. Si un editor cambia el `status` a &#x27;archived&#x27;, la pregunta seguirá siendo visible si `is_published` sigue en `true`.</p>
+<p>3. **Colisión de Taxonomías (Núcleo vs. Área/Competencia)**</p>
+<p>`item_bank` ya clasifica el progreso adaptativo por `area` y `competency` (vital para el dashboard y `user_topic_stats`). La nueva tabla `thematic_nuclei` introduce sus propias columnas `area` y `subarea`. Esta superposición va a ensuciar las métricas si no se define una jerarquía clara.</p>
+<p>4. **Vulnerabilidades y omisiones en la Migración 0006**</p>
+<p>* Nomenclatura ambigua en la tabla pivote (`profile_id` en lugar de `professional_profile_id`).</p>
+<p>* RLS demasiado abierta: la matriz que define qué perfiles ven qué núcleos queda visible para cualquier usuario autenticado, exponiendo la estrategia de negocio.</p>
+<p>* Falta el trigger `updated_at` en la tabla pivote `profile_thematic_nuclei`.</p>
+<p>* Falta un índice compuesto clave para que la nueva selección no degrade el rendimiento.</p>
+
+
+<p>5. **Riesgo de &quot;Limbo&quot; en el Backfill**</p>
+<p>`thematic_nucleus_id` se crea permitiendo valores nulos (`NULL`). Si se actualiza la lógica de selección antes de asignar un núcleo a *todas* las preguntas, las preguntas sin núcleo desaparecerán de la práctica de los estudiantes.</p>
+
+<p>---</p>
+
+<h3>🛠️ Plan de Soluciones y Ajustes</h3>
+
+<p>Para blindar la arquitectura antes de tocar producción, debes aplicar estas soluciones directas:</p>
+
+<p>**Solución 1: Refactorizar el destino del Perfil y limpiar la semántica**</p>
+
+<p>* Modifica la migración 0006 para que `professional_profile_id` se agregue a la tabla `learning_profiles`, NO a `profiles`.</p>
+<p>* Establece una regla interna: `professional_profile_id` será el eje de segmentación (acceso), mientras que `target_role` quedará temporalmente como un campo de texto libre para el onboarding, con miras a ser deprecado.</p>
+
+<p>**Solución 2: Resolver la dualidad editorial de inmediato**</p>
+
+<p>* En la migración 0006, sincroniza los datos:</p>
+<pre><code>
+UPDATE public.item_bank SET status = &#x27;draft&#x27; WHERE is_published = false AND status = &#x27;draft&#x27;;
+
+</code></pre>
+
+
+<p>* **Crucial:** En esta misma migración, actualiza la política RLS `item_bank_select_published` para que valide `status = &#x27;published&#x27; AND is_active = true` en lugar de `is_published = true`.</p>
+
+<p>**Solución 3: Definir la Jerarquía del Motor (Elegibilidad vs. Adaptabilidad)**</p>
+
+<p>* Documenta e implementa `selectNextItem` en dos pasos claros:</p>
+<p>1. **Elegibilidad (Acceso):** Filtra por `status`, `is_active` y `thematic_nucleus_id` (valida si el núcleo es universal o del perfil del usuario).</p>
+<p>2. **Adaptabilidad (Pedagogía):** Una vez filtrado lo anterior, rankea y selecciona usando `area` y `competency`.</p>
+
+
+<p>* *Nota:* Mantén `user_topic_stats` calculando el nivel sobre `area` y `competency`. El núcleo sirve para dar acceso, el área/competencia sirve para medir el aprendizaje.</p>
+
+<p>**Solución 4: Endurecer la Migración 0006 (Corrección de código SQL)**</p>
+
+<p>* Renombra las columnas en `profile_thematic_nuclei` a `professional_profile_id` y `thematic_nucleus_id` para evitar JOINs accidentales con `profiles.id`.</p>
+<p>* Añade el trigger faltante: `CREATE TRIGGER trg_profile_thematic_nuclei_updated_at...`</p>
+<p>* Cambia las políticas RLS de las 3 tablas nuevas para que los `INSERT/UPDATE/DELETE` (y preferiblemente los `SELECT` de la matriz) exijan `is_admin = true`.</p>
+<p>* Añade el índice compuesto para el &quot;hot path&quot;:</p>
+<pre><code>
+CREATE INDEX idx_item_bank_selection ON public.item_bank(thematic_nucleus_id, status, is_active);
+
+</code></pre>
+
+
+
+<p>---</p>
+
+<h3>🗺️ Nuevo Orden de Ejecución Estratégico</h3>
+
+<p>Basado en las soluciones, el plan de vuelo ideal se reordena en dos &quot;Épicas&quot; para evitar romper la app actual:</p>
+
+<p>**ÉPICA 1: Segmentación Invisible (No rompe nada)**</p>
+
+<p>1. Reescribir y ejecutar la migración `0006_segmentation_core` (con las soluciones de arriba).</p>
+<p>2. **Backfill silencioso:** Crear los perfiles y núcleos vía base de datos. Asignar cada pregunta existente a un `thematic_nucleus_id`.</p>
+<p>3. **El &quot;Gate&quot; (Punto de control):** Verificar mediante SQL que ninguna pregunta con `status = &#x27;published&#x27;` tenga el `thematic_nucleus_id` nulo.</p>
+<p>4. Actualizar el código de `selectNextItem.ts` para usar la nueva lógica de núcleos y perfiles.</p>
+
+<p>**ÉPICA 2: Módulo Editorial (Administración)**</p>
+<p>5. Actualizar el flujo de Onboarding para que el usuario seleccione su perfil oficial.</p>
+<p>6. Habilitar la &quot;Biblioteca Editorial&quot; de solo lectura (`/editorial`).</p>
+<p>7. Construir los CRUDs administrativos (`/admin/editorial/*`) para gestionar perfiles, núcleos y estados sin tocar la base de datos a mano.</p>
+
+<h3>supabase/migrations/0006_segmentation_core.sql</h3>
+<p>-- 0006_segmentation_core.sql</p>
+<p>-- Evolución arquitectónica: segmentación por perfil profesional + núcleos temáticos</p>
+<p>-- Corrige dependencias del MVP y prepara la capa de elegibilidad para el módulo editorial</p>
+
+<p>begin;</p>
+
+<p>-- 1. Creación de catálogos base</p>
+<p>create table if not exists public.professional_profiles (</p>
+<p>  id uuid primary key default gen_random_uuid(),</p>
+<p>  code text not null unique,</p>
+<p>  name text not null,</p>
+<p>  description text,</p>
+<p>  area text,</p>
+<p>  is_active boolean not null default true,</p>
+<p>  created_at timestamptz not null default now(),</p>
+<p>  updated_at timestamptz not null default now()</p>
+<p>);</p>
+
+<p>create table if not exists public.thematic_nuclei (</p>
+<p>  id uuid primary key default gen_random_uuid(),</p>
+<p>  code text not null unique,</p>
+<p>  name text not null,</p>
+<p>  description text,</p>
+<p>  area text,</p>
+<p>  subarea text,</p>
+<p>  is_universal boolean not null default false,</p>
+<p>  is_active boolean not null default true,</p>
+<p>  created_at timestamptz not null default now(),</p>
+<p>  updated_at timestamptz not null default now()</p>
+<p>);</p>
+
+<p>-- 2. Matriz de relación (corregida la nomenclatura de IDs)</p>
+<p>create table if not exists public.profile_thematic_nuclei (</p>
+<p>  id uuid primary key default gen_random_uuid(),</p>
+<p>  professional_profile_id uuid not null references public.professional_profiles(id) on delete cascade,</p>
+<p>  thematic_nucleus_id uuid not null references public.thematic_nuclei(id) on delete cascade,</p>
+<p>  is_enabled boolean not null default true,</p>
+<p>  priority_weight integer not null default 100,</p>
+<p>  created_at timestamptz not null default now(),</p>
+<p>  updated_at timestamptz not null default now(),</p>
+<p>  unique (professional_profile_id, thematic_nucleus_id)</p>
+<p>);</p>
+
+<p>-- 3. Extensión de perfiles de aprendizaje (Movido de &#x27;profiles&#x27; a &#x27;learning_profiles&#x27;)</p>
+<p>alter table public.learning_profiles</p>
+<p>  add column if not exists professional_profile_id uuid references public.professional_profiles(id);</p>
+
+<p>-- 4. Extensión del Banco de Ítems</p>
+<p>alter table public.item_bank</p>
+<p>  add column if not exists thematic_nucleus_id uuid references public.thematic_nuclei(id),</p>
+<p>  add column if not exists status text not null default &#x27;draft&#x27; check (</p>
+<p>    status in (&#x27;draft&#x27;, &#x27;review&#x27;, &#x27;published&#x27;, &#x27;archived&#x27;)</p>
+<p>  ),</p>
+<p>  add column if not exists is_active boolean not null default true,</p>
+<p>  add column if not exists source_type text not null default &#x27;manual&#x27; check (</p>
+<p>    source_type in (&#x27;manual&#x27;, &#x27;markdown&#x27;, &#x27;import&#x27;, &#x27;seed&#x27;)</p>
+<p>  ),</p>
+<p>  add column if not exists source_path text;</p>
+
+<p>-- Comentario preventivo para el equipo/futuro</p>
+<p>comment on column public.item_bank.thematic_nucleus_id is &#x27;Nullable durante transición. Debe ser NOT NULL tras el backfill de la Fase 2 para garantizar segmentación.&#x27;;</p>
+
+<p>-- 5. Backfill y Sincronización de la Verdad Editorial (Bidireccional)</p>
+<p>update public.item_bank</p>
+<p>set status = &#x27;published&#x27;</p>
+<p>where is_published = true</p>
+<p>  and status = &#x27;draft&#x27;;</p>
+
+<p>update public.item_bank</p>
+<p>set status = &#x27;draft&#x27;</p>
+<p>where is_published = false</p>
+<p>  and status = &#x27;draft&#x27;;</p>
+
+<p>-- 6. Índices Optimizados</p>
+<p>create index if not exists idx_professional_profiles_code on public.professional_profiles(code);</p>
+<p>create index if not exists idx_professional_profiles_active on public.professional_profiles(is_active);</p>
+
+<p>create index if not exists idx_thematic_nuclei_code on public.thematic_nuclei(code);</p>
+<p>create index if not exists idx_thematic_nuclei_active on public.thematic_nuclei(is_active);</p>
+<p>create index if not exists idx_thematic_nuclei_universal on public.thematic_nuclei(is_universal);</p>
+
+<p>create index if not exists idx_profile_thematic_nuclei_prof_id on public.profile_thematic_nuclei(professional_profile_id);</p>
+<p>create index if not exists idx_profile_thematic_nuclei_nuc_id on public.profile_thematic_nuclei(thematic_nucleus_id);</p>
+<p>create index if not exists idx_profile_thematic_nuclei_enabled on public.profile_thematic_nuclei(is_enabled);</p>
+
+<p>create index if not exists idx_learning_profiles_professional_profile_id on public.learning_profiles(professional_profile_id);</p>
+
+<p>-- Índice compuesto crucial para el hot-path de selectNextItem</p>
+<p>create index if not exists idx_item_bank_selection on public.item_bank(thematic_nucleus_id, status, is_active);</p>
+
+<p>-- 7. Triggers de actualización (Agregado el faltante de la matriz)</p>
+<p>create trigger trg_professional_profiles_updated_at</p>
+<p>before update on public.professional_profiles</p>
+<p>for each row</p>
+<p>execute function public.set_updated_at();</p>
+
+<p>create trigger trg_thematic_nuclei_updated_at</p>
+<p>before update on public.thematic_nuclei</p>
+<p>for each row</p>
+<p>execute function public.set_updated_at();</p>
+
+<p>create trigger trg_profile_thematic_nuclei_updated_at</p>
+<p>before update on public.profile_thematic_nuclei</p>
+<p>for each row</p>
+<p>execute function public.set_updated_at();</p>
+
+<p>-- 8. Seguridad RLS (Row Level Security) endurecida</p>
+<p>alter table public.professional_profiles enable row level security;</p>
+<p>alter table public.thematic_nuclei enable row level security;</p>
+<p>alter table public.profile_thematic_nuclei enable row level security;</p>
+
+<p>-- Lectura de catálogos base abierta para autenticados (necesario para selectores en UI/onboarding)</p>
+<p>create policy professional_profiles_select_authenticated</p>
+<p>on public.professional_profiles for select</p>
+<p>using (auth.uid() is not null);</p>
+
+<p>create policy thematic_nuclei_select_authenticated</p>
+<p>on public.thematic_nuclei for select</p>
+<p>using (auth.uid() is not null);</p>
+
+<p>-- Matriz de relación restringida SOLO a administradores para evitar fugas de estrategia</p>
+<p>create policy profile_thematic_nuclei_select_admin</p>
+<p>on public.profile_thematic_nuclei for select</p>
+<p>using (</p>
+<p>  exists (</p>
+<p>    select 1 from public.profiles p</p>
+<p>    where p.auth_user_id = auth.uid() and p.is_admin = true</p>
+<p>  )</p>
+<p>);</p>
+
+<p>-- Corrección Crítica: Actualizar RLS de item_bank para usar &#x27;status&#x27; + &#x27;is_active&#x27;</p>
+<p>drop policy if exists item_bank_select_published on public.item_bank;</p>
+
+<p>create policy item_bank_select_published</p>
+<p>on public.item_bank for select</p>
+<p>using (status = &#x27;published&#x27; and is_active = true);</p>
+
+<p>commit;</p>
+</main>
+</body>
+</html>

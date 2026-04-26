@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "[pre-commit] Validando documentación crítica..."
+python3 scripts/validate_docs.py

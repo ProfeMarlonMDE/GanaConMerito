@@ -7,11 +7,23 @@ Definir con claridad cuál es la fuente de verdad en cada capa del proyecto para
 
 ## 1. Fuente de verdad por categoría
 
+### Fuente de verdad documental
+- `docs/01-product/*` a `docs/08-context/*` = taxonomía canónica objetivo
+- `docs/database/*` y `docs/api/*` = canónico puente por tema mientras se consolida la normalización
+- `docs/architecture/*` y `docs/project/*` = transición controlada, mezcla de puente e histórico
+- `docs/temp/*` = no canónico, inbox temporal
+
 ### Arquitectura, decisiones y planes de producto
 **Fuente de verdad:**
-- `docs/architecture/*`
-- `docs/project/*`
-- `docs/project/reference/*`
+- `docs/01-product/*`
+- `docs/03-architecture/*`
+- `docs/05-ops/*`
+- `docs/06-governance/*`
+- `docs/database/*`
+- `docs/api/*`
+- `docs/project/source-of-truth.md`
+- `docs/project/status.md`
+- `docs/project/current-workflow.md`
 - `docs/banco-preguntas/*`
 - `content/*`
 - `sql/*`

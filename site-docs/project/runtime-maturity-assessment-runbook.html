@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>runtime-maturity-assessment-runbook</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.860877Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Runtime Maturity Assessment Runbook — GanaConMerito</h1>
+
+<h2>Propósito</h2>
+
+<p>Ejecutar futuras corridas del assessment de madurez del proyecto de forma corta, repetible y sin perder criterio técnico.</p>
+
+<p>Este runbook acompaña a:</p>
+<li>`docs/project/runtime-maturity-assessment.md`</li>
+
+<p>No reemplaza el assessment.</p>
+<p>Lo operacionaliza.</p>
+
+<p>---</p>
+
+<h2>Cuándo correrlo</h2>
+
+<p>Correr una nueva evaluación cuando ocurra cualquiera de estos eventos:</p>
+<li>cierre de una remediación relevante</li>
+<li>nuevo deploy importante</li>
+<li>cambio de etapa declarada del producto</li>
+<li>cierre de una E2E real</li>
+<li>incorporación de auth, onboarding, practice o dashboard a entorno real</li>
+<li>aparición de drift entre repo, docs y runtime</li>
+<li>antes de afirmar que el sistema ya está en producción temprana</li>
+
+<p>---</p>
+
+<h2>Salida esperada</h2>
+
+<p>Cada corrida debe producir:</p>
+<p>1. actualización de `docs/project/runtime-maturity-assessment.md`</p>
+<p>2. nueva entrada incremental en `Corridas de evaluación`</p>
+<p>3. ajuste de `Estado consolidado actual` si cambió la lectura</p>
+<p>4. commit limpio en git</p>
+<p>5. push al remoto si corresponde</p>
+
+<p>---</p>
+
+<h2>Procedimiento corto obligatorio</h2>
+
+<h3>Paso 1 — leer documentación mínima</h3>
+<p>Revisar:</p>
+<li>`docs/project/status.md`</li>
+<li>`docs/project/current-workflow.md`</li>
+<li>`docs/project/e2e-status.md`</li>
+<li>`docs/project/source-of-truth.md`</li>
+<li>`docs/architecture/overview.md`</li>
+<li>`docs/architecture/state-machine.md`</li>
+<li>`docs/architecture/decisions.md`</li>
+<li>`docs/api/contracts.md`</li>
+<li>`docs/database/schema.md`</li>
+<li>`docs/database/security.md`</li>
+<li>`docs/project/remediation/plan.md`</li>
+<li>`docs/project/remediation/r1-security-auth.md`</li>
+<li>`docs/project/remediation/r2-sessions.md`</li>
+<li>`docs/project/remediation/r3-db-content.md`</li>
+<li>`docs/project/remediation/r4-runtime-product.md`</li>
+<li>`docs/project/remediation/ra1-session-security.md`</li>
+<li>`docs/project/remediation/ra2-flow-contracts.md`</li>
+<li>`docs/project/remediation/ra3-honesty-traceability.md`</li>
+
+<h3>Paso 2 — levantar señales git mínimas</h3>
+<p>Ejecutar:</p>
+
+<pre><code>
+git branch --show-current
+git status --short --branch
+git tag --sort=-creatordate | head -20
+git log --oneline --decorate -n 20
+git remote -v
+</code></pre>
+
+<h3>Paso 3 — levantar señales operativas mínimas si aplican</h3>
+<p>Ejecutar según contexto:</p>
+
+<pre><code>
+docker compose -f /opt/gcm/docker-compose.yml ps
+git -C /opt/gcm/app rev-parse --short HEAD
+npm run build
+</code></pre>
+
+<p>Si hubo validación real del flujo, adjuntar evidencia de:</p>
+<li>login</li>
+<li>onboarding</li>
+<li>practice</li>
+<li>dashboard</li>
+<li>primera falla observable si existe</li>
+
+<h3>Paso 4 — evaluar con los 10 criterios del assessment</h3>
+<p>No saltarse ningún eje.</p>
+
+<h3>Paso 5 — actualizar el documento incremental</h3>
+<p>Hacer solo esto:</p>
+<li>actualizar `Estado consolidado actual` si cambió la lectura</li>
+<li>agregar una nueva corrida al final</li>
+
+<h3>Paso 6 — versionar</h3>
+<p>Ejecutar:</p>
+
+<pre><code>
+git add docs/project/runtime-maturity-assessment.md docs/project/source-of-truth.md docs/project/runtime-maturity-assessment-runbook.md
+git commit -m &quot;docs(project): update runtime maturity assessment&quot;
+git push origin master
+</code></pre>
+
+<p>---</p>
+
+<h2>Checklist de análisis rápido</h2>
+
+<li>[ ] flujo principal implementado realmente</li>
+<li>[ ] E2E real confirmada o explícitamente pendiente</li>
+<li>[ ] contratos funcionales suficientemente claros</li>
+<li>[ ] auth / bootstrap / ownership suficientemente cerrados</li>
+<li>[ ] deploy y runtime alineados con el repo</li>
+<li>[ ] sin drift crítico no explicado</li>
+<li>[ ] versionado coherente</li>
+<li>[ ] operación real distinguida de solo build/doc</li>
+<li>[ ] sin ilusión de madurez</li>
+<li>[ ] siguiente salto de etapa claramente definido</li>
+
+<p>---</p>
+
+<h2>Regla de honestidad</h2>
+
+<p>Si la evidencia no alcanza para subir de etapa, el reporte debe decirlo sin maquillaje.</p>
+
+<p>No usar como prueba suficiente:</p>
+<li>que compila</li>
+<li>que hay tags</li>
+<li>que hay docs buenas</li>
+<li>que el deploy “parece” vivo</li>
+
+<p>Sí usar como prueba fuerte:</p>
+<li>flujo principal ejecutado de verdad</li>
+<li>evidencia de validación real</li>
+<li>contratos observables por estado</li>
+<li>repo y runtime suficientemente alineados</li>
+
+<p>---</p>
+
+<h2>Regla incremental</h2>
+
+<p>Nunca borrar corridas anteriores solo para que el documento se vea limpio.</p>
+
+<p>Solo se corrige una corrida pasada si:</p>
+<li>tenía un error factual,</li>
+<li>una ruta era incorrecta,</li>
+<li>o la evidencia se interpretó mal.</li>
+
+<p>Si cambia la realidad del proyecto, se agrega una corrida nueva.</p>
+
+<p>---</p>
+
+<h2>Regla final</h2>
+
+<p>El assessment no debe convertirse en ritual vacío.</p>
+
+<p>Si una corrida no cambia decisión, riesgo, etapa o siguiente movimiento, entonces probablemente no hacía falta correrla todavía.</p>
+</main>
+</body>
+</html>

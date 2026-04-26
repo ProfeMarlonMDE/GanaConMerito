@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "[post-commit] Proponiendo changelog..."
+python3 scripts/update_changelog.py || true
+
+echo "[post-commit] Detectando deuda técnica..."
+python3 scripts/detect_technical_debt.py || true

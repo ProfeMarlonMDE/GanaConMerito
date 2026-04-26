@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>runtime-maturity-assessment</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.862675Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Runtime Maturity Assessment — GanaConMerito</h1>
+
+<h2>Propósito</h2>
+
+<p>Mantener un reporte técnico incremental sobre la madurez real del proyecto frente a su etapa declarada.</p>
+
+<p>Este documento no existe para repetir el changelog ni para describir la arquitectura base.</p>
+<p>Existe para responder, en cada corte:</p>
+<li>en qué etapa real está el proyecto,</li>
+<li>qué evidencia sostiene esa lectura,</li>
+<li>qué contradice la etapa deseada,</li>
+<li>qué cambió desde la última evaluación,</li>
+<li>y cuál es el siguiente movimiento exacto.</li>
+
+<p>---</p>
+
+<h2>Uso correcto del documento</h2>
+
+<p>Este reporte debe actualizarse **de forma incremental**.</p>
+
+<p>Regla obligatoria:</p>
+<li>**no sobrescribir evaluaciones anteriores**,</li>
+<li>**no reescribir el historial completo salvo que haya error factual**,</li>
+<li>**agregar una nueva entrada al final en la sección `Corridas de evaluación`**,</li>
+<li>**arrastrar solo el estado consolidado necesario en la sección `Estado consolidado actual`**.</li>
+
+<p>Este documento sirve como bitácora de madurez operativa.</p>
+
+<p>---</p>
+
+<h2>Objetivo del análisis</h2>
+
+<p>Determinar la **etapa real del proyecto** usando evidencia técnica observable, no intención declarada.</p>
+
+<p>La pregunta central es:</p>
+
+<p>&gt; ¿El sistema se comporta como el tipo de producto que dice ser hoy?</p>
+
+<p>---</p>
+
+<h2>Etapas de referencia</h2>
+
+<h3>1. Idea / pre-MVP</h3>
+<p>Existe dirección conceptual, pero no hay flujo implementado confiable.</p>
+
+<h3>2. MVP técnico</h3>
+<p>Ya hay arquitectura, endpoints, DB o UI base, pero el sistema aún depende de supuestos, stubs o validación incompleta.</p>
+
+<h3>3. MVP funcional endurecido</h3>
+<p>Ya existe flujo real implementado en varias capas, con persistencia, reglas y validación técnica parcial. Aún no está listo para operación confiable.</p>
+
+<h3>4. Preproducción avanzada</h3>
+<p>El producto ya puede correrse de forma realista, tiene versionado consistente, despliegue encaminado y bloques críticos endurecidos, pero aún faltan cierres funcionales/operativos para declararlo producción temprana.</p>
+
+<h3>5. Producción temprana</h3>
+<p>Ya existe despliegue operativo verificable con validación end-to-end real, fuente de verdad estable, flujo principal utilizable y disciplina de cambios razonablemente confiable. Puede haber deuda, pero no ambigüedad fundamental sobre el comportamiento principal.</p>
+
+<h3>6. Producción estabilizada</h3>
+<p>El producto ya no depende de validaciones fundacionales. El trabajo dominante pasa a ser confiabilidad, métricas, observabilidad, mejora de experiencia y expansión controlada.</p>
+
+<p>---</p>
+
+<h2>Criterios de análisis mejorados</h2>
+
+<p>Cada corrida debe revisar como mínimo estos 10 ejes.</p>
+
+<h3>C1. Flujo principal implementado</h3>
+<p>Preguntar:</p>
+<li>¿el flujo principal existe de verdad?</li>
+<li>¿está implementado en frontend, backend y DB?</li>
+<li>¿o sigue repartido entre docs, intención y piezas aisladas?</li>
+
+<h3>C2. Validación E2E real</h3>
+<p>Preguntar:</p>
+<li>¿el flujo principal fue probado extremo a extremo?</li>
+<li>¿la prueba fue autenticada si el sistema lo exige?</li>
+<li>¿la validación fue local, remota o pública?</li>
+
+<h3>C3. Contratos funcionales</h3>
+<p>Preguntar:</p>
+<li>¿los estados principales del producto están explícitos?</li>
+<li>¿los errores y transiciones están diferenciados?</li>
+<li>¿QA y frontend podrían validar sin adivinar?</li>
+
+<h3>C4. Integridad de datos y auth</h3>
+<p>Preguntar:</p>
+<li>¿auth, perfiles, permisos, bootstrap y ownership están cerrados?</li>
+<li>¿o todavía hay riesgo de sesión válida con estado inconsistente?</li>
+
+<h3>C5. Disciplina de despliegue</h3>
+<p>Preguntar:</p>
+<li>¿hay una ruta clara entre cambio → commit → push → deploy → validación?</li>
+<li>¿el contenedor/runtime real corresponde al código versionado?</li>
+
+<h3>C6. Fuente de verdad y drift</h3>
+<p>Preguntar:</p>
+<li>¿GitHub es realmente canónico?</li>
+<li>¿hay cambios locales sin consolidar?</li>
+<li>¿hay divergencia entre repo, VPS, docs o entorno vivo?</li>
+
+<h3>C7. Versionado y trazabilidad</h3>
+<p>Preguntar:</p>
+<li>¿los tags y commits cuentan una historia técnica coherente?</li>
+<li>¿se puede ubicar cuándo cambió qué y por qué?</li>
+
+<h3>C8. Operación mínima real</h3>
+<p>Preguntar:</p>
+<li>¿el producto solo compila o realmente opera?</li>
+<li>¿hay usuarios reales, sesiones reales, registros reales o interacción viva?</li>
+
+<h3>C9. Riesgo de ilusión de madurez</h3>
+<p>Preguntar:</p>
+<li>¿el sistema parece más listo de lo que realmente está?</li>
+<li>¿hay mucha documentación/remediación que enmascara validación incompleta?</li>
+
+<h3>C10. Preparación para la siguiente etapa</h3>
+<p>Preguntar:</p>
+<li>¿qué faltaría exactamente para subir una etapa?</li>
+<li>¿cuál es el cuello actual: arquitectura, flujo, runtime, auth, datos, deploy o disciplina operativa?</li>
+
+<p>---</p>
+
+<h2>Entradas obligatorias para cada nueva corrida</h2>
+
+<p>Antes de actualizar este reporte, revisar como mínimo:</p>
+
+<h3>Documentación del repo</h3>
+<li>`docs/project/status.md`</li>
+<li>`docs/project/current-workflow.md`</li>
+<li>`docs/project/e2e-status.md`</li>
+<li>`docs/project/source-of-truth.md`</li>
+<li>`docs/architecture/overview.md`</li>
+<li>`docs/architecture/state-machine.md`</li>
+<li>`docs/architecture/decisions.md`</li>
+<li>`docs/api/contracts.md`</li>
+<li>`docs/database/schema.md`</li>
+<li>`docs/database/security.md`</li>
+<li>`docs/project/remediation/plan.md`</li>
+<li>`docs/project/remediation/r1-security-auth.md`</li>
+<li>`docs/project/remediation/r2-sessions.md`</li>
+<li>`docs/project/remediation/r3-db-content.md`</li>
+<li>`docs/project/remediation/r4-runtime-product.md`</li>
+<li>`docs/project/remediation/ra1-session-security.md`</li>
+<li>`docs/project/remediation/ra2-flow-contracts.md`</li>
+<li>`docs/project/remediation/ra3-honesty-traceability.md`</li>
+
+<h3>Señales git mínimas</h3>
+<p>Ejecutar y revisar:</p>
+
+<pre><code>
+git branch --show-current
+git status --short --branch
+git tag --sort=-creatordate | head -20
+git log --oneline --decorate -n 20
+git remote -v
+</code></pre>
+
+<h3>Señales operativas mínimas recomendadas</h3>
+<p>Si aplica en ese momento, revisar también:</p>
+
+<pre><code>
+docker compose ps
+npm run build
+</code></pre>
+
+<p>Y si el corte es sobre entorno real o remoto:</p>
+<li>evidencia de login real</li>
+<li>evidencia de onboarding real</li>
+<li>evidencia de práctica real</li>
+<li>evidencia de dashboard real</li>
+<li>primera falla observable si existe</li>
+
+<p>---</p>
+
+<h2>Método de actualización</h2>
+
+<h3>Paso 1 — leer evidencia</h3>
+<p>No evaluar desde memoria ni intuición.</p>
+
+<h3>Paso 2 — comparar etapa declarada vs etapa real</h3>
+<p>No asumir que “producción temprana” es verdad porque el proyecto lo desee.</p>
+
+<h3>Paso 3 — identificar contradicciones</h3>
+<p>Nombrar con claridad qué evidencia impide aceptar la etapa deseada.</p>
+
+<h3>Paso 4 — detectar avances reales</h3>
+<p>Distinguir:</p>
+<li>avance de implementación,</li>
+<li>avance de hardening,</li>
+<li>avance de validación,</li>
+<li>avance de operación.</li>
+
+<h3>Paso 5 — actualizar este documento</h3>
+<p>Hacer dos movimientos:</p>
+<p>1. actualizar `Estado consolidado actual`</p>
+<p>2. agregar una nueva entrada en `Corridas de evaluación`</p>
+
+<p>---</p>
+
+<h2>Plantilla obligatoria para cada corrida</h2>
+
+<pre><code>
+## [YYYY-MM-DD HH:MM UTC] Corte de madurez
+
+### Etapa declarada
+...
+
+### Etapa real estimada
+...
+
+### Diagnóstico ejecutivo
+...
+
+### Evidencia a favor de esta etapa
+- ...
+
+### Evidencia que impide subir de etapa
+- ...
+
+### Riesgos de lectura equivocada
+- ...
+
+### Cambios nuevos desde la corrida anterior
+- ...
+
+### Drift / inconsistencias detectadas
+- ...
+
+### Veredicto
+...
+
+### Siguiente movimiento exacto
+1. ...
+2. ...
+3. ...
+</code></pre>
+
+<p>---</p>
+
+<h2>Estado consolidado actual</h2>
+
+<h3>Etapa declarada por dirección</h3>
+<p>Producción temprana.</p>
+
+<h3>Etapa real estimada vigente</h3>
+<p>**Producción temprana controlada**.</p>
+
+<h3>Lectura consolidada</h3>
+<p>El proyecto ya superó un MVP técnico simple.</p>
+<p>Tiene base de datos real, auth integrada, onboarding/práctica/dashboard implementados, remediaciones estructurales ejecutadas, versionado consistente y señales claras de endurecimiento técnico.</p>
+
+<p>El proyecto ya cruzó el umbral de preproducción avanzada porque existe evidencia real de despliegue operativo, login autenticado, onboarding, práctica, dashboard y persistencia observable.</p>
+
+<p>Sin embargo, todavía no alcanza una producción temprana madura porque persisten huecos en:</p>
+<li>calidad operativa del runtime tras arranque,</li>
+<li>trazabilidad de despliegue (`Build/Commit unknown`),</li>
+<li>endurecimiento de contratos funcionales como onboarding,</li>
+<li>continuidad real de práctica más allá del primer turno,</li>
+<li>y disciplina de seguridad sobre secretos operativos expuestos en auditorías externas.</li>
+
+<h3>Qué sí está sólido</h3>
+<li>arquitectura y modelo base definidos</li>
+<li>Supabase remoto enlazado y migraciones aplicadas</li>
+<li>versión semántica sostenida hasta serie `v0.4.x`</li>
+<li>hardening relevante en auth, sesiones, DB y trazabilidad</li>
+<li>flujo pedagógico base ya materializado en producto real</li>
+
+<h3>Qué sigue inestable</h3>
+<li>estabilidad observable del runtime inmediatamente post-arranque</li>
+<li>trazabilidad de despliegue visible en UI/runtime</li>
+<li>endurecimiento del contrato de onboarding</li>
+<li>continuidad real de práctica cuando el banco de contenido es pequeño</li>
+<li>disciplina de seguridad sobre secretos y material sensible</li>
+
+<h3>Condición para consolidar la producción temprana</h3>
+<p>Para pasar de producción temprana controlada a una producción temprana más madura, el proyecto debe demostrar como mínimo:</p>
+<p>1. runtime Docker estable y verificable sin resets tempranos ambiguos</p>
+<p>2. trazabilidad de build/commit visible y correcta en el despliegue</p>
+<p>3. onboarding con contrato validado explícitamente</p>
+<p>4. continuidad de práctica más allá del primer turno o manejo honesto del límite de contenido</p>
+<p>5. disciplina de seguridad reforzada sobre credenciales, logs y artefactos sensibles</p>
+<p>6. repetición exitosa del flujo principal con evidencia reproducible</p>
+
+<p>---</p>
+
+<h2>Corridas de evaluación</h2>
+
+<h2>[2026-04-06 00:42 UTC] Corte de madurez</h2>
+
+<h3>Etapa declarada</h3>
+<p>Producción temprana.</p>
+
+<h3>Etapa real estimada</h3>
+<p>Preproducción avanzada con despliegue funcional parcial.</p>
+
+<h3>Diagnóstico ejecutivo</h3>
+<p>El proyecto ya pasó la etapa de MVP de laboratorio y tiene suficiente implementación real para considerarse un sistema funcional endurecido. Aun así, no puede declararse producción temprana consolidada porque la validación extremo a extremo, la operación real y la disciplina de fuente de verdad todavía no están cerradas.</p>
+
+<h3>Evidencia a favor de esta etapa</h3>
+<li>`docs/project/status.md` reporta flujo real en onboarding, práctica, dashboard, auth y persistencia.</li>
+<li>existe remediación estructurada R1–R4 y RA1–RA3.</li>
+<li>hay tags coherentes hasta `v0.4.8`.</li>
+<li>`master` está alineada con `origin/master`.</li>
+<li>el proyecto muestra fixes de producción, RPC atómica, hardening auth y trazabilidad de versión.</li>
+
+<h3>Evidencia que impide subir de etapa</h3>
+<li>`docs/project/e2e-status.md` sigue marcando pendiente la E2E autenticada completa.</li>
+<li>`docs/project/status.md` todavía recomienda cerrar primer login real y validación pública.</li>
+<li>`docs/project/remediation/ra1-session-security.md` documenta que la validación funcional remota quedó bloqueada por ausencia de usuarios reales bootstrappeados.</li>
+<li>el repo local presenta drift: archivos borrados heredados del workspace OpenClaw y artefactos nuevos (`Dockerfile`, `.dockerignore`) sin consolidar.</li>
+<li>varias piezas siguen descritas como frontend mínimo o cierre técnico local pendiente de validación funcional real.</li>
+
+<h3>Riesgos de lectura equivocada</h3>
+<li>confundir hardening documental con cierre operativo real</li>
+<li>asumir que compilar, migrar y tener tags equivale a producción temprana</li>
+<li>dejar que el despliegue aparente más madurez de la que el flujo real soporta hoy</li>
+
+<h3>Cambios nuevos desde la corrida anterior</h3>
+<li>primera formalización de este corte incremental</li>
+<li>incorporación del criterio de drift local dentro del diagnóstico de etapa</li>
+<li>incorporación del versionado `v0.4.x` como señal de madurez, pero no como prueba suficiente de operación real</li>
+
+<h3>Drift / inconsistencias detectadas</h3>
+<li>archivos de OpenClaw/workspace aún aparecen como borrados dentro del repo local</li>
+<li>existen artefactos de despliegue no consolidados en git (`Dockerfile`, `.dockerignore`)</li>
+<li>`source-of-truth.md` menciona rutas operativas que no coinciden exactamente con la ruta actual usada para el repo (`/opt/gcm/app`), lo que exige revisión en el siguiente corte</li>
+
+<h3>Veredicto</h3>
+<p>El proyecto está en una franja madura de preproducción, no en producción temprana limpia. Ya construyó suficiente producto real, pero todavía no cerró el circuito completo de operación confiable.</p>
+
+<h3>Siguiente movimiento exacto</h3>
+<p>1. corregir `Build/Commit unknown` en el despliegue</p>
+<p>2. decidir y endurecer la validación de `Áreas activas` en onboarding</p>
+<p>3. ampliar banco de ítems o ajustar selector para continuidad real de práctica</p>
+<p>4. revisar y rotar secretos si se consideran comprometidos por auditorías previas</p>
+<p>5. correr una nueva validación E2E repetible después de esos ajustes</p>
+
+<h2>[2026-04-06 02:00 UTC] Corte de madurez</h2>
+
+<h3>Etapa declarada</h3>
+<p>Producción temprana.</p>
+
+<h3>Etapa real estimada</h3>
+<p>Producción temprana controlada.</p>
+
+<h3>Diagnóstico ejecutivo</h3>
+<p>El proyecto cruzó el umbral de preproducción avanzada porque ya existe evidencia real de build, contenedor levantado, login Google, onboarding, práctica, dashboard y persistencia observable en entorno desplegado. La conversación cambia: ya no se trata de demostrar que el flujo principal existe, sino de endurecer su calidad operativa, su trazabilidad y su continuidad.</p>
+
+<h3>Evidencia a favor de esta etapa</h3>
+<li>`npm ci` y `npm run build` pasaron en el checkout del repo.</li>
+<li>`docker compose build gcm-app` pasó y el contenedor quedó `Up`.</li>
+<li>el flujo visible real confirmó login Google con callback funcional y aterrizaje en `/home`.</li>
+<li>el onboarding real funcionó y permitió continuar al producto.</li>
+<li>la práctica real generó una sesión visible con transición de estado y feedback.</li>
+<li>el dashboard mostró métricas coherentes con la práctica recién realizada.</li>
+<li>auditoría cruzada de VPS/producción confirmó actividad real en Supabase (`profiles`, `item_bank`, `user_topic_stats` y tablas asociadas).</li>
+<li>se confirmó que el `connection reset by peer` previo correspondía a latencia momentánea de arranque y no a caída sostenida del servicio.</li>
+
+<h3>Evidencia que impide considerar la etapa como madura</h3>
+<li>el despliegue todavía muestra `Build: unknown` / `Commit desplegado: unknown`.</li>
+<li>`onboarding` permitió guardar con `Áreas activas` vacío; ese contrato sigue ambiguo.</li>
+<li>la práctica se corta prematuramente por ausencia de siguiente ítem disponible.</li>
+<li>una auditoría externa expuso secretos operativos; eso obliga a reforzar higiene y posible rotación.</li>
+<li>aún falta repetir el flujo con criterio más controlado para asegurar reproducibilidad, no solo éxito puntual.</li>
+
+<h3>Riesgos de lectura equivocada</h3>
+<li>confundir una E2E exitosa puntual con estabilidad ya consolidada.</li>
+<li>asumir que el runtime está completamente endurecido solo porque el flujo principal respondió una vez.</li>
+<li>minimizar el riesgo operacional de secretos expuestos durante auditorías paralelas.</li>
+
+<h3>Cambios nuevos desde la corrida anterior</h3>
+<li>build local validado en el checkout real.</li>
+<li>build Docker validado y contenedor levantado en el host.</li>
+<li>E2E autenticada mínima real confirmada en dominio desplegado.</li>
+<li>evidencia adicional desde VPS/Supabase de actividad real en tablas operativas.</li>
+
+<h3>Drift / inconsistencias detectadas</h3>
+<li>ya no domina el drift documental o de repo; el frente principal se movió a calidad operativa del runtime y a seguridad de credenciales.</li>
+<li>sigue habiendo una inconsistencia de trazabilidad visible en UI/runtime (`Build/Commit unknown`).</li>
+
+<h3>Veredicto</h3>
+<p>El proyecto ya no debe leerse como preproducción avanzada. La lectura correcta ahora es producción temprana controlada: el producto principal existe y opera de verdad, pero todavía necesita endurecimiento antes de considerarse una operación temprana madura.</p>
+
+<h3>Siguiente movimiento exacto</h3>
+<p>1. corregir trazabilidad de build/commit en despliegue</p>
+<p>2. endurecer contrato de onboarding</p>
+<p>3. ampliar continuidad real de práctica</p>
+<p>4. rotar secretos si se consideran expuestos</p>
+<p>5. repetir E2E controlada y registrar una nueva corrida</p>
+
+<h2>[2026-04-06 01:18 UTC] Corte de madurez</h2>
+
+<h3>Etapa declarada</h3>
+<p>Producción temprana.</p>
+
+<h3>Etapa real estimada</h3>
+<p>Preproducción avanzada con despliegue funcional parcial.</p>
+
+<h3>Diagnóstico ejecutivo</h3>
+<p>El proyecto mejoró de forma material en higiene de repo, trazabilidad de versión y coherencia de despliegue. Aun así, la etapa no sube porque el cuello ya no es documental sino operativo: falta validación real del flujo principal y falta confirmar el build/runtime Docker desde un contexto con permisos efectivos.</p>
+
+<h3>Evidencia a favor de esta etapa</h3>
+<li>se eliminó del repo de aplicación la contaminación histórica de OpenClaw/workspace.</li>
+<li>`Dockerfile` y `.dockerignore` quedaron consolidados en git como artefactos válidos del producto.</li>
+<li>`source-of-truth.md` fue alineado con rutas reales: `/opt/gcm/app`, `/opt/gcm/docker-compose.yml` y `/home/ubuntu/.openclaw/workspace`.</li>
+<li>`package.json` quedó reconciliado con la versión publicada `v0.4.8`.</li>
+<li>el repo quedó empujado a `origin/master` con estos ajustes.</li>
+
+<h3>Evidencia que impide subir de etapa</h3>
+<li>la E2E autenticada completa sigue pendiente como condición de verdad operativa.</li>
+<li>no hay evidencia nueva de login real → onboarding → practice → dashboard cerrada de extremo a extremo.</li>
+<li>la validación de build Docker no pudo completarse desde esta sesión por falta de permisos sobre el daemon (`docker.sock`).</li>
+<li>aún no existe prueba observable de que el runtime contenedorizado haya sido reconstruido y validado tras consolidar `Dockerfile` y `.dockerignore`.</li>
+
+<h3>Riesgos de lectura equivocada</h3>
+<li>interpretar la limpieza del repo como equivalente a validación de producto.</li>
+<li>asumir que tener `Dockerfile` versionado equivale a build operativo confirmado.</li>
+<li>subir la etapa por mejoras de disciplina sin cerrar todavía el flujo principal real.</li>
+
+<h3>Cambios nuevos desde la corrida anterior</h3>
+<li>repo de aplicación limpiado de artefactos ajenos al producto.</li>
+<li>artefactos Docker consolidados en el repo.</li>
+<li>fuente de verdad documental corregida para reflejar rutas reales.</li>
+<li>trazabilidad de versión alineada a `v0.4.8`.</li>
+
+<h3>Drift / inconsistencias detectadas</h3>
+<li>ya no persiste el drift histórico de archivos OpenClaw en el repo de aplicación.</li>
+<li>el bloqueo actual no es drift documental sino restricción de permisos para validar Docker desde este contexto.</li>
+
+<h3>Veredicto</h3>
+<p>El proyecto está más limpio, más trazable y más coherente que en la corrida anterior, pero sigue en preproducción avanzada. La barrera actual para subir de etapa es operativa: validar runtime real y flujo principal autenticado.</p>
+
+<h3>Siguiente movimiento exacto</h3>
+<p>1. correr `docker compose -f /opt/gcm/docker-compose.yml build gcm-app` desde un contexto con acceso al daemon</p>
+<p>2. levantar o reciclar el contenedor con ese artefacto validado</p>
+<p>3. ejecutar login real y completar onboarding → practice → dashboard</p>
+<p>4. registrar esa evidencia y volver a correr el assessment</p>
+</main>
+</body>
+</html>

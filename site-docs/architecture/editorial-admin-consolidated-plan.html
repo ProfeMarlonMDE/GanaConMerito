@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>editorial-admin-consolidated-plan</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.832191Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Plan consolidado — segmentación por perfil profesional + módulo editorial/admin</h1>
+
+<h2>Estado del documento</h2>
+<p>Plan consolidado después de:</p>
+<li>revisión arquitectónica interna</li>
+<li>múltiples auditorías externas</li>
+<li>síntesis final de riesgos y ajustes</li>
+<li>implementación inicial de la Épica 1 en código y migraciones</li>
+
+<p>---</p>
+
+<h2>1. Decisión arquitectónica consolidada</h2>
+
+<h3>Objetivo</h3>
+<p>Permitir que la disponibilidad de preguntas dependa de:</p>
+<li>el perfil profesional del usuario</li>
+<li>el acceso a núcleos temáticos</li>
+<li>la existencia de núcleos universales</li>
+
+<h3>Decisión central</h3>
+<p>La arquitectura correcta es:</p>
+<li>`professional_profiles` ↔ `thematic_nuclei` = muchos a muchos</li>
+<li>`thematic_nuclei` → `item_bank` = uno a muchos</li>
+
+<h3>Regla de negocio consolidada</h3>
+<p>Una pregunta está disponible para un usuario si:</p>
+<p>1. `status = &#x27;published&#x27;`</p>
+<p>2. `is_active = true`</p>
+<p>3. pertenece a un núcleo activo</p>
+<p>4. el núcleo es universal, o</p>
+<p>5. el núcleo está habilitado para el perfil profesional del usuario</p>
+
+<p>---</p>
+
+<h2>2. Distinción clave de la arquitectura</h2>
+
+<h3>Elegibilidad</h3>
+<p>Define si una pregunta puede ser mostrada:</p>
+<li>perfil profesional</li>
+<li>núcleo temático</li>
+<li>núcleo universal</li>
+<li>estado editorial</li>
+<li>activación lógica</li>
+
+<h3>Adaptatividad</h3>
+<p>Define cuál pregunta elegible conviene seleccionar:</p>
+<li>área</li>
+<li>competencia</li>
+<li>dificultad</li>
+<li>historial</li>
+<li>remediación</li>
+
+<h3>Regla consolidada</h3>
+<li>**núcleo temático** = acceso / elegibilidad</li>
+<li>**area + competency** = pedagogía / adaptatividad / analítica</li>
+
+<p>Esto evita mezclar segmentación de negocio con medición pedagógica.</p>
+
+<p>---</p>
+
+<h2>3. Ajustes consolidados tras auditoría</h2>
+
+<h3>Ajuste 1 — Ubicación correcta del perfil profesional</h3>
+<p>`professional_profile_id` debe vivir en:</p>
+<li>`learning_profiles`</li>
+
+<p>No en:</p>
+<li>`profiles`</li>
+
+<h3>Razón</h3>
+<p>`profiles` representa identidad base.</p>
+<p>`learning_profiles` representa configuración pedagógica y objetivo de estudio.</p>
+
+<p>---</p>
+
+<h3>Ajuste 2 — Verdad editorial efectiva</h3>
+<p>La nueva verdad editorial debe ser:</p>
+<li>`item_bank.status`</li>
+<li>`item_bank.is_active`</li>
+
+<p>`is_published` queda como compatibilidad transitoria y no debe seguir siendo el eje de decisión a largo plazo.</p>
+
+<p>---</p>
+
+<h3>Ajuste 3 — Núcleo como capa de acceso</h3>
+<p>`thematic_nuclei` no reemplaza a:</p>
+<li>`item_bank.area`</li>
+<li>`item_bank.competency`</li>
+
+<p>Los campos `area` y `subarea` en `thematic_nuclei` deben entenderse solo como metadata organizativa/editorial, no como fuente de analítica adaptativa.</p>
+
+<p>---</p>
+
+<h3>Ajuste 4 — Gate obligatorio antes de cambiar práctica</h3>
+<p>Antes de depender de la nueva selección, debe cumplirse:</p>
+<li>ningún ítem `published` puede quedar con `thematic_nucleus_id = NULL`</li>
+
+<p>---</p>
+
+<h3>Ajuste 5 — Admin después de segmentación</h3>
+<p>No construir `/admin/editorial/*` antes de validar en práctica la nueva lógica de segmentación.</p>
+
+<p>---</p>
+
+<h2>4. Estado actual de implementación</h2>
+
+<h2>Ya implementado</h2>
+
+<h3>Migración base</h3>
+<li>`supabase/migrations/0006_profiles_nuclei_editorial_base.sql`</li>
+
+<p>Incluye:</p>
+<li>`professional_profiles`</li>
+<li>`thematic_nuclei`</li>
+<li>`profile_thematic_nuclei`</li>
+<li>`learning_profiles.professional_profile_id`</li>
+<li>columnas editoriales en `item_bank`</li>
+<li>índices</li>
+<li>triggers</li>
+<li>RLS inicial endurecida</li>
+<li>ajuste transitorio de política de `item_bank`</li>
+
+<h3>Backfill inicial</h3>
+<li>`supabase/migrations/0007_backfill_profiles_nuclei.sql`</li>
+
+<p>Incluye:</p>
+<li>núcleo universal transitorio `legacy-general`</li>
+<li>perfiles docentes iniciales</li>
+<li>relación inicial perfil ↔ núcleo</li>
+<li>backfill de `item_bank.thematic_nucleus_id`</li>
+<li>gate para impedir publicados sin núcleo</li>
+
+<h3>Lógica de selección</h3>
+<li>`src/domain/item-selection/select-next-item.ts`</li>
+
+<p>Ya adaptada para:</p>
+<li>`status = &#x27;published&#x27;`</li>
+<li>`is_active = true`</li>
+<li>núcleos universales</li>
+<li>núcleos asignados al perfil</li>
+<li>filtros adaptativos por `area` y `competency`</li>
+
+<h3>Integración de sesión</h3>
+<li>`src/app/api/session/start/route.ts`</li>
+<li>`src/app/api/session/advance/route.ts`</li>
+
+<p>Ambos ya pasan `learning_profiles.professional_profile_id` a `selectNextItem(...)`.</p>
+
+<p>---</p>
+
+<h2>5. Épicas consolidadas</h2>
+
+<h2>ÉPICA 1 — Segmentación invisible</h2>
+<h3>Objetivo</h3>
+<p>Cambiar la base del sistema sin introducir todavía el módulo admin completo.</p>
+
+<h3>Estado</h3>
+<p>Parcialmente implementada.</p>
+
+<h3>Pasos</h3>
+<p>1. Reescritura final de `0006` ✅</p>
+<p>2. Backfill inicial `0007` ✅</p>
+<p>3. Gate de consistencia mínima ✅</p>
+<p>4. Adaptación de `selectNextItem` ✅</p>
+<p>5. Alineación de `session/start` y `session/advance` ✅</p>
+<p>6. Validación real tras aplicar migraciones en DB remota ⏳</p>
+
+<h3>Resultado esperado</h3>
+<p>La práctica ya respeta segmentación por perfil/núcleo sin cambiar todavía la UX de administración.</p>
+
+<p>---</p>
+
+<h2>ÉPICA 2 — Perfil y onboarding</h2>
+<h3>Objetivo</h3>
+<p>Capturar correctamente `learning_profiles.professional_profile_id` desde la experiencia de usuario.</p>
+
+<h3>Trabajo pendiente</h3>
+<li>ajustar onboarding</li>
+<li>permitir selección de perfil profesional</li>
+<li>definir fallback si no existe perfil aún</li>
+
+<h3>Fallback recomendado</h3>
+<li>solo núcleos universales, o</li>
+<li>bloqueo suave hasta completar perfil</li>
+
+<p>---</p>
+
+<h2>ÉPICA 3 — Biblioteca editorial web</h2>
+<h3>Objetivo</h3>
+<p>Mantener o activar una biblioteca de lectura controlada para documentos editoriales.</p>
+
+<h3>Ruta sugerida</h3>
+<li>`/editorial/*`</li>
+
+<h3>Naturaleza</h3>
+<li>solo lectura</li>
+<li>desacoplada</li>
+<li>removible</li>
+<li>útil como puente antes del admin completo</li>
+
+<p>---</p>
+
+<h2>ÉPICA 4 — Módulo administrativo/editorial</h2>
+<h3>Objetivo</h3>
+<p>Construir el módulo real de administración.</p>
+
+<h3>Ruta</h3>
+<li>`/admin/editorial/*`</li>
+
+<h3>Alcance previsto</h3>
+<li>dashboard editorial</li>
+<li>listado de preguntas</li>
+<li>detalle de pregunta</li>
+<li>carga de markdown</li>
+<li>validación editorial</li>
+<li>gestión de núcleos</li>
+<li>gestión de perfiles</li>
+<li>matriz perfil ↔ núcleo</li>
+
+<h3>Condición de entrada</h3>
+<p>No empezar esta épica antes de validar Épica 1 en flujo real.</p>
+
+<p>---</p>
+
+<h2>6. Riesgos consolidados</h2>
+
+<h3>Riesgo 1 — dualidad editorial</h3>
+<p>Seguir usando `is_published` en queries o lógica nueva puede dejar contradicciones con `status`.</p>
+
+<h3>Riesgo 2 — drift entre perfil y onboarding</h3>
+<p>Si onboarding no captura bien `professional_profile_id`, la segmentación queda incompleta.</p>
+
+<h3>Riesgo 3 — clasificación pobre en backfill</h3>
+<p>El núcleo `legacy-general` sirve como transición, pero no debe quedarse como clasificación final del banco.</p>
+
+<h3>Riesgo 4 — endurecer RLS demasiado pronto</h3>
+<p>La elegibilidad completa por perfil/núcleo puede residir primero en el service layer; endurecer toda la lógica en RLS se debe hacer con evidencia y pruebas.</p>
+
+<h3>Riesgo 5 — empezar admin demasiado pronto</h3>
+<p>Construir UI de administración antes de validar la segmentación real aumentaría el retrabajo.</p>
+
+<p>---</p>
+
+<h2>7. Siguiente orden recomendado</h2>
+
+<h3>Paso inmediato 1</h3>
+<p>Aplicar y validar en entorno de DB real:</p>
+<li>`0006_profiles_nuclei_editorial_base.sql`</li>
+<li>`0007_backfill_profiles_nuclei.sql`</li>
+
+<h3>Paso inmediato 2</h3>
+<p>Verificar gate operativo:</p>
+<pre><code>
+select count(*)
+from public.item_bank
+where status = &#x27;published&#x27;
+  and thematic_nucleus_id is null;
+</code></pre>
+<p>Resultado esperado:</p>
+<li>`0`</li>
+
+<h3>Paso inmediato 3</h3>
+<p>Probar flujo real de práctica:</p>
+<li>iniciar sesión</li>
+<li>responder</li>
+<li>avanzar</li>
+<li>verificar continuidad de selección</li>
+
+<h3>Paso inmediato 4</h3>
+<p>Diseñar/ajustar onboarding para `professional_profile_id`</p>
+
+<h3>Paso inmediato 5</h3>
+<p>Solo después: avanzar a `/editorial/*` o `/admin/editorial/*`</p>
+
+<p>---</p>
+
+<h2>8. Decisión consolidada final</h2>
+
+<p>La evolución correcta del sistema es:</p>
+<p>1. introducir segmentación por perfil profesional y núcleo temático</p>
+<p>2. mantener la adaptatividad sobre `area` y `competency`</p>
+<p>3. validar la segmentación en flujo real antes de construir el módulo admin</p>
+<p>4. construir luego el módulo editorial/admin sobre una base ya estable</p>
+
+<p>---</p>
+
+<h2>9. Archivos principales relacionados</h2>
+
+<h3>Arquitectura</h3>
+<li>`docs/architecture/editorial-admin-implementation-plan.md`</li>
+<li>`docs/architecture/editorial-admin-consolidated-plan.md`</li>
+<li>`docs/architecture/editorial-module-plan.md`</li>
+
+<h3>Migraciones</h3>
+<li>`supabase/migrations/0006_profiles_nuclei_editorial_base.sql`</li>
+<li>`supabase/migrations/0007_backfill_profiles_nuclei.sql`</li>
+
+<h3>Lógica</h3>
+<li>`src/domain/item-selection/select-next-item.ts`</li>
+<li>`src/app/api/session/start/route.ts`</li>
+<li>`src/app/api/session/advance/route.ts`</li>
+
+<p>---</p>
+
+<h2>10. Resumen ejecutivo</h2>
+
+<h3>0006</h3>
+<p>Define la base estructural de segmentación y editorial.</p>
+
+<h3>0007</h3>
+<p>Hace el backfill mínimo y evita limbo de preguntas publicadas.</p>
+
+<h3>selectNextItem</h3>
+<p>Ya separa elegibilidad (perfil/núcleo/estado) de adaptatividad (área/competencia).</p>
+
+<h3>Próximo foco</h3>
+<p>Aplicar migraciones, validar práctica real y luego ajustar onboarding.</p>
+</main>
+</body>
+</html>

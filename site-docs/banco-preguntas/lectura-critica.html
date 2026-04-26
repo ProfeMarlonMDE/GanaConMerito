@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>lectura-critica</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.839987Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+
+<p>---</p>
+<p>id: item-doc-021</p>
+<p>slug: lectura-critica-proposito-comunicativo-001</p>
+<p>title: Caricatura de Mafalda</p>
+<p>area: lectura_critica</p>
+<p>subarea: proposito_comunicativo</p>
+<p>examType: docente</p>
+<p>competency: inferencia</p>
+<p>difficulty: 0.20</p>
+<p>targetLevel: basico</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>Se presentó una caricatura estilo Mafalda donde aparece una niña diciendo con ironía &quot;Hoy aprendí a quedarme callada para no molestar a los adultos&quot;, mientras un adulto mira su celular con indiferencia y en la pizarra se lee &quot;clase de ciudadanía participativa&quot;. ¿Cuál es el mensaje central de la caricatura respecto a la práctica educativa?</p>
+
+<p>#### Opciones</p>
+<p>* A. Legitima el silencio y la obediencia como virtudes necesarias para mantener el orden y el respeto en el aula facilitando la labor pedagógica de los adultos.</p>
+<p>* B. Describe la situación escolar de manera literal sin evidenciar contradicciones entre la teoría y la interacción en el aula.</p>
+<p>* C. Critica cómo se promueve la participación estudiantil en el discurso pero en la práctica se invisibiliza la voz de niños y niñas.</p>
+<p>* D. Sugiere que la integración de la tecnología en el aula mejora el comportamiento ciudadano de los estudiantes de primaria.</p>
+
+<p>---</p>
+
+<h3>Pregunta 2: Lectura de informe de la realidad institucional</h3>
+
+<p>---</p>
+<p>id: item-doc-022</p>
+<p>slug: lectura-critica-analisis-argumentativo-001</p>
+<p>title: Lectura de informe de la realidad institucional</p>
+<p>area: lectura_critica</p>
+<p>subarea: analisis_argumentativo</p>
+<p>examType: docente</p>
+<p>competency: evaluacion_de_informacion</p>
+<p>difficulty: 0.30</p>
+<p>targetLevel: basico</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>Un informe sobre el propósito de las políticas educativas señala que el Ministerio pretende garantizar cobertura, acceso y educación de calidad. Por otro lado, en un centro educativo rural se evidencian problemáticas como infraestructura deficiente, geografía de difícil acceso, población dispersa y violencia. Al hacer una lectura crítica del informe y de la realidad de su institución, el docente:</p>
+
+<p>#### Opciones</p>
+<p>* A. Establece una relación de contrastes porque no hay coherencia entre el discurso de las políticas educativas y la realidad de la institución.</p>
+<p>* B. Evidencia una relación de complementaridad porque las políticas educativas son acordes con la realidad y suplen las necesidades de la institución.</p>
+<p>* C. Infiere una relación de causa efecto porque las políticas educativas guían y aportan a la construcción de la calidad de la institución.</p>
+<p>* D. Identifica una relación de subordinación asumiendo que el contexto rural debe ajustarse obligatoriamente a los lineamientos nacionales sin cuestionarlos.</p>
+
+<p>---</p>
+
+<h3>Pregunta 3: Análisis de crónica periodística local</h3>
+
+<p>---</p>
+<p>id: item-doc-023</p>
+<p>slug: lectura-critica-interpretacion-textual-001</p>
+<p>title: Análisis de crónica periodística local</p>
+<p>area: lectura_critica</p>
+<p>subarea: interpretacion_textual</p>
+<p>examType: docente</p>
+<p>competency: comprension_local</p>
+<p>difficulty: 0.50</p>
+<p>targetLevel: intermedio</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>El docente Rubén Ayala trabajó con una crónica sobre el humedal Juan Amarillo. El texto incluía expresiones regionales, referencias a costumbres locales y vocabulario técnico. Él intentó mejorar su práctica integrando una lectura que comprendiera a profundidad el significado de los elementos culturales y geográficos. ¿Qué acción evidencia que el docente entiende el significado de los elementos locales presentes en el texto informativo sobre territorio?</p>
+
+<p>#### Opciones</p>
+<p>* A. Analizar expresiones culturales del texto estableciendo relaciones con prácticas sociales reales que fortalezcan la comprensión del mensaje propuesto por el autor.</p>
+<p>* B. Identificar información principal del texto considerando algunas expresiones regionales que aparecen sin vincularlas directamente con el enfoque ambiental propuesto.</p>
+<p>* C. Extraer fragmentos significativos del texto local y describir el vocabulario usado sin interpretar el sentido que tiene en su contexto geográfico.</p>
+<p>* D. Reemplazar los términos locales por vocabulario técnico estandarizado para asegurar una comprensión homogénea por parte de todos los estudiantes.</p>
+
+<p>---</p>
+
+<h3>Pregunta 4: Voces en texto argumentativo</h3>
+
+<p>---</p>
+<p>id: item-doc-024</p>
+<p>slug: lectura-critica-estructura-textual-001</p>
+<p>title: Voces en texto argumentativo</p>
+<p>area: lectura_critica</p>
+<p>subarea: estructura_textual</p>
+<p>examType: docente</p>
+<p>competency: interpretacion_textual</p>
+<p>difficulty: 0.60</p>
+<p>targetLevel: intermedio</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>La docente Lina Herrera analizó un artículo de opinión sobre la participación juvenil en protestas sociales que incluía la voz del autor, declaraciones de líderes estudiantiles y citas de encuestas ciudadanas. Lina decidió enfocarse en identificar y caracterizar estas voces. ¿Qué acción demuestra que un docente identifica y caracteriza adecuadamente las voces presentes en un texto argumentativo?</p>
+
+<p>#### Opciones</p>
+<p>* A. Comparar cada perspectiva del texto reconociendo quién la emite cómo se construye y qué función cumple en el argumento del autor.</p>
+<p>* B. Subrayar expresiones relevantes y señalar si pertenecen a un autor o hacen parte del cuerpo estructural general del texto leído.</p>
+<p>* C. Enumerar frases destacadas del texto relacionándolas con palabras clave sin explicar el tipo de voz ni su propósito discursivo.</p>
+<p>* D. Sintetizar todas las declaraciones en una sola postura general para facilitar la lectura fluida y la asimilación rápida del artículo.</p>
+
+<p>---</p>
+
+<h3>Pregunta 5: Texto técnico sobre salud pública escolar</h3>
+
+<p>---</p>
+<p>id: item-doc-025</p>
+<p>slug: lectura-critica-analisis-argumentativo-002</p>
+<p>title: Texto técnico sobre salud pública escolar</p>
+<p>area: lectura_critica</p>
+<p>subarea: analisis_argumentativo</p>
+<p>examType: docente</p>
+<p>competency: evaluacion_de_informacion</p>
+<p>difficulty: 0.80</p>
+<p>targetLevel: avanzado</p>
+<p>itemType: multiple_choice</p>
+<p>normativeRefs: []</p>
+<p>published: true</p>
+<p>version: 1</p>
+<p>---</p>
+
+<p>#### Enunciado</p>
+<p>La docente Andrea analizó el informe &quot;Transformaciones urbanas y su impacto en la salud pública escolar&quot;, que contenía datos locales de su municipio (Ocaña). Al socializarlo, notó que sus colegas discutían el documento sin conexiones con su realidad. Ella propuso contextualizar adecuadamente el texto. ¿Cuál de las siguientes acciones evidencia que el docente contextualiza adecuadamente la información contenida en el texto técnico sobre salud pública escolar?</p>
+
+<p>#### Opciones</p>
+<p>* A. Relacionar los datos del texto con situaciones reales de la institución construyendo conexiones críticas entre el contenido y su experiencia profesional local.</p>
+<p>* B. Identificar ideas relevantes del texto y vincularlas a fenómenos educativos similares presentes en otros entornos escolares de características semejantes.</p>
+<p>* C. Reconocer los conceptos principales del texto explicando cómo podrían aplicarse en instituciones que enfrentan retos generales en temas de salud educativa.</p>
+<p>* D. Memorizar las cifras presentadas en el documento para utilizarlas posteriormente como evidencia irrefutable en las evaluaciones estandarizadas.</p>
+</main>
+</body>
+</html>

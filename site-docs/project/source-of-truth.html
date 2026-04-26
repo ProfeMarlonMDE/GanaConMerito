@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>source-of-truth</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.864480Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Source of Truth — GanaConMerito</h1>
+
+<h2>Objetivo</h2>
+<p>Definir con claridad cuál es la fuente de verdad en cada capa del proyecto para evitar pérdida de trabajo, divergencia entre entornos y despliegues confusos.</p>
+
+<p>---</p>
+
+<h2>1. Fuente de verdad por categoría</h2>
+
+<h3>Arquitectura, decisiones y planes de producto</h3>
+<p>**Fuente de verdad:**</p>
+<li>`docs/architecture/*`</li>
+<li>`docs/project/*`</li>
+<li>`docs/project/reference/*`</li>
+<li>`docs/banco-preguntas/*`</li>
+<li>`content/*`</li>
+<li>`sql/*`</li>
+
+<h3>Código canónico de producto</h3>
+<p>**Fuente de verdad:**</p>
+<li>branch `master`</li>
+<li>worktree `/home/ubuntu/.openclaw/product`</li>
+<li>GitHub (`ProfeMarlonMDE/GanaConMerito`)</li>
+
+<h3>Agencia, operación y memoria</h3>
+<p>**Fuente de verdad:**</p>
+<li>branch `openclaw-workspace`</li>
+<li>worktree `/home/ubuntu/.openclaw/workspace`</li>
+<li>documentación operativa de agencia</li>
+<li>memoria y prompts de orquestación</li>
+
+<h3>Repo de aplicación en VPS</h3>
+<p>**Fuente de verdad operativa de código en este host:**</p>
+<li>`/opt/gcm/app`</li>
+
+<h3>Despliegue operativo</h3>
+<p>**Fuente de verdad de runtime/despliegue:**</p>
+<li>`/opt/gcm/docker-compose.yml`</li>
+<li>contenedores Docker activos en este host</li>
+
+<h3>Estado del servidor real</h3>
+<p>**Fuente de verdad de infraestructura:**</p>
+<li>VPS real</li>
+<li>systemd</li>
+<li>nginx</li>
+<li>Supabase remota</li>
+
+<p>---</p>
+
+<h2>2. Regla principal</h2>
+<p>Separación obligatoria de dominios:</p>
+<li>`master` y `/home/ubuntu/.openclaw/product` son dominio de producto.</li>
+<li>`openclaw-workspace` y `/home/ubuntu/.openclaw/workspace` son dominio de agencia, operación, memoria y orquestación.</li>
+<li>El workspace de agencia no es entorno válido para persistir cambios canónicos de producto.</li>
+<li>Ningún cambio de producto debe considerarse terminado si no queda consolidado en `master`.</li>
+<li>Ningún documento operativo de agencia debe tratarse como source of truth de producto, salvo que apunte explícitamente al artefacto canónico en `master`.</li>
+
+<p>Nada importante debe quedarse únicamente en:</p>
+<li>Telegram</li>
+<li>`/opt/gcm/app`</li>
+<li>contenedores/runtimes activos no consolidados en Git</li>
+
+<p>Todo cambio serio debe terminar en:</p>
+<p>1. commit limpio</p>
+<p>2. respaldo en GitHub</p>
+<p>3. despliegue validado</p>
+
+<p>---</p>
+
+<h2>3. Realidad actual del proyecto</h2>
+<p>Actualmente existen varios centros de trabajo:</p>
+<li>Telegram / control UI (dirección y coordinación)</li>
+<li>consola con acceso al VPS (ejecución)</li>
+<li>workspace OpenClaw en `/home/ubuntu/.openclaw/workspace` (agencia, docs operativos, memoria, prompts y trazabilidad)</li>
+<li>worktree de producto en `/home/ubuntu/.openclaw/product` (desarrollo y versionado local de producto)</li>
+<li>GitHub (respaldo/versionado canónico)</li>
+<li>repo de aplicación en `/opt/gcm/app` (código vivo en este host)</li>
+<li>stack Docker gobernado por `/opt/gcm/docker-compose.yml` (runtime real)</li>
+
+<p>Esto obliga a mantener una disciplina explícita para no perder cambios.</p>
+
+<p>---</p>
+
+<h2>4. Regla en caso de divergencia</h2>
+
+<h3>Si workspace y VPS difieren</h3>
+<li>priorizar estabilizar producción</li>
+<li>documentar diferencia</li>
+<li>consolidar en repo canónico</li>
+
+<h3>Si VPS tiene cambios que GitHub no tiene</h3>
+<li>extraer cambios</li>
+<li>hacer commit limpio</li>
+<li>subir a GitHub lo antes posible</li>
+
+<h3>Si GitHub difiere de producción</h3>
+<li>identificar si producción está adelantada o atrasada</li>
+<li>nunca asumir que GitHub refleja producción sin verificar</li>
+
+<p>---</p>
+
+<h2>5. Decisión estratégica</h2>
+<p>La meta operativa estable debe ser:</p>
+<li>**`master` + `/home/ubuntu/.openclaw/product` + GitHub = dominio canónico de producto**</li>
+<li>**`openclaw-workspace` + `/home/ubuntu/.openclaw/workspace` = dominio canónico de agencia, memoria y documentación operativa**</li>
+<li>**`/opt/gcm/app` = copia de despliegue del código de aplicación en el VPS**</li>
+<li>**`/opt/gcm/docker-compose.yml` = orquestación del runtime en este host**</li>
+<li>**VPS = ejecución**</li>
+<li>**Telegram / control UI = dirección técnica**</li>
+
+<p>Regla específica para banco de preguntas:</p>
+<li>contenido canónico, arquitectura, roadmap y esquemas de ingestión pertenecen a producto (`master`).</li>
+<li>prompts, índices operativos, trazabilidad de sesiones y contexto de agencia pertenecen a `openclaw-workspace`.</li>
+
+<p>---</p>
+
+<h2>6. Regla práctica</h2>
+<p>Cada tarea debe responder estas preguntas:</p>
+<li>¿Dónde se diseña?</li>
+<li>¿Dónde se implementa?</li>
+<li>¿Dónde se versiona?</li>
+<li>¿Dónde se despliega?</li>
+<li>¿Dónde se valida?</li>
+
+<p>Si una tarea no puede responder eso, está desordenada.</p>
+</main>
+</body>
+</html>

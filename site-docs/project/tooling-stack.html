@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>tooling-stack</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-04-23T02:55:52.866625Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/editorial-admin-consolidated-plan.html">architecture/editorial-admin-consolidated-plan.md</a></li><li><a href="architecture/editorial-admin-implementation-plan.html">architecture/editorial-admin-implementation-plan.md</a></li><li><a href="architecture/editorial-library-temporary-web-module.html">architecture/editorial-library-temporary-web-module.md</a></li><li><a href="architecture/editorial-module-plan.html">architecture/editorial-module-plan.md</a></li><li><a href="architecture/editorial-runtime-paths-fix.html">architecture/editorial-runtime-paths-fix.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/audit-brief-editorial-segmentation.html">project/audit-brief-editorial-segmentation.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="question-bank-implementation-roadmap.html">question-bank-implementation-roadmap.md</a></li><li><a href="question-bank-technical-architecture.html">question-bank-technical-architecture.md</a></li><li><a href="temp/inbox/content/audit-definitiva-gemini-pro.html">temp/inbox/content/audit-definitiva-gemini-pro.md</a></li><li><a href="temp/inbox/misc/antigravity-pc.html">temp/inbox/misc/antigravity-pc.md</a></li><li><a href="temp/inbox/misc/claude-sonet.html">temp/inbox/misc/claude-sonet.md</a></li><li><a href="temp/inbox/misc/claude.html">temp/inbox/misc/claude.md</a></li><li><a href="temp/inbox/misc/codex-pc.html">temp/inbox/misc/codex-pc.md</a></li><li><a href="temp/inbox/misc/gemini-pc.html">temp/inbox/misc/gemini-pc.md</a></li><li><a href="temp/inbox/project/audit-brief-editorial-segmentation.html">temp/inbox/project/audit-brief-editorial-segmentation.md</a></li><li><a href="temp/inbox/project/dominios.html">temp/inbox/project/dominios.md</a></li></ul>
+</nav>
+<main>
+<h1>Arquitectura operativa de herramientas para el MVP</h1>
+
+<h2>Objetivo</h2>
+
+<p>Definir el stack operativo mínimo y pertinente para construir, probar, asegurar y evolucionar el MVP sin sobrecargarlo de herramientas prematuras.</p>
+
+<p>---</p>
+
+<h2>Principio rector</h2>
+
+<p>Configurar pocas herramientas, pero de alto impacto.</p>
+
+<p>Criterios de selección:</p>
+<li>impacto directo sobre el MVP</li>
+<li>bajo costo de integración</li>
+<li>alta utilidad para desarrollo y validación</li>
+<li>compatibilidad con Next.js + Supabase + contenido Markdown</li>
+<li>capacidad de escalar sin rediseño temprano</li>
+
+<p>---</p>
+
+<h2>Resumen ejecutivo</h2>
+
+<h3>Núcleo recomendado ahora</h3>
+<p>1. GitHub</p>
+<p>2. Supabase</p>
+<p>3. Un proveedor LLM principal</p>
+<p>4. Un proveedor LLM secundario de respaldo</p>
+<p>5. GitHub Actions básica</p>
+
+<h3>Muy pertinente después del núcleo</h3>
+<p>6. MCP GitHub</p>
+<p>7. MCP Postgres/Supabase</p>
+<p>8. MCP navegador</p>
+<p>9. Docker para despliegue reproducible</p>
+
+<h3>No priorizar todavía</h3>
+<li>multimodalidad/voz</li>
+<li>observabilidad enterprise</li>
+<li>varios motores LLM activos al mismo tiempo</li>
+<li>paneles administrativos complejos</li>
+<li>pipelines avanzados de analítica</li>
+
+<p>---</p>
+
+<h1>1. Herramientas núcleo</h1>
+
+<h2>1.1 GitHub</h2>
+
+<h3>Propósito</h3>
+<p>Repositorio fuente, versionado, ramas, tags, historial técnico y base futura para CI/CD.</p>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Muy alta.</p>
+
+<h3>Uso previsto</h3>
+<li>repositorio principal del MVP</li>
+<li>commits semánticos</li>
+<li>versionado por tags</li>
+<li>control del progreso técnico</li>
+<li>futuras PRs, issues y releases</li>
+
+<h3>Configuración mínima</h3>
+<li>repositorio activo</li>
+<li>acceso SSH estable</li>
+<li>convención de commits</li>
+<li>tags semánticos</li>
+
+<h3>Riesgo si no se configura bien</h3>
+<li>pérdida de trazabilidad</li>
+<li>malas prácticas de versionado</li>
+<li>dificultad para auditar cambios</li>
+
+<p>---</p>
+
+<h2>1.2 Supabase</h2>
+
+<h3>Propósito</h3>
+<p>Base transaccional y de autenticación del MVP.</p>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Crítica.</p>
+
+<h3>Uso previsto</h3>
+<li>Auth con Google</li>
+<li>PostgreSQL</li>
+<li>RLS</li>
+<li>persistencia de perfiles, sesiones, evaluaciones y snapshots</li>
+<li>storage opcional para assets</li>
+
+<h3>Configuración mínima</h3>
+<li>proyecto Supabase</li>
+<li>variables de entorno</li>
+<li>Google Auth habilitado</li>
+<li>ejecución de migraciones</li>
+<li>seed inicial</li>
+
+<h3>Riesgo si no se configura bien</h3>
+<li>auth rota</li>
+<li>acceso inseguro a datos</li>
+<li>incoherencia entre backend y modelo real</li>
+
+<p>---</p>
+
+<h2>1.3 Proveedor LLM principal</h2>
+
+<h3>Propósito</h3>
+<p>Soportar:</p>
+<li>Tutor Guía</li>
+<li>evaluación cualitativa</li>
+<li>feedback</li>
+<li>remediación</li>
+<li>compresión de memoria</li>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Crítica.</p>
+
+<h3>Recomendación</h3>
+<p>Elegir uno solo como principal al inicio.</p>
+
+<h3>Criterios de elección</h3>
+<li>calidad en español</li>
+<li>costo razonable</li>
+<li>latencia aceptable</li>
+<li>buen soporte de output estructurado</li>
+<li>estabilidad de API</li>
+
+<h3>Riesgo si se configuran varios desde el día 1</h3>
+<li>complejidad innecesaria</li>
+<li>resultados inconsistentes</li>
+<li>mayor costo de integración</li>
+<li>más superficie de error</li>
+
+<p>---</p>
+
+<h2>1.4 Proveedor LLM secundario</h2>
+
+<h3>Propósito</h3>
+<p>Respaldo operativo y comparación de calidad.</p>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Alta, pero secundaria.</p>
+
+<h3>Uso previsto</h3>
+<li>fallback ante caída del proveedor principal</li>
+<li>pruebas comparativas de calidad</li>
+<li>validación de prompts críticos</li>
+
+<h3>Recomendación</h3>
+<p>Mantenerlo desacoplado y no usarlo como motor principal del flujo mientras no sea necesario.</p>
+
+<p>---</p>
+
+<h2>1.5 GitHub Actions básica</h2>
+
+<h3>Propósito</h3>
+<p>Automatizar validaciones mínimas del repositorio.</p>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Alta.</p>
+
+<h3>Pipeline inicial recomendado</h3>
+<li>install</li>
+<li>lint</li>
+<li>typecheck</li>
+<li>build</li>
+
+<h3>Fase sugerida</h3>
+<p>Temprana, después de estabilizar estructura base del repo.</p>
+
+<h3>Riesgo de postergarla demasiado</h3>
+<li>se acumulan errores simples</li>
+<li>baja confianza en cada avance</li>
+<li>integración más costosa después</li>
+
+<p>---</p>
+
+<h1>2. MCP / integraciones muy pertinentes</h1>
+
+<h2>2.1 MCP GitHub</h2>
+
+<h3>Propósito</h3>
+<p>Interacción estructurada con el repositorio y el flujo de trabajo.</p>
+
+<h3>Aporta valor en</h3>
+<li>issues</li>
+<li>PRs</li>
+<li>revisión de cambios</li>
+<li>consulta de historial</li>
+<li>release notes</li>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Alta.</p>
+
+<h3>Momento recomendado</h3>
+<p>Después de estabilizar la base documental y los primeros bloques de implementación.</p>
+
+<p>---</p>
+
+<h2>2.2 MCP Postgres/Supabase</h2>
+
+<h3>Propósito</h3>
+<p>Inspección y validación directa del estado real de datos.</p>
+
+<h3>Aporta valor en</h3>
+<li>revisar tablas</li>
+<li>comprobar inserts</li>
+<li>depurar RLS</li>
+<li>validar sesiones</li>
+<li>revisar estadísticas y snapshots</li>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Muy alta.</p>
+
+<h3>Motivo</h3>
+<p>La aplicación depende fuertemente de reglas, estados y persistencia. Este MCP reduce fricción de diagnóstico.</p>
+
+<h3>Momento recomendado</h3>
+<p>Cuando se conecte backend real con Supabase.</p>
+
+<p>---</p>
+
+<h2>2.3 MCP navegador</h2>
+
+<h3>Propósito</h3>
+<p>Probar flujos reales de UI y PWA.</p>
+
+<h3>Aporta valor en</h3>
+<li>onboarding</li>
+<li>login</li>
+<li>práctica</li>
+<li>dashboard</li>
+<li>validación de PWA</li>
+<li>revisión de errores visibles</li>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Alta.</p>
+
+<h3>Momento recomendado</h3>
+<p>Cuando ya exista frontend funcional con auth y rutas reales.</p>
+
+<p>---</p>
+
+<h1>3. Infraestructura y despliegue</h1>
+
+<h2>3.1 Docker</h2>
+
+<h3>Propósito</h3>
+<p>Empaquetado reproducible del proyecto.</p>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Alta.</p>
+
+<h3>Uso previsto</h3>
+<li>contenedor de Next.js</li>
+<li>reverse proxy si aplica</li>
+<li>despliegue en OCI ARM64</li>
+
+<h3>Momento recomendado</h3>
+<p>Temprano, pero después de estabilizar la base backend mínima.</p>
+
+<p>---</p>
+
+<h2>3.2 Reverse proxy (Caddy o Nginx)</h2>
+
+<h3>Propósito</h3>
+<p>HTTPS, enrutamiento y capa pública del servicio.</p>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Media-alta.</p>
+
+<h3>Uso previsto</h3>
+<li>exponer la app</li>
+<li>servir PWA correctamente</li>
+<li>facilitar despliegue seguro</li>
+
+<h3>Momento recomendado</h3>
+<p>Antes de exponer entorno real de prueba.</p>
+
+<p>---</p>
+
+<h2>3.3 Skill `healthcheck`</h2>
+
+<h3>Propósito</h3>
+<p>Endurecimiento del host y revisión de postura de seguridad.</p>
+
+<h3>Pertinencia para este proyecto</h3>
+<p>Alta si el MVP se desplegará en una VM pública.</p>
+
+<h3>Aporta valor en</h3>
+<li>firewall</li>
+<li>SSH</li>
+<li>actualizaciones</li>
+<li>exposición del host</li>
+<li>riesgo operacional</li>
+
+<h3>Momento recomendado</h3>
+<p>Antes o durante la preparación del entorno de despliegue.</p>
+
+<p>---</p>
+
+<h1>4. Herramientas y capacidades útiles, pero no primeras</h1>
+
+<h2>4.1 MCP filesystem / gestión avanzada de archivos</h2>
+
+<h3>Pertinencia</h3>
+<p>Alta por el uso intensivo de Markdown.</p>
+
+<h3>Motivo</h3>
+<p>El banco de preguntas será canónico en archivos, así que herramientas de manejo, validación y organización de lotes serán muy útiles.</p>
+
+<h3>Momento recomendado</h3>
+<p>Cuando empiece carga real de contenido a escala.</p>
+
+<p>---</p>
+
+<h2>4.2 Skill `skill-creator`</h2>
+
+<h3>Pertinencia</h3>
+<p>Media-alta.</p>
+
+<h3>Motivo</h3>
+<p>Puede servir para encapsular tareas repetitivas en skills, por ejemplo:</p>
+<li>auditar contenido Markdown</li>
+<li>validar migraciones Supabase</li>
+<li>revisar contratos API</li>
+<li>generar estructuras de ítems</li>
+
+<h3>Momento recomendado</h3>
+<p>Cuando ya existan flujos repetibles que valga la pena formalizar.</p>
+
+<p>---</p>
+
+<h1>5. Lo que no conviene priorizar todavía</h1>
+
+<h2>5.1 Voz / multimodalidad</h2>
+
+<h3>Motivo</h3>
+<p>No afecta el núcleo del MVP.</p>
+
+<h3>Riesgo</h3>
+<p>Distrae del flujo pedagógico y del backend real.</p>
+
+<p>---</p>
+
+<h2>5.2 Observabilidad enterprise</h2>
+
+<h3>Motivo</h3>
+<p>Prematura para esta etapa.</p>
+
+<h3>Riesgo</h3>
+<p>Sobrecarga operacional sin valor temprano suficiente.</p>
+
+<p>---</p>
+
+<h2>5.3 Multiproveedor LLM activo en producción desde el inicio</h2>
+
+<h3>Motivo</h3>
+<p>Aumenta complejidad antes de tener métricas claras.</p>
+
+<h3>Riesgo</h3>
+<p>Inconsistencia funcional y aumento de costos.</p>
+
+<p>---</p>
+
+<h2>5.4 Admin visual complejo</h2>
+
+<h3>Motivo</h3>
+<p>El MVP solo necesita carga, validación y listado básico.</p>
+
+<h3>Riesgo</h3>
+<p>Inversión en interfaz antes de validar el flujo central.</p>
+
+<p>---</p>
+
+<h1>6. Orden recomendado de configuración</h1>
+
+<h2>Fase 1 — obligatoria</h2>
+<p>1. GitHub</p>
+<p>2. Supabase</p>
+<p>3. Auth Google en Supabase</p>
+<p>4. proveedor LLM principal</p>
+<p>5. proveedor LLM secundario de respaldo</p>
+
+<h2>Fase 2 — desarrollo controlado</h2>
+<p>6. GitHub Actions básica</p>
+<p>7. Docker</p>
+<p>8. MCP GitHub</p>
+
+<h2>Fase 3 — validación e integración</h2>
+<p>9. MCP Postgres/Supabase</p>
+<p>10. MCP navegador</p>
+<p>11. hardening del host con `healthcheck`</p>
+
+<h2>Fase 4 — optimización posterior</h2>
+<p>12. skills específicas del proyecto</p>
+<p>13. herramientas de observabilidad más ricas</p>
+<p>14. automatizaciones editoriales avanzadas</p>
+
+<p>---</p>
+
+<h1>7. Recomendación operativa final</h1>
+
+<p>Si se busca máximo impacto con mínima complejidad, el stack operativo prioritario para este MVP debe ser:</p>
+
+<li>GitHub</li>
+<li>Supabase</li>
+<li>Google Auth</li>
+<li>1 LLM principal</li>
+<li>1 LLM de respaldo</li>
+<li>GitHub Actions básica</li>
+<li>Docker</li>
+<li>MCP GitHub</li>
+<li>MCP Postgres/Supabase</li>
+<li>MCP navegador</li>
+
+<p>Todo lo demás debe entrar solo cuando el núcleo del producto ya esté validado.</p>
+</main>
+</body>
+</html>
