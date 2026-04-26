@@ -169,6 +169,11 @@ Qué conviene hacer ahora.
 
 ---
 
+## Relación con el runbook operativo
+Este protocolo define principios y reglas.
+La ejecución operativa resumida del día a día vive en `GAUSS-RUNBOOK.md`.
+La foto ejecutiva del sistema vivo vive en `AGENCY-STATUS.md`.
+
 ## Regla final
 
 Si una delegación no deja más claridad, más control o menos riesgo que resolver directo, fue una mala delegación.

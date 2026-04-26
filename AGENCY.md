@@ -191,6 +191,10 @@ La agencia está funcionando bien si ocurre esto:
 - los riesgos aparecen antes de convertirse en incidente
 - las decisiones escalan solo cuando de verdad hace falta
 
+## Estado operativo vigente
+La foto ejecutiva actual de la agencia vive en `AGENCY-STATUS.md`.
+El runbook mínimo de operación de Gauss vive en `GAUSS-RUNBOOK.md`.
+
 ---
 
 ## Regla final

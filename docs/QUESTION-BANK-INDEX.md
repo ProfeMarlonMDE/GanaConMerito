@@ -1,7 +1,13 @@
 # QUESTION-BANK-INDEX
 
 ## Estado general
-Inventario confirmado desde el repositorio remoto y mantenido como tablero operativo en el workspace de agencia.
+Fase de carga cerrada operativamente el 2026-04-26.
+
+Estado consolidado actual:
+- `27` ítems del corpus vigente cargados y verificados en Supabase.
+- `003`, `005` y `021` quedan fuera del corpus activo por dependencia visual/imagen.
+- Persisten `3` cargas legadas (`item-doc-0001` a `item-doc-0003`) coexistiendo con la numeración actual `001`–`030`.
+- La app no debe asumir continuidad numérica ni usar conteos brutos sobre `item_bank` como si todo fuera el mismo set funcional.
 
 Ruta canónica de producto:
 - `/home/ubuntu/.openclaw/product/docs/banco-preguntas`
@@ -26,12 +32,17 @@ Ruta de este documento:
 ## Tabla de control
 | archivo | área | rango_items | estado | última_capa | siguiente_acción | updated_at_utc |
 |---|---|---|---|---|---|---|
-| `product/docs/banco-preguntas/matematicas.md` | Matemáticas | 001-005 | in_review | editorial | 001, 002 y 004 reingresados y aprobados en Editorial; 003 y 005 siguen bloqueados por insumo | 2026-04-07T02:58:00Z |
-| `product/docs/banco-preguntas/pedagogia.md` | Pedagogía | 006-010 | completed | backend | consolidado; 006-010 ready_for_insert | 2026-04-07T02:39:00Z |
-| `product/docs/banco-preguntas/normatividad.md` | Normatividad | 011-015 | in_review | correction | 012 y 015 reescritos; listos para reingreso por Editorial | 2026-04-07T02:51:00Z |
-| `product/docs/banco-preguntas/gestion.md` | Gestión | 016-020 | in_review | correction | 020 reescrito; listo para reingreso por Editorial | 2026-04-07T02:52:00Z |
-| `product/docs/banco-preguntas/lectura-critica.md` | Lectura crítica | 021-025 | completed | backend | consolidado; 021-025 ready_for_insert | 2026-04-07T02:45:00Z |
-| `product/docs/banco-preguntas/ciudadanas.md` | Competencias ciudadanas | 026-030 | in_review | correction | 026 reescrito; pendiente reescritura controlada de 027 | 2026-04-07T02:53:00Z |
+| `product/docs/banco-preguntas/matematicas.md` | Matemáticas | 001-005 | completed_with_exclusions | supabase_verified | `001`, `002` y `004` activos en BD; `003` y `005` excluidos por dependencia visual | 2026-04-26T16:44:00Z |
+| `product/docs/banco-preguntas/pedagogia.md` | Pedagogía | 006-010 | completed | supabase_verified | `006`-`010` activos en BD | 2026-04-26T16:44:00Z |
+| `product/docs/banco-preguntas/normatividad.md` | Normatividad | 011-015 | completed | supabase_verified | `011`-`015` activos en BD | 2026-04-26T16:44:00Z |
+| `product/docs/banco-preguntas/gestion.md` | Gestión | 016-020 | completed | supabase_verified | `016`-`020` activos en BD; `020` corregido antes de inserción (`CIE` -> `SIEE`) | 2026-04-26T16:44:00Z |
+| `product/docs/banco-preguntas/lectura-critica.md` | Lectura crítica | 021-025 | completed_with_exclusions | supabase_verified | `022`-`025` activos en BD; `021` excluido por dependencia visual | 2026-04-26T16:44:00Z |
+| `product/docs/banco-preguntas/ciudadanas.md` | Competencias ciudadanas | 026-030 | completed | supabase_verified | `026`-`030` activos en BD | 2026-04-26T16:44:00Z |
+
+## Cierre de fase
+- La fase de carga queda cerrada con éxito operativo sobre el corpus actual útil.
+- Los excluidos `003`, `005` y `021` no son errores de carga pendientes; son exclusiones explícitas hasta contar con tratamiento de assets visuales.
+- La siguiente fase ya no es de ingestión masiva sino de endurecimiento del contrato de consumo para la app.
 
 ## Regla operativa
 - Unidad base: `2` ítems por ejecución

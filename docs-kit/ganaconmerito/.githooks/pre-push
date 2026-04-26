@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+cd "$ROOT"
+
+echo "[pre-push] Ejecutando validaciones de documentación..."
+python3 scripts/validate_docs.py
+
+changed_files="$(git diff --cached --name-only || true)"
+if [[ -z "$changed_files" ]]; then
+  changed_files="$(git diff --name-only HEAD~1..HEAD 2>/dev/null || true)"
+fi
+
+structural_pattern='(^docs/03-architecture/|^docs/03-architecture/adrs/|schema|migration|auth|permissions|jobs|queue|cache|observability)'
+if echo "$changed_files" | grep -Eiq "$structural_pattern"; then
+  if ! grep -R "^status: approved$" docs/03-architecture/adrs/*.md >/dev/null 2>&1; then
+    echo "[pre-push] ERROR: se detectaron cambios estructurales y no existe ADR aprobado. Push bloqueado."
+    exit 1
+  fi
+fi
+
+sensitive_pattern='(secret|token|key|credential|env|permission|policy)'
+if echo "$changed_files" | grep -Eiq "$sensitive_pattern"; then
+  if ! grep -Riq "human approval: approved\|approved by:" docs/06-governance docs/03-architecture/adrs 2>/dev/null; then
+    echo "[pre-push] ERROR: cambios sensibles sin rastro de aprobación humana. Push bloqueado."
+    exit 1
+  fi
+fi
+
+echo "[pre-push] OK"

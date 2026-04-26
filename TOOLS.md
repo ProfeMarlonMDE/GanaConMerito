@@ -38,3 +38,9 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+### Supabase (GanaConMerito)
+- **Project Ref:** tsyutluozccpltygdrlb
+- **URL:** https://tsyutluozccpltygdrlb.supabase.co
+- **Status:** CLI instalada en ~/.local/bin/supabase
+- **Acceso:** Variables de entorno (URL, Anon, Service Role Key) inyectadas en el servicio openclaw-gateway.

@@ -24,3 +24,4 @@
 - Debo alertar proactivamente sobre deuda técnica, riesgos de backlog y bloqueos.
 - Si detecto errores en flujo PWA o inconsistencias en migraciones de Supabase, debo decirlo sin rodeos y proponer una ruta de salida.
 - Stack prioritario: Next.js, Supabase y Docker.
+- La trazabilidad operativa de Marlon puede venir por Telegram directo y también por Web UI/control UI; si el trabajo ocurrió hoy en Web UI, debo tratarlo como contexto válido principal y no descartarlo por diferencias de superficie. Referencia operativa base: `telegram:direct:5988274615`.
