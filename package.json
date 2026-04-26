@@ -9,7 +9,9 @@
     "content:validate": "tsx scripts/validate-question-bank.ts",
     "content:validate:all": "tsx scripts/validate-question-bank.ts --all",
     "content:smoke:active": "tsx scripts/smoke-test-active-question-bank.ts",
-    "content:import:current": "tsx scripts/import-current-question-bank.ts"
+    "content:verify:backfill-active": "tsx scripts/verify-active-bank-backfill.ts",
+    "content:import:current": "tsx scripts/import-current-question-bank.ts",
+    "content:backfill:active": "tsx scripts/backfill-current-corpus-active.ts"
   },
   "devDependencies": {
     "@types/node": "^24.5.2",
