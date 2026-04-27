@@ -86,6 +86,7 @@ async function main() {
   const expectedActiveIds = expectedActiveItems.map((item) => item.contentId).sort();
   const expectedActiveSlugs = expectedActiveItems.map((item) => item.slug).sort();
   const trackedIds = [...expectedActiveIds, ...LEGACY_CONTENT_IDS, ...BLOCKED_CONTENT_IDS];
+  const expectedTrackedInView = [...expectedActiveIds, ...LEGACY_CONTENT_IDS];
 
   const { data: trackedRowsRaw, error: trackedError } = await supabase
     .from("v_item_bank_active")
@@ -168,14 +169,14 @@ async function main() {
           .join("; "),
   );
 
-  const missingTrackedRows = trackedIds.filter((contentId) => !trackedByContentId.has(contentId));
+  const missingTrackedRows = expectedTrackedInView.filter((contentId) => !trackedByContentId.has(contentId));
   pushCheck(
     checks,
     errors,
     "db-tracked-rows-present",
     missingTrackedRows.length === 0,
     missingTrackedRows.length === 0
-      ? `presentes los ${trackedIds.length} content_id rastreados`
+      ? `presentes los ${expectedTrackedInView.length} content_id esperados en la vista`
       : `faltan filas para: ${missingTrackedRows.join(", ")}`,
   );
 
@@ -195,20 +196,25 @@ async function main() {
         }).join(", "),
   );
 
-  const blockedFailures = BLOCKED_CONTENT_IDS.map((contentId) => trackedByContentId.get(contentId)).filter(
-    (row) => !row || row.read_state !== "blocked" || row.classification_bucket !== "blocked",
-  );
+  const { data: blockedRowsRaw, error: blockedRowsError } = await supabase
+    .from("item_bank")
+    .select("content_id")
+    .in("content_id", BLOCKED_CONTENT_IDS);
+
+  if (blockedRowsError) {
+    throw blockedRowsError;
+  }
+
+  const blockedRows = blockedRowsRaw ?? [];
+  const blockedPresentInDb = blockedRows.map((row) => row.content_id).sort();
   pushCheck(
     checks,
     errors,
-    "db-blocked-still-blocked",
-    blockedFailures.length === 0,
-    blockedFailures.length === 0
-      ? `blocked preservado para ${BLOCKED_CONTENT_IDS.join(", ")}`
-      : BLOCKED_CONTENT_IDS.map((contentId) => {
-          const row = trackedByContentId.get(contentId);
-          return `${contentId}=>${row ? `${row.read_state}/${row.classification_bucket ?? "null"}` : "missing"}`;
-        }).join(", "),
+    "db-blocked-still-excluded",
+    blockedPresentInDb.length === 0,
+    blockedPresentInDb.length === 0
+      ? `blocked preservado fuera de item_bank para ${BLOCKED_CONTENT_IDS.join(", ")}`
+      : `blocked presentes en item_bank: ${blockedPresentInDb.join(", ")}`,
   );
 
   const activeGateFailures = activeRows.filter(
@@ -294,6 +300,7 @@ async function main() {
       trackedCount: trackedRows.length,
       legacyIds: [...LEGACY_CONTENT_IDS],
       blockedIds: [...BLOCKED_CONTENT_IDS],
+      blockedPresentInItemBank: blockedPresentInDb,
       errorCount: errors.length,
     },
     checks,

@@ -25,7 +25,7 @@ Después del backfill, el estado correcto es este:
 
 - `27` ítems actuales en `public.v_item_bank_active` con `read_state = 'active'`
 - `item-doc-0001`, `item-doc-0002`, `item-doc-0003` siguen con `read_state = 'legacy'`
-- `item-doc-003`, `item-doc-005`, `item-doc-021` siguen con `read_state = 'blocked'`
+- `item-doc-003`, `item-doc-005`, `item-doc-021` siguen excluidos del banco activo; en el estado operativo actual no existen como filas en `item_bank`
 - no hay ítems activos extra por fuera del set actual
 - cada ítem activo mantiene `status = 'published'`, `is_active = true`, `thematic_nucleus_id is not null` y núcleo activo
 - cada ítem activo mantiene exactamente `4` opciones en `public.item_options`
@@ -86,7 +86,7 @@ Debe devolver:
 - exit code `0`
 - `summary.activeCount = 27`
 - `summary.errorCount = 0`
-- checks `db-active-set-exact`, `db-legacy-still-legacy`, `db-blocked-still-blocked` y `db-four-options-per-active` en `passed`
+- checks `db-active-set-exact`, `db-legacy-still-legacy`, `db-blocked-still-excluded` y `db-four-options-per-active` en `passed`
 
 ### 3) Gate SQL manual en Supabase
 Si hace falta validar desde SQL Editor o dejar evidencia manual:
@@ -97,10 +97,11 @@ scripts/post-backfill-active-bank-validation.sql
 ```
 
 Interpretación mínima:
-- query `summary`: `active_count = 27`, `legacy_count >= 3`, `blocked_count >= 3`
+- query `summary`: `active_count = 27`, `legacy_count >= 3`
 - query `missing_expected_active / unexpected_active`: debe volver `0 filas`
 - query de gate failures para expected active: debe volver `0 filas`
-- query de legacy/blocked: debe mostrar los 6 `content_id` con su `read_state` correcto
+- query de legacy: debe mostrar `0001..0003` con `read_state = legacy`
+- query de blocked debe confirmar que `003/005/021` no existen como filas activas ni en `item_bank`
 - query de `option_count <> 4`: debe volver `0 filas`
 - query de duplicados activos: debe volver `0 filas`
 
@@ -112,7 +113,7 @@ Se considera exitoso el backfill solo si se cumple todo:
 2. `v_item_bank_active` expone exactamente los `27` `content_id` actuales como `active`
 3. no aparece ningún `content_id` activo inesperado
 4. legacy `0001..0003` no migra accidentalmente a `active` ni `inactive`; permanece `legacy`
-5. bloqueados `003`, `005`, `021` no migran accidentalmente a `active`; permanecen `blocked`
+5. bloqueados `003`, `005`, `021` no migran accidentalmente a `active` ni reaparecen en `item_bank`
 6. cada activo conserva sus gates estructurales (`published`, `is_active`, núcleo asignado y núcleo activo)
 7. cada activo conserva sus `4` opciones
 8. no hay duplicados activos por `content_id` ni por `slug`
@@ -123,7 +124,8 @@ Se considera exitoso el backfill solo si se cumple todo:
 - faltantes o sobrantes en el set activo
 - un esperado cae en `inactive` por núcleo nulo/inactivo
 - un esperado queda `published` pero no `active`
-- un legacy o blocked cambia de `read_state`
+- un legacy cambia de `read_state`
+- un blocked reaparece en `item_bank` o entra a `active`
 - un activo queda con menos o más de `4` opciones
 - aparecen duplicados por `slug` o `content_id`
 
