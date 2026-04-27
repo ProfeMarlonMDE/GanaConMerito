@@ -2,6 +2,9 @@ node_modules/
 .next/
 out/
 coverage/
+artifacts/
+.playwright-libs/
+tmp_playwright_smoke.js
 .env
 .env.*
 !.env.example

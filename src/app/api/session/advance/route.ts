@@ -35,6 +35,14 @@ export async function POST(request: Request) {
 
   const { supabase, profile, session } = auth;
 
+  if (session.status !== "active") {
+    return NextResponse.json({ error: "Session is no longer active" }, { status: 409 });
+  }
+
+  if (["session_close", "expired", "error"].includes(session.current_state)) {
+    return NextResponse.json({ error: "Session is already closed" }, { status: 409 });
+  }
+
   const { data: learningProfile, error: learningProfileError } = await supabase
     .from("learning_profiles")
     .select("onboarding_completed, professional_profile_id")

@@ -32,8 +32,8 @@ export default async function DashboardPage() {
 
       <section>
         <h2>Competencias</h2>
-        <p>Fuertes: {summary.strongestCompetencies.join(", ") || "Sin datos"}</p>
-        <p>Por reforzar: {summary.weakestCompetencies.join(", ") || "Sin datos"}</p>
+        <p>Fuertes: {summary.strongestCompetencies.length > 0 ? summary.strongestCompetencies.join(", ") : "Sin datos suficientes"}</p>
+        <p>Por reforzar: {summary.weakestCompetencies.length > 0 ? summary.weakestCompetencies.join(", ") : "Sin datos"}</p>
       </section>
 
       <section>

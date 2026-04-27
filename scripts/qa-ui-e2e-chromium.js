@@ -1,0 +1,215 @@
+const fs = require('fs');
+const path = require('path');
+const { createBrowserClient } = require('@supabase/ssr');
+const { createClient } = require('@supabase/supabase-js');
+const { chromium } = require('playwright');
+
+const baseUrl = process.env.QA_BASE_URL || 'http://localhost:3001';
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const email = process.env.QA_E2E_EMAIL || 'gauss.qa.e2e@example.com';
+const password = process.env.QA_E2E_PASSWORD || `GaussQA!${Date.now()}`;
+const artifactRoot = path.join(process.cwd(), 'artifacts', `qa-ui-e2e-${new Date().toISOString().replace(/[:.]/g, '-')}`);
+fs.mkdirSync(artifactRoot, { recursive: true });
+
+function nowIso() { return new Date().toISOString(); }
+function save(name, data) {
+  const target = path.join(artifactRoot, name);
+  fs.writeFileSync(target, typeof data === 'string' ? data : JSON.stringify(data, null, 2));
+}
+function slug(text) {
+  return String(text).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50) || 'step';
+}
+
+async function ensureUserAndReset(admin) {
+  const usersData = await admin.auth.admin.listUsers({ page: 1, perPage: 1000 });
+  if (usersData.error) throw usersData.error;
+  let user = usersData.data.users.find(u => u.email === email);
+  if (!user) {
+    const created = await admin.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { full_name: 'Gauss QA UI E2E' } });
+    if (created.error) throw created.error;
+    user = created.data.user;
+  } else {
+    const updated = await admin.auth.admin.updateUserById(user.id, { password, email_confirm: true });
+    if (updated.error) throw updated.error;
+    user = updated.data.user;
+  }
+
+  const profileRes = await admin
+    .from('profiles')
+    .upsert({ auth_user_id: user.id, full_name: user.user_metadata?.full_name || user.email, email: user.email, avatar_url: null }, { onConflict: 'auth_user_id' })
+    .select('id')
+    .single();
+  if (profileRes.error) throw profileRes.error;
+  const profileId = profileRes.data.id;
+
+  const learningLookup = await admin.from('learning_profiles').select('id').eq('profile_id', profileId).maybeSingle();
+  if (learningLookup.error) throw learningLookup.error;
+  if (!learningLookup.data) {
+    const inserted = await admin.from('learning_profiles').insert({
+      profile_id: profileId,
+      target_role: 'docente',
+      exam_type: 'docente',
+      country_context: 'colombia',
+      preferred_feedback_style: 'socratic',
+      active_goal: 'Completar onboarding inicial',
+      active_areas: [],
+      onboarding_completed: false,
+    });
+    if (inserted.error) throw inserted.error;
+  }
+
+  const learningReset = await admin.from('learning_profiles').update({
+    target_role: 'docente',
+    exam_type: 'docente',
+    active_goal: 'Completar onboarding inicial',
+    active_areas: [],
+    preferred_feedback_style: 'socratic',
+    onboarding_completed: false,
+  }).eq('profile_id', profileId);
+  if (learningReset.error) throw learningReset.error;
+
+  const cleanupSessions = await admin.from('sessions').delete().eq('profile_id', profileId);
+  if (cleanupSessions.error) throw cleanupSessions.error;
+
+  const cleanupTopicStats = await admin.from('user_topic_stats').delete().eq('profile_id', profileId);
+  if (cleanupTopicStats.error) throw cleanupTopicStats.error;
+
+  const pp = await admin.from('professional_profiles').select('id,code,name').eq('is_active', true).order('name', { ascending: true });
+  if (pp.error) throw pp.error;
+
+  return { user, profileId, professionalProfiles: pp.data };
+}
+
+async function getAuthCookies() {
+  const jar = new Map();
+  const client = createBrowserClient(url, anonKey, {
+    cookies: {
+      getAll() { return Array.from(jar.entries()).map(([name, value]) => ({ name, value })); },
+      setAll(cookies) { for (const c of cookies) jar.set(c.name, c.value); },
+    },
+  });
+  const signed = await client.auth.signInWithPassword({ email, password });
+  if (signed.error) throw signed.error;
+  const cookieEntries = Array.from(jar.entries());
+  if (!cookieEntries.length) throw new Error('No auth cookies were produced.');
+  return cookieEntries.map(([name, value]) => ({ name, value, url: baseUrl }));
+}
+
+(async function main() {
+  const admin = createClient(url, serviceRoleKey, { auth: { autoRefreshToken: false, persistSession: false } });
+  const prep = await ensureUserAndReset(admin);
+  save('prep.json', prep);
+
+  const browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'] });
+  const context = await browser.newContext({ baseURL: baseUrl, viewport: { width: 1440, height: 1100 } });
+  await context.tracing.start({ screenshots: true, snapshots: true });
+  await context.addCookies(await getAuthCookies());
+  const page = await context.newPage();
+
+  const network = [];
+  const consoleEntries = [];
+  const pageErrors = [];
+  const turns = [];
+
+  page.on('console', (msg) => {
+    consoleEntries.push({ type: msg.type(), text: msg.text(), location: msg.location() });
+  });
+  page.on('pageerror', (err) => {
+    pageErrors.push({ message: err.message, stack: err.stack });
+  });
+  page.on('response', async (response) => {
+    const req = response.request();
+    const u = response.url();
+    if (!u.startsWith(baseUrl)) return;
+    const pathname = new URL(u).pathname;
+    if (!pathname.startsWith('/api/') && !['/home', '/onboarding', '/practice', '/dashboard', '/login'].includes(pathname)) return;
+    network.push({
+      ts: nowIso(),
+      method: req.method(),
+      url: u,
+      status: response.status(),
+      resourceType: req.resourceType(),
+    });
+  });
+
+  const result = { ok: true, artifactRoot, startedAt: nowIso(), baseUrl, turns, network, consoleEntries, pageErrors };
+
+  await page.goto('/home', { waitUntil: 'networkidle', timeout: 45000 });
+  result.home = { url: page.url(), title: await page.title() };
+  await page.screenshot({ path: path.join(artifactRoot, '01-home.png'), fullPage: true });
+  save('01-home.html', await page.content());
+
+  await page.goto('/onboarding', { waitUntil: 'networkidle', timeout: 45000 });
+  await page.getByLabel('Meta activa').fill('QA UI E2E con Chromium');
+  await page.getByRole('button', { name: 'Guardar onboarding' }).click();
+  await page.waitForURL('**/practice', { timeout: 45000 });
+  await page.screenshot({ path: path.join(artifactRoot, '02-after-onboarding.png'), fullPage: true });
+  save('02-practice-after-onboarding.html', await page.content());
+
+  await page.getByRole('button', { name: 'Iniciar práctica' }).click();
+  await page.waitForSelector('article h2', { timeout: 45000 });
+
+  for (let turn = 1; turn <= 5; turn += 1) {
+    const title = await page.locator('article h2').innerText();
+    const stateBefore = (await page.locator('text=Estado actual:').textContent()) || '';
+    await page.locator('input[type="radio"]').first().check();
+    await page.getByLabel('Justificación / razonamiento').fill(`Turno ${turn}: selección automatizada en Chromium para validar UI, red y feedback.`);
+    const responsePromise = page.waitForResponse((resp) => resp.url().includes('/api/session/advance') && resp.request().method() === 'POST', { timeout: 45000 });
+    await page.getByRole('button', { name: 'Responder' }).click();
+    const advanceResponse = await responsePromise;
+    let advanceJson = null;
+    try { advanceJson = await advanceResponse.json(); } catch {}
+    await page.waitForLoadState('networkidle');
+    const feedbackText = await page.locator('text=/Correcta:/').locator('..').textContent().catch(() => null);
+    const stateAfter = (await page.locator('text=Estado actual:').textContent()) || '';
+    const sessionMessage = await page.locator('text=/La sesión terminó correctamente|No hay un siguiente ítem disponible/').textContent().catch(() => null);
+    const shotName = `turn-${String(turn).padStart(2, '0')}-${slug(title)}.png`;
+    await page.screenshot({ path: path.join(artifactRoot, shotName), fullPage: true });
+    save(`turn-${String(turn).padStart(2, '0')}.html`, await page.content());
+    turns.push({
+      turn,
+      title,
+      stateBefore,
+      stateAfter,
+      advanceStatus: advanceResponse.status(),
+      advanceJson,
+      feedbackText,
+      sessionMessage,
+      url: page.url(),
+    });
+    if (turn < 5) {
+      await page.waitForSelector('article h2', { timeout: 45000 });
+    }
+  }
+
+  await page.goto('/dashboard', { waitUntil: 'networkidle', timeout: 45000 });
+  result.dashboard = { url: page.url(), title: await page.title(), bodyText: await page.locator('main').innerText() };
+  await page.screenshot({ path: path.join(artifactRoot, '04-dashboard.png'), fullPage: true });
+  save('04-dashboard.html', await page.content());
+
+  const profile = await admin.from('profiles').select('id').eq('auth_user_id', prep.user.id).single();
+  if (profile.error) throw profile.error;
+  const learningProfile = await admin.from('learning_profiles').select('*').eq('profile_id', profile.data.id).single();
+  const stats = await admin.from('user_topic_stats').select('*').eq('profile_id', profile.data.id);
+  const lastSession = await admin.from('sessions').select('*').eq('profile_id', profile.data.id).order('created_at', { ascending: false }).limit(1).single();
+  const dbTurns = lastSession.data ? await admin.from('session_turns').select('*').eq('session_id', lastSession.data.id).order('turn_number', { ascending: true }) : { data: null, error: null };
+  result.db = {
+    session: lastSession.data,
+    learningProfile: learningProfile.data,
+    stats: stats.data,
+    turns: dbTurns.data,
+  };
+
+  result.finishedAt = nowIso();
+  save('results.json', result);
+  await context.tracing.stop({ path: path.join(artifactRoot, 'trace.zip') });
+  await browser.close();
+  console.log(JSON.stringify({ ok: true, artifactRoot, turnCount: turns.length, sessionId: lastSession.data?.id || null }, null, 2));
+})().catch(async (error) => {
+  const payload = { ok: false, artifactRoot, error: { message: error.message, stack: error.stack } };
+  try { save('error.json', payload); } catch {}
+  console.error(JSON.stringify(payload, null, 2));
+  process.exit(1);
+});

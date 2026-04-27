@@ -1,0 +1,234 @@
+const fs = require('fs');
+const path = require('path');
+const { performance } = require('perf_hooks');
+const { createBrowserClient } = require('@supabase/ssr');
+const { createClient } = require('@supabase/supabase-js');
+
+const baseUrl = process.env.QA_BASE_URL || 'http://localhost:3001';
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const email = process.env.QA_E2E_EMAIL || 'gauss.qa.e2e@example.com';
+const password = process.env.QA_E2E_PASSWORD || `GaussQA!${Date.now()}`;
+const artifactRoot = path.join(process.cwd(), 'artifacts', `qa-e2e-${new Date().toISOString().replace(/[:.]/g, '-')}`);
+fs.mkdirSync(artifactRoot, { recursive: true });
+
+function nowIso() { return new Date().toISOString(); }
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function ensureUserAndReset(admin) {
+  const usersData = await admin.auth.admin.listUsers({ page: 1, perPage: 1000 });
+  if (usersData.error) throw usersData.error;
+  let user = usersData.data.users.find(u => u.email === email);
+  if (!user) {
+    const created = await admin.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { full_name: 'Gauss QA E2E' } });
+    if (created.error) throw created.error;
+    user = created.data.user;
+  } else {
+    const updated = await admin.auth.admin.updateUserById(user.id, { password, email_confirm: true });
+    if (updated.error) throw updated.error;
+    user = updated.data.user;
+  }
+
+  const profileRes = await admin
+    .from('profiles')
+    .upsert({ auth_user_id: user.id, full_name: user.user_metadata?.full_name || user.email, email: user.email, avatar_url: null }, { onConflict: 'auth_user_id' })
+    .select('id')
+    .single();
+  if (profileRes.error) throw profileRes.error;
+  const profileId = profileRes.data.id;
+
+  const learningLookup = await admin.from('learning_profiles').select('id').eq('profile_id', profileId).maybeSingle();
+  if (learningLookup.error) throw learningLookup.error;
+  if (!learningLookup.data) {
+    const inserted = await admin.from('learning_profiles').insert({
+      profile_id: profileId,
+      target_role: 'docente',
+      exam_type: 'docente',
+      country_context: 'colombia',
+      preferred_feedback_style: 'socratic',
+      active_goal: 'Completar onboarding inicial',
+      active_areas: [],
+      onboarding_completed: false,
+    });
+    if (inserted.error) throw inserted.error;
+  }
+
+  const learningReset = await admin.from('learning_profiles').update({
+    target_role: 'docente',
+    exam_type: 'docente',
+    active_goal: 'Completar onboarding inicial',
+    active_areas: [],
+    preferred_feedback_style: 'socratic',
+    onboarding_completed: false,
+  }).eq('profile_id', profileId);
+  if (learningReset.error) throw learningReset.error;
+
+  const cleanupSessions = await admin.from('sessions').delete().eq('profile_id', profileId);
+  if (cleanupSessions.error) throw cleanupSessions.error;
+
+  const cleanupTopicStats = await admin.from('user_topic_stats').delete().eq('profile_id', profileId);
+  if (cleanupTopicStats.error) throw cleanupTopicStats.error;
+
+  const pp = await admin.from('professional_profiles').select('id,code,name').eq('is_active', true).order('name', { ascending: true });
+  if (pp.error) throw pp.error;
+
+  return { user, profileId, professionalProfiles: pp.data };
+}
+
+async function getAuthCookie() {
+  const jar = new Map();
+  const client = createBrowserClient(url, anonKey, {
+    cookies: {
+      getAll() { return Array.from(jar.entries()).map(([name, value]) => ({ name, value })); },
+      setAll(cookies) { for (const c of cookies) jar.set(c.name, c.value); },
+    },
+  });
+  const signed = await client.auth.signInWithPassword({ email, password });
+  if (signed.error) throw signed.error;
+  const cookieEntries = Array.from(jar.entries());
+  if (!cookieEntries.length) throw new Error('No auth cookies were produced.');
+  return cookieEntries.map(([name, value]) => `${name}=${value}`).join('; ');
+}
+
+async function http({ method = 'GET', pathname, body, cookie, headers = {} }) {
+  const started = performance.now();
+  const response = await fetch(`${baseUrl}${pathname}`, {
+    method,
+    headers: {
+      ...(body ? { 'content-type': 'application/json' } : {}),
+      ...(cookie ? { cookie } : {}),
+      ...headers,
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    redirect: 'manual',
+  });
+  const elapsedMs = Number((performance.now() - started).toFixed(1));
+  const text = await response.text();
+  let json = null;
+  try { json = JSON.parse(text); } catch {}
+  return {
+    method,
+    pathname,
+    status: response.status,
+    elapsedMs,
+    headers: Object.fromEntries(response.headers.entries()),
+    body,
+    text,
+    json,
+  };
+}
+
+function save(name, data) {
+  const target = path.join(artifactRoot, name);
+  fs.writeFileSync(target, typeof data === 'string' ? data : JSON.stringify(data, null, 2));
+}
+
+(async function main() {
+  const admin = createClient(url, serviceRoleKey, { auth: { autoRefreshToken: false, persistSession: false } });
+  const meta = { startedAt: nowIso(), baseUrl, email };
+  save('meta.json', meta);
+
+  const prep = await ensureUserAndReset(admin);
+  save('prep.json', prep);
+
+  const cookie = await getAuthCookie();
+  save('auth-cookie.txt', cookie);
+
+  const results = {
+    recon: {},
+    onboardingProbe: null,
+    home: null,
+    onboardingPage: null,
+    practicePage: null,
+    turns: [],
+    dashboardPage: null,
+    dashboardApi: null,
+    db: {},
+    finishedAt: null,
+  };
+
+  results.recon.root = await http({ pathname: '/' });
+  results.home = await http({ pathname: '/home', cookie });
+  results.onboardingPage = await http({ pathname: '/onboarding', cookie });
+  save('01-home.html', results.home.text);
+  save('02-onboarding.html', results.onboardingPage.text);
+
+  const selectedProfessionalProfile = prep.professionalProfiles.find(p => p.code === 'docente-general') || prep.professionalProfiles[0];
+  results.onboardingProbe = await http({
+    method: 'POST',
+    pathname: '/api/profile/onboarding',
+    cookie,
+    body: {
+      targetRole: 'docente',
+      examType: 'docente',
+      professionalProfileId: selectedProfessionalProfile.id,
+      activeGoal: 'QA E2E 5 turnos',
+      activeAreas: [],
+      preferredFeedbackStyle: 'socratic',
+    },
+  });
+
+  results.practicePage = await http({ pathname: '/practice', cookie });
+  save('03-practice.html', results.practicePage.text);
+
+  const start = await http({ method: 'POST', pathname: '/api/session/start', cookie, body: { mode: 'practice' } });
+  if (!start.json?.sessionId) throw new Error(`Session did not start correctly: ${start.text}`);
+  results.sessionStart = start;
+  let sessionId = start.json.sessionId;
+  let currentItemId = start.json.currentItemId;
+
+  for (let turn = 1; turn <= 5; turn += 1) {
+    const itemRes = await http({ pathname: `/api/session/item?sessionId=${encodeURIComponent(sessionId)}&itemId=${encodeURIComponent(currentItemId)}`, cookie });
+    if (!itemRes.json?.id) throw new Error(`Could not load item for turn ${turn}: ${itemRes.text}`);
+    const options = itemRes.json.options || [];
+    const chosenOption = options.find(o => o.key === 'A')?.key || options[0]?.key;
+    const advanceRes = await http({
+      method: 'POST',
+      pathname: '/api/session/advance',
+      cookie,
+      body: {
+        sessionId,
+        itemId: itemRes.json.id,
+        selectedOption: chosenOption,
+        userRationale: `Turno ${turn}: selección automatizada para QA E2E con observación de feedback.`,
+        responseTimeMs: 1200 + turn * 100,
+        confidenceSelfReport: 3,
+      },
+    });
+    const snapshot = {
+      turn,
+      item: itemRes,
+      chosenOption,
+      advance: advanceRes,
+    };
+    results.turns.push(snapshot);
+    save(`turn-${String(turn).padStart(2, '0')}.json`, snapshot);
+
+    currentItemId = advanceRes.json?.nextItemId;
+    if (turn < 5 && !currentItemId) throw new Error(`Turn ${turn} did not produce next item id.`);
+    await sleep(50);
+  }
+
+  results.dashboardPage = await http({ pathname: '/dashboard', cookie });
+  results.dashboardApi = await http({ pathname: '/api/dashboard/summary', cookie });
+  save('04-dashboard.html', results.dashboardPage.text);
+
+  const profile = await admin.from('profiles').select('id').eq('auth_user_id', prep.user.id).single();
+  if (profile.error) throw profile.error;
+  const dbSession = await admin.from('sessions').select('*').eq('id', sessionId).single();
+  const dbTurns = await admin.from('session_turns').select('*').eq('session_id', sessionId).order('turn_number', { ascending: true });
+  const learningProfile = await admin.from('learning_profiles').select('*').eq('profile_id', profile.data.id).single();
+  const stats = await admin.from('user_topic_stats').select('*').eq('profile_id', profile.data.id);
+  results.db = { session: dbSession.data, turns: dbTurns.data, learningProfile: learningProfile.data, stats: stats.data };
+
+  results.finishedAt = nowIso();
+  save('results.json', results);
+
+  console.log(JSON.stringify({ ok: true, artifactRoot, sessionId, turnCount: results.turns.length }, null, 2));
+})().catch((error) => {
+  const payload = { ok: false, error: { message: error.message, stack: error.stack }, artifactRoot };
+  save('error.json', payload);
+  console.error(JSON.stringify(payload, null, 2));
+  process.exit(1);
+});
