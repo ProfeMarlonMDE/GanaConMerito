@@ -81,7 +81,7 @@ export async function POST(request: Request) {
 
   const previousState = session.current_state as SessionState;
   const shouldReview = existingTurns.length > 0 && !evaluation.remediationNeeded;
-  const isSessionEnding = existingTurns.length + 1 >= 3;
+  const isSessionEnding = existingTurns.length + 1 >= 5;
   const currentState = getNextState({
     currentState: previousState,
     onboardingCompleted: learningProfile.onboarding_completed,

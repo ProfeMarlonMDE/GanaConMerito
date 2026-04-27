@@ -4,7 +4,7 @@
 Verificar que la app puede compilar/arrancar como Next.js real y que el flujo base pueda probarse de extremo a extremo.
 
 ## Estado actual
-Bloque técnico de build/arranque cerrado. E2E autenticada mínima real ejecutada con éxito controlado.
+Bloque técnico de build/arranque cerrado. E2E autenticada mínima real ejecutada con éxito controlado. El banco operativo de práctica quedó consolidado en `27` preguntas nuevas y la sesión de práctica quedó ajustada a `5` turnos para próximas pruebas funcionales.
 
 ## Bloqueos encontrados y resueltos
 - el proyecto necesitaba consolidación como app Next real (`tsconfig.json`, `next-env.d.ts`, scripts de package.json)
@@ -45,7 +45,8 @@ Bloque técnico de build/arranque cerrado. E2E autenticada mínima real ejecutad
 ## Hallazgos funcionales de la corrida real
 - el flujo principal `login -> onboarding -> practice -> dashboard` ya funciona de extremo a extremo
 - `onboarding` permitió guardar con `Áreas activas` en blanco; esto debe decidirse como comportamiento válido de MVP o endurecerse como validación
-- la práctica llegó a estado `remediation`, pero el sistema informó que no había siguiente ítem disponible; esto no rompe la E2E mínima, pero sí limita continuidad real del producto
+- la limitación anterior de continuidad por banco quedó corregida: el runtime ya dispone de un pool curado de `27` preguntas nuevas para práctica
+- la práctica quedó configurada a `5` turnos para la siguiente validación funcional controlada
 - el dashboard respondió con métricas coherentes con la práctica recién realizada
 - se confirmó actividad real en Supabase remoto (`profiles`, `item_bank`, `user_topic_stats` y tablas asociadas)
 
@@ -53,7 +54,7 @@ Bloque técnico de build/arranque cerrado. E2E autenticada mínima real ejecutad
 Durante una auditoría externa se imprimieron secretos operativos desde el host/contenedor. Esos valores no deben volver a exponerse en salidas de diagnóstico, logs compartidos ni documentación. Corresponde rotarlos si se considera comprometido el material expuesto.
 
 ## Siguiente paso
-- actualizar `status.md` y el assessment de madurez con la nueva evidencia E2E real
+- ejecutar una E2E autenticada real de `5` turnos sobre el banco curado actual
+- actualizar `status.md` y artefactos de delivery/calidad con la nueva evidencia del sprint
 - corregir trazabilidad de despliegue para evitar `Build: unknown` / `Commit desplegado: unknown`
 - decidir si `Áreas activas` puede seguir vacío en onboarding o si debe endurecerse
-- ampliar banco de contenido o ajustar selector para evitar corte prematuro tras el primer turno

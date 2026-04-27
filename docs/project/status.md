@@ -62,11 +62,11 @@
 - onboarding endurecido al dominio realmente soportado por DB (`docente`)
 - semántica actual de evaluación declarada como `deterministic`
 
-### Contenido Markdown mínimo
-- estructura inicial `content/`
-- 3 ítems canónicos de ejemplo
-- 2 referencias normativas base
-- checklist editorial mínima
+### Banco de preguntas operativo
+- corpus curado operativo de `27` preguntas nuevas en `content/items`
+- banco activo remoto depurado para que solo esas `27` queden disponibles para runtime/práctica
+- preguntas defectuosas y legacy retiradas del repo, validadores, reportes y BD remota
+- vista y validación del banco activo alineadas al corpus curado vigente
 - script de importación de contenido: `scripts/import-content.ts`
 - persistencia atómica vía RPC SQL para `item_bank` + `item_options`
 
@@ -103,10 +103,11 @@
 
 ## Próximo trabajo recomendado
 
-1. corregir trazabilidad de despliegue para eliminar `Build: unknown` / `Commit desplegado: unknown`
+1. ejecutar una E2E autenticada real de práctica con evidencia de `5` turnos sobre el banco curado de `27` preguntas
 2. decidir y endurecer la validación de onboarding si `Áreas activas` no debe permitirse vacío
-3. ampliar banco de ítems o ajustar selector para evitar corte de práctica por ausencia de siguiente ítem
+3. corregir trazabilidad de despliegue para eliminar `Build: unknown` / `Commit desplegado: unknown`
 4. consolidar validación pública postdeploy con evidencia repetible
+5. revisar si la estrategia actual del selector de práctica debe priorizar continuidad por competencia o cobertura por área
 
 ## Remediación de auditoría en curso
 
@@ -125,6 +126,7 @@
 
 ### RA3 — Honestidad funcional y cierre de trazabilidad
 - práctica con estados borde más explícitos
+- límite de práctica ajustado de `3` a `5` turnos para pruebas funcionales de app
 - `package.json` reconciliado con versión publicada
 - `supabase/.gitignore` añadido para ignorar `.temp/`
 
@@ -140,7 +142,7 @@
 
 ## Observación importante
 
-El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada mínima real en entorno desplegado: login Google, onboarding, práctica y dashboard funcionando con persistencia observable. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue y continuidad del producto”.
+El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada mínima real en entorno desplegado: login Google, onboarding, práctica y dashboard funcionando con persistencia observable. Además, el banco de preguntas quedó consolidado en un único corpus operativo de `27` preguntas nuevas consumibles por runtime. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue y continuidad del producto”.
 
 ## Cierre de remediación de dominios y workspaces
 
@@ -159,7 +161,7 @@ Pendiente residual no bloqueante:
 
 ## Referencia de versionado operativo vigente
 - App declarada: `0.4.8`
-- App operativa: `v0.4.8-31-ga9522e6`
-- Workspace operativo relacionado: `openclaw-workspace@77d1c87`
+- Rama operativa canónica: `master`
+- Último cierre técnico validado en repo: limpieza del banco + práctica a `5` turnos + build verde
 
 Mientras no se haga un release formal nuevo, esta es la forma correcta de reportar el estado real para seguir desarrollo sin ambigüedad.

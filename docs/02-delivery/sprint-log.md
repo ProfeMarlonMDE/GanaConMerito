@@ -3,7 +3,7 @@ id: DEL-SPRINT-LOG
 name: sprint-log
 project: ganaconmerito
 owner: marlon-arcila
-status: active
+status: completed
 artifact_type: delivery
 modules: [core, platform]
 tags: [sprint, entrega, seguimiento]
@@ -11,27 +11,27 @@ related:
   - PROD-BACKLOG
   - DEL-CHANGE-LOG
   - QUAL-RISK-REGISTER
-last_reviewed: 2026-04-26
+last_reviewed: 2026-04-27
 ---
 
 # Sprint log
 
 ## Sprint actual
 - Nombre: Sprint 1 - Gobernanza mínima y baseline operable del producto
-- Estado: ACTIVO
+- Estado: CERRADO
 - Fecha de inicio: 2026-04-24
-- Fecha de cierre objetivo: 2026-05-01
+- Fecha de cierre efectiva: 2026-04-27
 - Responsable humano: Marlon Arcila
 
 ## Objetivo
-- Cerrar la gobernanza mínima del producto para que ningún cambio estructural, documental o de delivery siga dependiendo de memoria informal.
+- Cerrar la gobernanza mínima del producto y dejar una base operable con runtime, banco activo y trazabilidad suficiente para continuar pruebas funcionales reales.
 
 ## Outcome esperado
 - ADR-001 aprobado.
 - Owners humanos mínimos asignados.
 - Backlog priorizado en formato ejecutable.
 - Sprint log formalizado.
-- Legado documental clasificado por lotes.
+- Banco activo consolidado y adoptado en runtime.
 - Reglas claras de qué es canónico, qué es histórico y qué debe consolidarse.
 
 ## Comprometido
@@ -49,24 +49,26 @@ last_reviewed: 2026-04-26
 - Hecho: ADR-001 aprobado como baseline de stack.
 - Hecho: formalización inicial del Sprint 1.
 - Hecho: trazabilidad documental del cierre de la fase operativa de carga del banco de preguntas en Supabase (`docs/02-delivery/question-bank-load-phase-close.md`).
+- Hecho: activación del banco activo en runtime con validación remota sobre `27` preguntas nuevas exactas.
+- Hecho: purga de preguntas defectuosas y contenido legacy del repo, reportes y BD remota.
+- Hecho: build de app validado y práctica ajustada a `5` turnos para pruebas funcionales.
 
 ## No entregado
 - Pendiente: backlog ejecutivo `Now / Next / Later` completamente estabilizado.
-- Pendiente: clasificación completa del legado documental.
-- Pendiente: issue list operativa con owner e impacto.
-- En progreso: frente `banco activo` ya en ejecución a nivel documental/operativo, sin cierre todavía de vista activa, adopción en runtime ni smoke test.
+- Pendiente: clasificación completa del legado documental fuera del circuito crítico.
+- Pendiente: issue list operativa con owner e impacto más allá del cierre técnico actual.
+- Pendiente: evidencia E2E autenticada de práctica con `5` turnos sobre el banco curado vigente.
 
-## Frente en ejecución: banco activo
-- Estado: EN PROGRESO.
-- Alcance confirmado del bloque:
-  1. habilitar o dejar trazable la `vista activa` del banco;
-  2. adoptar el banco activo en `runtime` sin asumir despliegue total no verificado;
-  3. completar un `smoke test` mínimo con evidencia verificable.
-- Criterio de cierre del bloque:
-  1. existe evidencia en repo, entorno o validación humana de la vista activa;
-  2. el runtime queda apuntando al flujo/dataset activo esperado;
-  3. el smoke test deja resultado documentado con estado pasa/falla y observaciones.
-- Regla de control documental: mientras no exista esa evidencia, el bloque debe permanecer marcado `en progreso`.
+## Frente ejecutado: banco activo
+- Estado: CERRADO.
+- Resultado del bloque:
+  1. existe evidencia operativa y documental de la `vista activa` y del contrato de lectura;
+  2. el runtime quedó apuntando al dataset curado esperado;
+  3. smoke test, verificación remota, validación total del corpus y build dejaron evidencia verificable.
+- Estado final del dataset:
+  - `27` preguntas nuevas disponibles para runtime/práctica
+  - `0` legacy operativas en repo y BD
+  - preguntas defectuosas fuera del circuito operativo
 
 ## Fuera de alcance
 - Rediseño de arquitectura.
@@ -76,34 +78,32 @@ last_reviewed: 2026-04-26
 - Limpieza completa del histórico en este sprint.
 
 ## Bloqueos
-- Contexto heredado incompleto.
-- Legado documental aún mezclado entre taxonomía nueva e histórica.
+- No hay bloqueo técnico crítico del banco activo.
+- Persiste deuda menor de trazabilidad documental y despliegue.
 
 ## ADR relacionados
 - ADR-001-stack-base
 
 ## Riesgos
-- Documentación quede desacoplada del repo real.
-- Persistencia de doble canon documental durante la transición.
+- Documentación quede desacoplada del repo real si no se sigue cerrando sprint con disciplina.
+- Persistencia de doble canon documental en artefactos históricos no críticos.
 - Se ejecuten cambios sin disciplina de referencia al ADR aprobado.
-- El frente `banco activo` se dé por adoptado en runtime sin evidencia suficiente de configuración y smoke test.
+- Se asuma estabilidad completa de práctica sin correr una E2E autenticada de `5` turnos.
 
 ## Criterio de cierre
 - ADR-001 en `approved` y referenciado correctamente.
-- Sprint log sin `TODO` estructurales en objetivo, fechas y responsable.
-- Backlog con top 5 priorizado y ordenado por impacto.
+- Sprint log sin vacíos estructurales en objetivo, fechas y responsable.
+- Banco activo adoptado y validado con evidencia técnica.
 - Owner humano mínimo explícito para producto.
-- Legado documental clasificado al menos por lote y criticidad.
-- Riesgos inmediatos explícitos y con owner.
+- Riesgos inmediatos explícitos para el siguiente frente.
 
 ## Lecciones aprendidas
 - La herencia de otra agencia exige distinguir evidencia, supuesto y vacío.
 - Orden documental sin autoridad formal no alcanza; el baseline aprobado es obligatorio.
 
 ## Siguientes acciones
-1. Acompañar ejecución del frente `banco activo` y capturar evidencia de vista activa, adopción en runtime y smoke test.
-2. Resolver tratamiento de los ítems excluidos por dependencia visual/imagen.
-4. Reordenar backlog a `Now / Next / Later`.
-5. Clasificar legado documental en lotes A/B/C.
-6. Operativizar known issues y riesgos con owner.
-7. Preparar siguiente bloque de normalización documental controlada.
+1. Ejecutar E2E autenticada real de práctica con evidencia de `5` turnos.
+2. Decidir si onboarding debe exigir `Áreas activas` no vacías.
+3. Corregir trazabilidad de despliegue (`Build/Commit` visibles).
+4. Reordenar backlog a `Now / Next / Later` con foco producto.
+5. Reconciliar tableros/documentación operativa histórica.
