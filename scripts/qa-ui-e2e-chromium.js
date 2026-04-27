@@ -3,6 +3,7 @@ const path = require('path');
 const { createBrowserClient } = require('@supabase/ssr');
 const { createClient } = require('@supabase/supabase-js');
 const { chromium } = require('playwright');
+const { runSemanticAssertions } = require('./qa-e2e-semantic-assertions');
 
 const baseUrl = process.env.QA_BASE_URL || 'http://localhost:3001';
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -20,6 +21,22 @@ function save(name, data) {
 }
 function slug(text) {
   return String(text).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50) || 'step';
+}
+
+async function http({ method = 'GET', pathname, body, cookie }) {
+  const response = await fetch(`${baseUrl}${pathname}`, {
+    method,
+    headers: {
+      ...(body ? { 'content-type': 'application/json' } : {}),
+      ...(cookie ? { cookie } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    redirect: 'manual',
+  });
+  const text = await response.text();
+  let json = null;
+  try { json = JSON.parse(text); } catch {}
+  return { status: response.status, text, json };
 }
 
 async function ensureUserAndReset(admin) {
@@ -94,7 +111,10 @@ async function getAuthCookies() {
   if (signed.error) throw signed.error;
   const cookieEntries = Array.from(jar.entries());
   if (!cookieEntries.length) throw new Error('No auth cookies were produced.');
-  return cookieEntries.map(([name, value]) => ({ name, value, url: baseUrl }));
+  return {
+    cookies: cookieEntries.map(([name, value]) => ({ name, value, url: baseUrl })),
+    cookieHeader: cookieEntries.map(([name, value]) => `${name}=${value}`).join('; '),
+  };
 }
 
 (async function main() {
@@ -102,10 +122,11 @@ async function getAuthCookies() {
   const prep = await ensureUserAndReset(admin);
   save('prep.json', prep);
 
+  const authCookies = await getAuthCookies();
   const browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'] });
   const context = await browser.newContext({ baseURL: baseUrl, viewport: { width: 1440, height: 1100 } });
   await context.tracing.start({ screenshots: true, snapshots: true });
-  await context.addCookies(await getAuthCookies());
+  await context.addCookies(authCookies.cookies);
   const page = await context.newPage();
 
   const network = [];
@@ -154,7 +175,9 @@ async function getAuthCookies() {
   for (let turn = 1; turn <= 5; turn += 1) {
     const title = await page.locator('article h2').innerText();
     const stateBefore = (await page.locator('text=Estado actual:').textContent()) || '';
-    await page.locator('input[type="radio"]').first().check();
+    const firstRadio = page.locator('input[type="radio"]').first();
+    const selectedOption = await firstRadio.inputValue();
+    await firstRadio.check();
     await page.getByLabel('Justificación / razonamiento').fill(`Turno ${turn}: selección automatizada en Chromium para validar UI, red y feedback.`);
     const responsePromise = page.waitForResponse((resp) => resp.url().includes('/api/session/advance') && resp.request().method() === 'POST', { timeout: 45000 });
     await page.getByRole('button', { name: 'Responder' }).click();
@@ -171,6 +194,7 @@ async function getAuthCookies() {
     turns.push({
       turn,
       title,
+      selectedOption,
       stateBefore,
       stateAfter,
       advanceStatus: advanceResponse.status(),
@@ -186,27 +210,62 @@ async function getAuthCookies() {
 
   await page.goto('/dashboard', { waitUntil: 'networkidle', timeout: 45000 });
   result.dashboard = { url: page.url(), title: await page.title(), bodyText: await page.locator('main').innerText() };
+  result.dashboardApi = await http({ pathname: '/api/dashboard/summary', cookie: authCookies.cookieHeader });
   await page.screenshot({ path: path.join(artifactRoot, '04-dashboard.png'), fullPage: true });
   save('04-dashboard.html', await page.content());
 
   const profile = await admin.from('profiles').select('id').eq('auth_user_id', prep.user.id).single();
   if (profile.error) throw profile.error;
   const learningProfile = await admin.from('learning_profiles').select('*').eq('profile_id', profile.data.id).single();
-  const stats = await admin.from('user_topic_stats').select('*').eq('profile_id', profile.data.id);
+  const stats = await admin.from('user_topic_stats').select('*').eq('profile_id', profile.data.id).order('competency', { ascending: true });
   const lastSession = await admin.from('sessions').select('*').eq('profile_id', profile.data.id).order('created_at', { ascending: false }).limit(1).single();
-  const dbTurns = lastSession.data ? await admin.from('session_turns').select('*').eq('session_id', lastSession.data.id).order('turn_number', { ascending: true }) : { data: null, error: null };
+  const dbTurns = lastSession.data ? await admin.from('session_turns').select('*').eq('session_id', lastSession.data.id).order('turn_number', { ascending: true }) : { data: [], error: null };
+  const turnIds = (dbTurns.data || []).map((turn) => turn.id);
+  const itemIds = [...new Set((dbTurns.data || []).map((turn) => turn.item_id).filter(Boolean))];
+  const evaluationEvents = turnIds.length
+    ? await admin.from('evaluation_events').select('*').in('session_turn_id', turnIds).order('created_at', { ascending: true })
+    : { data: [], error: null };
+  const items = itemIds.length
+    ? await admin.from('item_bank').select('id,title,area,competency,difficulty').in('id', itemIds)
+    : { data: [], error: null };
   result.db = {
     session: lastSession.data,
     learningProfile: learningProfile.data,
     stats: stats.data,
     turns: dbTurns.data,
+    evaluationEvents: evaluationEvents.data,
+    items: items.data,
   };
+
+  result.assertions = runSemanticAssertions({
+    turns: turns.map((turn, index) => ({
+      itemId: dbTurns.data?.[index]?.item_id,
+      selectedOption: turn.selectedOption,
+      previousState: turn.advanceJson?.previousState,
+      currentState: turn.advanceJson?.currentState,
+      evaluation: turn.advanceJson?.evaluation,
+      hintLevel: turn.advanceJson?.hintLevel,
+      nextItemId: turn.advanceJson?.nextItemId,
+      feedbackText: turn.feedbackText,
+      advanceStatus: turn.advanceStatus,
+    })),
+    db: result.db,
+    dashboardSummary: result.dashboardApi.json,
+    dashboardBodyText: result.dashboard.bodyText,
+    expectedTurnCount: 5,
+  });
 
   result.finishedAt = nowIso();
   save('results.json', result);
+  save('assertions.json', result.assertions);
   await context.tracing.stop({ path: path.join(artifactRoot, 'trace.zip') });
   await browser.close();
-  console.log(JSON.stringify({ ok: true, artifactRoot, turnCount: turns.length, sessionId: lastSession.data?.id || null }, null, 2));
+
+  if (!result.assertions.ok) {
+    throw new Error(`Semantic QA assertions failed:\n- ${result.assertions.failures.join('\n- ')}`);
+  }
+
+  console.log(JSON.stringify({ ok: true, artifactRoot, turnCount: turns.length, sessionId: lastSession.data?.id || null, assertions: 'passed' }, null, 2));
 })().catch(async (error) => {
   const payload = { ok: false, artifactRoot, error: { message: error.message, stack: error.stack } };
   try { save('error.json', payload); } catch {}

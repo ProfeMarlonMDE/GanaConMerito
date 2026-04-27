@@ -3,6 +3,7 @@ const path = require('path');
 const { performance } = require('perf_hooks');
 const { createBrowserClient } = require('@supabase/ssr');
 const { createClient } = require('@supabase/supabase-js');
+const { runSemanticAssertions } = require('./qa-e2e-semantic-assertions');
 
 const baseUrl = process.env.QA_BASE_URL || 'http://localhost:3001';
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -124,6 +125,12 @@ function save(name, data) {
   fs.writeFileSync(target, typeof data === 'string' ? data : JSON.stringify(data, null, 2));
 }
 
+function ensureOk(response, label) {
+  if (response.status >= 200 && response.status < 300) return;
+  const detail = response.json?.error || response.text || `HTTP ${response.status}`;
+  throw new Error(`${label} falló (${response.status}): ${detail}`);
+}
+
 (async function main() {
   const admin = createClient(url, serviceRoleKey, { auth: { autoRefreshToken: false, persistSession: false } });
   const meta = { startedAt: nowIso(), baseUrl, email };
@@ -151,6 +158,8 @@ function save(name, data) {
   results.recon.root = await http({ pathname: '/' });
   results.home = await http({ pathname: '/home', cookie });
   results.onboardingPage = await http({ pathname: '/onboarding', cookie });
+  ensureOk(results.home, 'Carga /home');
+  ensureOk(results.onboardingPage, 'Carga /onboarding');
   save('01-home.html', results.home.text);
   save('02-onboarding.html', results.onboardingPage.text);
 
@@ -168,11 +177,14 @@ function save(name, data) {
       preferredFeedbackStyle: 'socratic',
     },
   });
+  ensureOk(results.onboardingProbe, 'POST /api/profile/onboarding');
 
   results.practicePage = await http({ pathname: '/practice', cookie });
+  ensureOk(results.practicePage, 'Carga /practice');
   save('03-practice.html', results.practicePage.text);
 
   const start = await http({ method: 'POST', pathname: '/api/session/start', cookie, body: { mode: 'practice' } });
+  ensureOk(start, 'POST /api/session/start');
   if (!start.json?.sessionId) throw new Error(`Session did not start correctly: ${start.text}`);
   results.sessionStart = start;
   let sessionId = start.json.sessionId;
@@ -180,6 +192,7 @@ function save(name, data) {
 
   for (let turn = 1; turn <= 5; turn += 1) {
     const itemRes = await http({ pathname: `/api/session/item?sessionId=${encodeURIComponent(sessionId)}&itemId=${encodeURIComponent(currentItemId)}`, cookie });
+    ensureOk(itemRes, `GET /api/session/item turno ${turn}`);
     if (!itemRes.json?.id) throw new Error(`Could not load item for turn ${turn}: ${itemRes.text}`);
     const options = itemRes.json.options || [];
     const chosenOption = options.find(o => o.key === 'A')?.key || options[0]?.key;
@@ -196,6 +209,7 @@ function save(name, data) {
         confidenceSelfReport: 3,
       },
     });
+    ensureOk(advanceRes, `POST /api/session/advance turno ${turn}`);
     const snapshot = {
       turn,
       item: itemRes,
@@ -212,6 +226,8 @@ function save(name, data) {
 
   results.dashboardPage = await http({ pathname: '/dashboard', cookie });
   results.dashboardApi = await http({ pathname: '/api/dashboard/summary', cookie });
+  ensureOk(results.dashboardPage, 'Carga /dashboard');
+  ensureOk(results.dashboardApi, 'GET /api/dashboard/summary');
   save('04-dashboard.html', results.dashboardPage.text);
 
   const profile = await admin.from('profiles').select('id').eq('auth_user_id', prep.user.id).single();
@@ -219,13 +235,51 @@ function save(name, data) {
   const dbSession = await admin.from('sessions').select('*').eq('id', sessionId).single();
   const dbTurns = await admin.from('session_turns').select('*').eq('session_id', sessionId).order('turn_number', { ascending: true });
   const learningProfile = await admin.from('learning_profiles').select('*').eq('profile_id', profile.data.id).single();
-  const stats = await admin.from('user_topic_stats').select('*').eq('profile_id', profile.data.id);
-  results.db = { session: dbSession.data, turns: dbTurns.data, learningProfile: learningProfile.data, stats: stats.data };
+  const stats = await admin.from('user_topic_stats').select('*').eq('profile_id', profile.data.id).order('competency', { ascending: true });
+  const turnIds = (dbTurns.data || []).map((turn) => turn.id);
+  const itemIds = [...new Set((dbTurns.data || []).map((turn) => turn.item_id).filter(Boolean))];
+  const evaluationEvents = turnIds.length
+    ? await admin.from('evaluation_events').select('*').in('session_turn_id', turnIds).order('created_at', { ascending: true })
+    : { data: [], error: null };
+  const items = itemIds.length
+    ? await admin.from('item_bank').select('id,title,area,competency,difficulty').in('id', itemIds)
+    : { data: [], error: null };
+  results.db = {
+    session: dbSession.data,
+    turns: dbTurns.data,
+    evaluationEvents: evaluationEvents.data,
+    items: items.data,
+    learningProfile: learningProfile.data,
+    stats: stats.data,
+  };
+
+  results.assertions = runSemanticAssertions({
+    turns: results.turns.map((snapshot) => ({
+      itemId: snapshot.item.json?.id,
+      selectedOption: snapshot.chosenOption,
+      previousState: snapshot.advance.json?.previousState,
+      currentState: snapshot.advance.json?.currentState,
+      evaluation: snapshot.advance.json?.evaluation,
+      hintLevel: snapshot.advance.json?.hintLevel,
+      nextItemId: snapshot.advance.json?.nextItemId,
+      feedbackText: snapshot.advance.json?.feedbackText,
+      advanceStatus: snapshot.advance.status,
+    })),
+    db: results.db,
+    dashboardSummary: results.dashboardApi.json,
+    dashboardBodyText: results.dashboardPage.text,
+    expectedTurnCount: 5,
+  });
 
   results.finishedAt = nowIso();
   save('results.json', results);
+  save('assertions.json', results.assertions);
 
-  console.log(JSON.stringify({ ok: true, artifactRoot, sessionId, turnCount: results.turns.length }, null, 2));
+  if (!results.assertions.ok) {
+    throw new Error(`Semantic QA assertions failed:\n- ${results.assertions.failures.join('\n- ')}`);
+  }
+
+  console.log(JSON.stringify({ ok: true, artifactRoot, sessionId, turnCount: results.turns.length, assertions: 'passed' }, null, 2));
 })().catch((error) => {
   const payload = { ok: false, error: { message: error.message, stack: error.stack }, artifactRoot };
   save('error.json', payload);
