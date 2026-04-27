@@ -47,7 +47,6 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 2. Operativizar known issues con owner, impacto y ruta.
 3. Normalizar documentos críticos de arquitectura, project, database y api.
 4. Alinear backlog funcional con evidencia real de auth, onboarding, práctica, dashboard y editorial.
-5. Decidir manejo documental y operativo de los ítems legados `item-doc-0001..0003`.
 
 ### Later
 1. Definición oficial de roadmap por trimestre.

@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { parseMarkdownItem } from "../src/domain/content/parse-md";
 import { getSupabaseAdminClient } from "../src/lib/supabase/admin";
-import { CURRENT_QUESTION_BANK_FILES, EXPECTED_ACTIVE_CORPUS_COUNT, LEGACY_CONTENT_IDS } from "./question-bank-current-corpus";
+import { CURRENT_QUESTION_BANK_FILES, EXPECTED_ACTIVE_CORPUS_COUNT } from "./question-bank-current-corpus";
 
 type CheckStatus = "passed" | "failed";
 
@@ -80,8 +80,8 @@ async function main() {
   const expectedActiveItems = await loadExpectedActiveItems(repoRoot);
   const expectedActiveIds = expectedActiveItems.map((item) => item.contentId).sort();
   const expectedActiveSlugs = expectedActiveItems.map((item) => item.slug).sort();
-  const trackedIds = [...expectedActiveIds, ...LEGACY_CONTENT_IDS];
-  const expectedTrackedInView = [...expectedActiveIds, ...LEGACY_CONTENT_IDS];
+  const trackedIds = [...expectedActiveIds];
+  const expectedTrackedInView = [...expectedActiveIds];
 
   const { data: trackedRowsRaw, error: trackedError } = await supabase
     .from("v_item_bank_active")
@@ -175,22 +175,6 @@ async function main() {
       : `faltan filas para: ${missingTrackedRows.join(", ")}`,
   );
 
-  const legacyFailures = LEGACY_CONTENT_IDS.map((contentId) => trackedByContentId.get(contentId)).filter(
-    (row) => !row || row.read_state !== "legacy" || row.classification_bucket !== "legacy",
-  );
-  pushCheck(
-    checks,
-    errors,
-    "db-legacy-still-legacy",
-    legacyFailures.length === 0,
-    legacyFailures.length === 0
-      ? `legacy preservado para ${LEGACY_CONTENT_IDS.join(", ")}`
-      : LEGACY_CONTENT_IDS.map((contentId) => {
-          const row = trackedByContentId.get(contentId);
-          return `${contentId}=>${row ? `${row.read_state}/${row.classification_bucket ?? "null"}` : "missing"}`;
-        }).join(", "),
-  );
-
   const activeGateFailures = activeRows.filter(
     (row) =>
       row.status !== "published" ||
@@ -272,7 +256,6 @@ async function main() {
       expectedActiveCorpusCount: EXPECTED_ACTIVE_CORPUS_COUNT,
       activeCount: activeRows.length,
       trackedCount: trackedRows.length,
-      legacyIds: [...LEGACY_CONTENT_IDS],
       errorCount: errors.length,
     },
     checks,

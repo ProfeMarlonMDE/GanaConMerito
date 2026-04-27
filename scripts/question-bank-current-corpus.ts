@@ -29,20 +29,3 @@ export const CURRENT_QUESTION_BANK_FILES = [
 ] as const;
 
 export const EXPECTED_ACTIVE_CORPUS_COUNT = 27;
-
-export const LEGACY_CONTENT_IDS = ["item-doc-0001", "item-doc-0002", "item-doc-0003"] as const;
-
-export const LEGACY_SAMPLE_FILES = [
-  {
-    contentId: "item-doc-0001",
-    file: "content/items/normatividad/caso-convivencia-001.md",
-  },
-  {
-    contentId: "item-doc-0002",
-    file: "content/items/pedagogia/planeacion-aula-001.md",
-  },
-  {
-    contentId: "item-doc-0003",
-    file: "content/items/matematicas/razonamiento-matematico-001.md",
-  },
-] as const;

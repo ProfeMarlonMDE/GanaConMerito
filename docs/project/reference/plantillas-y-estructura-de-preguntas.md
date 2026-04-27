@@ -386,7 +386,7 @@ Lista de fallos típicos que explican por qué alguien podría equivocarse.
 
 ```md
 ---
-id: item-doc-0001
+id: item-doc-001
 slug: area-subtema-001
 title: Título breve y claro
 area: pedagogia

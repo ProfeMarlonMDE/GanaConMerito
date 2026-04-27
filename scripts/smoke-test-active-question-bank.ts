@@ -1,12 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parseMarkdownItem } from "../src/domain/content/parse-md";
-import {
-  CURRENT_QUESTION_BANK_FILES,
-  EXPECTED_ACTIVE_CORPUS_COUNT,
-  LEGACY_CONTENT_IDS,
-  LEGACY_SAMPLE_FILES,
-} from "./question-bank-current-corpus";
+import { CURRENT_QUESTION_BANK_FILES, EXPECTED_ACTIVE_CORPUS_COUNT } from "./question-bank-current-corpus";
 
 type CheckStatus = "passed" | "failed";
 
@@ -110,42 +105,10 @@ async function main() {
       : `fallan: ${nonFourOptionItems.map((item) => `${item.contentId} (${item.optionCount})`).join(", ")}`,
   );
 
-  const legacyInsideActive = LEGACY_CONTENT_IDS.filter((contentId) => activeIds.has(contentId));
-  pushCheck(
-    checks,
-    errors,
-    "legacy-excluded-by-default",
-    legacyInsideActive.length === 0,
-    legacyInsideActive.length === 0
-      ? `legados excluidos: ${LEGACY_CONTENT_IDS.join(", ")}`
-      : `legados presentes en corpus activo: ${legacyInsideActive.join(", ")}`,
-  );
-
-  const legacyFilesMissing = (
-    await Promise.all(
-      LEGACY_SAMPLE_FILES.map(async (item) => ({
-        contentId: item.contentId,
-        file: item.file,
-        exists: await fileExists(path.join(repoRoot, item.file)),
-      })),
-    )
-  ).filter((item) => !item.exists);
-
-  pushCheck(
-    checks,
-    errors,
-    "legacy-traceability",
-    legacyFilesMissing.length === 0,
-    legacyFilesMissing.length === 0
-      ? `trazabilidad local presente para ${LEGACY_SAMPLE_FILES.length} legados`
-      : `sin archivo local: ${legacyFilesMissing.map((item) => `${item.contentId} -> ${item.file}`).join(", ")}`,
-  );
-
   const result = {
     summary: {
       expectedActiveCorpusCount: EXPECTED_ACTIVE_CORPUS_COUNT,
       activeCorpusCount: activeItems.length,
-      legacyExcludedByDefault: [...LEGACY_CONTENT_IDS],
       warningCount: warnings.length,
       errorCount: errors.length,
     },

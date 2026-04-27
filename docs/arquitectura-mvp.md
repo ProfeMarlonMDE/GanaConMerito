@@ -670,7 +670,7 @@ export function validateOptions(options: { key: string; text: string }[]) {
 ### 9. Formato Markdown canónico final
 ```md
 ---
-id: item-doc-0001
+id: item-doc-001
 slug: caso-convivencia-001
 title: Caso de convivencia escolar
 area: normatividad

@@ -54,7 +54,6 @@ last_reviewed: 2026-04-26
 - Pendiente: backlog ejecutivo `Now / Next / Later` completamente estabilizado.
 - Pendiente: clasificación completa del legado documental.
 - Pendiente: issue list operativa con owner e impacto.
-- Pendiente: decisión sobre manejo de ítems legados `item-doc-0001..0003`.
 - En progreso: frente `banco activo` ya en ejecución a nivel documental/operativo, sin cierre todavía de vista activa, adopción en runtime ni smoke test.
 
 ## Frente en ejecución: banco activo
@@ -104,7 +103,6 @@ last_reviewed: 2026-04-26
 ## Siguientes acciones
 1. Acompañar ejecución del frente `banco activo` y capturar evidencia de vista activa, adopción en runtime y smoke test.
 2. Resolver tratamiento de los ítems excluidos por dependencia visual/imagen.
-3. Definir manejo de los ítems legados `item-doc-0001..0003`.
 4. Reordenar backlog a `Now / Next / Later`.
 5. Clasificar legado documental en lotes A/B/C.
 6. Operativizar known issues y riesgos con owner.

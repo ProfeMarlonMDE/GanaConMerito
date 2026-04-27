@@ -80,15 +80,8 @@ Un ítem entra al banco activo solo si cumple **todo**:
 5. `is_legacy = false`
 6. `is_blocked = false`
 
-### Regla `legacy`
-Mientras no exista una tabla formal de clasificación editorial, considerar `legacy` cualquier ítem incluido en un registro central explícito de contenidos heredados. Hoy ese registro inicial es:
-- `item-doc-0001`
-- `item-doc-0002`
-- `item-doc-0003`
-
 ### Regla por defecto
 - la app **solo** lee `read_state = 'active'`
-- `legacy` solo se ve desde flujos editoriales/diagnóstico
 - `inactive` queda fuera del consumo operativo normal
 
 ---
@@ -111,12 +104,6 @@ Ser la única fuente de lectura funcional para:
 ```sql
 create or replace view public.v_item_bank_active
 with (security_invoker = true) as
-with classified_content (content_id, bucket, reason) as (
-  values
-    ('item-doc-0001'::text, 'legacy'::text, 'contenido legado pre-corpus actual'::text),
-    ('item-doc-0002'::text, 'legacy'::text, 'contenido legado pre-corpus actual'::text),
-    ('item-doc-0003'::text, 'legacy'::text, 'contenido legado pre-corpus actual'::text)
-)
 select
   ib.id,
   ib.content_id,
@@ -143,13 +130,11 @@ select
   tn.name as thematic_nucleus_name,
   tn.is_universal as thematic_nucleus_is_universal,
   coalesce(tn.is_active, false) as thematic_nucleus_is_active,
-  cc.bucket as classification_bucket,
-  cc.reason as classification_reason,
-  coalesce(cc.bucket = 'legacy', false) as is_legacy,
-  coalesce(cc.bucket = 'blocked', false) as is_blocked,
+  null::text as classification_bucket,
+  null::text as classification_reason,
+  false as is_legacy,
+  false as is_blocked,
   case
-    when coalesce(cc.bucket = 'legacy', false) then 'legacy'
-    when coalesce(cc.bucket = 'blocked', false) then 'blocked'
     when ib.status = 'published'
       and ib.is_active = true
       and ib.thematic_nucleus_id is not null
@@ -159,14 +144,12 @@ select
   end::text as read_state
 from public.item_bank ib
 left join public.thematic_nuclei tn
-  on tn.id = ib.thematic_nucleus_id
-left join classified_content cc
-  on cc.content_id = ib.content_id;
+  on tn.id = ib.thematic_nucleus_id;
 ```
 
 Notas de implementación:
 - `security_invoker = true` evita que la vista amplíe acceso por encima de la RLS vigente.
-- `classification_bucket` y `classification_reason` dejan trazabilidad explícita para `legacy`.
+- `classification_bucket` y `classification_reason` quedan reservadas para clasificaciones editoriales futuras.
 - `thematic_nucleus_is_active` deja visible el último gate antes de `read_state = 'active'`.
 
 ### Regla operativa de uso

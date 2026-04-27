@@ -87,16 +87,6 @@ Total: **27 ítems**.
 
 ---
 
-## Ítems que NO entran en esta activación
-
-### Legacy fuera del corpus actual
-- `item-doc-0001`
-- `item-doc-0002`
-- `item-doc-0003`
-
-Regla: estos ítems no deben ser incluidos en el backfill de activación del corpus actual.
-
----
 
 ## Criterio claro de publicación / activación
 
@@ -113,7 +103,6 @@ Un ítem queda **activo en runtime** solo si cumple simultáneamente:
 - Los 27 ítems del corpus actual deben pasar a `status = 'published'`.
 - Los 27 ítems del corpus actual deben quedar `is_active = true`.
 - Los 27 ítems del corpus actual deben recibir uno de los 6 núcleos `core-*`.
-- Los 3 legacy quedan fuera de este lote.
 
 ### Regla de rollback seguro
 Si el gate final no da `27` activos exactos en `v_item_bank_active`, no se debe encender el consumo del lote como “cerrado”; se corrige y se reejecuta el backfill.
@@ -121,7 +110,6 @@ Si el gate final no da `27` activos exactos en `v_item_bank_active`, no se debe 
 ---
 
 ## Notas de implementación
-- `legacy-general` puede permanecer como núcleo transitorio, pero **no** debe seguir siendo el destino del corpus actual ya curado.
 - No se recomienda granularidad por `subarea` en este paso; ya existe suficiente clasificación en `item_bank.area/subarea/competency`.
 - Mantener los 6 núcleos como `is_universal = true` evita bloquear usuarios mientras onboarding/perfiles siguen madurando.
 

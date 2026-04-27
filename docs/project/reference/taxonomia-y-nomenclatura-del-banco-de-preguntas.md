@@ -53,9 +53,9 @@ El `id` es la identidad editorial estable.
 ## Formato recomendado
 
 ```text
-item-doc-0001
-item-doc-0002
-item-doc-0003
+item-doc-001
+item-doc-002
+item-doc-003
 ```
 
 ## Variante por área (opcional)
