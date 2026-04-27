@@ -1,14 +1,26 @@
+import Link from "next/link";
 import {
   getDashboardSummaryForCurrentUser,
   getDashboardTopicBreakdownForCurrentUser,
 } from "@/lib/dashboard/summary";
 import { requireAuthenticatedUser } from "@/lib/supabase/guards";
 
-export default async function DashboardPage() {
+interface DashboardPageProps {
+  searchParams?: Promise<{
+    sessionId?: string | string[];
+  }>;
+}
+
+export default async function DashboardPage({ searchParams }: DashboardPageProps) {
   await requireAuthenticatedUser();
 
-  const summary = await getDashboardSummaryForCurrentUser();
-  const breakdown = await getDashboardTopicBreakdownForCurrentUser();
+  const resolvedSearchParams = await searchParams;
+  const rawSessionId = resolvedSearchParams?.sessionId;
+  const sessionId = Array.isArray(rawSessionId) ? rawSessionId[0] : rawSessionId;
+  const isSessionView = Boolean(sessionId);
+
+  const summary = await getDashboardSummaryForCurrentUser(sessionId);
+  const breakdown = await getDashboardTopicBreakdownForCurrentUser(sessionId);
   const accuracy = summary.totalAttempts > 0
     ? Number(((summary.totalCorrect / summary.totalAttempts) * 100).toFixed(1))
     : 0;
@@ -17,8 +29,20 @@ export default async function DashboardPage() {
     <main>
       <h1>Dashboard</h1>
 
+      {isSessionView ? (
+        <section>
+          <p>Viendo resultados de la sesión reciente.</p>
+          <p>Session ID: {sessionId}</p>
+          <Link href="/dashboard">Ver dashboard histórico acumulado</Link>
+        </section>
+      ) : (
+        <section>
+          <p>Vista acumulada de tu progreso histórico.</p>
+        </section>
+      )}
+
       <section>
-        <h2>Resumen general</h2>
+        <h2>{isSessionView ? "Resumen de la sesión" : "Resumen general"}</h2>
         <ul>
           <li>Nivel estimado: {summary.estimatedLevel}</li>
           <li>Intentos totales: {summary.totalAttempts}</li>
@@ -37,9 +61,9 @@ export default async function DashboardPage() {
       </section>
 
       <section>
-        <h2>Desglose por tema</h2>
+        <h2>{isSessionView ? "Desglose de la sesión" : "Desglose por tema"}</h2>
         {breakdown.length === 0 ? (
-          <p>Aún no hay datos suficientes.</p>
+          <p>{isSessionView ? "Esta sesión todavía no tiene respuestas evaluadas." : "Aún no hay datos suficientes."}</p>
         ) : (
           <ul>
             {breakdown.map((row) => (

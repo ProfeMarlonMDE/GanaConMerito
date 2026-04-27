@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 interface PracticeItem {
@@ -44,6 +45,8 @@ export function PracticeSession() {
     const currentState = feedback?.currentState ?? session?.currentState;
     return currentState === "session_close";
   }, [feedback?.currentState, session?.currentState]);
+
+  const sessionDashboardHref = session ? `/dashboard?sessionId=${encodeURIComponent(session.sessionId)}` : null;
 
   async function loadItem(sessionId: string, itemId: string) {
     const response = await fetch(
@@ -134,7 +137,7 @@ export function PracticeSession() {
 
     if (data.currentState === "session_close") {
       setItem(null);
-      setSessionMessage("La sesión terminó correctamente. Ya puedes revisar tu progreso en el dashboard.");
+      setSessionMessage("La sesión terminó correctamente. Ya puedes revisar esta corrida en el dashboard de la sesión.");
       setLoading(false);
       return;
     }
@@ -174,6 +177,11 @@ export function PracticeSession() {
 
       {error ? <p>{error}</p> : null}
       {sessionMessage ? <p>{sessionMessage}</p> : null}
+      {sessionEnded && sessionDashboardHref ? (
+        <p>
+          <Link href={sessionDashboardHref}>Ver dashboard de esta sesión</Link>
+        </p>
+      ) : null}
 
       {session ? (
         <div>
