@@ -56,35 +56,6 @@ Partiendo del caso del viaje al museo (90 estudiantes, 4 docentes, 2 guías), si
 
 ---
 
-### Pregunta 3: Producción mensual de hortalizas
-
----
-id: item-doc-003
-slug: matematicas-analisis-datos-001
-title: Producción mensual de hortalizas
-area: matematicas
-subarea: analisis_de_datos
-examType: docente
-competency: interpretacion_de_datos
-difficulty: 0.50
-targetLevel: intermedio
-itemType: multiple_choice
-normativeRefs: []
-published: true
-version: 1
----
-
-#### Enunciado
-El docente Julián fue invitado a intervenir con una lectura técnica de una tabla sobre la evolución mensual de producción de hortalizas por tipo de cultivo en la huerta escolar (kilogramos). ¿Cuál interpretación representa adecuadamente una característica relevante de la información contenida en la tabla de producción de hortalizas?
-
-#### Opciones
-* A. Determinar que el tomate es el cultivo con mayor aumento progresivo y que tuvo su mayor pico de crecimiento en febrero marcando un punto crítico en la producción.
-* B. Concluir que todas las hortalizas mostraron un crecimiento continuo entre enero y marzo lo que refleja un modelo de producción exitoso e ininterrumpido.
-* C. Determinar que los cultivos tienen variaciones constantes cada mes y que marzo representa el periodo más equilibrado para toda la producción total.
-* D. Establecer que la producción total disminuye drásticamente en el último mes evaluado afectando el promedio general de la huerta escolar.
-
----
-
 ### Pregunta 4: Consumo eléctrico institucional
 
 ---
@@ -114,29 +85,3 @@ La docente Carolina analiza los consumos mensuales de electricidad. En enero el 
 
 ---
 
-### Pregunta 5: Validación del rendimiento académico
-
----
-id: item-doc-005
-slug: matematicas-pensamiento-aleatorio-001
-title: Validación del rendimiento académico
-area: matematicas
-subarea: pensamiento_aleatorio
-examType: docente
-competency: argumentacion_matematica
-difficulty: 0.85
-targetLevel: avanzado
-itemType: multiple_choice
-normativeRefs: []
-published: true
-version: 1
----
-
-#### Enunciado
-El gráfico de desempeño académico mensual entre marzo y junio revelaba una tendencia decreciente en el porcentaje de aprobación de los estudiantes. Sin embargo, un docente expresó: "Podemos afirmar que el rendimiento ha sido estable y controlado durante todo el semestre". La profesora Luisa fue invitada a analizar la validez de dicha interpretación. ¿Qué afirmación refleja una validación crítica y fundamentada frente la interpretación hecha sobre el rendimiento académico?
-
-#### Opciones
-* A. Refutar la afirmación planteada ya que el gráfico muestra una tendencia descendente en los resultados que contradice la percepción de estabilidad.
-* B. Considerar que los datos reflejan una ligera variación lo cual permite mantener la idea de estabilidad general en el proceso académico institucional.
-* C. Reconocer que existen altos y bajos en los porcentajes de aprobación aunque podría mantenerse la percepción de rendimiento positivo durante el semestre completo.
-* D. Apoyar la afirmación argumentando que el rendimiento inicial en marzo compensa las caídas posteriores manteniendo el promedio general del semestre.

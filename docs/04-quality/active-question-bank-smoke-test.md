@@ -24,10 +24,9 @@ El smoke test runnable `npm run content:smoke:active` verifica:
 - unicidad de `content_id`
 - unicidad de `slug`
 - exactamente 4 opciones por ítem activo
-- exclusión por defecto de `item-doc-003`, `item-doc-005`, `item-doc-021`
 - exclusión por defecto de legacy `item-doc-0001..0003`
 - conteo esperado del corpus activo: `27`
-- trazabilidad local de bloqueados y legados usados por el contrato
+- trazabilidad local de legados usados por el contrato
 
 ## Comando
 Desde `/home/ubuntu/.openclaw/product`:
@@ -40,7 +39,6 @@ npm run content:smoke:active
 - exit code `0`
 - JSON con `summary.errorCount = 0`
 - check `expected-active-count` en `passed`
-- check `blocked-excluded-by-default` en `passed`
 - check `legacy-excluded-by-default` en `passed`
 
 ## Fuente de verdad usada

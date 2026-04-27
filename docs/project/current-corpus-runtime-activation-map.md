@@ -89,9 +89,6 @@ Total: **27 ítems**.
 
 ## Ítems que NO entran en esta activación
 
-### Bloqueado por dependencia visual
-- `item-doc-021` → `content/items/lectura_critica/lectura-critica-proposito-comunicativo-001.md`
-
 ### Legacy fuera del corpus actual
 - `item-doc-0001`
 - `item-doc-0002`
@@ -116,7 +113,7 @@ Un ítem queda **activo en runtime** solo si cumple simultáneamente:
 - Los 27 ítems del corpus actual deben pasar a `status = 'published'`.
 - Los 27 ítems del corpus actual deben quedar `is_active = true`.
 - Los 27 ítems del corpus actual deben recibir uno de los 6 núcleos `core-*`.
-- `item-doc-021` y los 3 legacy quedan fuera de este lote.
+- Los 3 legacy quedan fuera de este lote.
 
 ### Regla de rollback seguro
 Si el gate final no da `27` activos exactos en `v_item_bank_active`, no se debe encender el consumo del lote como “cerrado”; se corrige y se reejecuta el backfill.

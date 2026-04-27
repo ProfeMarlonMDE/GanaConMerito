@@ -1,11 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parseMarkdownItem } from "../src/domain/content/parse-md";
-import {
-  CURRENT_QUESTION_BANK_EXCLUDED_FILES,
-  CURRENT_QUESTION_BANK_FILES,
-  LEGACY_SAMPLE_FILES,
-} from "./question-bank-current-corpus";
+import { CURRENT_QUESTION_BANK_FILES, LEGACY_SAMPLE_FILES } from "./question-bank-current-corpus";
 
 async function listAllItemFiles(itemsDir: string) {
   const areaDirs = await fs.readdir(itemsDir, { withFileTypes: true });
@@ -76,7 +72,6 @@ async function main() {
   const summary = {
     scope: includeAll ? "all" : "current-corpus",
     validatedFiles: selectedFiles.length,
-    excludedFromCurrentCorpus: includeAll ? [] : CURRENT_QUESTION_BANK_EXCLUDED_FILES,
     legacyOutsideCurrentCorpus: includeAll ? [] : LEGACY_SAMPLE_FILES,
     warningCount: warnings.length,
     errorCount: errors.length,

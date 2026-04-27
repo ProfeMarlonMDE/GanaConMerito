@@ -22,7 +22,6 @@ Dejar repetible la validación local y la recarga controlada del corpus actual d
 ## Alcance actual
 Este runbook apunta al corpus operativo cerrado en abril de 2026:
 - 27 ítems del corpus actual
-- excluye `item-doc-021` por dependencia visual/imagen
 - no mezcla los 3 ítems legados `item-doc-0001..0003`
 
 Fuente del lote controlado:
@@ -39,7 +38,7 @@ npm run content:smoke:active
 Resultado esperado:
 - ambos comandos con exit code `0`
 - `content:validate` devuelve resumen JSON con `scope = current-corpus`, `validatedFiles = 27` y `errorCount = 0`
-- `content:smoke:active` devuelve `summary.errorCount = 0` y confirma exclusión de bloqueados/legacy del banco activo
+- `content:smoke:active` devuelve `summary.errorCount = 0` y confirma exclusión de legacy del banco activo
 
 Si se necesita auditar todo `content/items`, incluyendo legados:
 
@@ -69,7 +68,6 @@ Comportamiento:
 6. Si cambia el corpus aprobado, actualizar primero `question-bank-current-corpus.ts`
 
 ## Qué no hace este runbook
-- no resuelve ítems con dependencia visual
 - no redefine arquitectura del importador
 - no reemplaza futuras decisiones sobre staging, versionado o pipeline avanzado
 - no convierte los ítems legados en parte del lote actual por defecto

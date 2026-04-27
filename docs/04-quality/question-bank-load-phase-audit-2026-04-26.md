@@ -35,7 +35,6 @@ Fuentes principales:
 - estado: abierto
 - evidencia:
   - el cierre de fase registra coexistencia de `item-doc-0001..0003` con 27 ítems del corpus actual (`docs/02-delivery/question-bank-load-phase-close.md`)
-  - el corpus actual usa ids `item-doc-003`, `item-doc-005`, `item-doc-021` en archivos fuente (`docs/banco-preguntas/matematicas.md`, `docs/banco-preguntas/lectura-critica.md`)
   - la referencia de taxonomía recomienda formato `item-doc-0001` como convención base (`docs/project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md`)
 - riesgo:
   - ambigüedad operativa al reconciliar `001` vs `0001`
@@ -44,23 +43,6 @@ Fuentes principales:
   1. definir convención canónica única para ids editoriales
   2. documentar estrategia de compatibilidad o migración para ids ya cargados
   3. reflejar la decisión en taxonomía, importador y artefactos de cierre
-
-### QB-ISSUE-002 — cobertura incompleta por deuda visual en 3 ítems
-- severidad: alta
-- owner sugerido: editorial
-- estado: abierto
-- evidencia:
-  - el cierre de fase declara excluidos `item-doc-003`, `item-doc-005` e `item-doc-021` por dependencia visual/imagen (`docs/02-delivery/question-bank-load-phase-close.md`)
-  - `item-doc-021` depende explícitamente de una caricatura descrita en el enunciado (`docs/banco-preguntas/lectura-critica.md`)
-  - `item-doc-003` y `item-doc-005` están en el corpus de Matemáticas y siguen fuera del set cargado según el cierre (`docs/banco-preguntas/matematicas.md` + `docs/02-delivery/question-bank-load-phase-close.md`)
-- riesgo:
-  - cobertura real del corpus queda en `27/30`
-  - el pipeline no tiene salida cerrada para ítems dependientes de imagen
-  - futuras cargas pueden repetir la exclusión sin criterio normalizado
-- ruta de salida:
-  1. decidir por ítem si se consigue insumo visual válido o se reescribe a formato textual equivalente
-  2. pasar los 3 ítems por QA/Data/Backend antes de una nueva carga
-  3. registrar criterio permanente para preguntas con dependencia visual
 
 ### QB-ISSUE-003 — persisten 3 ítems legados sin recertificación visible en este cierre
 - severidad: media
@@ -84,7 +66,7 @@ Fuentes principales:
 - estado: abierto
 - evidencia:
   - el índice operativo del workspace aún muestra estados previos como `021-025 ready_for_insert` y `matemáticas` en `in_review` (`/home/ubuntu/.openclaw/workspace/docs/QUESTION-BANK-INDEX.md`)
-  - el cierre de fase ya reporta 27 ítems cargados y `item-doc-021` excluido (`docs/02-delivery/question-bank-load-phase-close.md`)
+  - el cierre de fase ya reporta 27 ítems cargados (`docs/02-delivery/question-bank-load-phase-close.md`)
 - riesgo:
   - una nueva operación puede arrancar desde un tablero viejo y reintroducir errores o trabajo redundante
   - aumenta la divergencia entre trazabilidad operativa y estado real de Supabase

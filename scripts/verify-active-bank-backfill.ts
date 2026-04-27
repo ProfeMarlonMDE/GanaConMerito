@@ -2,12 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { parseMarkdownItem } from "../src/domain/content/parse-md";
 import { getSupabaseAdminClient } from "../src/lib/supabase/admin";
-import {
-  BLOCKED_CONTENT_IDS,
-  CURRENT_QUESTION_BANK_FILES,
-  EXPECTED_ACTIVE_CORPUS_COUNT,
-  LEGACY_CONTENT_IDS,
-} from "./question-bank-current-corpus";
+import { CURRENT_QUESTION_BANK_FILES, EXPECTED_ACTIVE_CORPUS_COUNT, LEGACY_CONTENT_IDS } from "./question-bank-current-corpus";
 
 type CheckStatus = "passed" | "failed";
 
@@ -85,7 +80,7 @@ async function main() {
   const expectedActiveItems = await loadExpectedActiveItems(repoRoot);
   const expectedActiveIds = expectedActiveItems.map((item) => item.contentId).sort();
   const expectedActiveSlugs = expectedActiveItems.map((item) => item.slug).sort();
-  const trackedIds = [...expectedActiveIds, ...LEGACY_CONTENT_IDS, ...BLOCKED_CONTENT_IDS];
+  const trackedIds = [...expectedActiveIds, ...LEGACY_CONTENT_IDS];
   const expectedTrackedInView = [...expectedActiveIds, ...LEGACY_CONTENT_IDS];
 
   const { data: trackedRowsRaw, error: trackedError } = await supabase
@@ -196,27 +191,6 @@ async function main() {
         }).join(", "),
   );
 
-  const { data: blockedRowsRaw, error: blockedRowsError } = await supabase
-    .from("item_bank")
-    .select("content_id")
-    .in("content_id", BLOCKED_CONTENT_IDS);
-
-  if (blockedRowsError) {
-    throw blockedRowsError;
-  }
-
-  const blockedRows = blockedRowsRaw ?? [];
-  const blockedPresentInDb = blockedRows.map((row) => row.content_id).sort();
-  pushCheck(
-    checks,
-    errors,
-    "db-blocked-still-excluded",
-    blockedPresentInDb.length === 0,
-    blockedPresentInDb.length === 0
-      ? `blocked preservado fuera de item_bank para ${BLOCKED_CONTENT_IDS.join(", ")}`
-      : `blocked presentes en item_bank: ${blockedPresentInDb.join(", ")}`,
-  );
-
   const activeGateFailures = activeRows.filter(
     (row) =>
       row.status !== "published" ||
@@ -299,8 +273,6 @@ async function main() {
       activeCount: activeRows.length,
       trackedCount: trackedRows.length,
       legacyIds: [...LEGACY_CONTENT_IDS],
-      blockedIds: [...BLOCKED_CONTENT_IDS],
-      blockedPresentInItemBank: blockedPresentInDb,
       errorCount: errors.length,
     },
     checks,

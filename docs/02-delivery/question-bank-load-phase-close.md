@@ -21,12 +21,10 @@ Fase operativa de carga cerrada para el corpus actual.
 
 ## Resultado confirmado
 - 27 ítems del corpus actual quedaron cargados en Supabase.
-- Se excluyeron `item-doc-003`, `item-doc-005` e `item-doc-021` por dependencia visual/imagen.
 - Existen 3 ítems legados: `item-doc-0001`, `item-doc-0002` y `item-doc-0003`.
 
 ## Alcance de este cierre
 Este cierre deja trazabilidad del estado operativo de la carga del corpus actual. No reemplaza futuras decisiones sobre:
-- tratamiento de ítems con dependencia visual
 - normalización o migración de ítems legados
 - ampliación del banco con nuevo corpus
 
@@ -37,6 +35,5 @@ Este cierre deja trazabilidad del estado operativo de la carga del corpus actual
 - runbook operativo mínimo en `docs/05-ops/question-bank-load-runbook.md`
 
 ## Pendientes abiertos
-1. Definir tratamiento para los ítems excluidos por dependencia visual/imagen.
-2. Decidir manejo documental y operativo de los ítems legados `item-doc-0001..0003`.
-3. Mantener alineada la documentación del banco con el estado real de Supabase en siguientes cargas.
+1. Decidir manejo documental y operativo de los ítems legados `item-doc-0001..0003`.
+2. Mantener alineada la documentación del banco con el estado real de Supabase en siguientes cargas.

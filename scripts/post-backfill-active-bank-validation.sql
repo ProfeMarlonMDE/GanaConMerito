@@ -34,9 +34,6 @@ with expected_active(content_id) as (
 legacy_expected(content_id) as (
   values ('item-doc-0001'), ('item-doc-0002'), ('item-doc-0003')
 ),
-blocked_expected(content_id) as (
-  values ('item-doc-003'), ('item-doc-005'), ('item-doc-021')
-),
 tracked as (
   select *
   from public.v_item_bank_active
@@ -44,8 +41,6 @@ tracked as (
     select content_id from expected_active
     union all
     select content_id from legacy_expected
-    union all
-    select content_id from blocked_expected
   )
 ),
 active_now as (
@@ -57,7 +52,6 @@ select
   'summary' as check_name,
   count(*) filter (where read_state = 'active') as active_count,
   count(*) filter (where read_state = 'legacy') as legacy_count,
-  count(*) filter (where read_state = 'blocked') as blocked_count,
   count(*) filter (where read_state = 'inactive') as inactive_count
 from public.v_item_bank_active;
 
@@ -108,9 +102,6 @@ order by content_id;
 
 with legacy_expected(content_id) as (
   values ('item-doc-0001'), ('item-doc-0002'), ('item-doc-0003')
-),
-blocked_expected(content_id) as (
-  values ('item-doc-003'), ('item-doc-005'), ('item-doc-021')
 )
 select
   content_id,
@@ -121,11 +112,7 @@ select
   is_active,
   thematic_nucleus_code
 from public.v_item_bank_active
-where content_id in (
-  select content_id from legacy_expected
-  union all
-  select content_id from blocked_expected
-)
+where content_id in (select content_id from legacy_expected)
 order by content_id;
 
 with expected_active(content_id) as (

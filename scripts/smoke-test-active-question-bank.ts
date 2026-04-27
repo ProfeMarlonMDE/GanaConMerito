@@ -2,8 +2,6 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { parseMarkdownItem } from "../src/domain/content/parse-md";
 import {
-  BLOCKED_CONTENT_IDS,
-  BLOCKED_SOURCE_ITEMS,
   CURRENT_QUESTION_BANK_FILES,
   EXPECTED_ACTIVE_CORPUS_COUNT,
   LEGACY_CONTENT_IDS,
@@ -112,17 +110,6 @@ async function main() {
       : `fallan: ${nonFourOptionItems.map((item) => `${item.contentId} (${item.optionCount})`).join(", ")}`,
   );
 
-  const blockedInsideActive = BLOCKED_CONTENT_IDS.filter((contentId) => activeIds.has(contentId));
-  pushCheck(
-    checks,
-    errors,
-    "blocked-excluded-by-default",
-    blockedInsideActive.length === 0,
-    blockedInsideActive.length === 0
-      ? `bloqueados excluidos: ${BLOCKED_CONTENT_IDS.join(", ")}`
-      : `bloqueados presentes en corpus activo: ${blockedInsideActive.join(", ")}`,
-  );
-
   const legacyInsideActive = LEGACY_CONTENT_IDS.filter((contentId) => activeIds.has(contentId));
   pushCheck(
     checks,
@@ -132,26 +119,6 @@ async function main() {
     legacyInsideActive.length === 0
       ? `legados excluidos: ${LEGACY_CONTENT_IDS.join(", ")}`
       : `legados presentes en corpus activo: ${legacyInsideActive.join(", ")}`,
-  );
-
-  const blockedSourcesMissing = (
-    await Promise.all(
-      BLOCKED_SOURCE_ITEMS.map(async (item) => ({
-        contentId: item.contentId,
-        source: item.source,
-        exists: await fileExists(path.join(repoRoot, item.source)),
-      })),
-    )
-  ).filter((item) => !item.exists);
-
-  pushCheck(
-    checks,
-    errors,
-    "blocked-source-traceability",
-    blockedSourcesMissing.length === 0,
-    blockedSourcesMissing.length === 0
-      ? `trazabilidad fuente presente para ${BLOCKED_SOURCE_ITEMS.length} bloqueados`
-      : `sin fuente local: ${blockedSourcesMissing.map((item) => `${item.contentId} -> ${item.source}`).join(", ")}`,
   );
 
   const legacyFilesMissing = (
@@ -178,7 +145,6 @@ async function main() {
     summary: {
       expectedActiveCorpusCount: EXPECTED_ACTIVE_CORPUS_COUNT,
       activeCorpusCount: activeItems.length,
-      blockedExcludedByDefault: [...BLOCKED_CONTENT_IDS],
       legacyExcludedByDefault: [...LEGACY_CONTENT_IDS],
       warningCount: warnings.length,
       errorCount: errors.length,

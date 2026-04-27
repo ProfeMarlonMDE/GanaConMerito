@@ -41,7 +41,6 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 3. Consolidar owner humano mínimo del producto y roles operativos de apoyo.
 4. Separar deuda heredada de deuda nueva en calidad y arquitectura.
 5. Aplicar disciplina operativa sobre ADR-001 ya aprobado.
-6. Definir tratamiento para `item-doc-003`, `item-doc-005` e `item-doc-021` excluidos de la carga actual por dependencia visual/imagen.
 
 ### Next
 1. Definir política operativa para cambios estructurales y releases.

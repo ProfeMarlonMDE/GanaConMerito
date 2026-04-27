@@ -54,7 +54,6 @@ last_reviewed: 2026-04-26
 - Pendiente: backlog ejecutivo `Now / Next / Later` completamente estabilizado.
 - Pendiente: clasificación completa del legado documental.
 - Pendiente: issue list operativa con owner e impacto.
-- Pendiente: definición de tratamiento para `item-doc-003`, `item-doc-005` e `item-doc-021` excluidos por dependencia visual/imagen.
 - Pendiente: decisión sobre manejo de ítems legados `item-doc-0001..0003`.
 - En progreso: frente `banco activo` ya en ejecución a nivel documental/operativo, sin cierre todavía de vista activa, adopción en runtime ni smoke test.
 

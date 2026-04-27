@@ -1,9 +1,5 @@
 # Estado de transformación a content/items
 
-## Excluidos por bloqueo de insumo
-- item-doc-003 → excluido explícitamente por falta de tabla fuente
-- item-doc-005 → excluido explícitamente por falta de gráfico fuente
-
 ## Archivos preparados
 - item-doc-001 -> content/items/matematicas/matematicas-resolucion-problemas-001.md
 - item-doc-002 -> content/items/matematicas/matematicas-resolucion-problemas-002.md
@@ -23,7 +19,6 @@
 - item-doc-018 -> content/items/gestion/gestion-gestion-academica-001.md
 - item-doc-019 -> content/items/gestion/gestion-planeacion-institucional-001.md
 - item-doc-020 -> content/items/gestion/gestion-gestion-academica-002.md
-- item-doc-021 -> content/items/lectura_critica/lectura-critica-proposito-comunicativo-001.md
 - item-doc-022 -> content/items/lectura_critica/lectura-critica-analisis-argumentativo-001.md
 - item-doc-023 -> content/items/lectura_critica/lectura-critica-interpretacion-textual-001.md
 - item-doc-024 -> content/items/lectura_critica/lectura-critica-estructura-textual-001.md

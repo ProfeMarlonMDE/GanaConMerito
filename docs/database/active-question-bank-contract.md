@@ -86,17 +86,9 @@ Mientras no exista una tabla formal de clasificación editorial, considerar `leg
 - `item-doc-0002`
 - `item-doc-0003`
 
-### Regla `blocked`
-Representa contenido que no debe ser consumido por la app aunque exista en base. Registro inicial:
-- `item-doc-003`
-- `item-doc-005`
-- `item-doc-021`
-
-Motivo actual: dependencia visual/imagen pendiente de resolución.
-
 ### Regla por defecto
 - la app **solo** lee `read_state = 'active'`
-- `legacy` y `blocked` solo se ven desde flujos editoriales/diagnóstico
+- `legacy` solo se ve desde flujos editoriales/diagnóstico
 - `inactive` queda fuera del consumo operativo normal
 
 ---
@@ -123,10 +115,7 @@ with classified_content (content_id, bucket, reason) as (
   values
     ('item-doc-0001'::text, 'legacy'::text, 'contenido legado pre-corpus actual'::text),
     ('item-doc-0002'::text, 'legacy'::text, 'contenido legado pre-corpus actual'::text),
-    ('item-doc-0003'::text, 'legacy'::text, 'contenido legado pre-corpus actual'::text),
-    ('item-doc-003'::text, 'blocked'::text, 'dependencia visual/imagen'::text),
-    ('item-doc-005'::text, 'blocked'::text, 'dependencia visual/imagen'::text),
-    ('item-doc-021'::text, 'blocked'::text, 'dependencia visual/imagen'::text)
+    ('item-doc-0003'::text, 'legacy'::text, 'contenido legado pre-corpus actual'::text)
 )
 select
   ib.id,
@@ -177,7 +166,7 @@ left join classified_content cc
 
 Notas de implementación:
 - `security_invoker = true` evita que la vista amplíe acceso por encima de la RLS vigente.
-- `classification_bucket` y `classification_reason` dejan trazabilidad explícita para `legacy` y `blocked`.
+- `classification_bucket` y `classification_reason` dejan trazabilidad explícita para `legacy`.
 - `thematic_nucleus_is_active` deja visible el último gate antes de `read_state = 'active'`.
 
 ### Regla operativa de uso
