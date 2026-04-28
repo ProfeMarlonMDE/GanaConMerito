@@ -173,7 +173,7 @@ function ensureOk(response, label) {
       examType: 'docente',
       professionalProfileId: selectedProfessionalProfile.id,
       activeGoal: 'QA E2E 5 turnos',
-      activeAreas: [],
+      activeAreas: ['matematicas'],
       preferredFeedbackStyle: 'socratic',
     },
   });
