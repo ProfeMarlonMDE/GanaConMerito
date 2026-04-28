@@ -11,7 +11,7 @@ related:
   - PROD-BACKLOG
   - DEL-CHANGE-LOG
   - QUAL-RISK-REGISTER
-last_reviewed: 2026-04-27
+last_reviewed: 2026-04-28
 ---
 
 # Sprint log
@@ -52,12 +52,15 @@ last_reviewed: 2026-04-27
 - Hecho: activación del banco activo en runtime con validación remota sobre `27` preguntas nuevas exactas.
 - Hecho: purga de preguntas defectuosas y contenido legacy del repo, reportes y BD remota.
 - Hecho: build de app validado y práctica ajustada a `5` turnos para pruebas funcionales.
+- Hecho: E2E real en Chromium del flujo principal con onboarding, práctica de `5` turnos, dashboard y persistencia validada.
+- Hecho: corrección de clasificación de dashboard (`Fuertes` / `Por reforzar`) y habilitación de vista por sesión (`/dashboard?sessionId=...`).
+- Hecho: endurecimiento QA con assertions semánticas post-run cruzando UI, API, dashboard y BD.
+- Hecho: aplicación remota del fix de cierre de sesión en Supabase y validación final de `status = completed` + `ended_at != null`.
 
 ## No entregado
 - Pendiente: backlog ejecutivo `Now / Next / Later` completamente estabilizado.
 - Pendiente: clasificación completa del legado documental fuera del circuito crítico.
 - Pendiente: issue list operativa con owner e impacto más allá del cierre técnico actual.
-- Pendiente: evidencia E2E autenticada de práctica con `5` turnos sobre el banco curado vigente.
 
 ## Frente ejecutado: banco activo
 - Estado: CERRADO.
@@ -79,6 +82,7 @@ last_reviewed: 2026-04-27
 
 ## Bloqueos
 - No hay bloqueo técnico crítico del banco activo.
+- No hay bloqueo técnico crítico en el loop principal de práctica tras la validación final remota.
 - Persiste deuda menor de trazabilidad documental y despliegue.
 
 ## ADR relacionados
@@ -88,7 +92,7 @@ last_reviewed: 2026-04-27
 - Documentación quede desacoplada del repo real si no se sigue cerrando sprint con disciplina.
 - Persistencia de doble canon documental en artefactos históricos no críticos.
 - Se ejecuten cambios sin disciplina de referencia al ADR aprobado.
-- Se asuma estabilidad completa de práctica sin correr una E2E autenticada de `5` turnos.
+- La próxima iteración toque sesión/dashboard sin mantener los asserts semánticos como guardián del negocio.
 
 ## Criterio de cierre
 - ADR-001 en `approved` y referenciado correctamente.
@@ -96,14 +100,15 @@ last_reviewed: 2026-04-27
 - Banco activo adoptado y validado con evidencia técnica.
 - Owner humano mínimo explícito para producto.
 - Riesgos inmediatos explícitos para el siguiente frente.
+- Flujo principal validado con E2E real Chromium, dashboard coherente y cierre de sesión persistido correctamente en remoto.
 
 ## Lecciones aprendidas
 - La herencia de otra agencia exige distinguir evidencia, supuesto y vacío.
 - Orden documental sin autoridad formal no alcanza; el baseline aprobado es obligatorio.
 
 ## Siguientes acciones
-1. Ejecutar E2E autenticada real de práctica con evidencia de `5` turnos.
+1. Reordenar backlog a `Now / Next / Later` con foco producto.
 2. Decidir si onboarding debe exigir `Áreas activas` no vacías.
 3. Corregir trazabilidad de despliegue (`Build/Commit` visibles).
-4. Reordenar backlog a `Now / Next / Later` con foco producto.
+4. Mantener y ampliar la suite QA semántica para futuras regresiones de sesión/dashboard.
 5. Reconciliar tableros/documentación operativa histórica.

@@ -103,10 +103,10 @@
 
 ## Próximo trabajo recomendado
 
-1. ejecutar una E2E autenticada real de práctica con evidencia de `5` turnos sobre el banco curado de `27` preguntas
-2. decidir y endurecer la validación de onboarding si `Áreas activas` no debe permitirse vacío
-3. corregir trazabilidad de despliegue para eliminar `Build: unknown` / `Commit desplegado: unknown`
-4. consolidar validación pública postdeploy con evidencia repetible
+1. decidir y endurecer la validación de onboarding si `Áreas activas` no debe permitirse vacío
+2. corregir trazabilidad de despliegue para eliminar `Build: unknown` / `Commit desplegado: unknown`
+3. consolidar validación pública postdeploy con evidencia repetible
+4. ampliar la suite QA semántica para cubrir futuras variantes del dashboard por sesión
 5. revisar si la estrategia actual del selector de práctica debe priorizar continuidad por competencia o cobertura por área
 
 ## Remediación de auditoría en curso
@@ -142,7 +142,7 @@
 
 ## Observación importante
 
-El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada mínima real en entorno desplegado: login Google, onboarding, práctica y dashboard funcionando con persistencia observable. Además, el banco de preguntas quedó consolidado en un único corpus operativo de `27` preguntas nuevas consumibles por runtime. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue y continuidad del producto”.
+El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada real en Chromium sobre el flujo principal: onboarding, práctica de `5` turnos, dashboard histórico y dashboard por sesión funcionando con persistencia observable. Además, el cierre remoto del bug de sesión quedó validado con `status = completed` y `ended_at != null`, y la QA semántica ya cruza UI, API, dashboard y BD como guardián del negocio. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue y continuidad del producto”.
 
 ## Cierre de remediación de dominios y workspaces
 
@@ -162,6 +162,6 @@ Pendiente residual no bloqueante:
 ## Referencia de versionado operativo vigente
 - App declarada: `0.4.8`
 - Rama operativa canónica: `master`
-- Último cierre técnico validado en repo: limpieza del banco + práctica a `5` turnos + build verde
+- Último cierre técnico validado en repo: práctica a `5` turnos + dashboard por sesión + QA semántica + cierre remoto de sesión validado
 
 Mientras no se haga un release formal nuevo, esta es la forma correcta de reportar el estado real para seguir desarrollo sin ambigüedad.

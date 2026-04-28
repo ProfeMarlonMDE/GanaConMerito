@@ -9,10 +9,17 @@ modules: [core, platform]
 tags: [changelog, cambios, entregas]
 related:
   - DEL-SPRINT-LOG
-last_reviewed: 2026-04-26
+last_reviewed: 2026-04-28
 ---
 
 # Change log
+
+## 2026-04-28
+- tipo: qa+product
+- modulo: practice/dashboard/sessions
+- resumen: se cierra el ciclo E2E real en Chromium con dashboard por sesión, assertions semánticas, corrección de clasificación `Fuertes/Por reforzar` y aplicación remota del fix de cierre de sesión en Supabase; la validación final confirma `status=completed` y `ended_at` persistido.
+- sprint: Sprint 1 - Gobernanza mínima y baseline operable del producto
+- relacionados: DEL-SPRINT-LOG, QUAL-CHROMIUM-QA-2026-04-27, QUAL-KNOWN-ISSUES
 
 ## 2026-04-26
 - tipo: docs
