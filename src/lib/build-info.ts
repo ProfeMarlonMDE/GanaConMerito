@@ -11,6 +11,24 @@ function safeReadGitCommit() {
   }
 }
 
-export function getBuildCommitHash() {
-  return process.env.NEXT_PUBLIC_APP_COMMIT?.trim() || safeReadGitCommit() || "unknown";
+function safeReadBuildTime() {
+  const value = process.env.NEXT_PUBLIC_APP_BUILD_TIME?.trim();
+
+  if (!value) {
+    return null;
+  }
+
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
+}
+
+export function getBuildInfo() {
+  const commitHash = process.env.NEXT_PUBLIC_APP_COMMIT?.trim() || safeReadGitCommit() || null;
+  const buildTime = safeReadBuildTime();
+
+  return {
+    commitHash,
+    buildTime,
+    isTraceable: Boolean(commitHash),
+  };
 }

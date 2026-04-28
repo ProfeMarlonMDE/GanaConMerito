@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "qa:e2e:api": "node scripts/qa-e2e-five-turns.js",
+    "qa:e2e:ui": "node scripts/qa-ui-e2e-chromium.js",
     "content:validate": "tsx scripts/validate-question-bank.ts",
     "content:validate:all": "tsx scripts/validate-question-bank.ts --all",
     "content:smoke:active": "tsx scripts/smoke-test-active-question-bank.ts",

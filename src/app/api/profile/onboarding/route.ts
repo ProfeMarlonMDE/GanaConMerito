@@ -6,8 +6,12 @@ const onboardingSchema = z.object({
   targetRole: z.literal("docente"),
   examType: z.literal("docente"),
   professionalProfileId: z.string().uuid(),
-  activeGoal: z.string().trim().min(1).max(240),
-  activeAreas: z.array(z.string().trim().min(1)).max(20).default([]),
+  activeGoal: z.string().trim().min(1, "La meta activa es obligatoria.").max(240),
+  activeAreas: z
+    .array(z.string().trim().min(1))
+    .max(20)
+    .default([])
+    .transform((areas) => Array.from(new Set(areas.map((area) => area.trim()).filter(Boolean)))),
   preferredFeedbackStyle: z.enum(["socratic"]).default("socratic"),
 });
 
@@ -22,11 +26,17 @@ export async function POST(request: Request) {
   }
 
   const json = await request.json();
+
+  // Regla Sprint 2 / P1:
+  // `activeAreas` es un campo opcional de preferencia de usuario.
+  // Puede persistirse vacío y no bloquea onboarding ni práctica mientras
+  // la segmentación activa del runtime siga gobernada por perfil profesional
+  // + banco universal activo.
   const parsed = onboardingSchema.safeParse(json);
 
   if (!parsed.success) {
     return NextResponse.json(
-      { error: parsed.error.issues.map((issue) => issue.message).join(" | ") },
+      { error: parsed.error.issues.map((issue) => issue.message).join(" | ") || "Datos de onboarding inválidos." },
       { status: 400 },
     );
   }

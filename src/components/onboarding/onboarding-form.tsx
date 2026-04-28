@@ -29,6 +29,7 @@ export function OnboardingForm(props: {
   const [activeAreas, setActiveAreas] = useState((props.initialActiveAreas || []).join(", "));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const activeGoalValue = activeGoal.trim();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -42,7 +43,7 @@ export function OnboardingForm(props: {
         targetRole,
         examType,
         professionalProfileId,
-        activeGoal,
+        activeGoal: activeGoalValue,
         preferredFeedbackStyle,
         activeAreas: activeAreas
           .split(",")
@@ -92,17 +93,22 @@ export function OnboardingForm(props: {
       </label>
       <label>
         Meta activa
-        <input value={activeGoal} onChange={(e) => setActiveGoal(e.target.value)} />
+        <input value={activeGoal} onChange={(e) => setActiveGoal(e.target.value)} required />
       </label>
       <label>
         Estilo de feedback
         <input value={preferredFeedbackStyle} disabled readOnly />
       </label>
       <label>
-        Áreas activas (separadas por coma)
-        <input value={activeAreas} onChange={(e) => setActiveAreas(e.target.value)} />
+        Áreas activas (opcional, separadas por coma)
+        <input
+          value={activeAreas}
+          onChange={(e) => setActiveAreas(e.target.value)}
+          placeholder="Ej.: matemáticas, lectura crítica"
+        />
+        <small>Si lo dejas vacío, tu práctica seguirá disponible con la configuración general activa.</small>
       </label>
-      <button type="submit" disabled={loading || !professionalProfileId}>
+      <button type="submit" disabled={loading || !professionalProfileId || !activeGoalValue}>
         {loading ? "Guardando..." : "Guardar onboarding"}
       </button>
       {error ? <p>{error}</p> : null}

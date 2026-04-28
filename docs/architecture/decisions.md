@@ -79,7 +79,18 @@ Reglas mínimas:
 Motivo:
 El proyecto ya detectó riesgo de trazabilidad engañosa y estados aparentes de éxito sin confirmación suficiente. Esta decisión busca volver estructural la honestidad funcional.
 
-## 10. Deuda futura explícita
+## 10. Regla oficial de onboarding para `active_areas`
+
+- `learning_profiles.active_areas` es un campo opcional de preferencia
+- puede persistirse vacío sin bloquear `onboarding_completed`
+- no es fuente de verdad del runtime de práctica en esta fase
+- la segmentación efectiva de práctica sigue gobernada por `professional_profile_id` y el banco activo elegible
+- la UI debe explicitar que el campo es opcional; backend y frontend deben aceptar vacío sin ambigüedad
+
+Motivo:
+El flujo real ya validado demostró que `active_areas` no gobierna la selección operativa actual. Forzarlo como requisito sin soporte real en runtime produciría una promesa falsa y una validación cosmética.
+
+## 11. Deuda futura explícita
 
 Queda fuera de esta fase:
 - scoring formal dividido en deterministic + llm-assisted rubric
