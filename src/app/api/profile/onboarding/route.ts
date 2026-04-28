@@ -9,8 +9,8 @@ const onboardingSchema = z.object({
   activeGoal: z.string().trim().min(1, "La meta activa es obligatoria.").max(240),
   activeAreas: z
     .array(z.string().trim().min(1))
+    .min(1, "Debes indicar al menos un área activa.")
     .max(20)
-    .default([])
     .transform((areas) => Array.from(new Set(areas.map((area) => area.trim()).filter(Boolean)))),
   preferredFeedbackStyle: z.enum(["socratic"]).default("socratic"),
 });
@@ -26,12 +26,6 @@ export async function POST(request: Request) {
   }
 
   const json = await request.json();
-
-  // Regla Sprint 2 / P1:
-  // `activeAreas` es un campo opcional de preferencia de usuario.
-  // Puede persistirse vacío y no bloquea onboarding ni práctica mientras
-  // la segmentación activa del runtime siga gobernada por perfil profesional
-  // + banco universal activo.
   const parsed = onboardingSchema.safeParse(json);
 
   if (!parsed.success) {
@@ -71,7 +65,7 @@ export async function POST(request: Request) {
       active_goal: parsed.data.activeGoal,
       active_areas: parsed.data.activeAreas,
       preferred_feedback_style: parsed.data.preferredFeedbackStyle,
-      onboarding_completed: true,
+      onboarding_completed: parsed.data.activeAreas.length > 0,
     })
     .eq("profile_id", profile.id);
 

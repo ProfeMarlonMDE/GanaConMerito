@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { scoreResponseBaselineHeuristicV1 } from "../../../../domain/evaluation/score-response";
 import { selectNextItem } from "../../../../domain/item-selection/select-next-item";
 import { getNextState } from "../../../../domain/orchestrator/session-machine";
+import { isLearningProfileOnboardingComplete } from "../../../../lib/onboarding/status";
 import { applyActiveItemBankFilters, runWithActiveItemBankFallback } from "../../../../lib/supabase/active-item-bank";
 import { requireOwnedSession } from "../../../../lib/supabase/guards";
 import { advanceSessionSchema } from "../../../../lib/validation/session";
@@ -45,7 +46,7 @@ export async function POST(request: Request) {
 
   const { data: learningProfile, error: learningProfileError } = await supabase
     .from("learning_profiles")
-    .select("onboarding_completed, professional_profile_id")
+    .select("onboarding_completed, professional_profile_id, active_areas")
     .eq("profile_id", session.profile_id)
     .single();
 
@@ -88,11 +89,12 @@ export async function POST(request: Request) {
       : "Necesitas refuerzo en este punto. Revisemos la premisa clave.");
 
   const previousState = session.current_state as SessionState;
+  const onboardingCompleted = isLearningProfileOnboardingComplete(learningProfile);
   const shouldReview = existingTurns.length > 0 && !evaluation.remediationNeeded;
   const isSessionEnding = existingTurns.length + 1 >= 5;
   const currentState = getNextState({
     currentState: previousState,
-    onboardingCompleted: learningProfile.onboarding_completed,
+    onboardingCompleted,
     hasBaseline: existingTurns.length > 0 || previousState !== "diagnostic",
     remediationNeeded: evaluation.remediationNeeded,
     shouldReview,

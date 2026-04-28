@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { OnboardingForm } from "@/components/onboarding/onboarding-form";
+import { isLearningProfileOnboardingComplete } from "@/lib/onboarding/status";
 import { requireAuthenticatedUser } from "@/lib/supabase/guards";
 
 export default async function OnboardingPage() {
@@ -29,7 +30,7 @@ export default async function OnboardingPage() {
     .eq("is_active", true)
     .order("name", { ascending: true });
 
-  if (learningProfile?.onboarding_completed) {
+  if (isLearningProfileOnboardingComplete(learningProfile)) {
     redirect("/practice");
   }
 

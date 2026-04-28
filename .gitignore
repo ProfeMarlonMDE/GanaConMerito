@@ -5,6 +5,8 @@ coverage/
 artifacts/
 .playwright-libs/
 tmp_playwright_smoke.js
+.build-meta.json
+tsconfig.tsbuildinfo
 .env
 .env.*
 !.env.example

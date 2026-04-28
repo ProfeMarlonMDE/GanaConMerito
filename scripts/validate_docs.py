@@ -5,7 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 REQUIRED_FIELDS = ['id', 'name', 'project', 'owner', 'status', 'artifact_type', 'modules', 'tags', 'related', 'last_reviewed']
-VALID_STATUS = {'draft', 'active', 'review', 'approved', 'superseded', 'archived', 'proposed', 'rejected'}
+VALID_STATUS = {'draft', 'active', 'review', 'approved', 'superseded', 'archived', 'proposed', 'rejected', 'completed'}
 VALID_TYPES = {'feature-spec', 'adr', 'runbook', 'debt-item', 'governance', 'quality', 'ops', 'product', 'delivery'}
 CRITICAL = [
     ROOT / 'README.md',

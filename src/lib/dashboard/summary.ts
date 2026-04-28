@@ -84,7 +84,13 @@ function buildSummary(stats: DashboardTopicBreakdownRow[]): DashboardSummaryResp
   }
 
   const strongestCompetencies = [...stats]
-    .filter((row) => row.attempts >= 1 && row.correct_count > 0 && Number(row.estimated_level) > 0 && getAccuracy(row) >= 0.5)
+    .filter(
+      (row) =>
+        row.attempts >= 1 &&
+        row.correct_count > 0 &&
+        Number(row.estimated_level) > 0 &&
+        getAccuracy(row) >= 0.5,
+    )
     .sort((a, b) => {
       const levelDiff = Number(b.estimated_level) - Number(a.estimated_level);
       if (levelDiff !== 0) return levelDiff;
@@ -92,8 +98,9 @@ function buildSummary(stats: DashboardTopicBreakdownRow[]): DashboardSummaryResp
       if (accuracyDiff !== 0) return accuracyDiff;
       return b.attempts - a.attempts;
     })
-    .slice(0, 3)
-    .map((row) => row.competency);
+    .map((row) => row.competency)
+    .filter((competency, index, arr) => Boolean(competency) && arr.indexOf(competency) === index)
+    .slice(0, 3);
 
   const strongestSet = new Set(strongestCompetencies);
   const weakestCompetencies = [...stats]
@@ -105,8 +112,9 @@ function buildSummary(stats: DashboardTopicBreakdownRow[]): DashboardSummaryResp
       if (accuracyDiff !== 0) return accuracyDiff;
       return b.attempts - a.attempts;
     })
-    .slice(0, 3)
-    .map((row) => row.competency);
+    .map((row) => row.competency)
+    .filter((competency, index, arr) => Boolean(competency) && arr.indexOf(competency) === index)
+    .slice(0, 3);
 
   return {
     estimatedLevel,

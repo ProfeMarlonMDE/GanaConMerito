@@ -7,15 +7,14 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const buildInfo = getBuildInfo();
+  const { commit, buildTime } = getBuildInfo();
 
   return (
     <html lang="es">
       <body>
         {children}
         <footer style={{ padding: "12px 16px", fontSize: "12px", opacity: 0.7 }}>
-          <strong>Commit</strong>: {buildInfo.commitHash ?? "not-set"}
-          {buildInfo.buildTime ? <> · <strong>Built at</strong>: {buildInfo.buildTime}</> : null}
+          <strong>Build</strong>: <code>{commit}</code> · <strong>Built at</strong>: <code>{buildTime}</code>
         </footer>
       </body>
     </html>

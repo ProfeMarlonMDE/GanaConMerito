@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface ProfessionalProfileOption {
@@ -30,9 +30,28 @@ export function OnboardingForm(props: {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const activeGoalValue = activeGoal.trim();
+  const parsedActiveAreas = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          activeAreas
+            .split(",")
+            .map((value) => value.trim())
+            .filter(Boolean),
+        ),
+      ),
+    [activeAreas],
+  );
+  const hasActiveAreas = parsedActiveAreas.length > 0;
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!hasActiveAreas) {
+      setError("Debes indicar al menos un área activa.");
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -45,10 +64,7 @@ export function OnboardingForm(props: {
         professionalProfileId,
         activeGoal: activeGoalValue,
         preferredFeedbackStyle,
-        activeAreas: activeAreas
-          .split(",")
-          .map((value) => value.trim())
-          .filter(Boolean),
+        activeAreas: parsedActiveAreas,
       }),
     });
 
@@ -100,15 +116,15 @@ export function OnboardingForm(props: {
         <input value={preferredFeedbackStyle} disabled readOnly />
       </label>
       <label>
-        Áreas activas (opcional, separadas por coma)
+        Áreas activas (separadas por coma)
         <input
           value={activeAreas}
           onChange={(e) => setActiveAreas(e.target.value)}
+          aria-invalid={!hasActiveAreas}
           placeholder="Ej.: matemáticas, lectura crítica"
         />
-        <small>Si lo dejas vacío, tu práctica seguirá disponible con la configuración general activa.</small>
       </label>
-      <button type="submit" disabled={loading || !professionalProfileId || !activeGoalValue}>
+      <button type="submit" disabled={loading || !professionalProfileId || !activeGoalValue || !hasActiveAreas}>
         {loading ? "Guardando..." : "Guardar onboarding"}
       </button>
       {error ? <p>{error}</p> : null}

@@ -1,8 +1,15 @@
 import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
-function safeReadGitCommit() {
+type BuildInfo = {
+  commit: string;
+  buildTime: string;
+};
+
+function safeExec(command: string) {
   try {
-    return execSync("git rev-parse --short HEAD", {
+    return execSync(command, {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
     }).trim();
@@ -11,24 +18,31 @@ function safeReadGitCommit() {
   }
 }
 
-function safeReadBuildTime() {
-  const value = process.env.NEXT_PUBLIC_APP_BUILD_TIME?.trim();
-
-  if (!value) {
+function safeReadGeneratedBuildInfo(): Partial<BuildInfo> | null {
+  try {
+    const raw = readFileSync(join(process.cwd(), ".build-meta.json"), "utf8");
+    return JSON.parse(raw) as Partial<BuildInfo>;
+  } catch {
     return null;
   }
-
-  const parsed = new Date(value);
-  return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
 }
 
-export function getBuildInfo() {
-  const commitHash = process.env.NEXT_PUBLIC_APP_COMMIT?.trim() || safeReadGitCommit() || null;
-  const buildTime = safeReadBuildTime();
+export function getBuildInfo(): BuildInfo {
+  const generated = safeReadGeneratedBuildInfo();
 
   return {
-    commitHash,
-    buildTime,
-    isTraceable: Boolean(commitHash),
+    commit:
+      process.env.NEXT_PUBLIC_APP_COMMIT?.trim() ||
+      generated?.commit?.trim() ||
+      safeExec("git rev-parse --short HEAD") ||
+      "unknown",
+    buildTime:
+      process.env.NEXT_PUBLIC_APP_BUILD_TIME?.trim() ||
+      generated?.buildTime?.trim() ||
+      "unknown",
   };
+}
+
+export function getBuildCommitHash() {
+  return getBuildInfo().commit;
 }

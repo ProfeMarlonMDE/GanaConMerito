@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { selectNextItem } from "../../../../domain/item-selection/select-next-item";
+import { isLearningProfileOnboardingComplete } from "../../../../lib/onboarding/status";
 import { requireAuthenticatedProfile } from "../../../../lib/supabase/guards";
 import { startSessionSchema } from "../../../../lib/validation/session";
 import type { StartSessionResponse, SessionState } from "../../../../types/session";
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
 
   const { data: learningProfile, error: learningProfileError } = await supabase
     .from("learning_profiles")
-    .select("onboarding_completed, professional_profile_id")
+    .select("onboarding_completed, professional_profile_id, active_areas")
     .eq("profile_id", profile.id)
     .single();
 
@@ -39,8 +40,10 @@ export async function POST(request: Request) {
     activeCompetency: body.competency,
   });
 
+  const onboardingCompleted = isLearningProfileOnboardingComplete(learningProfile);
+
   let currentState: SessionState = "onboarding";
-  if (learningProfile.onboarding_completed) {
+  if (onboardingCompleted) {
     currentState = nextItem ? "practice" : "diagnostic";
   }
 
