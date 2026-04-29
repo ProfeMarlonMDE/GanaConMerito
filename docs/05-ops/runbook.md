@@ -23,6 +23,7 @@ Tener una guía mínima para operar, validar y recuperar contexto del repositori
 2. Confirmar integridad del árbol documental crítico.
 3. Revisar migraciones de Supabase pendientes o recientes.
 4. Validar que cambios estructurales tengan ADR asociado.
+5. Confirmar que `~/.openclaw/product` y el estado publicado en GitHub sean la referencia antes de tocar deploy.
 
 ## Antes de desarrollar
 - Leer contexto mínimo obligatorio.
@@ -52,15 +53,59 @@ Tener una guía mínima para operar, validar y recuperar contexto del repositori
 - vincular ADR o deuda si aplica
 - escalar a aprobación humana cuando corresponda
 
-## Trazabilidad mínima de despliegue
+## Regla de oro product / deploy
+- `~/.openclaw/product` = desarrollo, QA, commits y push
+- GitHub = fuente oficial compartida
+- `/opt/gcm/app` = árbol de deploy en VPS
+- `/opt/gcm/app` no se usa como fuente principal de desarrollo
+- ningún fix debe quedar persistente solo en VPS
+
+## Checklist operativo estándar
+Checklist corto de referencia: `docs/05-ops/deploy-checklist.md`
+
+
+### Antes de codificar
+1. confirmar que el trabajo ocurre en `~/.openclaw/product`
+2. confirmar branch/estado git limpio o intencional
+3. leer contexto mínimo requerido
+
+### Antes de push
+1. ejecutar validaciones relevantes
+2. revisar diff
+3. commit en `~/.openclaw/product`
+4. push a GitHub
+
+### Antes de deploy
+1. confirmar que GitHub ya contiene el cambio correcto
+2. sincronizar `/opt/gcm/app` desde Git
+3. construir con metadata de build
+4. levantar/recrear servicio
+
+### Después de deploy
+1. abrir `/login`
+2. verificar `Commit desplegado`
+3. verificar `Build time`
+4. correr smoke/QA aplicable
+5. confirmar que producción coincide con el commit esperado
+
+## Procedimiento estándar de deploy
 
 ### Contrato
+- todo cambio nace en `~/.openclaw/product`
+- el árbol `/opt/gcm/app` se actualiza desde Git
 - todo build Docker debe recibir `APP_COMMIT` y `APP_BUILD_TIME`
 - si falta uno de esos valores, el build debe fallar
 - la UI debe exponer ambos en login/footer para verificación manual rápida
 
-### Comandos de referencia
+### Secuencia oficial
 ```bash
+cd ~/.openclaw/product
+# editar, validar, commit, push
+
+git -C /opt/gcm/app fetch origin
+git -C /opt/gcm/app checkout master
+git -C /opt/gcm/app reset --hard origin/master
+
 APP_COMMIT=$(git -C /opt/gcm/app rev-parse --short HEAD)
 APP_BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 docker compose -f /opt/gcm/docker-compose.yml build \
@@ -76,6 +121,7 @@ docker compose -f /opt/gcm/docker-compose.yml up -d gcm-app
 2. confirmar que `Commit desplegado` coincide con `git -C /opt/gcm/app rev-parse --short HEAD`
 3. confirmar que `Build time` está visible y no vacío
 4. confirmar en layout/footer que no aparece `not-set`
+5. si hay divergencia, corregir en `~/.openclaw/product`, no directamente en VPS
 
 ## Vacíos
 - TODO: comando oficial de desarrollo y validación end-to-end

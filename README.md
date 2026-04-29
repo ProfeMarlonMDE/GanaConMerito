@@ -49,6 +49,16 @@ Este repositorio concentra código, documentación operativa, decisiones técnic
 3. Todo documento crítico debe tener owner humano.
 4. Ningún secreto debe entrar a markdown público, prompts o logs.
 5. Antes de tocar código, agentes y personas deben leer el contexto mínimo definido por gobernanza.
+6. `~/.openclaw/product` es la fuente de verdad de desarrollo; `/opt/gcm/app` es solo el árbol de deploy.
+7. Todo cambio de aplicación debe nacer en `~/.openclaw/product`, validarse ahí y llegar a GitHub antes de redeploy.
+
+## Regla de oro product / deploy
+- `~/.openclaw/product` = desarrollo, QA, commits, push
+- GitHub = fuente oficial compartida
+- `/opt/gcm/app` = despliegue reconstruido desde Git
+- no se aceptan fixes persistentes hechos solo en VPS
+
+Si hay divergencia entre `~/.openclaw/product` y `/opt/gcm/app`, la corrección debe volver a `~/.openclaw/product` y luego redeployarse.
 
 ## Lectura mínima antes de actuar
 1. `README.md`
