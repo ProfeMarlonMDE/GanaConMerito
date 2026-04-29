@@ -117,6 +117,22 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
 
+## Product / Deploy Golden Rule
+
+Para GanaConMerito, la regla operativa es obligatoria:
+
+- `~/.openclaw/product` = desarrollo, QA, commits y push a GitHub
+- `/opt/gcm/app` = árbol de deploy en VPS
+- no se edita `/opt/gcm/app` como fuente principal de desarrollo
+- todo fix estable debe vivir primero en `~/.openclaw/product`
+- todo deploy debe reconstruir `/opt/gcm/app` desde Git/GitHub, no al revés
+
+Si ves divergencia entre ambos árboles:
+- asume que hay desalineación operativa
+- corrige la fuente en `~/.openclaw/product`
+- empuja a GitHub
+- y solo después redeploya `/opt/gcm/app`
+
 **🎭 Voice Storytelling:** If you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and "storytime" moments! Way more engaging than walls of text. Surprise people with funny voices.
 
 **📝 Platform Formatting:**

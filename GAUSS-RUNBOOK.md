@@ -14,6 +14,20 @@ Gauss resuelve directo si:
 - la capa responsable es evidente
 - delegar agregaría más fricción que valor
 
+## 2.1 Regla de carril product vs deploy
+Para GanaConMerito:
+- `~/.openclaw/product` es el carril de construcción de código
+- GitHub se actualiza desde `~/.openclaw/product`
+- `/opt/gcm/app` es solo carril de deploy
+- ningún cambio debe quedarse solo en `/opt/gcm/app`
+
+Secuencia correcta:
+1. cambiar en `~/.openclaw/product`
+2. validar
+3. commit
+4. push
+5. redeploy a `/opt/gcm/app`
+
 Gauss delega si:
 - hace falta especialidad real
 - el caso cruza dominios
