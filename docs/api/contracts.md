@@ -74,15 +74,25 @@ Lectura de banco recomendada:
 - opciones desde `item_options` mientras no exista una vista de detalle consolidada
 
 ### `GET /api/dashboard/summary`
+Contrato detallado: `docs/api/dashboard-summary-contract.md`
+
+Entrada:
+- `sessionId?`
+
 Salida:
-- `estimatedLevel`
-- `percentileSegment?`
-- `totalAttempts`
-- `totalCorrect`
-- `avgReasoningScore`
-- `strongestCompetencies[]`
-- `weakestCompetencies[]`
-- `recentTrend`
+- `historical`
+  - `estimatedLevel`
+  - `percentileSegment?`
+  - `totalAttempts`
+  - `totalCorrect`
+  - `avgReasoningScore`
+  - `strongestCompetencies[]`
+  - `weakestCompetencies[]`
+  - `recentTrend`
+- `currentSession`
+  - mismo shape que `historical`
+  - `null` cuando no llega `sessionId`
+  - bloque vacío cuando sí llega `sessionId` pero la sesión aún no tiene datos evaluados o no es accesible por ownership
 
 ## Estado real
 
@@ -95,5 +105,5 @@ Las rutas existen en `src/app/api/`.
 - endpoints críticos ya tienen validación runtime con Zod
 
 ### Aún pendiente
-- dashboard con datos reales
-- validación E2E formal de flujos
+- mantener el contrato dashboard alineado con payload real en runtime desplegado
+- sostener smoke postdeploy + E2E autenticada como gate operativo

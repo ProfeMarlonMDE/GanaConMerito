@@ -86,9 +86,10 @@ Runbook de rollback: `docs/05-ops/rollback-runbook.md`
 1. abrir `/login`
 2. verificar `Commit desplegado`
 3. verificar `Build time`
-4. correr smoke/QA aplicable
-5. confirmar que producción coincide con el commit esperado
-6. si falla una QA UI, separar primero si el bloqueo es de host, de datos o de contrato funcional del formulario antes de tocar backend
+4. correr `npm run qa:smoke:postdeploy` contra el runtime objetivo
+5. si el cambio tocó auth, onboarding, sesiones o dashboard, correr además la E2E aplicable
+6. confirmar que producción coincide con el commit esperado
+7. si falla una QA UI, separar primero si el bloqueo es de host, de datos o de contrato funcional del formulario antes de tocar backend
 
 
 ## Procedimiento estándar de deploy
@@ -127,6 +128,11 @@ docker compose -f /opt/gcm/docker-compose.yml up -d gcm-app
 5. si hay divergencia, corregir en `~/.openclaw/product`, no directamente en VPS
 6. cuando el onboarding exija campos obligatorios nuevos, actualizar también la QA UI versionada para evitar drift entre test y regla funcional
 
+## Matriz corta de validación
+- deploy/redeploy simple: `qa:smoke:postdeploy`
+- cambio backend de dashboard/sesión: `qa:smoke:postdeploy` + `qa:e2e:api`
+- cambio frontend de onboarding/practice/dashboard: `qa:smoke:postdeploy` + `qa:e2e:ui`
+- cambio transversal auth + dashboard + UI: correr los tres
+
 ## Vacíos
-- TODO: comando oficial de desarrollo y validación end-to-end
 - TODO: owners operativos por tipo de incidente

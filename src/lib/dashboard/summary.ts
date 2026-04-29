@@ -1,18 +1,11 @@
 import { requireOwnedSession } from "@/lib/supabase/guards";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
-import type { DashboardSummaryMetrics, DashboardSummaryResponse } from "@/types/evaluation";
-
-export interface DashboardTopicBreakdownRow {
-  area: string;
-  competency: string;
-  attempts: number;
-  correct_count: number;
-  avg_reasoning_score: number;
-  avg_difficulty: number;
-  estimated_level: number;
-  percentile_segment?: number | null;
-  updated_at?: string | null;
-}
+import {
+  buildDashboardSummaryMetrics,
+  emptyDashboardSummaryMetrics,
+  type DashboardTopicBreakdownRow,
+} from "@/lib/dashboard/summary-metrics";
+import type { DashboardSummaryResponse } from "@/types/evaluation";
 
 interface SessionTurnRow {
   id: string;
@@ -36,97 +29,6 @@ interface ItemBankRow {
   difficulty: number | string | null;
 }
 
-function emptySummaryMetrics(): DashboardSummaryMetrics {
-  return {
-    estimatedLevel: 0,
-    totalAttempts: 0,
-    totalCorrect: 0,
-    avgReasoningScore: 0,
-    strongestCompetencies: [],
-    weakestCompetencies: [],
-    recentTrend: "stable",
-  };
-}
-
-function getAccuracy(row: DashboardTopicBreakdownRow) {
-  return row.attempts > 0 ? row.correct_count / row.attempts : 0;
-}
-
-function buildSummary(stats: DashboardTopicBreakdownRow[]): DashboardSummaryMetrics {
-  const totalAttempts = stats.reduce((sum, row) => sum + row.attempts, 0);
-  const totalCorrect = stats.reduce((sum, row) => sum + row.correct_count, 0);
-  const avgReasoningScore =
-    totalAttempts > 0
-      ? Number(
-          (
-            stats.reduce((sum, row) => sum + Number(row.avg_reasoning_score) * row.attempts, 0) /
-            totalAttempts
-          ).toFixed(2),
-        )
-      : 0;
-  const estimatedLevel =
-    stats.length > 0
-      ? Number((stats.reduce((sum, row) => sum + Number(row.estimated_level), 0) / stats.length).toFixed(3))
-      : 0;
-
-  const recentWindow = [...stats]
-    .filter((row) => row.updated_at)
-    .sort((a, b) => String(b.updated_at).localeCompare(String(a.updated_at)));
-
-  let recentTrend: DashboardSummaryMetrics["recentTrend"] = "stable";
-  if (recentWindow.length >= 2) {
-    const latest = Number(recentWindow[0].estimated_level);
-    const previous = Number(recentWindow[1].estimated_level);
-    if (latest > previous) recentTrend = "up";
-    else if (latest < previous) recentTrend = "down";
-  } else if (totalAttempts > 0) {
-    recentTrend = "up";
-  }
-
-  const strongestCompetencies = [...stats]
-    .filter(
-      (row) =>
-        row.attempts >= 1 &&
-        row.correct_count > 0 &&
-        Number(row.estimated_level) > 0 &&
-        getAccuracy(row) >= 0.5,
-    )
-    .sort((a, b) => {
-      const levelDiff = Number(b.estimated_level) - Number(a.estimated_level);
-      if (levelDiff !== 0) return levelDiff;
-      const accuracyDiff = getAccuracy(b) - getAccuracy(a);
-      if (accuracyDiff !== 0) return accuracyDiff;
-      return b.attempts - a.attempts;
-    })
-    .map((row) => row.competency)
-    .filter((competency, index, arr) => Boolean(competency) && arr.indexOf(competency) === index)
-    .slice(0, 3);
-
-  const strongestSet = new Set(strongestCompetencies);
-  const weakestCompetencies = [...stats]
-    .filter((row) => row.attempts >= 1 && !strongestSet.has(row.competency))
-    .sort((a, b) => {
-      const levelDiff = Number(a.estimated_level) - Number(b.estimated_level);
-      if (levelDiff !== 0) return levelDiff;
-      const accuracyDiff = getAccuracy(a) - getAccuracy(b);
-      if (accuracyDiff !== 0) return accuracyDiff;
-      return b.attempts - a.attempts;
-    })
-    .map((row) => row.competency)
-    .filter((competency, index, arr) => Boolean(competency) && arr.indexOf(competency) === index)
-    .slice(0, 3);
-
-  return {
-    estimatedLevel,
-    percentileSegment: stats[0]?.percentile_segment ?? undefined,
-    totalAttempts,
-    totalCorrect,
-    avgReasoningScore,
-    strongestCompetencies,
-    weakestCompetencies,
-    recentTrend,
-  };
-}
 
 async function getCurrentUserTopicStats(): Promise<DashboardTopicBreakdownRow[]> {
   const supabase = await getSupabaseServerClient();
@@ -247,8 +149,8 @@ export async function getDashboardSummaryForCurrentUser(sessionId?: string): Pro
   const currentSessionStats = sessionId ? await getSessionTopicStats(sessionId) : [];
 
   return {
-    historical: historicalStats.length > 0 ? buildSummary(historicalStats) : emptySummaryMetrics(),
-    currentSession: sessionId ? (currentSessionStats.length > 0 ? buildSummary(currentSessionStats) : emptySummaryMetrics()) : null,
+    historical: historicalStats.length > 0 ? buildDashboardSummaryMetrics(historicalStats) : emptyDashboardSummaryMetrics(),
+    currentSession: sessionId ? (currentSessionStats.length > 0 ? buildDashboardSummaryMetrics(currentSessionStats) : emptyDashboardSummaryMetrics()) : null,
   };
 }
 

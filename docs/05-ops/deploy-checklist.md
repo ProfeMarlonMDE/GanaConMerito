@@ -34,6 +34,8 @@ last_reviewed: 2026-04-29
 - [ ] `docker compose` reconstruyó `gcm-app`
 - [ ] `/login` muestra el commit esperado
 - [ ] `/login` muestra build time válido
+- [ ] corrí `npm run qa:smoke:postdeploy` contra el runtime objetivo
+- [ ] si el cambio tocó auth/sesión/dashboard, corrí además la E2E relevante (`qa:e2e:api` y/o `qa:e2e:ui`)
 
 ### Regla de incidentes
 - [ ] si inspeccioné `/opt/gcm/app`, el fix volvió a `~/.openclaw/product`

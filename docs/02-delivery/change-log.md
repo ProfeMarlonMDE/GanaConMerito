@@ -14,6 +14,13 @@ last_reviewed: 2026-04-28
 
 # Change log
 
+## 2026-04-29
+- tipo: hardening
+- modulo: dashboard/qa/ops
+- resumen: se formaliza el contrato del dashboard, se aísla la lógica de clasificación en módulo reutilizable con prueba determinista, la QA E2E pasa a usar identidades únicas por corrida, se agrega smoke postdeploy mínimo y se actualiza la documentación operativa con evidencia real.
+- sprint: Sprint siguiente - Hardening de dashboard y estabilidad QA
+- relacionados: API-DASHBOARD-SUMMARY-CONTRACT, QUAL-DASHBOARD-HARDENING-2026-04-29, QUAL-QA-SEMANTICA-RUNBOOK
+
 ## 2026-04-28
 - tipo: qa+product
 - modulo: practice/dashboard/sessions

@@ -23,7 +23,7 @@
         "DEL-SPRINT-LOG",
         "QUAL-DEBT-REGISTER"
       ],
-      "last_reviewed": "2026-04-23"
+      "last_reviewed": "2026-04-27"
     },
     {
       "id": "PROD-VISION",
@@ -67,13 +67,37 @@
       "related": [
         "DEL-SPRINT-LOG"
       ],
-      "last_reviewed": "2026-04-23"
+      "last_reviewed": "2026-04-28"
+    },
+    {
+      "id": "DEL-QB-LOAD-CLOSE-2026-04-26",
+      "path": "docs/02-delivery/question-bank-load-phase-close.md",
+      "type": "delivery",
+      "status": "completed",
+      "project": "ganaconmerito",
+      "modules": [
+        "question-bank",
+        "supabase"
+      ],
+      "tags": [
+        "cierre",
+        "banco-de-preguntas",
+        "carga",
+        "trazabilidad"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "DEL-SPRINT-LOG",
+        "PROD-BACKLOG",
+        "docs/project/reference/README-banco-de-preguntas.md"
+      ],
+      "last_reviewed": "2026-04-27"
     },
     {
       "id": "DEL-SPRINT-LOG",
       "path": "docs/02-delivery/sprint-log.md",
       "type": "delivery",
-      "status": "active",
+      "status": "completed",
       "project": "ganaconmerito",
       "modules": [
         "core",
@@ -90,7 +114,7 @@
         "DEL-CHANGE-LOG",
         "QUAL-RISK-REGISTER"
       ],
-      "last_reviewed": "2026-04-23"
+      "last_reviewed": "2026-04-28"
     },
     {
       "id": "ADR-001-stack-base",
@@ -140,6 +164,55 @@
       "last_reviewed": "2026-04-23"
     },
     {
+      "id": "QUAL-ACTIVE-QUESTION-BANK-SMOKE",
+      "path": "docs/04-quality/active-question-bank-smoke-test.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "question-bank",
+        "qa"
+      ],
+      "tags": [
+        "smoke-test",
+        "banco-activo",
+        "content"
+      ],
+      "owner": "qa",
+      "related": [
+        "docs/02-delivery/question-bank-load-phase-close.md",
+        "docs/database/active-question-bank-contract.md",
+        "docs/05-ops/question-bank-load-runbook.md"
+      ],
+      "last_reviewed": "2026-04-26"
+    },
+    {
+      "id": "QUAL-CHROMIUM-QA-2026-04-27",
+      "path": "docs/04-quality/chromium-qa-run-2026-04-27.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "practice",
+        "dashboard",
+        "sessions",
+        "qa"
+      ],
+      "tags": [
+        "qa",
+        "chromium",
+        "e2e",
+        "dashboard",
+        "sessions"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "QUAL-KNOWN-ISSUES",
+        "docs/project/e2e-status.md"
+      ],
+      "last_reviewed": "2026-04-27"
+    },
+    {
       "id": "QUAL-KNOWN-ISSUES",
       "path": "docs/04-quality/known-issues.md",
       "type": "quality",
@@ -158,9 +231,140 @@
       ],
       "owner": "marlon-arcila",
       "related": [
+        "QUAL-DEBT-REGISTER",
+        "QUAL-QB-LOAD-AUDIT-2026-04-26",
+        "DEL-QB-LOAD-CLOSE-2026-04-26"
+      ],
+      "last_reviewed": "2026-04-29"
+    },
+    {
+      "id": "QUAL-POST-BACKFILL-ACTIVE-BANK",
+      "path": "docs/04-quality/post-backfill-active-bank-validation.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "question-bank",
+        "qa",
+        "supabase"
+      ],
+      "tags": [
+        "backfill",
+        "banco-activo",
+        "validation",
+        "regression"
+      ],
+      "owner": "qa",
+      "related": [
+        "docs/04-quality/active-question-bank-smoke-test.md",
+        "docs/database/active-question-bank-contract.md",
+        "scripts/verify-active-bank-backfill.ts",
+        "scripts/post-backfill-active-bank-validation.sql"
+      ],
+      "last_reviewed": "2026-04-26"
+    },
+    {
+      "id": "QUAL-QA-SEMANTICA-2026-04-28",
+      "path": "docs/04-quality/qa-semantica-run-2026-04-28.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "qa",
+        "practice",
+        "dashboard",
+        "sessions"
+      ],
+      "tags": [
+        "qa",
+        "semantica",
+        "e2e",
+        "api"
+      ],
+      "owner": "qa",
+      "related": [
+        "QUAL-QA-SEMANTICA-RUNBOOK",
+        "QUAL-KNOWN-ISSUES"
+      ],
+      "last_reviewed": "2026-04-28"
+    },
+    {
+      "id": "QUAL-QA-SEMANTICA-2026-04-29",
+      "path": "docs/04-quality/qa-semantica-run-2026-04-29.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "qa",
+        "practice",
+        "dashboard",
+        "sessions"
+      ],
+      "tags": [
+        "qa",
+        "semantica",
+        "e2e",
+        "api",
+        "chromium"
+      ],
+      "owner": "qa",
+      "related": [
+        "QUAL-QA-SEMANTICA-RUNBOOK",
+        "QUAL-KNOWN-ISSUES"
+      ],
+      "last_reviewed": "2026-04-29"
+    },
+    {
+      "id": "QUAL-QA-SEMANTICA-RUNBOOK",
+      "path": "docs/04-quality/qa-semantica-runbook.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "qa",
+        "practice",
+        "dashboard",
+        "sessions"
+      ],
+      "tags": [
+        "qa",
+        "semantica",
+        "e2e",
+        "runbook"
+      ],
+      "owner": "qa",
+      "related": [
+        "QUAL-CHROMIUM-QA-2026-04-27",
+        "QUAL-KNOWN-ISSUES",
+        "docs/05-ops/runbook.md"
+      ],
+      "last_reviewed": "2026-04-29"
+    },
+    {
+      "id": "QUAL-QB-LOAD-AUDIT-2026-04-26",
+      "path": "docs/04-quality/question-bank-load-phase-audit-2026-04-26.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "question-bank",
+        "editorial",
+        "data",
+        "supabase"
+      ],
+      "tags": [
+        "qa",
+        "banco-de-preguntas",
+        "cierre-de-fase",
+        "riesgos"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "DEL-QB-LOAD-CLOSE-2026-04-26",
+        "QUAL-KNOWN-ISSUES",
         "QUAL-DEBT-REGISTER"
       ],
-      "last_reviewed": "2026-04-23"
+      "last_reviewed": "2026-04-26"
     },
     {
       "id": "QUAL-DEBT-REGISTER",
@@ -185,6 +389,74 @@
         "DEL-SPRINT-LOG"
       ],
       "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "OPS-DEPLOY-CHECKLIST",
+      "path": "docs/05-ops/deploy-checklist.md",
+      "type": "ops-checklist",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "platform",
+        "deploy"
+      ],
+      "tags": [
+        "deploy",
+        "checklist",
+        "product",
+        "vps"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "OPS-RUNBOOK"
+      ],
+      "last_reviewed": "2026-04-29"
+    },
+    {
+      "id": "OPS-QUESTION-BANK-LOAD",
+      "path": "docs/05-ops/question-bank-load-runbook.md",
+      "type": "runbook",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "question-bank",
+        "supabase"
+      ],
+      "tags": [
+        "runbook",
+        "banco-de-preguntas",
+        "importacion",
+        "validacion"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "OPS-RUNBOOK",
+        "DEL-QB-LOAD-CLOSE-2026-04-26",
+        "docs/database/content-model.md"
+      ],
+      "last_reviewed": "2026-04-26"
+    },
+    {
+      "id": "OPS-ROLLBACK-RUNBOOK",
+      "path": "docs/05-ops/rollback-runbook.md",
+      "type": "runbook",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "platform",
+        "deploy"
+      ],
+      "tags": [
+        "rollback",
+        "deploy",
+        "incident"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "OPS-RUNBOOK",
+        "OPS-DEPLOY-CHECKLIST"
+      ],
+      "last_reviewed": "2026-04-29"
     },
     {
       "id": "OPS-RUNBOOK",
@@ -340,6 +612,30 @@
       "last_reviewed": "2026-04-23"
     },
     {
+      "id": "API-DASHBOARD-SUMMARY-CONTRACT",
+      "path": "docs/api/dashboard-summary-contract.md",
+      "type": "api-contract",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "dashboard",
+        "backend",
+        "qa"
+      ],
+      "tags": [
+        "api",
+        "contract",
+        "dashboard"
+      ],
+      "owner": "backend",
+      "related": [
+        "docs/api/contracts.md",
+        "src/types/evaluation.ts",
+        "src/lib/dashboard/summary-metrics.ts"
+      ],
+      "last_reviewed": "2026-04-29"
+    },
+    {
       "id": "item-doc-026",
       "path": "docs/banco-preguntas/ciudadanas.md",
       "type": "",
@@ -350,6 +646,27 @@
       "owner": "",
       "related": [],
       "last_reviewed": ""
+    },
+    {
+      "id": "PROJ-REAL-BUG-FIX-PLAN-2026-04-28",
+      "path": "docs/project/remediation/real-bug-fix-plan-2026-04-28.md",
+      "type": "remediation-plan",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "platform",
+        "product",
+        "data",
+        "qa"
+      ],
+      "tags": [
+        "bugs",
+        "remediation",
+        "execution"
+      ],
+      "owner": "marlon-arcila",
+      "related": [],
+      "last_reviewed": "2026-04-28"
     }
   ],
   "missing": [
@@ -379,11 +696,13 @@
     "docs/banco-preguntas/matematicas.md",
     "docs/banco-preguntas/normatividad.md",
     "docs/banco-preguntas/pedagogia.md",
+    "docs/database/active-question-bank-contract.md",
     "docs/database/content-model.md",
     "docs/database/schema.md",
     "docs/database/security.md",
     "docs/project/audit-brief-editorial-segmentation.md",
     "docs/project/auth-hardening-audit.md",
+    "docs/project/current-corpus-runtime-activation-map.md",
     "docs/project/current-workflow.md",
     "docs/project/docker-e2e-minimum-validation-plan.md",
     "docs/project/e2e-status.md",
@@ -404,6 +723,7 @@
     "docs/project/remediation/ra1-session-security.md",
     "docs/project/remediation/ra2-flow-contracts.md",
     "docs/project/remediation/ra3-honesty-traceability.md",
+    "docs/project/remediation/real-bug-fix-plan-2026-04-28.md :: missing field related",
     "docs/project/runtime-maturity-assessment-runbook.md",
     "docs/project/runtime-maturity-assessment.md",
     "docs/project/segmentation-rollout-checklist.md",
@@ -412,6 +732,7 @@
     "docs/project/tooling-stack.md",
     "docs/question-bank-implementation-roadmap.md",
     "docs/question-bank-technical-architecture.md",
+    "docs/temp/README.md",
     "docs/temp/inbox/content/audit-definitiva-gemini-pro.md",
     "docs/temp/inbox/misc/antigravity-pc.md",
     "docs/temp/inbox/misc/claude-sonet.md",

@@ -4,14 +4,15 @@ const { createBrowserClient } = require('@supabase/ssr');
 const { createClient } = require('@supabase/supabase-js');
 const { chromium } = require('playwright');
 const { runSemanticAssertions } = require('./qa-e2e-semantic-assertions');
+const { resolveQaIdentity, cleanupOldQaUsers } = require('./qa-identity');
 
 const baseUrl = process.env.QA_BASE_URL || 'http://localhost:3001';
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const email = process.env.QA_E2E_EMAIL || 'gauss.qa.e2e@example.com';
-const password = process.env.QA_E2E_PASSWORD || `GaussQA!${Date.now()}`;
-const artifactRoot = path.join(process.cwd(), 'artifacts', `qa-ui-e2e-${new Date().toISOString().replace(/[:.]/g, '-')}`);
+const qaIdentity = resolveQaIdentity('ui');
+const { runId, email, password, namespace, metadata } = qaIdentity;
+const artifactRoot = path.join(process.cwd(), 'artifacts', `qa-ui-e2e-${runId}`);
 fs.mkdirSync(artifactRoot, { recursive: true });
 
 function nowIso() { return new Date().toISOString(); }
@@ -48,15 +49,16 @@ async function http({ method = 'GET', pathname, body, cookie }) {
 }
 
 async function ensureUserAndReset(admin) {
+  await cleanupOldQaUsers(admin, namespace);
   const usersData = await admin.auth.admin.listUsers({ page: 1, perPage: 1000 });
   if (usersData.error) throw usersData.error;
   let user = usersData.data.users.find(u => u.email === email);
   if (!user) {
-    const created = await admin.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { full_name: 'Gauss QA UI E2E' } });
+    const created = await admin.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: metadata });
     if (created.error) throw created.error;
     user = created.data.user;
   } else {
-    const updated = await admin.auth.admin.updateUserById(user.id, { password, email_confirm: true });
+    const updated = await admin.auth.admin.updateUserById(user.id, { password, email_confirm: true, user_metadata: metadata });
     if (updated.error) throw updated.error;
     user = updated.data.user;
   }
@@ -163,7 +165,7 @@ async function getAuthCookies() {
     });
   });
 
-  const result = { ok: true, artifactRoot, startedAt: nowIso(), baseUrl, turns, network, consoleEntries, pageErrors };
+  const result = { ok: true, artifactRoot, startedAt: nowIso(), baseUrl, runId, email, namespace, runner: 'ui', turns, network, consoleEntries, pageErrors };
 
   await page.goto('/home', { waitUntil: 'networkidle', timeout: 45000 });
   result.home = { url: page.url(), title: await page.title() };
