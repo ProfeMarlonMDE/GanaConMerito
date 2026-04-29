@@ -164,6 +164,7 @@ async function getAuthCookies() {
 
   await page.goto('/onboarding', { waitUntil: 'networkidle', timeout: 45000 });
   await page.getByLabel('Meta activa').fill('QA UI E2E con Chromium');
+  await page.getByLabel('Áreas activas (separadas por coma)').fill('analisis de gestion');
   await page.getByRole('button', { name: 'Guardar onboarding' }).click();
   await page.waitForURL('**/practice', { timeout: 45000 });
   await page.screenshot({ path: path.join(artifactRoot, '02-after-onboarding.png'), fullPage: true });

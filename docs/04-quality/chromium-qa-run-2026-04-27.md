@@ -33,3 +33,8 @@ Corrida real en `artifacts/qa-ui-e2e-2026-04-27T15-49-56-219Z` sobre `http://loc
 - Ajustar el dashboard para separar claramente métricas de la sesión actual vs. histórico acumulado.
 - Revisar la lógica de clasificación `Fuertes` / `Por reforzar` para que sea mutuamente excluyente y consistente con `user_topic_stats`.
 - Añadir aserciones QA automáticas post-run sobre: estado final de sesión en BD, conteos esperados por corrida y consistencia de competencias en dashboard.
+
+## Nota operativa 2026-04-29
+- La infraestructura de Chromium/Playwright en host quedó destrabada instalando dependencias del sistema y el binario de `chromium`.
+- El bloqueo posterior no era de plataforma sino de drift entre la QA UI y la regla funcional de onboarding: el formulario exige al menos una `Área activa`, así que la corrida versionada debe llenar ese campo antes de intentar `Guardar onboarding`.
+- Regla práctica: cuando cambie un requisito funcional obligatorio del onboarding, la suite `scripts/qa-ui-e2e-chromium.js` debe actualizarse en el mismo frente para que la QA siga siendo evidencia válida y no falso negativo.

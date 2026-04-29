@@ -88,6 +88,8 @@ Runbook de rollback: `docs/05-ops/rollback-runbook.md`
 3. verificar `Build time`
 4. correr smoke/QA aplicable
 5. confirmar que producción coincide con el commit esperado
+6. si falla una QA UI, separar primero si el bloqueo es de host, de datos o de contrato funcional del formulario antes de tocar backend
+
 
 ## Procedimiento estándar de deploy
 
@@ -123,6 +125,7 @@ docker compose -f /opt/gcm/docker-compose.yml up -d gcm-app
 3. confirmar que `Build time` está visible y no vacío
 4. confirmar en layout/footer que no aparece `not-set`
 5. si hay divergencia, corregir en `~/.openclaw/product`, no directamente en VPS
+6. cuando el onboarding exija campos obligatorios nuevos, actualizar también la QA UI versionada para evitar drift entre test y regla funcional
 
 ## Vacíos
 - TODO: comando oficial de desarrollo y validación end-to-end
