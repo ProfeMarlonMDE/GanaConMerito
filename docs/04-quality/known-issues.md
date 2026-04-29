@@ -47,3 +47,10 @@ Estos issues están consolidados con evidencia local de repo y cierre documental
 - los runners QA ahora generan identidad única por corrida y purga básica de usuarios QA envejecidos.
 - el dashboard ya entrega bloques separados `currentSession` e `historical` cuando recibe `sessionId`.
 - la clasificación `Fuertes` / `Por reforzar` queda validada por QA semántica y por `npm run test:dashboard`.
+
+## Evidencia adicional sobre runtime desplegado
+- `/opt/gcm/app` quedó resincronizado contra `origin/master` en `de108cf`.
+- `/login` en `http://127.0.0.1:3000/login` ya muestra `commit=de108cf` y `buildTime=2026-04-29T10:40:32Z`.
+- smoke postdeploy en verde sobre runtime objetivo `:3000`: `artifacts/qa-smoke-postdeploy-smoke-mojxgij3-5h863c`.
+- E2E API autenticada de `5` turnos en verde sobre runtime objetivo `:3000`: `artifacts/qa-e2e-api-mojxh6aw-ujwp8m`.
+- antes del redeploy final también quedó una E2E UI Chromium verde sobre `:3000`: `artifacts/qa-ui-e2e-ui-mojx7bcg-3fm9rv`.

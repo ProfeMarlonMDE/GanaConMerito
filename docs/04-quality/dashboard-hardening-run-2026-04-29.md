@@ -62,7 +62,28 @@ Artifact root:
 - smoke postdeploy corto y reusable
 - runbook/checklist actualizados para distinguir smoke vs E2E completa
 
+## Validación adicional sobre runtime desplegado
+### 6. Redeploy oficial sobre `/opt/gcm/app`
+- árbol resincronizado contra `origin/master`
+- commit desplegado validado en `/login`: `de108cf`
+- build time visible: `2026-04-29T10:40:32Z`
+
+### 7. Smoke postdeploy sobre runtime objetivo (`:3000`)
+```bash
+QA_BASE_URL=http://127.0.0.1:3000 npm run qa:smoke:postdeploy
+```
+Resultado: pass.
+Artifact root:
+- `artifacts/qa-smoke-postdeploy-smoke-mojxgij3-5h863c`
+
+### 8. E2E API autenticada sobre runtime objetivo (`:3000`)
+```bash
+QA_BASE_URL=http://127.0.0.1:3000 npm run qa:e2e:api
+```
+Resultado: pass.
+Artifact root:
+- `artifacts/qa-e2e-api-mojxh6aw-ujwp8m`
+
 ## Riesgos residuales
-- falta validar este mismo paquete sobre runtime desplegado después de redeploy
-- el redeploy automático al contenedor quedó bloqueado por permisos sobre `/var/run/docker.sock`
 - persiste deuda documental histórica ajena a esta sprint (`validate_docs.py` sigue listando pendientes previos)
+- la E2E UI postredeploy exacta no se repitió sobre `de108cf`, aunque la UI quedó validada en verde sobre la misma línea funcional inmediatamente antes del redeploy y `de108cf` solo agregó evidencia documental
