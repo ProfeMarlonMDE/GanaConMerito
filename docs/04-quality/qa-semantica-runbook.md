@@ -11,7 +11,7 @@ related:
   - QUAL-CHROMIUM-QA-2026-04-27
   - QUAL-KNOWN-ISSUES
   - docs/05-ops/runbook.md
-last_reviewed: 2026-04-28
+last_reviewed: 2026-04-29
 ---
 
 # Runbook corto — QA semántica operativa
@@ -36,6 +36,11 @@ QA_BASE_URL=http://127.0.0.1:3001 npm run qa:e2e:ui
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` presente
 - `SUPABASE_SERVICE_ROLE_KEY` presente
 
+## Regla funcional vigente para competencias
+- `Fuertes`: competencias con al menos `1` intento, al menos `1` acierto, `estimated_level > 0` y precisión `>= 50%`.
+- `Por reforzar`: competencias con al menos `1` intento que no hayan entrado en `Fuertes`.
+- ambas listas deben ser mutuamente excluyentes; la QA falla si una competencia aparece en las dos.
+
 ## Evidencia esperada
 ### API-first
 Directorio `artifacts/qa-e2e-<timestamp>/` con mínimo:
@@ -46,7 +51,8 @@ Directorio `artifacts/qa-e2e-<timestamp>/` con mínimo:
 - `01-home.html`
 - `02-onboarding.html`
 - `03-practice.html`
-- `04-dashboard.html`
+- `04-dashboard-session.html`
+- `05-dashboard-historical.html`
 - `turn-01.json` ... `turn-05.json`
 
 ### UI Chromium
@@ -56,7 +62,8 @@ Directorio `artifacts/qa-ui-e2e-<timestamp>/` con mínimo:
 - `assertions.json`
 - `01-home.png`
 - `02-after-onboarding.png`
-- `04-dashboard.png`
+- `04-dashboard-session.png`
+- `05-dashboard-historical.png`
 - `turn-01.html` ... `turn-05.html`
 - `trace.zip`
 
@@ -68,7 +75,8 @@ Directorio `artifacts/qa-ui-e2e-<timestamp>/` con mínimo:
   - `status = completed`
   - `current_state = session_close`
   - `ended_at != null`
-- dashboard consistente con `user_topic_stats`, `session_turns` y `evaluation_events`
+- dashboard de sesión consistente con `user_topic_stats`, `session_turns` y `evaluation_events`
+- separación visible y contractual entre `currentSession` e `historical` cuando hay `sessionId`
 - sin solapamiento entre `Fuertes` y `Por reforzar`
 
 ## Fail
@@ -79,6 +87,7 @@ Cualquier condición de estas vuelve la corrida inválida:
 - divergencia entre API/UI y persistencia en BD
 - sesión no cerrada correctamente
 - dashboard con métricas distintas a las derivadas de BD
+- dashboard de sesión sin separación entre `currentSession` e `historical`
 - artefactos incompletos o ausentes
 
 ## Fuente real de aserción

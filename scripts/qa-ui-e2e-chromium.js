@@ -23,6 +23,14 @@ function slug(text) {
   return String(text).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50) || 'step';
 }
 
+function lastSessionIdFromTurns(turns) {
+  for (let index = turns.length - 1; index >= 0; index -= 1) {
+    const sessionId = turns[index]?.advanceJson?.sessionId;
+    if (sessionId) return sessionId;
+  }
+  throw new Error('No fue posible inferir sessionId desde la corrida UI.');
+}
+
 async function http({ method = 'GET', pathname, body, cookie }) {
   const response = await fetch(`${baseUrl}${pathname}`, {
     method,
@@ -209,11 +217,19 @@ async function getAuthCookies() {
     }
   }
 
+  const sessionId = lastSessionIdFromTurns(turns);
+
+  await page.goto(`/dashboard?sessionId=${encodeURIComponent(sessionId)}`, { waitUntil: 'networkidle', timeout: 45000 });
+  result.sessionDashboard = { url: page.url(), title: await page.title(), bodyText: await page.locator('main').innerText() };
+  result.sessionDashboardApi = await http({ pathname: `/api/dashboard/summary?sessionId=${encodeURIComponent(sessionId)}`, cookie: authCookies.cookieHeader });
+  await page.screenshot({ path: path.join(artifactRoot, '04-dashboard-session.png'), fullPage: true });
+  save('04-dashboard-session.html', await page.content());
+
   await page.goto('/dashboard', { waitUntil: 'networkidle', timeout: 45000 });
-  result.dashboard = { url: page.url(), title: await page.title(), bodyText: await page.locator('main').innerText() };
-  result.dashboardApi = await http({ pathname: '/api/dashboard/summary', cookie: authCookies.cookieHeader });
-  await page.screenshot({ path: path.join(artifactRoot, '04-dashboard.png'), fullPage: true });
-  save('04-dashboard.html', await page.content());
+  result.historicalDashboard = { url: page.url(), title: await page.title(), bodyText: await page.locator('main').innerText() };
+  result.historicalDashboardApi = await http({ pathname: '/api/dashboard/summary', cookie: authCookies.cookieHeader });
+  await page.screenshot({ path: path.join(artifactRoot, '05-dashboard-historical.png'), fullPage: true });
+  save('05-dashboard-historical.html', await page.content());
 
   const profile = await admin.from('profiles').select('id').eq('auth_user_id', prep.user.id).single();
   if (profile.error) throw profile.error;
@@ -251,8 +267,10 @@ async function getAuthCookies() {
       advanceStatus: turn.advanceStatus,
     })),
     db: result.db,
-    dashboardSummary: result.dashboardApi.json,
-    dashboardBodyText: result.dashboard.bodyText,
+    dashboardSummary: result.sessionDashboardApi.json,
+    dashboardBodyText: result.sessionDashboard.bodyText,
+    historicalDashboardSummary: result.historicalDashboardApi.json,
+    historicalDashboardBodyText: result.historicalDashboard.bodyText,
     expectedTurnCount: 5,
   });
 

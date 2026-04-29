@@ -21,9 +21,46 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
   const summary = await getDashboardSummaryForCurrentUser(sessionId);
   const breakdown = await getDashboardTopicBreakdownForCurrentUser(sessionId);
-  const accuracy = summary.totalAttempts > 0
-    ? Number(((summary.totalCorrect / summary.totalAttempts) * 100).toFixed(1))
-    : 0;
+
+  const renderSummary = (title: string, block: typeof summary.historical) => {
+    const accuracy = block.totalAttempts > 0
+      ? Number(((block.totalCorrect / block.totalAttempts) * 100).toFixed(1))
+      : 0;
+
+    return (
+      <section>
+        <h2>{title}</h2>
+        <ul>
+          <li>Nivel estimado: {block.estimatedLevel}</li>
+          <li>Intentos totales: {block.totalAttempts}</li>
+          <li>Aciertos totales: {block.totalCorrect}</li>
+          <li>Precisión: {accuracy}%</li>
+          <li>Promedio razonamiento: {block.avgReasoningScore}</li>
+          <li>Tendencia: {block.recentTrend}</li>
+          <li>Percentil: {block.percentileSegment ?? "Sin datos"}</li>
+        </ul>
+        <p>Fuertes: {block.strongestCompetencies.length > 0 ? block.strongestCompetencies.join(", ") : "Sin datos suficientes"}</p>
+        <p>Por reforzar: {block.weakestCompetencies.length > 0 ? block.weakestCompetencies.join(", ") : "Sin datos"}</p>
+      </section>
+    );
+  };
+
+  const renderBreakdown = (title: string, rows: typeof breakdown.historical, emptyLabel: string) => (
+    <section>
+      <h2>{title}</h2>
+      {rows.length === 0 ? (
+        <p>{emptyLabel}</p>
+      ) : (
+        <ul>
+          {rows.map((row) => (
+            <li key={`${title}-${row.area}-${row.competency}`}>
+              <strong>{row.area}</strong> / {row.competency} — intentos: {row.attempts}, aciertos: {row.correct_count}, nivel: {row.estimated_level}, razonamiento: {row.avg_reasoning_score}, dificultad media: {row.avg_difficulty}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
 
   return (
     <main>
@@ -31,7 +68,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
       {isSessionView ? (
         <section>
-          <p>Viendo resultados de la sesión reciente.</p>
+          <p>Viendo resultados separados entre la corrida actual y tu histórico acumulado.</p>
           <p>Session ID: {sessionId}</p>
           <Link href="/dashboard">Ver dashboard histórico acumulado</Link>
         </section>
@@ -41,39 +78,17 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
         </section>
       )}
 
-      <section>
-        <h2>{isSessionView ? "Resumen de la sesión" : "Resumen general"}</h2>
-        <ul>
-          <li>Nivel estimado: {summary.estimatedLevel}</li>
-          <li>Intentos totales: {summary.totalAttempts}</li>
-          <li>Aciertos totales: {summary.totalCorrect}</li>
-          <li>Precisión: {accuracy}%</li>
-          <li>Promedio razonamiento: {summary.avgReasoningScore}</li>
-          <li>Tendencia: {summary.recentTrend}</li>
-          <li>Percentil: {summary.percentileSegment ?? "Sin datos"}</li>
-        </ul>
-      </section>
+      {isSessionView && summary.currentSession ? renderSummary("Resumen de la sesión actual", summary.currentSession) : null}
+      {renderSummary(isSessionView ? "Resumen histórico acumulado" : "Resumen general", summary.historical)}
 
-      <section>
-        <h2>Competencias</h2>
-        <p>Fuertes: {summary.strongestCompetencies.length > 0 ? summary.strongestCompetencies.join(", ") : "Sin datos suficientes"}</p>
-        <p>Por reforzar: {summary.weakestCompetencies.length > 0 ? summary.weakestCompetencies.join(", ") : "Sin datos"}</p>
-      </section>
-
-      <section>
-        <h2>{isSessionView ? "Desglose de la sesión" : "Desglose por tema"}</h2>
-        {breakdown.length === 0 ? (
-          <p>{isSessionView ? "Esta sesión todavía no tiene respuestas evaluadas." : "Aún no hay datos suficientes."}</p>
-        ) : (
-          <ul>
-            {breakdown.map((row) => (
-              <li key={`${row.area}-${row.competency}`}>
-                <strong>{row.area}</strong> / {row.competency} — intentos: {row.attempts}, aciertos: {row.correct_count}, nivel: {row.estimated_level}, razonamiento: {row.avg_reasoning_score}, dificultad media: {row.avg_difficulty}
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+      {isSessionView
+        ? renderBreakdown("Desglose de la sesión actual", breakdown.currentSession, "Esta sesión todavía no tiene respuestas evaluadas.")
+        : null}
+      {renderBreakdown(
+        isSessionView ? "Desglose histórico acumulado" : "Desglose por tema",
+        breakdown.historical,
+        "Aún no hay datos suficientes.",
+      )}
     </main>
   );
 }

@@ -36,7 +36,7 @@ export interface AdvanceSessionResponse {
   shouldTransition: boolean;
 }
 
-export interface DashboardSummaryResponse {
+export interface DashboardSummaryMetrics {
   estimatedLevel: number;
   percentileSegment?: number;
   totalAttempts: number;
@@ -45,4 +45,9 @@ export interface DashboardSummaryResponse {
   strongestCompetencies: string[];
   weakestCompetencies: string[];
   recentTrend: "up" | "stable" | "down";
+}
+
+export interface DashboardSummaryResponse {
+  historical: DashboardSummaryMetrics;
+  currentSession: DashboardSummaryMetrics | null;
 }

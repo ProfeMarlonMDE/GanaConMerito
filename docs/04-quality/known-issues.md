@@ -11,7 +11,7 @@ related:
   - QUAL-DEBT-REGISTER
   - QUAL-QB-LOAD-AUDIT-2026-04-26
   - DEL-QB-LOAD-CLOSE-2026-04-26
-last_reviewed: 2026-04-28
+last_reviewed: 2026-04-29
 ---
 
 # Known issues
@@ -22,24 +22,26 @@ last_reviewed: 2026-04-28
 | QB-ISSUE-004 | media | delivery | abierto | drift documental entre índice operativo y cierre real de fase |
 | APP-ISSUE-001 | alta | producto + auth | en validación | onboarding endurecido para exigir al menos un `Área activa`; falta confirmarlo en runtime desplegado |
 | APP-ISSUE-002 | media | platform | en validación | trazabilidad visible reforzada con `commit` + `buildTime`; falta rebuild/deploy para confirmar salida en entorno objetivo |
-| APP-ISSUE-003 | media | producto + qa | abierto | sigue faltando una suite E2E autenticada versionada y reproducible de `5` turnos dentro del repo; además la QA UI Chromium postdeploy sigue bloqueada en host por librerías faltantes (`libatk-1.0.so.0`) |
+| APP-ISSUE-003 | media | producto + qa | resuelto local / pendiente deploy | ya existe suite E2E autenticada versionada y reproducible de `5` turnos dentro del repo; API y Chromium pasan en local. Falta correrla como gate postdeploy sobre runtime objetivo |
 | APP-ISSUE-004 | alta | backend + producto | en validación | la corrección de persistencia terminal (`status`, `ended_at`) quedó en migración; falta aplicarla en entorno desplegado |
-| APP-ISSUE-005 | alta | backend + frontend | abierto | el dashboard sigue mezclando histórico acumulado y corrida actual cuando no se consulta por `sessionId` explícito |
-| APP-ISSUE-006 | media | frontend + producto | en validación | `Fuertes` y `Por reforzar` ya no deben solaparse; falta validar en entorno desplegado |
+| APP-ISSUE-005 | alta | backend + frontend | resuelto local / pendiente deploy | el dashboard ya separa contrato y render entre `currentSession` e `historical`; falta validarlo en runtime desplegado |
+| APP-ISSUE-006 | media | frontend + producto | resuelto local / pendiente deploy | `Fuertes` y `Por reforzar` quedaron mutuamente excluyentes y validados por QA local; falta validarlo en runtime desplegado |
 
 ## Detalle priorizado
 - Ver auditoría específica: `docs/04-quality/question-bank-load-phase-audit-2026-04-26.md`
 - Ver corrida base: `docs/04-quality/chromium-qa-run-2026-04-27.md`
 - Prioridad inmediata:
   1. rebuild/deploy para aplicar la migración y validar trazabilidad visible
-  2. ejecutar validación funcional real sobre onboarding, práctica y dashboard
-  3. ejecutar E2E autenticada real de `5` turnos o versionar suite reproducible
-  4. separar en dashboard histórico acumulado vs. corrida/sesión actual cuando el producto lo requiera
+  2. redeployar los fixes de dashboard/QA desde Git hacia `/opt/gcm/app`
+  3. ejecutar validación funcional real sobre onboarding, práctica y dashboard en runtime desplegado
+  4. conservar la QA autenticada de `5` turnos como gate postdeploy obligatorio
 
 ## Nota de alcance
 Estos issues están consolidados con evidencia local de repo y cierre documental de fase. No sustituyen una nueva validación remota de Supabase.
 
-## Evidencia local revisada el 2026-04-28
-- `package.json` no expone hoy ningún script `test`, `e2e`, `playwright` ni `cypress`.
-- el repo contiene documentación de E2E (`docs/project/e2e-status.md`, `docs/project/docker-e2e-minimum-validation-plan.md`), pero no una suite automatizada versionada para reproducirla dentro del checkout.
-- la trazabilidad visible quedó reforzada en `src/lib/build-info.ts` con lectura de metadata generada en build (`.build-meta.json`).
+## Evidencia local revisada el 2026-04-29
+- `package.json` expone runners versionados `qa:e2e:api` y `qa:e2e:ui`.
+- corrida API local en verde: `artifacts/qa-e2e-2026-04-29T02-37-26-195Z`.
+- corrida Chromium local en verde: `artifacts/qa-ui-e2e-2026-04-29T02-38-34-557Z`.
+- el dashboard ya entrega bloques separados `currentSession` e `historical` cuando recibe `sessionId`.
+- la clasificación `Fuertes` / `Por reforzar` sigue validada sin solapamiento por `scripts/qa-e2e-semantic-assertions.js`.

@@ -149,8 +149,10 @@ function ensureOk(response, label) {
     onboardingPage: null,
     practicePage: null,
     turns: [],
-    dashboardPage: null,
-    dashboardApi: null,
+    sessionDashboardPage: null,
+    sessionDashboardApi: null,
+    historicalDashboardPage: null,
+    historicalDashboardApi: null,
     db: {},
     finishedAt: null,
   };
@@ -224,11 +226,16 @@ function ensureOk(response, label) {
     await sleep(50);
   }
 
-  results.dashboardPage = await http({ pathname: '/dashboard', cookie });
-  results.dashboardApi = await http({ pathname: '/api/dashboard/summary', cookie });
-  ensureOk(results.dashboardPage, 'Carga /dashboard');
-  ensureOk(results.dashboardApi, 'GET /api/dashboard/summary');
-  save('04-dashboard.html', results.dashboardPage.text);
+  results.sessionDashboardPage = await http({ pathname: `/dashboard?sessionId=${encodeURIComponent(sessionId)}`, cookie });
+  results.sessionDashboardApi = await http({ pathname: `/api/dashboard/summary?sessionId=${encodeURIComponent(sessionId)}`, cookie });
+  results.historicalDashboardPage = await http({ pathname: '/dashboard', cookie });
+  results.historicalDashboardApi = await http({ pathname: '/api/dashboard/summary', cookie });
+  ensureOk(results.sessionDashboardPage, 'Carga /dashboard?sessionId=...');
+  ensureOk(results.sessionDashboardApi, 'GET /api/dashboard/summary?sessionId=...');
+  ensureOk(results.historicalDashboardPage, 'Carga /dashboard histórico');
+  ensureOk(results.historicalDashboardApi, 'GET /api/dashboard/summary histórico');
+  save('04-dashboard-session.html', results.sessionDashboardPage.text);
+  save('05-dashboard-historical.html', results.historicalDashboardPage.text);
 
   const profile = await admin.from('profiles').select('id').eq('auth_user_id', prep.user.id).single();
   if (profile.error) throw profile.error;
@@ -266,8 +273,10 @@ function ensureOk(response, label) {
       advanceStatus: snapshot.advance.status,
     })),
     db: results.db,
-    dashboardSummary: results.dashboardApi.json,
-    dashboardBodyText: results.dashboardPage.text,
+    dashboardSummary: results.sessionDashboardApi.json,
+    dashboardBodyText: results.sessionDashboardPage.text,
+    historicalDashboardSummary: results.historicalDashboardApi.json,
+    historicalDashboardBodyText: results.historicalDashboardPage.text,
     expectedTurnCount: 5,
   });
 

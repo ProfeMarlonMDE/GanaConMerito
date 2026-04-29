@@ -1,6 +1,6 @@
 import { requireOwnedSession } from "@/lib/supabase/guards";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
-import type { DashboardSummaryResponse } from "@/types/evaluation";
+import type { DashboardSummaryMetrics, DashboardSummaryResponse } from "@/types/evaluation";
 
 export interface DashboardTopicBreakdownRow {
   area: string;
@@ -36,7 +36,7 @@ interface ItemBankRow {
   difficulty: number | string | null;
 }
 
-function emptySummary(): DashboardSummaryResponse {
+function emptySummaryMetrics(): DashboardSummaryMetrics {
   return {
     estimatedLevel: 0,
     totalAttempts: 0,
@@ -52,7 +52,7 @@ function getAccuracy(row: DashboardTopicBreakdownRow) {
   return row.attempts > 0 ? row.correct_count / row.attempts : 0;
 }
 
-function buildSummary(stats: DashboardTopicBreakdownRow[]): DashboardSummaryResponse {
+function buildSummary(stats: DashboardTopicBreakdownRow[]): DashboardSummaryMetrics {
   const totalAttempts = stats.reduce((sum, row) => sum + row.attempts, 0);
   const totalCorrect = stats.reduce((sum, row) => sum + row.correct_count, 0);
   const avgReasoningScore =
@@ -73,7 +73,7 @@ function buildSummary(stats: DashboardTopicBreakdownRow[]): DashboardSummaryResp
     .filter((row) => row.updated_at)
     .sort((a, b) => String(b.updated_at).localeCompare(String(a.updated_at)));
 
-  let recentTrend: DashboardSummaryResponse["recentTrend"] = "stable";
+  let recentTrend: DashboardSummaryMetrics["recentTrend"] = "stable";
   if (recentWindow.length >= 2) {
     const latest = Number(recentWindow[0].estimated_level);
     const previous = Number(recentWindow[1].estimated_level);
@@ -243,10 +243,21 @@ async function getSessionTopicStats(sessionId: string): Promise<DashboardTopicBr
 }
 
 export async function getDashboardSummaryForCurrentUser(sessionId?: string): Promise<DashboardSummaryResponse> {
-  const stats = sessionId ? await getSessionTopicStats(sessionId) : await getCurrentUserTopicStats();
-  return stats.length > 0 ? buildSummary(stats) : emptySummary();
+  const historicalStats = await getCurrentUserTopicStats();
+  const currentSessionStats = sessionId ? await getSessionTopicStats(sessionId) : [];
+
+  return {
+    historical: historicalStats.length > 0 ? buildSummary(historicalStats) : emptySummaryMetrics(),
+    currentSession: sessionId ? (currentSessionStats.length > 0 ? buildSummary(currentSessionStats) : emptySummaryMetrics()) : null,
+  };
 }
 
 export async function getDashboardTopicBreakdownForCurrentUser(sessionId?: string) {
-  return sessionId ? await getSessionTopicStats(sessionId) : await getCurrentUserTopicStats();
+  const historical = await getCurrentUserTopicStats();
+  const currentSession = sessionId ? await getSessionTopicStats(sessionId) : [];
+
+  return {
+    historical,
+    currentSession: sessionId ? currentSession : [],
+  };
 }

@@ -173,17 +173,25 @@ function compareStatsRows({ actualStats, expectedStats, collector }) {
   }
 }
 
-function compareDashboardSummary({ actual, expected, collector }) {
-  collector.check(Boolean(actual), 'No se obtuvo dashboard summary para validar');
+function extractDashboardSummaryBlock(summary, blockName) {
+  if (!summary) return null;
+  if (summary.historical || summary.currentSession !== undefined) {
+    return summary[blockName] || null;
+  }
+  return summary;
+}
+
+function compareDashboardSummary({ actual, expected, collector, label = 'Dashboard' }) {
+  collector.check(Boolean(actual), `No se obtuvo ${label} para validar`);
   if (!actual) return;
 
-  collector.check(nearlyEqual(actual.estimatedLevel, expected.estimatedLevel, 0.001), 'Dashboard estimatedLevel no cuadra con DB', `esperado=${expected.estimatedLevel} actual=${actual.estimatedLevel}`);
-  collector.check(toNumber(actual.totalAttempts) === expected.totalAttempts, 'Dashboard totalAttempts no cuadra con DB', `esperado=${expected.totalAttempts} actual=${actual.totalAttempts}`);
-  collector.check(toNumber(actual.totalCorrect) === expected.totalCorrect, 'Dashboard totalCorrect no cuadra con DB', `esperado=${expected.totalCorrect} actual=${actual.totalCorrect}`);
-  collector.check(nearlyEqual(actual.avgReasoningScore, expected.avgReasoningScore, 0.01), 'Dashboard avgReasoningScore no cuadra con DB', `esperado=${expected.avgReasoningScore} actual=${actual.avgReasoningScore}`);
-  collector.check(String(actual.recentTrend) === String(expected.recentTrend), 'Dashboard recentTrend no cuadra con DB', `esperado=${expected.recentTrend} actual=${actual.recentTrend}`);
-  collector.check(JSON.stringify(actual.strongestCompetencies || []) === JSON.stringify(expected.strongestCompetencies || []), 'Dashboard strongestCompetencies no cuadra con DB', `esperado=${JSON.stringify(expected.strongestCompetencies)} actual=${JSON.stringify(actual.strongestCompetencies)}`);
-  collector.check(JSON.stringify(actual.weakestCompetencies || []) === JSON.stringify(expected.weakestCompetencies || []), 'Dashboard weakestCompetencies no cuadra con DB', `esperado=${JSON.stringify(expected.weakestCompetencies)} actual=${JSON.stringify(actual.weakestCompetencies)}`);
+  collector.check(nearlyEqual(actual.estimatedLevel, expected.estimatedLevel, 0.001), `${label} estimatedLevel no cuadra con DB`, `esperado=${expected.estimatedLevel} actual=${actual.estimatedLevel}`);
+  collector.check(toNumber(actual.totalAttempts) === expected.totalAttempts, `${label} totalAttempts no cuadra con DB`, `esperado=${expected.totalAttempts} actual=${actual.totalAttempts}`);
+  collector.check(toNumber(actual.totalCorrect) === expected.totalCorrect, `${label} totalCorrect no cuadra con DB`, `esperado=${expected.totalCorrect} actual=${actual.totalCorrect}`);
+  collector.check(nearlyEqual(actual.avgReasoningScore, expected.avgReasoningScore, 0.01), `${label} avgReasoningScore no cuadra con DB`, `esperado=${expected.avgReasoningScore} actual=${actual.avgReasoningScore}`);
+  collector.check(String(actual.recentTrend) === String(expected.recentTrend), `${label} recentTrend no cuadra con DB`, `esperado=${expected.recentTrend} actual=${actual.recentTrend}`);
+  collector.check(JSON.stringify(actual.strongestCompetencies || []) === JSON.stringify(expected.strongestCompetencies || []), `${label} strongestCompetencies no cuadra con DB`, `esperado=${JSON.stringify(expected.strongestCompetencies)} actual=${JSON.stringify(actual.strongestCompetencies)}`);
+  collector.check(JSON.stringify(actual.weakestCompetencies || []) === JSON.stringify(expected.weakestCompetencies || []), `${label} weakestCompetencies no cuadra con DB`, `esperado=${JSON.stringify(expected.weakestCompetencies)} actual=${JSON.stringify(actual.weakestCompetencies)}`);
 }
 
 function normalizeDashboardText(input) {
@@ -198,7 +206,7 @@ function normalizeDashboardText(input) {
     .trim();
 }
 
-function runSemanticAssertions({ turns, db, dashboardSummary, dashboardBodyText, expectedTurnCount = 5 }) {
+function runSemanticAssertions({ turns, db, dashboardSummary, dashboardBodyText, historicalDashboardSummary, historicalDashboardBodyText, expectedTurnCount = 5 }) {
   const collector = createFailureCollector();
   const dbTurns = db?.turns || [];
   const evaluationEvents = db?.evaluationEvents || [];
@@ -264,19 +272,32 @@ function runSemanticAssertions({ turns, db, dashboardSummary, dashboardBodyText,
   compareStatsRows({ actualStats, expectedStats, collector });
 
   const expectedSummary = buildDashboardSummary(actualStats);
-  compareDashboardSummary({ actual: dashboardSummary, expected: expectedSummary, collector });
+  const actualCurrentSessionSummary = extractDashboardSummaryBlock(dashboardSummary, 'currentSession');
+  compareDashboardSummary({ actual: actualCurrentSessionSummary, expected: expectedSummary, collector, label: 'Dashboard currentSession' });
+
+  const actualHistoricalSummary = extractDashboardSummaryBlock(historicalDashboardSummary || dashboardSummary, 'historical');
+  compareDashboardSummary({ actual: actualHistoricalSummary, expected: expectedSummary, collector, label: 'Dashboard historical' });
 
   const strongest = new Set(expectedSummary.strongestCompetencies);
   collector.check(expectedSummary.weakestCompetencies.every((competency) => !strongest.has(competency)), 'Competencias fuertes y por reforzar se pisan entre sí');
 
+  const strongestLabel = expectedSummary.strongestCompetencies.length > 0 ? expectedSummary.strongestCompetencies.join(', ') : 'Sin datos suficientes';
+  const weakestLabel = expectedSummary.weakestCompetencies.length > 0 ? expectedSummary.weakestCompetencies.join(', ') : 'Sin datos';
+
   if (dashboardBodyText) {
     const normalizedDashboardText = normalizeDashboardText(dashboardBodyText);
-    collector.check(normalizedDashboardText.includes(`Intentos totales: ${expectedSummary.totalAttempts}`), 'El HTML del dashboard no muestra el total de intentos esperado');
-    collector.check(normalizedDashboardText.includes(`Aciertos totales: ${expectedSummary.totalCorrect}`), 'El HTML del dashboard no muestra el total de aciertos esperado');
-    const strongestLabel = expectedSummary.strongestCompetencies.length > 0 ? expectedSummary.strongestCompetencies.join(', ') : 'Sin datos suficientes';
-    const weakestLabel = expectedSummary.weakestCompetencies.length > 0 ? expectedSummary.weakestCompetencies.join(', ') : 'Sin datos';
-    collector.check(normalizedDashboardText.includes(`Fuertes: ${strongestLabel}`), 'El HTML del dashboard no refleja competencias fuertes esperadas');
-    collector.check(normalizedDashboardText.includes(`Por reforzar: ${weakestLabel}`), 'El HTML del dashboard no refleja competencias por reforzar esperadas');
+    collector.check(normalizedDashboardText.includes('Resumen de la sesión actual'), 'El HTML del dashboard de sesión no separa el bloque currentSession');
+    collector.check(normalizedDashboardText.includes('Resumen histórico acumulado'), 'El HTML del dashboard de sesión no separa el bloque historical');
+    collector.check(normalizedDashboardText.includes(`Intentos totales: ${expectedSummary.totalAttempts}`), 'El HTML del dashboard de sesión no muestra el total de intentos esperado');
+    collector.check(normalizedDashboardText.includes(`Aciertos totales: ${expectedSummary.totalCorrect}`), 'El HTML del dashboard de sesión no muestra el total de aciertos esperado');
+    collector.check(normalizedDashboardText.includes(`Fuertes: ${strongestLabel}`), 'El HTML del dashboard de sesión no refleja competencias fuertes esperadas');
+    collector.check(normalizedDashboardText.includes(`Por reforzar: ${weakestLabel}`), 'El HTML del dashboard de sesión no refleja competencias por reforzar esperadas');
+  }
+
+  if (historicalDashboardBodyText) {
+    const normalizedHistoricalText = normalizeDashboardText(historicalDashboardBodyText);
+    collector.check(normalizedHistoricalText.includes('Resumen general') || normalizedHistoricalText.includes('Resumen histórico acumulado'), 'El HTML del dashboard histórico no muestra el bloque histórico');
+    collector.check(normalizedHistoricalText.includes(`Intentos totales: ${expectedSummary.totalAttempts}`), 'El HTML del dashboard histórico no muestra el total de intentos esperado');
   }
 
   if (db?.session) {
