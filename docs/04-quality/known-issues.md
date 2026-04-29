@@ -22,7 +22,7 @@ last_reviewed: 2026-04-28
 | QB-ISSUE-004 | media | delivery | abierto | drift documental entre índice operativo y cierre real de fase |
 | APP-ISSUE-001 | alta | producto + auth | en validación | onboarding endurecido para exigir al menos un `Área activa`; falta confirmarlo en runtime desplegado |
 | APP-ISSUE-002 | media | platform | en validación | trazabilidad visible reforzada con `commit` + `buildTime`; falta rebuild/deploy para confirmar salida en entorno objetivo |
-| APP-ISSUE-003 | media | producto + qa | abierto | sigue faltando una suite E2E autenticada versionada y reproducible de `5` turnos dentro del repo |
+| APP-ISSUE-003 | media | producto + qa | abierto | sigue faltando una suite E2E autenticada versionada y reproducible de `5` turnos dentro del repo; además la QA UI Chromium postdeploy sigue bloqueada en host por librerías faltantes (`libatk-1.0.so.0`) |
 | APP-ISSUE-004 | alta | backend + producto | en validación | la corrección de persistencia terminal (`status`, `ended_at`) quedó en migración; falta aplicarla en entorno desplegado |
 | APP-ISSUE-005 | alta | backend + frontend | abierto | el dashboard sigue mezclando histórico acumulado y corrida actual cuando no se consulta por `sessionId` explícito |
 | APP-ISSUE-006 | media | frontend + producto | en validación | `Fuertes` y `Por reforzar` ya no deben solaparse; falta validar en entorno desplegado |

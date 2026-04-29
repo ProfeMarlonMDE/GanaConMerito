@@ -62,6 +62,7 @@ Tener una guía mínima para operar, validar y recuperar contexto del repositori
 
 ## Checklist operativo estándar
 Checklist corto de referencia: `docs/05-ops/deploy-checklist.md`
+Runbook de rollback: `docs/05-ops/rollback-runbook.md`
 
 
 ### Antes de codificar
@@ -125,5 +126,4 @@ docker compose -f /opt/gcm/docker-compose.yml up -d gcm-app
 
 ## Vacíos
 - TODO: comando oficial de desarrollo y validación end-to-end
-- TODO: procedimiento formal de rollback
 - TODO: owners operativos por tipo de incidente
