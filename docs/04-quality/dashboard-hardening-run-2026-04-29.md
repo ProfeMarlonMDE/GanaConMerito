@@ -36,7 +36,7 @@ QA_BASE_URL=http://127.0.0.1:3001 npm run qa:smoke:postdeploy
 ```
 Resultado: pass.
 Artifact root:
-- `artifacts/qa-smoke-postdeploy-smoke-mojhi95t-gddtgp`
+- `artifacts/qa-smoke-postdeploy-smoke-mojhvmwm-qnypgn`
 
 ### 4. E2E API completa
 ```bash
@@ -44,7 +44,7 @@ QA_BASE_URL=http://127.0.0.1:3001 npm run qa:e2e:api
 ```
 Resultado: pass.
 Artifact root:
-- `artifacts/qa-e2e-api-mojhj0b2-uufwag`
+- `artifacts/qa-e2e-api-mojhwbjw-qoudrd`
 
 ### 5. E2E UI Chromium completa
 ```bash
@@ -52,7 +52,7 @@ QA_BASE_URL=http://127.0.0.1:3001 npm run qa:e2e:ui
 ```
 Resultado: pass.
 Artifact root:
-- `artifacts/qa-ui-e2e-ui-mojhkepe-4l4j3u`
+- `artifacts/qa-ui-e2e-ui-mojhxn51-sueeeh`
 
 ## Qué quedó endurecido
 - contrato explícito del dashboard con `historical` y `currentSession`
@@ -64,4 +64,5 @@ Artifact root:
 
 ## Riesgos residuales
 - falta validar este mismo paquete sobre runtime desplegado después de redeploy
+- el redeploy automático al contenedor quedó bloqueado por permisos sobre `/var/run/docker.sock`
 - persiste deuda documental histórica ajena a esta sprint (`validate_docs.py` sigue listando pendientes previos)

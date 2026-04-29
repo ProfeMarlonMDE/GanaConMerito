@@ -41,9 +41,9 @@ Estos issues están consolidados con evidencia local de repo y cierre documental
 
 ## Evidencia local revisada el 2026-04-29
 - `package.json` expone runners versionados `qa:smoke:postdeploy`, `qa:e2e:api` y `qa:e2e:ui`.
-- smoke local en verde: `artifacts/qa-smoke-postdeploy-smoke-mojhi95t-gddtgp`.
-- corrida API local en verde: `artifacts/qa-e2e-api-mojhj0b2-uufwag`.
-- corrida Chromium local en verde: `artifacts/qa-ui-e2e-ui-mojhkepe-4l4j3u`.
+- smoke local en verde sobre build `9ed03c0`: `artifacts/qa-smoke-postdeploy-smoke-mojhvmwm-qnypgn`.
+- corrida API local en verde sobre build `9ed03c0`: `artifacts/qa-e2e-api-mojhwbjw-qoudrd`.
+- corrida Chromium local en verde sobre build `9ed03c0`: `artifacts/qa-ui-e2e-ui-mojhxn51-sueeeh`.
 - los runners QA ahora generan identidad única por corrida y purga básica de usuarios QA envejecidos.
 - el dashboard ya entrega bloques separados `currentSession` e `historical` cuando recibe `sessionId`.
 - la clasificación `Fuertes` / `Por reforzar` queda validada por QA semántica y por `npm run test:dashboard`.

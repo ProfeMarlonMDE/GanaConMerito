@@ -213,6 +213,34 @@
       "last_reviewed": "2026-04-27"
     },
     {
+      "id": "QUAL-DASHBOARD-HARDENING-2026-04-29",
+      "path": "docs/04-quality/dashboard-hardening-run-2026-04-29.md",
+      "type": "quality",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "dashboard",
+        "qa",
+        "backend",
+        "frontend",
+        "ops"
+      ],
+      "tags": [
+        "hardening",
+        "qa",
+        "dashboard",
+        "smoke"
+      ],
+      "owner": "gauss",
+      "related": [
+        "docs/api/dashboard-summary-contract.md",
+        "docs/04-quality/qa-semantica-runbook.md",
+        "docs/04-quality/known-issues.md",
+        "docs/05-ops/deploy-checklist.md"
+      ],
+      "last_reviewed": "2026-04-29"
+    },
+    {
       "id": "QUAL-KNOWN-ISSUES",
       "path": "docs/04-quality/known-issues.md",
       "type": "quality",
