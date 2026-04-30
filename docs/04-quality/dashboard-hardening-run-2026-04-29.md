@@ -86,4 +86,4 @@ Artifact root:
 
 ## Riesgos residuales
 - persiste deuda documental histórica ajena a esta sprint (`validate_docs.py` sigue listando pendientes previos)
-- la E2E UI postredeploy exacta no se repitió sobre `de108cf`, aunque la UI quedó validada en verde sobre la misma línea funcional inmediatamente antes del redeploy y `de108cf` solo agregó evidencia documental
+- conviene repetir la E2E UI completa en un próximo deploy que sí cambie lógica funcional, para conservar el gate visual junto con smoke + E2E API
