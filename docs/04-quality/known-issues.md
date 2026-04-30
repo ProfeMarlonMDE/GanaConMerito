@@ -19,7 +19,7 @@ last_reviewed: 2026-04-30
 ## Activos
 | issue | severidad | owner sugerido | estado | resumen |
 |---|---|---|---|---|
-| QB-ISSUE-004 | media | delivery | abierto | drift documental entre índice operativo y cierre real de fase |
+| QB-ISSUE-004 | media | delivery | resuelto | drift documental entre índice operativo y cierre real de fase ya reconciliado en el snapshot operativo final |
 | APP-ISSUE-001 | alta | producto + auth | resuelto | onboarding exige al menos un `Área activa` y quedó validado funcionalmente en runtime desplegado |
 | APP-ISSUE-002 | media | platform | resuelto | trazabilidad visible con `commit` + `buildTime` confirmada en `/login` del runtime objetivo |
 | APP-ISSUE-003 | media | producto + qa | resuelto | smoke postdeploy + E2E autenticada quedaron confirmadas sobre runtime desplegado |
@@ -31,9 +31,9 @@ last_reviewed: 2026-04-30
 - Ver auditoría específica: `docs/04-quality/question-bank-load-phase-audit-2026-04-26.md`
 - Ver corrida base: `docs/04-quality/chromium-qa-run-2026-04-27.md`
 - Prioridad inmediata:
-  1. cerrar el drift documental histórico (`QB-ISSUE-004`)
-  2. mantener smoke postdeploy y E2E autenticada de `5` turnos como gate obligatorio de futuros deploys
-  3. evitar nueva desalineación entre `~/.openclaw/product` y `/opt/gcm/app`
+  1. mantener smoke postdeploy y E2E autenticada de `5` turnos como gate obligatorio de futuros deploys
+  2. evitar nueva desalineación entre `~/.openclaw/product` y `/opt/gcm/app`
+  3. conservar sincronizado el índice operativo del banco al cerrar futuras fases de carga
 
 ## Nota de alcance
 Estos issues están consolidados con evidencia local de repo y cierre documental de fase. No sustituyen una nueva validación remota de Supabase.
