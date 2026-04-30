@@ -165,6 +165,7 @@ Pendiente residual no bloqueante:
 ## Referencia de versionado operativo vigente
 - App declarada: `0.4.8`
 - Rama operativa canónica: `master`
-- Último cierre técnico validado en repo: práctica a `5` turnos + dashboard por sesión + QA semántica + cierre remoto de sesión validado
+- Commit de producto/deploy validado: `97cc79f`
+- Último cierre técnico validado: navegación core autenticada alineada + práctica a `5` turnos + dashboard por sesión + smoke postdeploy `:3000` + E2E UI Chromium `:3000`
 
 Mientras no se haga un release formal nuevo, esta es la forma correcta de reportar el estado real para seguir desarrollo sin ambigüedad.

@@ -48,6 +48,12 @@ Bloque técnico de build/arranque cerrado. E2E autenticada real del flujo comple
   - `QA_BASE_URL=http://127.0.0.1:3100 npm run qa:e2e:ui` ✅
   - `turnCount = 5` ✅
   - artifact root: `artifacts/qa-ui-e2e-ui-mokwxico-asel89`
+- validación postdeploy sobre runtime objetivo `:3000`:
+  - `QA_BASE_URL=http://127.0.0.1:3000 npm run qa:smoke:postdeploy` ✅
+  - artifact root: `artifacts/qa-smoke-postdeploy-smoke-mokx9i6o-l9bsqm`
+  - `QA_BASE_URL=http://127.0.0.1:3000 npm run qa:e2e:ui` ✅
+  - `turnCount = 5` ✅
+  - artifact root: `artifacts/qa-ui-e2e-ui-mokx9nfj-qf2goy`
 
 ## Hallazgos funcionales de la corrida real
 - el flujo principal `login -> onboarding -> practice -> dashboard` funciona de extremo a extremo
@@ -66,7 +72,7 @@ Bloque técnico de build/arranque cerrado. E2E autenticada real del flujo comple
 Durante una auditoría externa se imprimieron secretos operativos desde el host/contenedor. Esos valores no deben volver a exponerse en salidas de diagnóstico, logs compartidos ni documentación. Corresponde rotarlos si se considera comprometido el material expuesto.
 
 ## Siguiente paso
-- reconstruir y redeployar `/opt/gcm/app` de forma secuencial con metadata limpia de commit/build
-- repetir `npm run qa:e2e:ui` sobre el runtime objetivo ya redeployado
-- actualizar `status.md` y artefactos de delivery/calidad con la nueva evidencia del sprint
+- decidir y endurecer si onboarding debe seguir exigiendo `Áreas activas` como requisito funcional explícito
+- formalizar ADR corto del componente de asistentes antes de implementación
+- usar esta validación como baseline para futuros cambios de UX/auth/dashboard
 - mantener fuera de alcance la operación editorial/banco salvo orden ejecutiva explícita
