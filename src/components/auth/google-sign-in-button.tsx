@@ -11,7 +11,7 @@ export function GoogleSignInButton() {
     setLoading(true);
     setError(null);
 
-    const { error } = await signInWithGoogle("/home");
+    const { error } = await signInWithGoogle("/");
 
     if (error) {
       setError(error.message);

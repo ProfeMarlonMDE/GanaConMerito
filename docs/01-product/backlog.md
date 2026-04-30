@@ -23,31 +23,29 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 - Consolidar y estabilizar módulo editorial administrativo.
 - Endurecer autenticación y flujos de acceso.
 - Mejorar madurez operativa del runtime.
-- Alinear documentación del banco de preguntas con implementación real.
 - Mantener consistencia entre migraciones de Supabase y modelo de datos activo.
-- Ejecutar cierre funcional del frente `banco activo` con pruebas reales sobre el flujo de práctica.
 
-### Frente activo: banco activo
-- Estado: CERRADO TÉCNICAMENTE / PENDIENTE DE VALIDACIÓN FUNCIONAL FINAL.
-- Alcance del bloque ya ejecutado: vista activa, adopción en runtime, smoke test, verificación remota, limpieza de defectuosas/legacy y consolidación del corpus curado.
-- Criterio pendiente para cierre funcional completo: evidencia de práctica autenticada real de `5` turnos consumiendo el banco curado actual.
-- Restricción documental: no declararlo como cierre funcional total hasta contar con esa evidencia de práctica.
+### Frente diferido a deuda técnica: banco de preguntas
+- Estado: DIFERIDO DEL SPRINT / TRATADO COMO DEUDA TÉCNICA.
+- Alcance diferido: validación funcional final del banco activo, alineación documental adicional del banco, segmentación asociada y proceso de gestión/editorial del banco.
+- Criterio operativo actual: no meter este frente dentro del sprint vigente ni hacerlo competir con UX, asistentes, trazabilidad y calidad operativa central.
+- Reentrada sugerida: cuando exista un sprint dedicado a datos/editorial o cuando el trabajo de asistentes requiera reabrir explícitamente este dominio.
 
 ## Prioridad ejecutiva
 
 ### Now
-1. Ejecutar E2E autenticada real de `5` turnos sobre el banco curado de `27` preguntas.
-2. Decidir y endurecer onboarding si `Áreas activas` no debe permitirse vacío.
-3. Corregir trazabilidad de despliegue (`Build/Commit` visibles).
-4. Formalizar mapa de features activas con estado real.
-5. Aplicar disciplina operativa sobre ADR-001 ya aprobado.
+1. Decidir y endurecer onboarding si `Áreas activas` no debe permitirse vacío.
+2. Corregir trazabilidad de despliegue (`Build/Commit` visibles).
+3. Formalizar mapa de features activas con estado real.
+4. Aplicar disciplina operativa sobre ADR-001 ya aprobado.
+5. Diseñar formalmente la siguiente etapa de asistentes dentro del producto antes de implementación multiagente.
 
 ### Next
 1. Definir política operativa para cambios estructurales y releases.
 2. Operativizar known issues con owner, impacto y ruta.
 3. Normalizar documentos críticos de arquitectura, project, database y api.
 4. Alinear backlog funcional con evidencia real de auth, onboarding, práctica, dashboard y editorial.
-5. Revisar estrategia del selector de práctica para balance entre continuidad por competencia y cobertura por área.
+5. Preparar el spec funcional/técnico de asistentes visibles del producto (roles, personalidad, intervención, contrato).
 
 ### Later
 1. Definición oficial de roadmap por trimestre.
@@ -64,4 +62,4 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 - `editorial`: requiere orden documental y claridad de flujo.
 - `auth`: requiere control de seguridad y decisiones explícitas.
 - `supabase`: requiere coherencia de migraciones, políticas y estado real de carga.
-- `question-bank`: requiere trazabilidad funcional y técnica sobre el corpus curado vigente y su consumo real desde práctica.
+- `question-bank`: queda diferido como deuda técnica; no debe competir en el sprint vigente salvo decisión ejecutiva explícita.

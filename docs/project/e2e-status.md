@@ -4,13 +4,14 @@
 Verificar que la app puede compilar/arrancar como Next.js real y que el flujo base pueda probarse de extremo a extremo.
 
 ## Estado actual
-Bloque técnico de build/arranque cerrado. E2E autenticada mínima real ejecutada con éxito controlado. El banco operativo de práctica quedó consolidado en `27` preguntas nuevas y la sesión de práctica quedó ajustada a `5` turnos para próximas pruebas funcionales.
+Bloque técnico de build/arranque cerrado. E2E autenticada real del flujo completo validada otra vez sobre runtime limpio local. El banco operativo de práctica sigue consolidado en `27` preguntas nuevas y la sesión de práctica permanece en `5` turnos para validación funcional controlada.
 
 ## Bloqueos encontrados y resueltos
 - el proyecto necesitaba consolidación como app Next real (`tsconfig.json`, `next-env.d.ts`, scripts de package.json)
 - `NODE_ENV=production` estaba omitiendo `devDependencies`, dejando `next` fuera de `node_modules`
 - varios imports en `src/app/api/**` estaban rompiendo la build real de Next por rutas incorrectas
 - el middleware original rompía el runtime edge con `EvalError: Code generation from strings disallowed for this context`
+- la QA UI falló temporalmente sobre runtimes viejos con assets/chunks stale de Next; el problema quedó delimitado como inconsistencia de runtime, no como falla funcional del flujo
 
 ## Acción correctiva aplicada
 - se añadió configuración base de TypeScript y Next
@@ -19,6 +20,8 @@ Bloque técnico de build/arranque cerrado. E2E autenticada mínima real ejecutad
 - se sustituyeron imports problemáticos en rutas API críticas por imports relativos correctos
 - se reemplazó la protección dispersa por una utilidad reusable `requireAuthenticatedUser(...)` para páginas server-side
 - se dejó el `middleware.ts` en modo seguro mínimo para no romper build/runtime mientras se mantiene la protección en páginas y handlers server-side
+- se alineó el flujo autenticado para resolver mejor `login -> onboarding -> practice`
+- se movió el shell core a layout autenticado compartido para Home / Onboarding / Practice / Dashboard
 
 ## Validación realizada
 - `npm run build` ✅
@@ -35,26 +38,35 @@ Bloque técnico de build/arranque cerrado. E2E autenticada mínima real ejecutad
   - `docker compose build gcm-app` ✅
   - contenedor `gcm-app` levantado ✅
   - el `connection reset by peer` observado en smoke temprano quedó interpretado como latencia de arranque, no como caída persistente
-- E2E autenticada mínima real:
+- E2E autenticada real previa:
   - login Google real ✅
   - callback real a `/api/auth/callback` con aterrizaje exitoso en `/home` ✅
   - onboarding real ejecutado ✅
   - práctica real con `sessionId` visible y transición de estado ✅
   - dashboard real con datos coherentes tras la práctica ✅
+- revalidación UI Chromium sobre runtime limpio local:
+  - `QA_BASE_URL=http://127.0.0.1:3100 npm run qa:e2e:ui` ✅
+  - `turnCount = 5` ✅
+  - artifact root: `artifacts/qa-ui-e2e-ui-mokwxico-asel89`
 
 ## Hallazgos funcionales de la corrida real
-- el flujo principal `login -> onboarding -> practice -> dashboard` ya funciona de extremo a extremo
-- `onboarding` permitió guardar con `Áreas activas` en blanco; esto debe decidirse como comportamiento válido de MVP o endurecerse como validación
-- la limitación anterior de continuidad por banco quedó corregida: el runtime ya dispone de un pool curado de `27` preguntas nuevas para práctica
-- la práctica quedó configurada a `5` turnos para la siguiente validación funcional controlada
+- el flujo principal `login -> onboarding -> practice -> dashboard` funciona de extremo a extremo
+- el gate de onboarding ya no debe descubrirse tarde desde el botón de iniciar práctica; el flujo base ahora enruta primero a onboarding y luego a práctica
+- la limitación anterior de continuidad por banco quedó corregida: el runtime dispone de un pool curado de `27` preguntas nuevas para práctica
+- la práctica quedó configurada a `5` turnos para la validación funcional controlada
 - el dashboard respondió con métricas coherentes con la práctica recién realizada
 - se confirmó actividad real en Supabase remoto (`profiles`, `item_bank`, `user_topic_stats` y tablas asociadas)
+
+## Incidente delimitado
+- las corridas fallidas previas de UI sobre runtimes `3001/3002` no probaron un bug funcional del flujo; expusieron **assets/chunks stale de Next** en runtime bajo prueba
+- evidencia: `Loading chunk ... failed` y respuestas `400` sobre `/_next/static/chunks/...`
+- conclusión operativa: antes de declarar roja una E2E UI en este proyecto, validar si el runtime bajo prueba fue reconstruido limpiamente
 
 ## Nota de seguridad
 Durante una auditoría externa se imprimieron secretos operativos desde el host/contenedor. Esos valores no deben volver a exponerse en salidas de diagnóstico, logs compartidos ni documentación. Corresponde rotarlos si se considera comprometido el material expuesto.
 
 ## Siguiente paso
-- ejecutar una E2E autenticada real de `5` turnos sobre el banco curado actual
+- reconstruir y redeployar `/opt/gcm/app` de forma secuencial con metadata limpia de commit/build
+- repetir `npm run qa:e2e:ui` sobre el runtime objetivo ya redeployado
 - actualizar `status.md` y artefactos de delivery/calidad con la nueva evidencia del sprint
-- corregir trazabilidad de despliegue para evitar `Build: unknown` / `Commit desplegado: unknown`
-- decidir si `Áreas activas` puede seguir vacío en onboarding o si debe endurecerse
+- mantener fuera de alcance la operación editorial/banco salvo orden ejecutiva explícita

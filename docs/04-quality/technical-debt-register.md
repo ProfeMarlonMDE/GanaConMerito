@@ -74,6 +74,32 @@ Toda deuda debe registrar origen, impacto y owner. No se usa este registro para 
 - estado: en-remediacion
 - relación: scripts/validate_docs.py
 
+### DEBT-N-002
+- título: frente de banco de preguntas diferido fuera del sprint actual
+- descripción: toda nueva validación funcional final del banco activo, su alineación documental adicional, segmentación y gestión/editorial operativa quedan retiradas del sprint vigente para no competir con UX, asistentes y calidad operativa central.
+- origen: repriorización ejecutiva del producto
+- tipo: producto-datos
+- módulo: question-bank
+- impacto: medio
+- costo estimado: medio
+- interés de demora: medio
+- owner: marlon-arcila
+- estado: abierto
+- relación: PROD-BACKLOG
+
+### DEBT-N-003
+- título: proceso de gestión del banco de preguntas sin sprint dedicado
+- descripción: el proceso operativo/editorial del banco no se sigue desarrollando en el sprint actual y debe reingresar solo bajo un frente explícito de datos/editorial o por dependencia directa de la futura capa de asistentes.
+- origen: recorte de alcance del sprint
+- tipo: proceso
+- módulo: editorial
+- impacto: medio
+- costo estimado: medio
+- interés de demora: medio
+- owner: marlon-arcila
+- estado: abierto
+- relación: PROD-BACKLOG
+
 ## Vacíos explícitos
 - TODO: inventario completo de deuda por módulo.
 - TODO: clasificación de deuda en seguridad, pruebas y datos.

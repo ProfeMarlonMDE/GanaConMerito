@@ -46,20 +46,23 @@
 ### Flujo auth visible
 - página real de login en `src/app/login/page.tsx`
 - botón Google real en `src/components/auth/google-sign-in-button.tsx`
-- home protegida en `src/app/home/page.tsx`
+- home protegida en `src/app/(authenticated)/home/page.tsx`
+- shell autenticado compartido en `src/app/(authenticated)/layout.tsx`
 - botón de cierre de sesión en `src/components/auth/sign-out-button.tsx`
 - middleware SSR/cookies ajustado y protección básica ampliada en `src/middleware.ts`
 
 ### Frontend mínimo de producto
-- `src/app/onboarding/page.tsx`
-- `src/app/practice/page.tsx`
-- `src/app/dashboard/page.tsx`
+- `src/app/(authenticated)/onboarding/page.tsx`
+- `src/app/(authenticated)/practice/page.tsx`
+- `src/app/(authenticated)/dashboard/page.tsx`
+- `src/app/(authenticated)/layout.tsx`
 - `src/app/layout.tsx`
 - formulario real para iniciar práctica en `src/components/practice/start-practice-form.tsx`
 - sesión de práctica real en `src/components/practice/practice-session.tsx`
 - formulario real de onboarding en `src/components/onboarding/onboarding-form.tsx`
 - dashboard con desglose real por tema y métricas derivadas
 - onboarding endurecido al dominio realmente soportado por DB (`docente`)
+- navegación core con entrypoint autenticado coherente y gate temprano de onboarding
 - semántica actual de evaluación declarada como `deterministic`
 
 ### Banco de preguntas operativo
@@ -103,11 +106,11 @@
 
 ## Próximo trabajo recomendado
 
-1. decidir y endurecer la validación de onboarding si `Áreas activas` no debe permitirse vacío
-2. corregir trazabilidad de despliegue para eliminar `Build: unknown` / `Commit desplegado: unknown`
-3. consolidar validación pública postdeploy con evidencia repetible
-4. ampliar la suite QA semántica para cubrir futuras variantes del dashboard por sesión
-5. revisar si la estrategia actual del selector de práctica debe priorizar continuidad por competencia o cobertura por área
+1. cerrar redeploy limpio del runtime objetivo con metadata visible correcta de commit/build
+2. repetir QA UI sobre el runtime redeployado y dejar artifact postdeploy trazable
+3. decidir y endurecer la validación de onboarding si `Áreas activas` no debe permitirse vacío
+4. formalizar ADR corto del componente de asistentes antes de implementar capa conversacional
+5. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
 
 ## Remediación de auditoría en curso
 
@@ -142,7 +145,7 @@
 
 ## Observación importante
 
-El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada real en Chromium sobre el flujo principal: onboarding, práctica de `5` turnos, dashboard histórico y dashboard por sesión funcionando con persistencia observable. Además, el cierre remoto del bug de sesión quedó validado con `status = completed` y `ended_at != null`, y la QA semántica ya cruza UI, API, dashboard y BD como guardián del negocio. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue y continuidad del producto”.
+El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada real en Chromium sobre el flujo principal: onboarding, práctica de `5` turnos, dashboard histórico y dashboard por sesión funcionando con persistencia observable. Además, el cierre remoto del bug de sesión quedó validado con `status = completed` y `ended_at != null`, y la QA semántica ya cruza UI, API, dashboard y BD como guardián del negocio. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue, navegación core y continuidad del producto”, mientras la capa de asistentes ya quedó abierta como frente de spec formal y no de implementación libre.
 
 ## Cierre de remediación de dominios y workspaces
 

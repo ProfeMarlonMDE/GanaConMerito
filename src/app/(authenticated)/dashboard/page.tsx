@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { AppNav } from "@/components/navigation/app-nav";
 import {
   getDashboardSummaryForCurrentUser,
   getDashboardTopicBreakdownForCurrentUser,
@@ -64,8 +63,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
   );
 
   return (
-    <main>
-      <AppNav />
+    <>
       <h1>Dashboard</h1>
       <p><Link href="/home">← Volver a inicio</Link></p>
 
@@ -92,6 +90,6 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
         breakdown.historical,
         "Aún no hay datos suficientes.",
       )}
-    </main>
+    </>
   );
 }
