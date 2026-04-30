@@ -180,6 +180,8 @@ export function PracticeSession() {
       {sessionEnded && sessionDashboardHref ? (
         <p>
           <Link href={sessionDashboardHref}>Ver dashboard de esta sesión</Link>
+          {" · "}
+          <Link href="/home">Volver a inicio</Link>
         </p>
       ) : null}
 
@@ -241,9 +243,12 @@ export function PracticeSession() {
       ) : null}
 
       {session && !item ? (
-        <button onClick={resetPractice} disabled={loading || !sessionEnded && !sessionMessage}>
-          Iniciar una nueva sesión
-        </button>
+        <div>
+          <button onClick={resetPractice} disabled={loading || !sessionEnded && !sessionMessage}>
+            Iniciar una nueva sesión
+          </button>
+          <p><Link href="/dashboard">Ir al dashboard histórico</Link></p>
+        </div>
       ) : null}
     </section>
   );

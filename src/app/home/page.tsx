@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SignOutButton } from "@/components/auth/sign-out-button";
+import { AppNav } from "@/components/navigation/app-nav";
 import { requireAuthenticatedUser } from "@/lib/supabase/guards";
 
 export default async function HomePage() {
@@ -7,6 +8,7 @@ export default async function HomePage() {
 
   return (
     <main>
+      <AppNav />
       <h1>Inicio</h1>
       <p>Sesión autenticada.</p>
       <p>{user.email}</p>

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
+import { AppNav } from "@/components/navigation/app-nav";
 import { OnboardingForm } from "@/components/onboarding/onboarding-form";
 import { isLearningProfileOnboardingComplete } from "@/lib/onboarding/status";
 import { requireAuthenticatedUser } from "@/lib/supabase/guards";
@@ -36,8 +38,10 @@ export default async function OnboardingPage() {
 
   return (
     <main>
+      <AppNav />
       <h1>Onboarding</h1>
       <p>Completa tu perfil inicial para personalizar la práctica.</p>
+      <p><Link href="/home">← Volver a inicio</Link></p>
       <OnboardingForm
         initialTargetRole={learningProfile?.target_role ?? "docente"}
         initialExamType={learningProfile?.exam_type ?? "docente"}
