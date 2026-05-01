@@ -94,6 +94,9 @@ Actualmente existen varios centros de trabajo:
 
 Esto obliga a mantener una disciplina explícita para no perder cambios.
 
+Nota operativa 2026-05-01:
+- el worktree residual `workspace-product-048-fix` ya fue neutralizado; la topología activa válida vuelve a quedar limitada a `~/.openclaw/product` para producto y `~/.openclaw/workspace` para agencia.
+
 ---
 
 ## 4. Regla en caso de divergencia

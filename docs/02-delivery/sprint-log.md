@@ -51,10 +51,10 @@ last_reviewed: 2026-05-01
 - Hecho: reconciliación operativa entre `product`, `/opt/gcm/app` y runtime visible en `/login`, con redeploy validado en commit `ac648c4`.
 - Hecho: extracción del límite rígido de `5` turnos fuera de la ruta de dominio y paso a `MAX_SESSION_TURNS` como configuración de runtime (`1d04637`).
 - Hecho: formalización documental de la regla definitiva de verdad de runtime (`c72099b`).
+- Hecho: worktree residual `workspace-product-048-fix` neutralizado; no tenía commits propios contra `master`, estaba `43` commits detrás y fue removido junto con su rama local para cerrar la ambigüedad topológica.
 
 ## No entregado
 - Pendiente: aprobación humana final de ADR-002.
-- Pendiente: resolver destino del worktree residual `workspace-product-048-fix`.
 - Pendiente: redeploy explícito del commit posterior `1d04637` si se quiere reflejado inmediatamente en runtime productivo.
 
 ## Fuera de alcance
@@ -66,7 +66,6 @@ last_reviewed: 2026-05-01
 ## Riesgos y bloqueos remanentes
 - el runtime puede volver a divergir si se valida solo Git y no la metadata visible en `/login`
 - sigue existiendo deuda documental heredada fuera del circuito crítico
-- el worktree residual mantiene una ambigüedad topológica menor
 
 ## Criterio de cierre del sprint cerrado
 - flujo principal validado con evidencia real
@@ -113,8 +112,8 @@ last_reviewed: 2026-05-01
 - nuevos frentes funcionales no respaldados por ADR o evidencia de negocio
 
 ## Criterio de terminado del sprint actual
-- worktree residual resuelto o neutralizado
-- mapa de features activas documentado
-- ADR-002 cerrado en decisión humana (aprobado o ajustado)
-- checklist de deploy aplicada sin ambigüedad en al menos un cierre completo
-- backlog y status alineados al estado real del producto
+- [x] worktree residual resuelto o neutralizado
+- [ ] mapa de features activas documentado
+- [ ] ADR-002 cerrado en decisión humana (aprobado o ajustado)
+- [ ] checklist de deploy aplicada sin ambigüedad en al menos un cierre completo
+- [ ] backlog y status alineados al estado real del producto

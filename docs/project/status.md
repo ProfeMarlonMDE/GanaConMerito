@@ -107,11 +107,11 @@
 
 ## Próximo trabajo recomendado
 
-1. cerrar la ambigüedad topológica residual del worktree `workspace-product-048-fix`
-2. convertir el ADR de asistentes en decisión aprobada o ajustada antes de implementación conversacional
-3. formalizar mapa de features activas con estado real
-4. conservar el runtime `:3000` y los scripts QA actuales como baseline confiable de validación
-5. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
+1. convertir el ADR de asistentes en decisión aprobada o ajustada antes de implementación conversacional
+2. formalizar mapa de features activas con estado real
+3. conservar el runtime `:3000` y los scripts QA actuales como baseline confiable de validación
+4. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
+5. aplicar la checklist de deploy sin ambigüedad en el próximo cierre que toque runtime
 
 ## Remediación de auditoría en curso
 
@@ -161,8 +161,8 @@ También quedó ajustado lo siguiente:
 - `supabase/config.toml` normalizado a `project_id = "gcm-product"`
 - residuos menores saneados en workspace sin afectar trazabilidad
 
-Pendiente residual no bloqueante:
-- decidir el destino del worktree `/home/ubuntu/.openclaw/workspace-product-048-fix` para cerrar la última ambigüedad topológica
+Resultado operativo reciente:
+- el worktree residual `/home/ubuntu/.openclaw/workspace-product-048-fix` ya fue neutralizado tras confirmar que no contenía commits propios frente a `master`; la topología activa queda reducida al dominio canónico de producto (`~/.openclaw/product`) y al dominio de agencia (`~/.openclaw/workspace`).
 
 ## Referencia de versionado operativo vigente
 - App declarada: `0.4.8`

@@ -15,6 +15,13 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
+- tipo: ops+topology
+- modulo: repo/worktree
+- resumen: se neutralizó el worktree residual `workspace-product-048-fix` tras confirmar que no contenía commits propios frente a `master`, estaba `43` commits detrás y solo arrastraba un `package-lock.json` local obsoleto; se eliminó el worktree y su rama local para cerrar la ambigüedad topológica.
+- sprint: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
+- relacionados: docs/02-delivery/sprint-log.md, docs/project/status.md, docs/project/source-of-truth.md
+
+## 2026-05-01
 - tipo: delivery+planning
 - modulo: governance/product
 - resumen: se registra el cierre operativo del sprint de maduración del producto y se abre el siguiente sprint centrado en normalización operativa final, resolución de ambigüedad topológica residual y preparación formal del frente de asistentes.
