@@ -167,9 +167,10 @@ Resultado operativo reciente:
 ## Referencia de versionado operativo vigente
 - App declarada: `0.4.8`
 - Rama operativa canónica: `master`
-- Commit de documentación canónica local actual: `f5853a8` en `~/.openclaw/product` (pendiente push/deploy si se quiere reflejar fuera del árbol local)
-- Commit canónico último validado en `product`, `/opt/gcm/app` y runtime `:3000`: `ac648c4`
-- Commit posterior de hardening de configuración de sesiones: `1d04637` en GitHub/product (pendiente redeploy explícito si se quiere reflejado en runtime)
+- Commit canónico actual validado en `~/.openclaw/product`, `/opt/gcm/app` y runtime `:3000`: `701ebcf`
+- `buildTime` visible validado en `/login`: `2026-05-01T18:25:50Z`
 - Estado funcional vigente: core real activo = login + onboarding + práctica + dashboard; editorial = solo lectura; `Tutor GCM` = aprobado en gobernanza, no implementado funcionalmente
 
 Mientras no se haga un release formal nuevo, esta es la forma correcta de reportar el estado real para seguir desarrollo sin ambigüedad.
+
+Con la evidencia de deploy validada el 2026-05-01, la triple coincidencia operativa quedó cerrada para `701ebcf`.

@@ -97,6 +97,13 @@ last_reviewed: 2026-05-01
 - disciplina de release/deploy más estable
 - baseline QA mantenido como guardián del core
 
+## Cierre operativo adicional confirmado
+- Deploy cerrado con triple verificación en commit `701ebcf`.
+- `~/.openclaw/product` = `701ebcf`
+- `/opt/gcm/app` = `701ebcf`
+- runtime visible en `/login` = `701ebcf`
+- `buildTime` visible validado: `2026-05-01T18:25:50Z`
+
 ## Comprometido
 1. decidir y resolver el destino del worktree `workspace-product-048-fix`
 2. consolidar mapa de features activas con estado real
@@ -114,5 +121,5 @@ last_reviewed: 2026-05-01
 - [x] worktree residual resuelto o neutralizado
 - [x] mapa de features activas documentado
 - [x] ADR-002 cerrado en decisión humana (aprobado con guardrails)
-- [ ] checklist de deploy aplicada sin ambigüedad en al menos un cierre completo
+- [x] checklist de deploy aplicada sin ambigüedad en al menos un cierre completo
 - [x] backlog y status alineados al estado real del producto
