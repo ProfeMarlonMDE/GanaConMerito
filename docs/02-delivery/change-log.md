@@ -15,6 +15,13 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
+- tipo: docs+architecture
+- modulo: ai/session-orchestrator
+- resumen: se formaliza ADR propuesto para gobernanza del componente de asistentes, fijando `Tutor GCM` como asistente visible único y manteniendo la lógica crítica fuera del LLM visible.
+- sprint: Sprint siguiente - Hardening de dashboard y estabilidad QA
+- relacionados: ADR-002-assistant-component-governance, ARCH-ASSISTANT-COMPONENT-SPEC, GOV-HUMAN-APPROVAL
+
+## 2026-05-01
 - tipo: fix+qa
 - modulo: qa/ops
 - resumen: se corrigió la limpieza de usuarios QA para tolerar identidades stale ya borradas en Supabase (`User not found`) y se revalidó el runtime objetivo `:3000` con smoke postdeploy y E2E UI Chromium verdes (`5` turnos).
