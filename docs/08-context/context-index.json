@@ -97,7 +97,7 @@
       "id": "DEL-SPRINT-LOG",
       "path": "docs/02-delivery/sprint-log.md",
       "type": "delivery",
-      "status": "completed",
+      "status": "active",
       "project": "ganaconmerito",
       "modules": [
         "core",
@@ -114,7 +114,7 @@
         "DEL-CHANGE-LOG",
         "QUAL-RISK-REGISTER"
       ],
-      "last_reviewed": "2026-04-28"
+      "last_reviewed": "2026-05-01"
     },
     {
       "id": "ADR-001-stack-base",

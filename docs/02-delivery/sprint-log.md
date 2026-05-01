@@ -3,7 +3,7 @@ id: DEL-SPRINT-LOG
 name: sprint-log
 project: ganaconmerito
 owner: marlon-arcila
-status: completed
+status: active
 artifact_type: delivery
 modules: [core, platform]
 tags: [sprint, entrega, seguimiento]
@@ -11,104 +11,110 @@ related:
   - PROD-BACKLOG
   - DEL-CHANGE-LOG
   - QUAL-RISK-REGISTER
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-01
 ---
 
 # Sprint log
 
-## Sprint actual
-- Nombre: Sprint 1 - Gobernanza mínima y baseline operable del producto
-- Estado: CERRADO
-- Fecha de inicio: 2026-04-24
-- Fecha de cierre efectiva: 2026-04-27
+## Sprint cerrado
+- Nombre: Sprint 2 - Maduración operativa del producto
+- Estado: CERRADO OPERATIVAMENTE
+- Fecha de inicio: 2026-04-30
+- Fecha de cierre efectiva: 2026-05-01
 - Responsable humano: Marlon Arcila
 
-## Objetivo
-- Cerrar la gobernanza mínima del producto y dejar una base operable con runtime, banco activo y trazabilidad suficiente para continuar pruebas funcionales reales.
+## Objetivo del sprint cerrado
+- Consolidar navegación/auth del core app, cerrar la verdad operativa entre producto/deploy/runtime, endurecer onboarding y dejar gobernanza inicial del componente de asistentes sin mezclar el frente editorial dentro del sprint.
 
-## Outcome esperado
-- ADR-001 aprobado.
-- Owners humanos mínimos asignados.
-- Backlog priorizado en formato ejecutable.
-- Sprint log formalizado.
-- Banco activo consolidado y adoptado en runtime.
-- Reglas claras de qué es canónico, qué es histórico y qué debe consolidarse.
+## Outcome esperado del sprint cerrado
+- flujo principal más coherente y verificable
+- trazabilidad real de deploy/runtime
+- QA postdeploy confiable
+- decisión estructural inicial de asistentes formalizada
+- reducción de drift documental/editorial
 
 ## Comprometido
-1. Aprobar y cerrar ADR-001 como baseline oficial.
-2. Formalizar owner humano mínimo y roles operativos de apoyo.
-3. Convertir backlog actual en lista priorizada con criterio `Now / Next / Later`.
-4. Clasificar el legado documental en lotes A/B/C con decisión por artefacto: conservar, consolidar, archivar o reemplazar.
-5. Dejar una lista corta de riesgos inmediatos y decisiones pendientes no bloqueantes.
-6. Acompañar la entrada en ejecución del frente `banco activo` con trazabilidad explícita para vista activa, adopción en runtime y smoke test.
+1. consolidar navegación/auth y gate temprano de onboarding
+2. validar runtime real con build + smoke + E2E
+3. corregir trazabilidad operativa entre `~/.openclaw/product`, `/opt/gcm/app` y runtime real
+4. formalizar gobernanza mínima del componente de asistentes
+5. mantener `question-bank/editorial` fuera de alcance funcional del sprint
 
 ## Entregado
-- Hecho: estructura base documental inicial.
-- Hecho: creación de artefactos de gobernanza y calidad iniciales.
-- Hecho: preparación de scripts de soporte documental.
-- Hecho: ADR-001 aprobado como baseline de stack.
-- Hecho: formalización inicial del Sprint 1.
-- Hecho: trazabilidad documental del cierre de la fase operativa de carga del banco de preguntas en Supabase (`docs/02-delivery/question-bank-load-phase-close.md`).
-- Hecho: activación del banco activo en runtime con validación remota sobre `27` preguntas nuevas exactas.
-- Hecho: purga de preguntas defectuosas y contenido legacy del repo, reportes y BD remota.
-- Hecho: build de app validado y práctica ajustada a `5` turnos para pruebas funcionales.
-- Hecho: E2E real en Chromium del flujo principal con onboarding, práctica de `5` turnos, dashboard y persistencia validada.
-- Hecho: corrección de clasificación de dashboard (`Fuertes` / `Por reforzar`) y habilitación de vista por sesión (`/dashboard?sessionId=...`).
-- Hecho: endurecimiento QA con assertions semánticas post-run cruzando UI, API, dashboard y BD.
-- Hecho: aplicación remota del fix de cierre de sesión en Supabase y validación final de `status = completed` + `ended_at != null`.
+- Hecho: validación real de `build`, `test:dashboard`, `qa:smoke:postdeploy` y `qa:e2e:ui` sobre runtime objetivo.
+- Hecho: fix de tooling QA para tolerar usuarios stale en Supabase (`b3db319`).
+- Hecho: revalidación documental de QA/runtime (`557afe1`).
+- Hecho: ADR-002 propuesto para gobernanza del componente de asistentes (`0b51047`).
+- Hecho: onboarding endurecido con `activeAreas` obligatorio en UI y API, validado con rechazo real `400` (`dc67a0b`).
+- Hecho: limpieza de `/editorial`, archivo fechado de inbox/legado y política de archivado/nombres (`f53ecb8`).
+- Hecho: archivo de duplicados documentales de `docs/banco-preguntas/*` y reafirmación de `content/items/**` como verdad operativa del corpus (`ac648c4`).
+- Hecho: reconciliación operativa entre `product`, `/opt/gcm/app` y runtime visible en `/login`, con redeploy validado en commit `ac648c4`.
+- Hecho: extracción del límite rígido de `5` turnos fuera de la ruta de dominio y paso a `MAX_SESSION_TURNS` como configuración de runtime (`1d04637`).
+- Hecho: formalización documental de la regla definitiva de verdad de runtime (`c72099b`).
 
 ## No entregado
-- Pendiente: backlog ejecutivo `Now / Next / Later` completamente estabilizado.
-- Pendiente: clasificación completa del legado documental fuera del circuito crítico.
-- Pendiente: issue list operativa con owner e impacto más allá del cierre técnico actual.
-
-## Frente ejecutado: banco activo
-- Estado: CERRADO.
-- Resultado del bloque:
-  1. existe evidencia operativa y documental de la `vista activa` y del contrato de lectura;
-  2. el runtime quedó apuntando al dataset curado esperado;
-  3. smoke test, verificación remota, validación total del corpus y build dejaron evidencia verificable.
-- Estado final del dataset:
-  - `27` preguntas nuevas disponibles para runtime/práctica
-  - `0` legacy operativas en repo y BD
-  - preguntas defectuosas fuera del circuito operativo
+- Pendiente: aprobación humana final de ADR-002.
+- Pendiente: resolver destino del worktree residual `workspace-product-048-fix`.
+- Pendiente: redeploy explícito del commit posterior `1d04637` si se quiere reflejado inmediatamente en runtime productivo.
 
 ## Fuera de alcance
-- Rediseño de arquitectura.
-- Nuevos módulos funcionales.
-- Reescritura masiva del corpus documental.
-- Cambios de stack.
-- Limpieza completa del histórico en este sprint.
+- implementación de asistentes visibles
+- reapertura del frente editorial/question-bank como trabajo activo de sprint
+- migración de `master` a `main`
+- cambio de stack o rediseño mayor de arquitectura
 
-## Bloqueos
-- No hay bloqueo técnico crítico del banco activo.
-- No hay bloqueo técnico crítico en el loop principal de práctica tras la validación final remota.
-- Persiste deuda menor de trazabilidad documental y despliegue.
+## Riesgos y bloqueos remanentes
+- el runtime puede volver a divergir si se valida solo Git y no la metadata visible en `/login`
+- sigue existiendo deuda documental heredada fuera del circuito crítico
+- el worktree residual mantiene una ambigüedad topológica menor
 
-## ADR relacionados
-- ADR-001-stack-base
-
-## Riesgos
-- Documentación quede desacoplada del repo real si no se sigue cerrando sprint con disciplina.
-- Persistencia de doble canon documental en artefactos históricos no críticos.
-- Se ejecuten cambios sin disciplina de referencia al ADR aprobado.
-- La próxima iteración toque sesión/dashboard sin mantener los asserts semánticos como guardián del negocio.
-
-## Criterio de cierre
-- ADR-001 en `approved` y referenciado correctamente.
-- Sprint log sin vacíos estructurales en objetivo, fechas y responsable.
-- Banco activo adoptado y validado con evidencia técnica.
-- Owner humano mínimo explícito para producto.
-- Riesgos inmediatos explícitos para el siguiente frente.
-- Flujo principal validado con E2E real Chromium, dashboard coherente y cierre de sesión persistido correctamente en remoto.
+## Criterio de cierre del sprint cerrado
+- flujo principal validado con evidencia real
+- onboarding endurecido y probado
+- `product`, deploy tree y runtime reconciliados operativamente
+- regla de deploy/verdad de runtime escrita en docs canónicos
+- frente editorial retirado de superficies activas y legado archivado con fecha
+- hardcode crítico del límite de sesión retirado de la ruta de dominio
 
 ## Lecciones aprendidas
-- La herencia de otra agencia exige distinguir evidencia, supuesto y vacío.
-- Orden documental sin autoridad formal no alcanza; el baseline aprobado es obligatorio.
+- no basta con alinear `product` y `/opt/gcm/app`; el runtime visible debe validar la tercera capa.
+- la mezcla entre documentación activa, inbox temporal y legado sí degrada foco operativo.
+- QA útil no debe contaminar reglas de dominio; si una restricción sirve a test, debe ir por configuración.
 
-## Siguientes acciones
-1. Reordenar backlog a `Now / Next / Later` con foco producto.
-2. Decidir si onboarding debe exigir `Áreas activas` no vacías.
-3. Corregir trazabilidad de despliegue (`Build/Commit` visibles).
-4. Mantener y ampliar la suite QA semántica para futuras regresiones de sesión/dashboard.
-5. Reconciliar tableros/documentación operativa histórica.
+---
+
+## Sprint actual
+- Nombre: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
+- Estado: ABIERTO
+- Fecha de inicio: 2026-05-01
+- Responsable humano: Marlon Arcila
+
+## Objetivo del sprint actual
+- Cerrar la ambigüedad topológica residual, consolidar el mapa real de features/estado operativo y dejar lista la base de gobernanza para abrir implementación del frente de asistentes sin comprometer confiabilidad del core.
+
+## Outcome esperado del sprint actual
+- topología operativa sin residuos ambiguos
+- mapa actualizado de features activas con estado real
+- ADR-002 aprobado o ajustado
+- disciplina de release/deploy más estable
+- baseline QA mantenido como guardián del core
+
+## Comprometido
+1. decidir y resolver el destino del worktree `workspace-product-048-fix`
+2. consolidar mapa de features activas con estado real
+3. aprobar o ajustar ADR-002 antes de implementación conversacional
+4. mantener la triple verificación `product` = `/opt/gcm/app` = runtime visible como regla obligatoria
+5. mantener fuera del sprint el frente editorial/question-bank salvo decisión ejecutiva explícita
+
+## No alcance del sprint actual
+- implementación libre del Tutor GCM
+- expansión del banco editorial
+- migración de rama `master` a `main`
+- nuevos frentes funcionales no respaldados por ADR o evidencia de negocio
+
+## Criterio de terminado del sprint actual
+- worktree residual resuelto o neutralizado
+- mapa de features activas documentado
+- ADR-002 cerrado en decisión humana (aprobado o ajustado)
+- checklist de deploy aplicada sin ambigüedad en al menos un cierre completo
+- backlog y status alineados al estado real del producto

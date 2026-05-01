@@ -107,11 +107,11 @@
 
 ## Próximo trabajo recomendado
 
-1. convertir el ADR de asistentes en decisión aprobada o ajustada antes de implementación conversacional
-2. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
-3. conservar el runtime `:3000` y los scripts QA actuales como baseline confiable de validación
-4. evitar regresiones en tooling QA: la limpieza de usuarios stale en Supabase ya quedó endurecida
-5. cerrar la ambigüedad topológica residual del worktree `workspace-product-048-fix` y mantener la triple verificación `product` = `/opt/gcm/app` = runtime visible
+1. cerrar la ambigüedad topológica residual del worktree `workspace-product-048-fix`
+2. convertir el ADR de asistentes en decisión aprobada o ajustada antes de implementación conversacional
+3. formalizar mapa de features activas con estado real
+4. conservar el runtime `:3000` y los scripts QA actuales como baseline confiable de validación
+5. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
 
 ## Remediación de auditoría en curso
 

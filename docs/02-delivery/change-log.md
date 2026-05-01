@@ -15,6 +15,13 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
+- tipo: delivery+planning
+- modulo: governance/product
+- resumen: se registra el cierre operativo del sprint de maduración del producto y se abre el siguiente sprint centrado en normalización operativa final, resolución de ambigüedad topológica residual y preparación formal del frente de asistentes.
+- sprint: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
+- relacionados: docs/02-delivery/sprint-log.md, docs/01-product/backlog.md, ADR-002-assistant-component-governance
+
+## 2026-05-01
 - tipo: docs+ops
 - modulo: deploy/runtime
 - resumen: se formaliza la regla definitiva de verdad de runtime: un deploy solo se considera cerrado cuando coinciden `~/.openclaw/product`, `/opt/gcm/app` y la metadata visible del runtime en `/login` (`commit` + `buildTime`).
