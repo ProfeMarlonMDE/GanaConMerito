@@ -131,7 +131,7 @@
 
 ### RA3 — Honestidad funcional y cierre de trazabilidad
 - práctica con estados borde más explícitos
-- límite de práctica ajustado de `3` a `5` turnos para pruebas funcionales de app
+- el límite de sesión ya no queda hardcodeado en la ruta de avance; ahora se resuelve desde `MAX_SESSION_TURNS` con default controlado de `5`
 - `package.json` reconciliado con versión publicada
 - `supabase/.gitignore` añadido para ignorar `.temp/`
 

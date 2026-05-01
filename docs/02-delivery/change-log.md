@@ -15,6 +15,13 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
+- tipo: fix+architecture
+- modulo: sessions/qa
+- resumen: se retiró el límite rígido de `5` turnos de la ruta de avance de sesión y se pasó a configuración explícita por entorno mediante `MAX_SESSION_TURNS`, conservando `5` como default controlado para no romper el baseline actual de QA.
+- sprint: Sprint siguiente - Normalización operativa y blindaje del core
+- relacionados: docs/project/status.md, docs/project/e2e-status.md
+
+## 2026-05-01
 - tipo: docs+ops
 - modulo: documentation/question-bank
 - resumen: se archivaron los duplicados documentales de `docs/banco-preguntas/*` con nombres fechados y se reafirmó `content/items/**` como verdad operativa del corpus, ajustando referencias mínimas para evitar que el legado siga compitiendo con la fuente canónica.

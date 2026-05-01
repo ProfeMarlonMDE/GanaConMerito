@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { scoreResponseBaselineHeuristicV1 } from "../../../../domain/evaluation/score-response";
 import { selectNextItem } from "../../../../domain/item-selection/select-next-item";
 import { getNextState } from "../../../../domain/orchestrator/session-machine";
+import { getMaxSessionTurns } from "../../../../lib/config/session";
 import { isLearningProfileOnboardingComplete } from "../../../../lib/onboarding/status";
 import { applyActiveItemBankFilters, runWithActiveItemBankFallback } from "../../../../lib/supabase/active-item-bank";
 import { requireOwnedSession } from "../../../../lib/supabase/guards";
@@ -91,7 +92,8 @@ export async function POST(request: Request) {
   const previousState = session.current_state as SessionState;
   const onboardingCompleted = isLearningProfileOnboardingComplete(learningProfile);
   const shouldReview = existingTurns.length > 0 && !evaluation.remediationNeeded;
-  const isSessionEnding = existingTurns.length + 1 >= 5;
+  const maxSessionTurns = getMaxSessionTurns();
+  const isSessionEnding = existingTurns.length + 1 >= maxSessionTurns;
   const currentState = getNextState({
     currentState: previousState,
     onboardingCompleted,

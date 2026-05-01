@@ -83,3 +83,4 @@ Durante una auditoría externa se imprimieron secretos operativos desde el host/
 - mantener fuera de alcance la operación editorial/banco salvo orden ejecutiva explícita
 - mantener el fix de tooling QA (`cleanupOldQaUsers`) como guardrail para evitar falsos rojos por identidades stale en Supabase
 - conservar explícitamente `activeAreas` como requisito funcional obligatorio de onboarding
+- si QA necesita sesiones más cortas o más largas, usar `MAX_SESSION_TURNS` por entorno y no reinyectar límites rígidos en dominio
