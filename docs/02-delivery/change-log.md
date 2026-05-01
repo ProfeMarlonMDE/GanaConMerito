@@ -15,6 +15,13 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
+- tipo: docs+ops
+- modulo: documentation/editorial
+- resumen: se limpió la superficie activa `/editorial` para dejar solo documentación canónica vigente, se archivó con nombres fechados el inbox temporal y planes editoriales/question-bank superados, y se regeneró `site-docs` para eliminar referencias activas al legado.
+- sprint: Sprint siguiente - Normalización operativa y blindaje del core
+- relacionados: docs/project/source-of-truth.md, docs/05-ops/2026-05-01-document-archive-and-naming-policy.md
+
+## 2026-05-01
 - tipo: docs+architecture
 - modulo: ai/session-orchestrator
 - resumen: se formaliza ADR propuesto para gobernanza del componente de asistentes, fijando `Tutor GCM` como asistente visible único y manteniendo la lógica crítica fuera del LLM visible.

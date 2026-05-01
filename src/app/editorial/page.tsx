@@ -34,8 +34,9 @@ export default async function EditorialIndexPage() {
     <main>
       <h1>Biblioteca editorial</h1>
       <p style={{ maxWidth: 760 }}>
-        Acceso web temporal y de solo lectura a documentos seleccionados del proyecto. Incluye docs
-        canónicos y archivos de trabajo cargados en el inbox temporal para revisión posterior.
+        Acceso web de solo lectura a documentación canónica vigente del producto. El inbox temporal y los
+        planes superados fueron retirados de esta superficie para no mezclar legado, operación de agencia y
+        source of truth de la app.
       </p>
 
       <div style={{ display: "grid", gap: 24, gridTemplateColumns: "280px 1fr" }}>

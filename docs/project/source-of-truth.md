@@ -10,8 +10,9 @@ Definir con claridad cuál es la fuente de verdad en cada capa del proyecto para
 ### Fuente de verdad documental
 - `docs/01-product/*` a `docs/08-context/*` = taxonomía canónica objetivo
 - `docs/database/*` y `docs/api/*` = canónico puente por tema mientras se consolida la normalización
-- `docs/architecture/*` y `docs/project/*` = transición controlada, mezcla de puente e histórico
-- `docs/temp/*` = no canónico, inbox temporal
+- `docs/architecture/*` y `docs/project/*` = transición controlada, mezcla de puente e histórico vigente
+- `docs/archive/*` = histórico explícito, fuera de superficies activas
+- `docs/temp/*` = no canónico; debe vaciarse o archivarse, no competir con documentación vigente
 
 ### Arquitectura, decisiones y planes de producto
 **Fuente de verdad:**
@@ -76,6 +77,7 @@ Todo cambio serio debe terminar en:
 1. commit limpio
 2. respaldo en GitHub
 3. despliegue validado
+4. documentación vigente o archivo fechado si el artefacto pasa a histórico
 
 ---
 
@@ -126,7 +128,12 @@ Regla específica para banco de preguntas:
 
 ---
 
-## 6. Regla práctica
+## 6. Regla de archivo y nombres
+- todo snapshot, archivo histórico o documento movido fuera de vigencia debe usar fecha en el nombre: `YYYY-MM-DD-tema.ext`
+- toda pieza archivada debe vivir en `docs/archive/**`
+- superficies activas del producto como `/editorial` no deben mostrar inbox temporales ni planes superados
+
+## 7. Regla práctica
 Cada tarea debe responder estas preguntas:
 - ¿Dónde se diseña?
 - ¿Dónde se implementa?

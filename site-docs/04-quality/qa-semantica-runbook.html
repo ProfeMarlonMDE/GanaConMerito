@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>qa-semantica-runbook</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-05-01T15:08:54.320788Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/question-bank-load-phase-close.html">02-delivery/question-bank-load-phase-close.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/adrs/ADR-002-assistant-component-governance.html">03-architecture/adrs/ADR-002-assistant-component-governance.md</a></li><li><a href="03-architecture/assistant-component-executive-spec.html">03-architecture/assistant-component-executive-spec.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/active-question-bank-smoke-test.html">04-quality/active-question-bank-smoke-test.md</a></li><li><a href="04-quality/chromium-qa-run-2026-04-27.html">04-quality/chromium-qa-run-2026-04-27.md</a></li><li><a href="04-quality/dashboard-hardening-run-2026-04-29.html">04-quality/dashboard-hardening-run-2026-04-29.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/post-backfill-active-bank-validation.html">04-quality/post-backfill-active-bank-validation.md</a></li><li><a href="04-quality/qa-semantica-run-2026-04-28.html">04-quality/qa-semantica-run-2026-04-28.md</a></li><li><a href="04-quality/qa-semantica-run-2026-04-29.html">04-quality/qa-semantica-run-2026-04-29.md</a></li><li><a href="04-quality/qa-semantica-runbook.html">04-quality/qa-semantica-runbook.md</a></li><li><a href="04-quality/question-bank-load-phase-audit-2026-04-26.html">04-quality/question-bank-load-phase-audit-2026-04-26.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/2026-05-01-document-archive-and-naming-policy.html">05-ops/2026-05-01-document-archive-and-naming-policy.md</a></li><li><a href="05-ops/deploy-checklist.html">05-ops/deploy-checklist.md</a></li><li><a href="05-ops/question-bank-load-runbook.html">05-ops/question-bank-load-runbook.md</a></li><li><a href="05-ops/rollback-runbook.html">05-ops/rollback-runbook.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="api/dashboard-summary-contract.html">api/dashboard-summary-contract.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-admin-consolidated-plan.html">archive/architecture/2026-05-01-editorial-admin-consolidated-plan.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-admin-implementation-plan.html">archive/architecture/2026-05-01-editorial-admin-implementation-plan.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-library-temporary-web-module.html">archive/architecture/2026-05-01-editorial-library-temporary-web-module.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-module-plan.html">archive/architecture/2026-05-01-editorial-module-plan.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-runtime-paths-fix.html">archive/architecture/2026-05-01-editorial-runtime-paths-fix.md</a></li><li><a href="archive/architecture/2026-05-01-question-bank-technical-architecture.html">archive/architecture/2026-05-01-question-bank-technical-architecture.md</a></li><li><a href="archive/inbox/content/2026-05-01-audit-definitiva-gemini-pro.html">archive/inbox/content/2026-05-01-audit-definitiva-gemini-pro.md</a></li><li><a href="archive/inbox/misc/2026-05-01-antigravity-pc.html">archive/inbox/misc/2026-05-01-antigravity-pc.md</a></li><li><a href="archive/inbox/misc/2026-05-01-claude-sonet.html">archive/inbox/misc/2026-05-01-claude-sonet.md</a></li><li><a href="archive/inbox/misc/2026-05-01-claude.html">archive/inbox/misc/2026-05-01-claude.md</a></li><li><a href="archive/inbox/misc/2026-05-01-codex-pc.html">archive/inbox/misc/2026-05-01-codex-pc.md</a></li><li><a href="archive/inbox/misc/2026-05-01-gemini-pc.html">archive/inbox/misc/2026-05-01-gemini-pc.md</a></li><li><a href="archive/inbox/project/2026-05-01-audit-brief-editorial-segmentation.html">archive/inbox/project/2026-05-01-audit-brief-editorial-segmentation.md</a></li><li><a href="archive/inbox/project/2026-05-01-dominios.html">archive/inbox/project/2026-05-01-dominios.md</a></li><li><a href="archive/project/2026-05-01-audit-brief-editorial-segmentation.html">archive/project/2026-05-01-audit-brief-editorial-segmentation.md</a></li><li><a href="archive/project/2026-05-01-question-bank-implementation-roadmap.html">archive/project/2026-05-01-question-bank-implementation-roadmap.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/active-question-bank-contract.html">database/active-question-bank-contract.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-corpus-runtime-activation-map.html">project/current-corpus-runtime-activation-map.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/remediation/real-bug-fix-plan-2026-04-28.html">project/remediation/real-bug-fix-plan-2026-04-28.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="temp/README.html">temp/README.md</a></li></ul>
+</nav>
+<main>
+<p>---</p>
+<p>id: QUAL-QA-SEMANTICA-RUNBOOK</p>
+<p>name: qa-semantica-runbook</p>
+<p>project: ganaconmerito</p>
+<p>owner: qa</p>
+<p>status: active</p>
+<p>artifact_type: quality</p>
+<p>modules: [qa, practice, dashboard, sessions]</p>
+<p>tags: [qa, semantica, e2e, runbook]</p>
+<p>related:</p>
+<p>  - QUAL-CHROMIUM-QA-2026-04-27</p>
+<p>  - QUAL-KNOWN-ISSUES</p>
+<p>  - docs/05-ops/runbook.md</p>
+<p>last_reviewed: 2026-04-29</p>
+<p>---</p>
+
+<h1>Runbook corto — QA semántica operativa</h1>
+
+<h2>Objetivo</h2>
+<p>Ejecutar una validación reproducible del flujo real `home -&gt; onboarding -&gt; practice -&gt; dashboard` y fallar si UI, API, dashboard y BD divergen.</p>
+
+<h2>Runners oficiales</h2>
+<h3>1. Smoke postdeploy mínimo</h3>
+<pre><code>
+QA_BASE_URL=http://127.0.0.1:3001 npm run qa:smoke:postdeploy
+</code></pre>
+<p>Valida rápido:</p>
+<li>`/login`</li>
+<li>autenticación real</li>
+<li>onboarding</li>
+<li>`session/start`</li>
+<li>`session/advance` (1 turno)</li>
+<li>dashboard API + dashboard page por `sessionId`</li>
+
+<h3>2. API-first completa</h3>
+<pre><code>
+QA_BASE_URL=http://127.0.0.1:3001 npm run qa:e2e:api
+</code></pre>
+
+<h3>3. UI real con Chromium</h3>
+<pre><code>
+QA_BASE_URL=http://127.0.0.1:3001 npm run qa:e2e:ui
+</code></pre>
+
+<h2>Preconditions mínimas</h2>
+<li>app levantada y accesible en `QA_BASE_URL`</li>
+<li>`NEXT_PUBLIC_SUPABASE_URL` presente</li>
+<li>`NEXT_PUBLIC_SUPABASE_ANON_KEY` presente</li>
+<li>`SUPABASE_SERVICE_ROLE_KEY` presente</li>
+
+<h2>Identidades QA</h2>
+<li>cada runner genera por defecto una identidad única por corrida (`api`, `ui`, `smoke` + `runId`)</li>
+<li>esto evita colisión entre API y UI cuando corren consecutivamente o en paralelo controlado</li>
+<li>override manual opcional:</li>
+<p>  - `QA_E2E_RUN_ID=&lt;id&gt;`</p>
+<p>  - `QA_E2E_EMAIL=&lt;correo&gt;`</p>
+<p>  - `QA_E2E_PASSWORD=&lt;password&gt;`</p>
+<li>cleanup razonable:</li>
+<p>  - usuarios QA gestionados por el runner se purgan automáticamente si superan la ventana configurada (`QA_E2E_CLEANUP_MAX_AGE_HOURS`, default `48`)</p>
+<p>  - para desactivar esa purga: `QA_E2E_CLEANUP_OLD_USERS=false`</p>
+
+<h2>Regla funcional vigente para competencias</h2>
+<li>`Fuertes`: competencias con al menos `1` intento, al menos `1` acierto, `estimated_level &gt; 0` y precisión `&gt;= 50%`.</li>
+<li>`Por reforzar`: competencias con al menos `1` intento que no hayan entrado en `Fuertes`.</li>
+<li>ambas listas deben ser mutuamente excluyentes; la QA falla si una competencia aparece en las dos.</li>
+
+<h2>Evidencia esperada</h2>
+<h3>Smoke postdeploy</h3>
+<p>Directorio `artifacts/qa-smoke-postdeploy-&lt;runId&gt;/` con mínimo:</p>
+<li>`prep.json`</li>
+<li>`results.json`</li>
+<li>`login.html`</li>
+<li>`dashboard.html`</li>
+
+<h3>API-first</h3>
+<p>Directorio `artifacts/qa-e2e-&lt;runId&gt;/` con mínimo:</p>
+<li>`meta.json`</li>
+<li>`prep.json`</li>
+<li>`results.json`</li>
+<li>`assertions.json`</li>
+<li>`01-home.html`</li>
+<li>`02-onboarding.html`</li>
+<li>`03-practice.html`</li>
+<li>`04-dashboard-session.html`</li>
+<li>`05-dashboard-historical.html`</li>
+<li>`turn-01.json` ... `turn-05.json`</li>
+
+<h3>UI Chromium</h3>
+<p>Directorio `artifacts/qa-ui-e2e-&lt;runId&gt;/` con mínimo:</p>
+<li>`prep.json`</li>
+<li>`results.json`</li>
+<li>`assertions.json`</li>
+<li>`01-home.png`</li>
+<li>`02-after-onboarding.png`</li>
+<li>`04-dashboard-session.png`</li>
+<li>`05-dashboard-historical.png`</li>
+<li>`turn-01.html` ... `turn-05.html`</li>
+<li>`trace.zip`</li>
+
+<h2>Pass</h2>
+<li>exit code `0`</li>
+<li>`assertions.json` con `ok = true`</li>
+<li>`results.json` con `turnCount = 5` o equivalente observable</li>
+<li>sesión final en BD con:</li>
+<p>  - `status = completed`</p>
+<p>  - `current_state = session_close`</p>
+<p>  - `ended_at != null`</p>
+<li>dashboard de sesión consistente con `user_topic_stats`, `session_turns` y `evaluation_events`</li>
+<li>separación visible y contractual entre `currentSession` e `historical` cuando hay `sessionId`</li>
+<li>sin solapamiento entre `Fuertes` y `Por reforzar`</li>
+
+<h2>Fail</h2>
+<p>Cualquier condición de estas vuelve la corrida inválida:</p>
+<li>error HTTP en onboarding, start, item, advance o dashboard</li>
+<li>menos de `5` turnos efectivos</li>
+<li>`assertions.json.ok = false`</li>
+<li>divergencia entre API/UI y persistencia en BD</li>
+<li>sesión no cerrada correctamente</li>
+<li>dashboard con métricas distintas a las derivadas de BD</li>
+<li>dashboard de sesión sin separación entre `currentSession` e `historical`</li>
+<li>artefactos incompletos o ausentes</li>
+
+<h2>Fuente real de aserción</h2>
+<p>La fuente dura de validación está en:</p>
+<li>`scripts/qa-e2e-semantic-assertions.js`</li>
+
+<p>No confiar solo en screenshots o navegación exitosa.</p>
+
+<h2>Cuándo corre cada cosa</h2>
+<li>`qa:smoke:postdeploy`: obligatorio después de deploy o redeploy; debe ser el gate barato y rápido.</li>
+<li>`qa:e2e:api`: obligatorio cuando cambia auth, sesiones, dashboard, onboarding o persistencia.</li>
+<li>`qa:e2e:ui`: obligatorio cuando cambia UI, formularios, navegación o copy funcional.</li>
+<li>si el cambio toca dashboard o sesión, idealmente corren smoke + API; si además toca UX, sumar Chromium.</li>
+
+<h2>Salida mínima de reporte</h2>
+<p>Cada corrida debe dejar:</p>
+<p>1. comando ejecutado</p>
+<p>2. `artifactRoot`</p>
+<p>3. resultado pass/fail</p>
+<p>4. primer fallo observable si existe</p>
+<p>5. commit/build verificado si la corrida se hizo sobre runtime desplegado</p>
+</main>
+</body>
+</html>

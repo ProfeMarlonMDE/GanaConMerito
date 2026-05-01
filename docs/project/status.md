@@ -63,6 +63,7 @@
 - dashboard con desglose real por tema y métricas derivadas
 - onboarding endurecido al dominio realmente soportado por DB (`docente`)
 - navegación core con entrypoint autenticado coherente y gate temprano de onboarding
+- `/editorial` endurecido como biblioteca de solo lectura para documentación canónica vigente; inbox temporales y planes superados ya no aparecen en la superficie activa
 - semántica actual de evaluación declarada como `deterministic`
 
 ### Banco de preguntas operativo

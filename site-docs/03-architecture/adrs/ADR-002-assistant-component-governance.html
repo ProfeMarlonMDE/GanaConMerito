@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>ADR-002-assistant-component-governance</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-05-01T15:08:54.315299Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/question-bank-load-phase-close.html">02-delivery/question-bank-load-phase-close.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/adrs/ADR-002-assistant-component-governance.html">03-architecture/adrs/ADR-002-assistant-component-governance.md</a></li><li><a href="03-architecture/assistant-component-executive-spec.html">03-architecture/assistant-component-executive-spec.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/active-question-bank-smoke-test.html">04-quality/active-question-bank-smoke-test.md</a></li><li><a href="04-quality/chromium-qa-run-2026-04-27.html">04-quality/chromium-qa-run-2026-04-27.md</a></li><li><a href="04-quality/dashboard-hardening-run-2026-04-29.html">04-quality/dashboard-hardening-run-2026-04-29.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/post-backfill-active-bank-validation.html">04-quality/post-backfill-active-bank-validation.md</a></li><li><a href="04-quality/qa-semantica-run-2026-04-28.html">04-quality/qa-semantica-run-2026-04-28.md</a></li><li><a href="04-quality/qa-semantica-run-2026-04-29.html">04-quality/qa-semantica-run-2026-04-29.md</a></li><li><a href="04-quality/qa-semantica-runbook.html">04-quality/qa-semantica-runbook.md</a></li><li><a href="04-quality/question-bank-load-phase-audit-2026-04-26.html">04-quality/question-bank-load-phase-audit-2026-04-26.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/2026-05-01-document-archive-and-naming-policy.html">05-ops/2026-05-01-document-archive-and-naming-policy.md</a></li><li><a href="05-ops/deploy-checklist.html">05-ops/deploy-checklist.md</a></li><li><a href="05-ops/question-bank-load-runbook.html">05-ops/question-bank-load-runbook.md</a></li><li><a href="05-ops/rollback-runbook.html">05-ops/rollback-runbook.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="api/dashboard-summary-contract.html">api/dashboard-summary-contract.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-admin-consolidated-plan.html">archive/architecture/2026-05-01-editorial-admin-consolidated-plan.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-admin-implementation-plan.html">archive/architecture/2026-05-01-editorial-admin-implementation-plan.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-library-temporary-web-module.html">archive/architecture/2026-05-01-editorial-library-temporary-web-module.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-module-plan.html">archive/architecture/2026-05-01-editorial-module-plan.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-runtime-paths-fix.html">archive/architecture/2026-05-01-editorial-runtime-paths-fix.md</a></li><li><a href="archive/architecture/2026-05-01-question-bank-technical-architecture.html">archive/architecture/2026-05-01-question-bank-technical-architecture.md</a></li><li><a href="archive/inbox/content/2026-05-01-audit-definitiva-gemini-pro.html">archive/inbox/content/2026-05-01-audit-definitiva-gemini-pro.md</a></li><li><a href="archive/inbox/misc/2026-05-01-antigravity-pc.html">archive/inbox/misc/2026-05-01-antigravity-pc.md</a></li><li><a href="archive/inbox/misc/2026-05-01-claude-sonet.html">archive/inbox/misc/2026-05-01-claude-sonet.md</a></li><li><a href="archive/inbox/misc/2026-05-01-claude.html">archive/inbox/misc/2026-05-01-claude.md</a></li><li><a href="archive/inbox/misc/2026-05-01-codex-pc.html">archive/inbox/misc/2026-05-01-codex-pc.md</a></li><li><a href="archive/inbox/misc/2026-05-01-gemini-pc.html">archive/inbox/misc/2026-05-01-gemini-pc.md</a></li><li><a href="archive/inbox/project/2026-05-01-audit-brief-editorial-segmentation.html">archive/inbox/project/2026-05-01-audit-brief-editorial-segmentation.md</a></li><li><a href="archive/inbox/project/2026-05-01-dominios.html">archive/inbox/project/2026-05-01-dominios.md</a></li><li><a href="archive/project/2026-05-01-audit-brief-editorial-segmentation.html">archive/project/2026-05-01-audit-brief-editorial-segmentation.md</a></li><li><a href="archive/project/2026-05-01-question-bank-implementation-roadmap.html">archive/project/2026-05-01-question-bank-implementation-roadmap.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/active-question-bank-contract.html">database/active-question-bank-contract.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-corpus-runtime-activation-map.html">project/current-corpus-runtime-activation-map.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/remediation/real-bug-fix-plan-2026-04-28.html">project/remediation/real-bug-fix-plan-2026-04-28.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="temp/README.html">temp/README.md</a></li></ul>
+</nav>
+<main>
+<p>---</p>
+<p>id: ADR-002-assistant-component-governance</p>
+<p>name: adr-assistant-component-governance</p>
+<p>project: ganaconmerito</p>
+<p>owner: marlon-arcila</p>
+<p>status: proposed</p>
+<p>artifact_type: adr</p>
+<p>modules: [session-orchestrator, evaluation, dashboard, ai]</p>
+<p>tags: [adr, assistant, tutor, llm, governance]</p>
+<p>related:</p>
+<p>  - ARCH-ASSISTANT-COMPONENT-SPEC</p>
+<p>  - ARCH-SYSTEM-OVERVIEW</p>
+<p>  - GOV-HUMAN-APPROVAL</p>
+<p>  - PROD-BACKLOG</p>
+<p>last_reviewed: 2026-05-01</p>
+<p>---</p>
+
+<h1>ADR-002: Gobernanza del componente de asistentes</h1>
+
+<h2>Estado</h2>
+<p>proposed</p>
+
+<h2>Fecha</h2>
+<p>2026-05-01</p>
+
+<h2>Contexto</h2>
+<p>GanaConMerito ya superó la fase donde el problema principal era demostrar si existía flujo real de login, onboarding, práctica y dashboard. Ese núcleo ya tiene evidencia funcional y trazabilidad técnica suficiente.</p>
+
+<p>La siguiente etapa abre el frente de asistentes dentro del producto. Sin una decisión estructural explícita, existe riesgo de introducir múltiples personas/agentes visibles, mezclar lógica crítica con prompts y aumentar la superficie de alucinación, contradicción y fragilidad operativa.</p>
+
+<p>Además, el sprint vigente ya priorizó UX/navegación, calidad operativa y gobernabilidad del producto. El banco editorial y su operación quedaron fuera de alcance de esta decisión.</p>
+
+<h2>Decisión</h2>
+<p>Se propone adoptar esta dirección estructural para el componente de asistentes:</p>
+
+<p>1. **Un solo asistente visible al usuario:** `Tutor GCM`.</p>
+<p>2. **Servicios internos no visibles** para orquestación, contexto, explicación, chequeo de honestidad y trazabilidad.</p>
+<p>3. **La lógica crítica queda fuera del LLM visible**:</p>
+<p>   - scoring</p>
+<p>   - transición de estados</p>
+<p>   - cierre de sesión</p>
+<p>   - selección de ítems</p>
+<p>   - disponibilidad de siguiente paso</p>
+<p>4. **Cada turno debe operar con contrato verificable** de entrada y salida.</p>
+<p>5. **Toda respuesta debe poder degradarse con honestidad** cuando falte evidencia suficiente.</p>
+
+<h2>Alternativas consideradas</h2>
+
+<h3>1. Exponer varios asistentes visibles desde la primera etapa</h3>
+<p>Rechazada por ahora.</p>
+
+<p>Razones:</p>
+<li>aumenta contradicciones entre agentes visibles</li>
+<li>vuelve ambigua la autoridad pedagógica</li>
+<li>sube costo de QA conversacional</li>
+<li>incrementa alucinación por handoffs visibles</li>
+<li>complica soporte, observabilidad y fallback</li>
+
+<h3>2. Un solo asistente visible controlando también lógica de negocio</h3>
+<p>Rechazada.</p>
+
+<p>Razones:</p>
+<li>mezcla conversación con autoridad de estado</li>
+<li>hace más difícil auditar errores</li>
+<li>sube riesgo de inventar progreso, puntajes o acciones no permitidas</li>
+
+<h3>3. Un solo asistente visible con motor determinístico y servicios internos</h3>
+<p>Aprobada como dirección propuesta.</p>
+
+<p>Razones:</p>
+<li>minimiza superficie de alucinación</li>
+<li>mejora gobernabilidad</li>
+<li>permite pruebas por contrato</li>
+<li>conserva UX simple para el usuario</li>
+
+<h2>Consecuencias</h2>
+<li>la UX del producto debe presentar una sola identidad conversacional consistente</li>
+<li>cualquier futura expansión a varios asistentes visibles requerirá evidencia y nueva decisión explícita</li>
+<li>la implementación debe empezar por contrato y trazabilidad, no por proliferación de prompts/personas</li>
+<li>el motor determinístico conserva autoridad sobre estado y evaluación</li>
+<li>QA podrá validar el componente por casos positivos, negativos y de incertidumbre declarada</li>
+
+<h2>Impacto en módulos</h2>
+<li>`session-orchestrator`: pasa a ser pieza central del turno</li>
+<li>`evaluation`: mantiene autoridad técnica fuera del LLM visible</li>
+<li>`dashboard`: podrá reflejar salidas explicativas sin convertirse en fuente de verdad del estado</li>
+<li>`ai`: queda gobernado por contrato, guardrails y trazabilidad</li>
+
+<h2>Riesgos</h2>
+<li>que el producto comunique más capacidad conversacional de la realmente gobernada</li>
+<li>que se implementen servicios internos sin versionado ni trazas mínimas</li>
+<li>que la nomenclatura de asistentes vuelva a contaminarse con agentes operativos internos</li>
+
+<h2>Mitigaciones</h2>
+<li>congelar nomenclatura visible: `Tutor GCM`</li>
+<li>mantener el roster operativo interno separado del roster visible de producto</li>
+<li>implementar chequeo de honestidad y contradicción antes de enriquecer personalidad</li>
+<li>exigir contrato de turno v1 antes de despliegue funcional del componente</li>
+
+<h2>Aprobación humana</h2>
+<li>Estado de aprobación: PROPUESTO</li>
+<li>Aprobador requerido: Marlon Arcila</li>
+<li>Observaciones: este ADR no autoriza implementación productiva por sí solo; fija la propuesta estructural mínima para revisión humana antes de desarrollo del componente.</li>
+</main>
+</body>
+</html>

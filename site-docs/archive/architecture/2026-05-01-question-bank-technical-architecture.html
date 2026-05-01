@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>2026-05-01-question-bank-technical-architecture</title>
+<style>
+body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+nav { width: 280px; background: #f4f4f4; padding: 16px; height: 100vh; overflow: auto; }
+main { flex: 1; padding: 24px; }
+li { margin-bottom: 6px; }
+pre { background: #111; color: #eee; padding: 12px; overflow: auto; }
+</style>
+</head>
+<body>
+<nav>
+<h2>Docs</h2>
+<p>Exportado: 2026-05-01T15:08:54.335123Z</p>
+<ul><li><a href="01-product/backlog.html">01-product/backlog.md</a></li><li><a href="01-product/vision.html">01-product/vision.md</a></li><li><a href="02-delivery/change-log.html">02-delivery/change-log.md</a></li><li><a href="02-delivery/question-bank-load-phase-close.html">02-delivery/question-bank-load-phase-close.md</a></li><li><a href="02-delivery/sprint-log.html">02-delivery/sprint-log.md</a></li><li><a href="03-architecture/adrs/ADR-001-stack-base.html">03-architecture/adrs/ADR-001-stack-base.md</a></li><li><a href="03-architecture/adrs/ADR-002-assistant-component-governance.html">03-architecture/adrs/ADR-002-assistant-component-governance.md</a></li><li><a href="03-architecture/assistant-component-executive-spec.html">03-architecture/assistant-component-executive-spec.md</a></li><li><a href="03-architecture/system-overview.html">03-architecture/system-overview.md</a></li><li><a href="04-quality/active-question-bank-smoke-test.html">04-quality/active-question-bank-smoke-test.md</a></li><li><a href="04-quality/chromium-qa-run-2026-04-27.html">04-quality/chromium-qa-run-2026-04-27.md</a></li><li><a href="04-quality/dashboard-hardening-run-2026-04-29.html">04-quality/dashboard-hardening-run-2026-04-29.md</a></li><li><a href="04-quality/known-issues.html">04-quality/known-issues.md</a></li><li><a href="04-quality/post-backfill-active-bank-validation.html">04-quality/post-backfill-active-bank-validation.md</a></li><li><a href="04-quality/qa-semantica-run-2026-04-28.html">04-quality/qa-semantica-run-2026-04-28.md</a></li><li><a href="04-quality/qa-semantica-run-2026-04-29.html">04-quality/qa-semantica-run-2026-04-29.md</a></li><li><a href="04-quality/qa-semantica-runbook.html">04-quality/qa-semantica-runbook.md</a></li><li><a href="04-quality/question-bank-load-phase-audit-2026-04-26.html">04-quality/question-bank-load-phase-audit-2026-04-26.md</a></li><li><a href="04-quality/technical-debt-register.html">04-quality/technical-debt-register.md</a></li><li><a href="05-ops/2026-05-01-document-archive-and-naming-policy.html">05-ops/2026-05-01-document-archive-and-naming-policy.md</a></li><li><a href="05-ops/deploy-checklist.html">05-ops/deploy-checklist.md</a></li><li><a href="05-ops/question-bank-load-runbook.html">05-ops/question-bank-load-runbook.md</a></li><li><a href="05-ops/rollback-runbook.html">05-ops/rollback-runbook.md</a></li><li><a href="05-ops/runbook.html">05-ops/runbook.md</a></li><li><a href="06-governance/agent-roster.html">06-governance/agent-roster.md</a></li><li><a href="06-governance/human-approval-policy.html">06-governance/human-approval-policy.md</a></li><li><a href="06-governance/working-agreement.html">06-governance/working-agreement.md</a></li><li><a href="07-compliance/security-guardrails.html">07-compliance/security-guardrails.md</a></li><li><a href="08-context/retrieval-policy.html">08-context/retrieval-policy.md</a></li><li><a href="08-context/tagging-schema.html">08-context/tagging-schema.md</a></li><li><a href="README.html">README.md</a></li><li><a href="api/contracts.html">api/contracts.md</a></li><li><a href="api/dashboard-summary-contract.html">api/dashboard-summary-contract.md</a></li><li><a href="architecture/decisions.html">architecture/decisions.md</a></li><li><a href="architecture/overview.html">architecture/overview.md</a></li><li><a href="architecture/project-structure.html">architecture/project-structure.md</a></li><li><a href="architecture/state-machine.html">architecture/state-machine.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-admin-consolidated-plan.html">archive/architecture/2026-05-01-editorial-admin-consolidated-plan.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-admin-implementation-plan.html">archive/architecture/2026-05-01-editorial-admin-implementation-plan.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-library-temporary-web-module.html">archive/architecture/2026-05-01-editorial-library-temporary-web-module.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-module-plan.html">archive/architecture/2026-05-01-editorial-module-plan.md</a></li><li><a href="archive/architecture/2026-05-01-editorial-runtime-paths-fix.html">archive/architecture/2026-05-01-editorial-runtime-paths-fix.md</a></li><li><a href="archive/architecture/2026-05-01-question-bank-technical-architecture.html">archive/architecture/2026-05-01-question-bank-technical-architecture.md</a></li><li><a href="archive/inbox/content/2026-05-01-audit-definitiva-gemini-pro.html">archive/inbox/content/2026-05-01-audit-definitiva-gemini-pro.md</a></li><li><a href="archive/inbox/misc/2026-05-01-antigravity-pc.html">archive/inbox/misc/2026-05-01-antigravity-pc.md</a></li><li><a href="archive/inbox/misc/2026-05-01-claude-sonet.html">archive/inbox/misc/2026-05-01-claude-sonet.md</a></li><li><a href="archive/inbox/misc/2026-05-01-claude.html">archive/inbox/misc/2026-05-01-claude.md</a></li><li><a href="archive/inbox/misc/2026-05-01-codex-pc.html">archive/inbox/misc/2026-05-01-codex-pc.md</a></li><li><a href="archive/inbox/misc/2026-05-01-gemini-pc.html">archive/inbox/misc/2026-05-01-gemini-pc.md</a></li><li><a href="archive/inbox/project/2026-05-01-audit-brief-editorial-segmentation.html">archive/inbox/project/2026-05-01-audit-brief-editorial-segmentation.md</a></li><li><a href="archive/inbox/project/2026-05-01-dominios.html">archive/inbox/project/2026-05-01-dominios.md</a></li><li><a href="archive/project/2026-05-01-audit-brief-editorial-segmentation.html">archive/project/2026-05-01-audit-brief-editorial-segmentation.md</a></li><li><a href="archive/project/2026-05-01-question-bank-implementation-roadmap.html">archive/project/2026-05-01-question-bank-implementation-roadmap.md</a></li><li><a href="arquitectura-mvp.html">arquitectura-mvp.md</a></li><li><a href="banco-preguntas/ciudadanas.html">banco-preguntas/ciudadanas.md</a></li><li><a href="banco-preguntas/gestion.html">banco-preguntas/gestion.md</a></li><li><a href="banco-preguntas/lectura-critica.html">banco-preguntas/lectura-critica.md</a></li><li><a href="banco-preguntas/matematicas.html">banco-preguntas/matematicas.md</a></li><li><a href="banco-preguntas/normatividad.html">banco-preguntas/normatividad.md</a></li><li><a href="banco-preguntas/pedagogia.html">banco-preguntas/pedagogia.md</a></li><li><a href="database/active-question-bank-contract.html">database/active-question-bank-contract.md</a></li><li><a href="database/content-model.html">database/content-model.md</a></li><li><a href="database/schema.html">database/schema.md</a></li><li><a href="database/security.html">database/security.md</a></li><li><a href="project/auth-hardening-audit.html">project/auth-hardening-audit.md</a></li><li><a href="project/current-corpus-runtime-activation-map.html">project/current-corpus-runtime-activation-map.md</a></li><li><a href="project/current-workflow.html">project/current-workflow.md</a></li><li><a href="project/docker-e2e-minimum-validation-plan.html">project/docker-e2e-minimum-validation-plan.md</a></li><li><a href="project/e2e-status.html">project/e2e-status.md</a></li><li><a href="project/google-auth-setup.html">project/google-auth-setup.md</a></li><li><a href="project/operating-model-ias.html">project/operating-model-ias.md</a></li><li><a href="project/reference/README-banco-de-preguntas.html">project/reference/README-banco-de-preguntas.md</a></li><li><a href="project/reference/checklist-de-validacion-editorial.html">project/reference/checklist-de-validacion-editorial.md</a></li><li><a href="project/reference/descripcion-del-corpus-de-preguntas.html">project/reference/descripcion-del-corpus-de-preguntas.md</a></li><li><a href="project/reference/ejemplos-modelo-de-preguntas.html">project/reference/ejemplos-modelo-de-preguntas.md</a></li><li><a href="project/reference/plantillas-y-estructura-de-preguntas.html">project/reference/plantillas-y-estructura-de-preguntas.md</a></li><li><a href="project/reference/resumen-ejecutivo-del-corpus.html">project/reference/resumen-ejecutivo-del-corpus.md</a></li><li><a href="project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.html">project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md</a></li><li><a href="project/remediation/plan.html">project/remediation/plan.md</a></li><li><a href="project/remediation/r1-security-auth.html">project/remediation/r1-security-auth.md</a></li><li><a href="project/remediation/r2-sessions.html">project/remediation/r2-sessions.md</a></li><li><a href="project/remediation/r3-db-content.html">project/remediation/r3-db-content.md</a></li><li><a href="project/remediation/r4-runtime-product.html">project/remediation/r4-runtime-product.md</a></li><li><a href="project/remediation/ra1-session-security.html">project/remediation/ra1-session-security.md</a></li><li><a href="project/remediation/ra2-flow-contracts.html">project/remediation/ra2-flow-contracts.md</a></li><li><a href="project/remediation/ra3-honesty-traceability.html">project/remediation/ra3-honesty-traceability.md</a></li><li><a href="project/remediation/real-bug-fix-plan-2026-04-28.html">project/remediation/real-bug-fix-plan-2026-04-28.md</a></li><li><a href="project/runtime-maturity-assessment-runbook.html">project/runtime-maturity-assessment-runbook.md</a></li><li><a href="project/runtime-maturity-assessment.html">project/runtime-maturity-assessment.md</a></li><li><a href="project/segmentation-rollout-checklist.html">project/segmentation-rollout-checklist.md</a></li><li><a href="project/source-of-truth.html">project/source-of-truth.md</a></li><li><a href="project/status.html">project/status.md</a></li><li><a href="project/tooling-stack.html">project/tooling-stack.md</a></li><li><a href="temp/README.html">temp/README.md</a></li></ul>
+</nav>
+<main>
+<h1>Arquitectura técnica recomendada, administrador del banco de preguntas</h1>
+
+<h2>Objetivo</h2>
+<p>Diseñar una solución robusta para cargar, validar, versionar y publicar preguntas hacia la base de datos sin duplicados, con trazabilidad total y operación sostenible sobre Next.js, Supabase y Docker.</p>
+
+<h2>Diagnóstico ejecutivo</h2>
+<p>El mayor riesgo no es solo editorial. El mayor riesgo es arquitectónico: si las preguntas entran por flujos directos o semimanuales, el sistema queda expuesto a duplicados, falta de auditoría, errores de integridad, reprocesamientos inseguros y baja operabilidad.</p>
+
+<p>Síntomas esperables de deuda técnica:</p>
+<li>inserciones directas desde UI o scripts ad hoc</li>
+<li>ausencia de staging antes de publicar</li>
+<li>falta de claves idempotentes</li>
+<li>tablas demasiado planas para soportar versiones</li>
+<li>carga síncrona en requests web</li>
+<li>validación insuficiente por capas</li>
+<li>trazabilidad deficiente entre archivo, fila y registro final</li>
+<li>operación sin panel de lotes, reintentos ni métricas</li>
+
+<h2>Principios de diseño</h2>
+<p>1. Ninguna pregunta se publica directo desde frontend.</p>
+<p>2. Toda carga entra primero a staging.</p>
+<p>3. Toda importación vive dentro de un batch trazable.</p>
+<p>4. Toda publicación al banco canónico debe ser idempotente.</p>
+<p>5. Toda validación debe ejecutarse por etapas.</p>
+<p>6. El procesamiento pesado debe vivir en workers, no en requests HTTP.</p>
+<p>7. Cada cambio relevante debe quedar auditado.</p>
+
+<h2>Arquitectura objetivo</h2>
+
+<h3>Capa 1. Captura</h3>
+<p>Responsable: Next.js</p>
+
+<p>Funciones:</p>
+<li>permitir upload de CSV, XLSX o JSON</li>
+<li>persistir el archivo en Supabase Storage</li>
+<li>crear el registro `import_batches`</li>
+<li>disparar job de parseo</li>
+<li>mostrar estado operativo del lote</li>
+
+<p>No debe hacer:</p>
+<li>parseo pesado de archivos</li>
+<li>validación profunda</li>
+<li>publicación final al banco</li>
+
+<h3>Capa 2. Ingesta y staging</h3>
+<p>Responsable: Worker dockerizado</p>
+
+<p>Funciones:</p>
+<li>descargar archivo desde Storage</li>
+<li>parsear filas</li>
+<li>normalizar payload</li>
+<li>registrar `import_rows`</li>
+<li>generar hashes, claves naturales y primeros diagnósticos</li>
+
+<p>Salida:</p>
+<li>staging poblado y batch en estado `parsed` o `parse_failed`</li>
+
+<h3>Capa 3. Validación por etapas</h3>
+<p>Responsable: Worker + librería de dominio compartida</p>
+
+<p>Etapas:</p>
+<p>1. esquema</p>
+<p>2. negocio</p>
+<p>3. referencial</p>
+<p>4. duplicados</p>
+<p>5. preparación de publicación</p>
+
+<p>Cada hallazgo debe persistirse en `import_row_issues`.</p>
+
+<h3>Capa 4. Publicación canónica</h3>
+<p>Responsable: Worker</p>
+
+<p>Funciones:</p>
+<li>upsert de entidad pregunta</li>
+<li>creación de nueva versión si cambió contenido</li>
+<li>inserción de opciones</li>
+<li>actualización de referencias actuales</li>
+<li>auditoría del evento</li>
+
+<p>Salida:</p>
+<li>filas válidas publicadas</li>
+<li>resumen del lote</li>
+
+<h3>Capa 5. Operación y observabilidad</h3>
+<p>Responsable: Next.js + logs + métricas</p>
+
+<p>Funciones:</p>
+<li>listar lotes</li>
+<li>ver errores por fila</li>
+<li>descargar reporte</li>
+<li>reprocesar lote</li>
+<li>revalidar</li>
+<li>publicar válidas</li>
+<li>observar throughput, errores y retries</li>
+
+<h2>Modelo operativo recomendado</h2>
+
+<h3>Flujo general</h3>
+<p>1. Usuario sube archivo.</p>
+<p>2. Se crea batch.</p>
+<p>3. Job `import.parse` procesa el archivo.</p>
+<p>4. Job `import.validate` aplica validaciones.</p>
+<p>5. Job `import.publish` publica filas válidas.</p>
+<p>6. Se cierra el batch con resumen.</p>
+
+<h3>Estados del batch</h3>
+<li>uploaded</li>
+<li>parsing</li>
+<li>parsed</li>
+<li>validating</li>
+<li>validated</li>
+<li>publishing</li>
+<li>published</li>
+<li>partially_failed</li>
+<li>failed</li>
+<li>cancelled</li>
+
+<h3>Estados por fila</h3>
+<li>pending</li>
+<li>parsed</li>
+<li>valid</li>
+<li>invalid</li>
+<li>duplicate</li>
+<li>publish_ready</li>
+<li>published</li>
+<li>rejected</li>
+
+<h2>Reglas de idempotencia</h2>
+<p>Usar tres niveles:</p>
+
+<h3>1. Checksum de archivo</h3>
+<p>Evita reprocesamiento ciego del mismo archivo exacto.</p>
+
+<h3>2. Natural key por fila</h3>
+<p>Preferencia:</p>
+<li>`external_id` si existe</li>
+<li>de lo contrario una clave natural derivada del origen y del contenido estable</li>
+
+<h3>3. Content hash</h3>
+<p>Hash del contenido normalizado:</p>
+<li>enunciado limpio</li>
+<li>opciones ordenadas</li>
+<li>respuesta correcta</li>
+<li>explicación</li>
+<li>metadatos relevantes</li>
+
+<h3>Política recomendada</h3>
+<li>mismo natural key + mismo content hash: no-op</li>
+<li>mismo natural key + distinto content hash: nueva versión</li>
+<li>distinta natural key + mismo content hash: potencial duplicado, no publicar automáticamente sin regla explícita</li>
+
+<h2>Modelo de datos recomendado</h2>
+<p>Separar claramente staging, canónico, taxonomía y auditoría.</p>
+
+<h3>Staging</h3>
+<li>`import_batches`</li>
+<li>`import_rows`</li>
+<li>`import_row_issues`</li>
+
+<h3>Banco canónico</h3>
+<li>`questions`</li>
+<li>`question_versions`</li>
+<li>`question_options`</li>
+
+<h3>Taxonomía</h3>
+<li>`subjects`</li>
+<li>`topics`</li>
+<li>`subtopics`</li>
+<li>`question_tags`</li>
+<li>`question_tag_map`</li>
+
+<h3>Auditoría</h3>
+<li>`question_events`</li>
+
+<h2>Diseño de workers y cola</h2>
+
+<h3>Recomendación</h3>
+<p>Usar un worker Dockerizado y una cola basada en Postgres.</p>
+
+<h3>Mejor ajuste al stack actual</h3>
+<p>`pg-boss`</p>
+
+<p>Razones:</p>
+<li>aprovecha Postgres ya presente en Supabase</li>
+<li>evita introducir Redis si no es estrictamente necesario</li>
+<li>soporta retries, backoff y concurrencia</li>
+<li>reduce complejidad operativa inicial</li>
+
+<h3>Jobs sugeridos</h3>
+<li>`import.parse`</li>
+<li>`import.validate`</li>
+<li>`import.publish`</li>
+<li>`import.reconcile_duplicates`</li>
+<li>`import.rebuild_report`</li>
+
+<h2>Validación por etapas</h2>
+
+<h3>Etapa 1. Esquema</h3>
+<p>Validar:</p>
+<li>columnas requeridas</li>
+<li>tipos</li>
+<li>enums</li>
+<li>estructura de opciones</li>
+
+<p>Herramienta sugerida:</p>
+<li>Zod versionado en TypeScript</li>
+
+<h3>Etapa 2. Negocio</h3>
+<p>Validar:</p>
+<li>cantidad de opciones</li>
+<li>unicidad de opción correcta</li>
+<li>consistencia entre tipo de pregunta y respuesta</li>
+<li>obligatoriedad de explicación si aplica</li>
+<li>límites de longitud</li>
+
+<h3>Etapa 3. Referencial</h3>
+<p>Validar:</p>
+<li>existencia de subject, topic, subtopic</li>
+<li>integridad de catálogos</li>
+
+<h3>Etapa 4. Duplicados</h3>
+<p>Validar:</p>
+<li>repetidos dentro del mismo batch</li>
+<li>repetidos contra banco canónico</li>
+<li>cambios reales versus no-op</li>
+
+<h3>Etapa 5. Publicación</h3>
+<p>Validar:</p>
+<li>shape final del payload</li>
+<li>integridad de entidades hijas</li>
+<li>atomicidad transaccional por publicación</li>
+
+<h2>Experiencia operativa recomendada</h2>
+
+<h3>Vista de lotes</h3>
+<p>Mostrar:</p>
+<li>batch id</li>
+<li>creador</li>
+<li>archivo fuente</li>
+<li>estado</li>
+<li>total de filas</li>
+<li>válidas</li>
+<li>inválidas</li>
+<li>publicadas</li>
+<li>duplicadas</li>
+<li>duración</li>
+
+<h3>Detalle de lote</h3>
+<p>Mostrar:</p>
+<li>parser version</li>
+<li>schema version</li>
+<li>resumen por tipo de error</li>
+<li>filas con issues</li>
+<li>warning versus error</li>
+<li>acciones de reproceso o publicación</li>
+
+<h3>Acciones operativas</h3>
+<li>reprocesar batch</li>
+<li>revalidar batch</li>
+<li>publicar válidas</li>
+<li>cancelar batch</li>
+<li>descargar errores</li>
+<li>inspeccionar fila cruda y normalizada</li>
+
+<h2>Observabilidad mínima</h2>
+
+<h3>Logs estructurados</h3>
+<p>Incluir siempre:</p>
+<li>import_batch_id</li>
+<li>import_row_id si aplica</li>
+<li>job_name</li>
+<li>stage</li>
+<li>duration_ms</li>
+<li>error_code</li>
+
+<h3>Métricas</h3>
+<li>lotes por día</li>
+<li>filas procesadas por minuto</li>
+<li>tasa de error</li>
+<li>tasa de duplicado</li>
+<li>tiempo promedio por etapa</li>
+<li>retries por job</li>
+<li>backlog de cola</li>
+
+<h3>Alertas operativas</h3>
+<li>lote fallido</li>
+<li>cola estancada</li>
+<li>tiempo de validación anormal</li>
+<li>incremento súbito de errores de esquema</li>
+
+<h2>Recomendación de implementación</h2>
+
+<h3>Monorepo o paquete compartido</h3>
+<p>Crear un módulo reutilizable, por ejemplo:</p>
+<li>`packages/question-import-domain`</li>
+
+<p>Debe contener:</p>
+<li>schemas Zod</li>
+<li>normalizadores</li>
+<li>reglas de negocio</li>
+<li>cálculo de hashes</li>
+<li>códigos de error</li>
+<li>tipos compartidos</li>
+
+<h3>Distribución sugerida</h3>
+<li>`apps/web`: Next.js admin</li>
+<li>`apps/worker`: jobs de ingestión</li>
+<li>`packages/question-import-domain`: lógica compartida</li>
+
+<h2>Trade-offs</h2>
+
+<h3>Insert directo desde UI</h3>
+<p>Pros:</p>
+<li>más rápido de construir</li>
+
+<p>Contras:</p>
+<li>no escala</li>
+<li>no es auditable</li>
+<li>alto riesgo de duplicados</li>
+<li>mala recuperación ante fallos</li>
+
+<p>No recomendado.</p>
+
+<h3>Staging con procesamiento corto sin cola</h3>
+<p>Pros:</p>
+<li>menor complejidad inicial</li>
+<li>mejor que insert directo</li>
+
+<p>Contras:</p>
+<li>limitado para archivos grandes</li>
+<li>timeouts y reintentos incómodos</li>
+
+<p>Solo aceptable como transición.</p>
+
+<h3>Staging + worker + cola</h3>
+<p>Pros:</p>
+<li>escalable</li>
+<li>mantenible</li>
+<li>idempotente</li>
+<li>trazable</li>
+<li>operable</li>
+
+<p>Contras:</p>
+<li>más diseño inicial</li>
+<li>más estados operativos</li>
+
+<p>Esta es la opción óptima.</p>
+
+<h2>Roadmap por fases</h2>
+
+<h3>Fase 0. Contención</h3>
+<li>prohibir nuevas rutas manuales no trazables</li>
+<li>definir formato oficial de importación</li>
+<li>congelar el contrato de catálogos</li>
+
+<h3>Fase 1. Base del pipeline</h3>
+<li>tablas de staging</li>
+<li>upload a Storage</li>
+<li>parser inicial</li>
+<li>validación de esquema y negocio básica</li>
+<li>panel de lotes</li>
+
+<h3>Fase 2. Banco canónico serio</h3>
+<li>preguntas versionadas</li>
+<li>opciones normalizadas</li>
+<li>eventos de auditoría</li>
+<li>deduplicación consistente</li>
+
+<h3>Fase 3. Asincronía robusta</h3>
+<li>worker Dockerizado</li>
+<li>pg-boss</li>
+<li>retries y backoff</li>
+<li>métricas y logs estructurados</li>
+
+<h3>Fase 4. Calidad editorial avanzada</h3>
+<li>reglas de calidad más finas</li>
+<li>revisión asistida</li>
+<li>gestión de duplicados semánticos</li>
+
+<h3>Fase 5. Gobierno operativo</h3>
+<li>SLAs</li>
+<li>dashboard</li>
+<li>reporting ejecutivo</li>
+<li>integraciones de proveedores externos</li>
+
+<h2>Criterios de éxito</h2>
+
+<h3>Técnicos</h3>
+<li>reimportar el mismo archivo no duplica preguntas</li>
+<li>los jobs toleran reintentos seguros</li>
+<li>cada pregunta publicada se rastrea hasta batch y fila origen</li>
+<li>cambios de contenido generan versión, no sobreescritura silenciosa</li>
+
+<h3>Operativos</h3>
+<li>el operador identifica en minutos qué falló y por qué</li>
+<li>existe reporte descargable por lote</li>
+<li>existe visibilidad del throughput y errores</li>
+
+<h3>De negocio</h3>
+<li>menor tiempo entre recepción y publicación</li>
+<li>menor tasa de duplicados</li>
+<li>mayor confianza en el banco</li>
+
+<h2>Recomendación final</h2>
+<p>Implementar un pipeline asíncrono de ingestión por lotes con staging, validación por etapas, publicación canónica versionada e idempotencia basada en natural key y content hash, operado por workers Dockerizados y cola sobre Postgres.</p>
+
+<p>Eso convierte el administrador del banco de preguntas en un sistema serio, no en una pantalla de carga frágil.</p>
+</main>
+</body>
+</html>
