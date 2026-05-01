@@ -53,7 +53,13 @@ async function cleanupOldQaUsers(admin, namespace) {
   const deleted = [];
   for (const user of candidates) {
     const result = await admin.auth.admin.deleteUser(user.id);
-    if (result.error) throw result.error;
+    if (result.error) {
+      const message = String(result.error.message || '');
+      if (!message.includes('User not found')) {
+        throw result.error;
+      }
+      continue;
+    }
     deleted.push({ id: user.id, email: user.email });
   }
 
