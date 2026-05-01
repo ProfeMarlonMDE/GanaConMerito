@@ -1,6 +1,35 @@
 {
   "documents": [
     {
+      "id": "PROD-ACTIVE-FEATURE-MAP",
+      "path": "docs/01-product/active-feature-map.md",
+      "type": "product",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "auth",
+        "onboarding",
+        "practice",
+        "dashboard",
+        "editorial",
+        "ai"
+      ],
+      "tags": [
+        "features",
+        "inventory",
+        "estado-real",
+        "alcance"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "PROD-BACKLOG",
+        "DEL-SPRINT-LOG",
+        "ARCH-ASSISTANT-COMPONENT-SPEC",
+        "ADR-002-assistant-component-governance"
+      ],
+      "last_reviewed": "2026-05-01"
+    },
+    {
       "id": "PROD-BACKLOG",
       "path": "docs/01-product/backlog.md",
       "type": "product",
@@ -23,7 +52,38 @@
         "DEL-SPRINT-LOG",
         "QUAL-DEBT-REGISTER"
       ],
-      "last_reviewed": "2026-04-27"
+      "last_reviewed": "2026-05-01"
+    },
+    {
+      "id": "PROD-UI-DESIGN-BRIEF-MOBILE-FIRST",
+      "path": "docs/01-product/ui-design-brief-mobile-first.md",
+      "type": "product",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "ui",
+        "mobile",
+        "auth",
+        "onboarding",
+        "practice",
+        "dashboard",
+        "ai"
+      ],
+      "tags": [
+        "ui",
+        "ux",
+        "mobile-first",
+        "prompt",
+        "design-system"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "PROD-ACTIVE-FEATURE-MAP",
+        "ARCH-ASSISTANT-COMPONENT-SPEC",
+        "ADR-002-assistant-component-governance",
+        "PROD-BACKLOG"
+      ],
+      "last_reviewed": "2026-05-01"
     },
     {
       "id": "PROD-VISION",
@@ -143,7 +203,7 @@
       "id": "ADR-002-assistant-component-governance",
       "path": "docs/03-architecture/adrs/ADR-002-assistant-component-governance.md",
       "type": "adr",
-      "status": "proposed",
+      "status": "approved",
       "project": "ganaconmerito",
       "modules": [
         "session-orchestrator",
@@ -171,7 +231,7 @@
       "id": "ARCH-ASSISTANT-COMPONENT-SPEC",
       "path": "docs/03-architecture/assistant-component-executive-spec.md",
       "type": "architecture",
-      "status": "proposed",
+      "status": "approved",
       "project": "ganaconmerito",
       "modules": [
         "session-orchestrator",
@@ -193,7 +253,7 @@
         "GOV-WORKING-AGREEMENT",
         "GOV-HUMAN-APPROVAL"
       ],
-      "last_reviewed": "2026-04-30"
+      "last_reviewed": "2026-05-01"
     },
     {
       "id": "ARCH-SYSTEM-OVERVIEW",
