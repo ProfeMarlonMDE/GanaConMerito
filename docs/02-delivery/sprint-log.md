@@ -139,7 +139,8 @@ last_reviewed: 2026-05-01
 - El backlog sigue funcionando como cola priorizada, pero no equivale a apertura automática de un nuevo sprint.
 - El siguiente sprint debe abrirse solo cuando exista objetivo, alcance y evidencia suficiente para sostenerlo.
 
-## Frente preparado pero aún no abierto formalmente
-- Quedó preparada una propuesta canónica para rediseño UI premium mobile-first en `docs/01-product/ui-premium-mobile-redesign-proposal.md`.
-- Esa preparación documental **no** abre por sí sola un sprint nuevo ni autoriza marcar implementación/despliegue como hechos.
-- Si este frente se convierte en sprint formal, deberá registrar explícitamente: pantallas intervenidas, fases ejecutadas, QA aplicada y evidencia de release si toca runtime.
+## Frente UI ejecutado en fuente, aún sin release de runtime
+- La propuesta canónica de rediseño UI premium mobile-first en `docs/01-product/ui-premium-mobile-redesign-proposal.md` ya se tradujo a una primera implementación real en la fuente canónica del producto.
+- Pantallas/superficies intervenidas: `login`, `home`, `onboarding`, `practice`, `dashboard` y `biblioteca editorial`, más shell compartido y sistema visual global.
+- QA ya aplicada sobre runtime local del build nuevo: `build`, `test:dashboard`, `qa:smoke:postdeploy` y `qa:e2e:ui` verdes tras alinear el automatismo al flujo nuevo de práctica.
+- Sigue pendiente el release efectivo de runtime porque la reconstrucción Docker en `/opt/gcm/app` quedó bloqueada por permisos sobre `/var/run/docker.sock` durante esta sesión.

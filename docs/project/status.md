@@ -112,13 +112,13 @@
 3. preparar contrato v1, trazabilidad mínima y QA negativa del futuro `Tutor GCM`
 4. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
 5. usar `docs/01-product/active-feature-map.md` como referencia operativa para evitar sobreprometer features
-6. si se abre frente formal de UI, usar `docs/01-product/ui-premium-mobile-redesign-proposal.md` como referencia canónica para la nueva dirección visual, la paleta híbrida final y el rollout por fases
+6. usar `docs/01-product/ui-premium-mobile-redesign-proposal.md` como referencia canónica de dirección visual, paleta híbrida final y rollout de la nueva capa UI
 
-## Propuesta en curso, no implementada aún
-- Se dejó formalizada una dirección documental para rediseño UI premium mobile-first del core real del producto.
-- Esa propuesta no cambia el hecho funcional vigente: el core activo sigue siendo `login + onboarding + práctica + dashboard`, con biblioteca editorial de solo lectura.
-- `Tutor GCM` sigue aprobado solo como asistente visible único futuro bajo guardrails; en esta etapa la propuesta visual lo conserva como capa secundaria, no como chat dominante.
-- Mientras no exista implementación validada y release confirmado, el último runtime triple-verificado sigue siendo `701ebcf`.
+## Rediseño UI premium mobile-first — implementado en fuente, pendiente release de runtime
+- La primera implementación real del rediseño ya quedó aplicada en `~/.openclaw/product` sobre el core existente: `login + home + onboarding + práctica + dashboard + biblioteca`.
+- La validación local ya pasó con `npm run build`, `npm run test:dashboard`, `npm run qa:smoke:postdeploy` sobre runtime local `:3001` y `npm run qa:e2e:ui` ajustado al flujo nuevo.
+- `Tutor GCM` se mantiene como capa secundaria/contextual; no se convirtió el producto en chat-first ni se abrió multiagente visible.
+- El último runtime triple-verificado que sigue vigente en despliegue es `701ebcf`; el nuevo release quedó **pendiente de reconstrucción Docker** porque esta sesión no tuvo permisos sobre `/var/run/docker.sock`.
 
 ## Remediación de auditoría en curso
 

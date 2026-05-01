@@ -46,13 +46,13 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 3. Normalizar documentos críticos de arquitectura, project, database y api.
 4. Convertir el mapa formal de features activas en referencia estable de producto.
 5. Preparar la especificación técnica ejecutable del contrato de turno v1 para `Tutor GCM`.
-6. Abrir formalmente el frente de rediseño UI premium mobile-first solo cuando exista sprint/alcance humano explícito, usando `docs/01-product/ui-premium-mobile-redesign-proposal.md` como base canónica de dirección visual y rollout.
+6. Cerrar el release efectivo del rediseño UI premium mobile-first en runtime una vez se complete reconstrucción Docker + verificación final de deploy.
 
-### Propuesta preparada, aún no implementada
-- Rediseño UI premium mobile-first del core real (`login`, `home`, `onboarding`, `practice`, `dashboard`, `biblioteca`) con paleta híbrida final y prioridad explícita en práctica.
-- Migración del shell compartido hacia navegación móvil más fuerte: top bar consistente, bottom nav persistente y CTAs sticky cuando el flujo lo requiera.
-- Preparación visual de `Tutor GCM` como capa secundaria contextual (drawer/card/FAB discreto), sin convertir el producto en chat-first y sin contradecir ADR-002.
-- Regla de ejecución: no marcar este frente como entregado hasta que haya implementación confirmada en repo, QA aplicable y, si corresponde release, triple verificación de runtime.
+### Implementado en fuente, pendiente release de runtime
+- Rediseño UI premium mobile-first del core real (`login`, `home`, `onboarding`, `practice`, `dashboard`, `biblioteca`) ya aplicado en `~/.openclaw/product` con paleta híbrida final y prioridad explícita en práctica.
+- Shell compartido migrado hacia navegación móvil más fuerte: top bar consistente, bottom nav persistente y CTA sticky en práctica.
+- `Tutor GCM` quedó visualmente preparado como capa secundaria contextual, sin convertir el producto en chat-first y sin contradecir ADR-002.
+- QA local ya validada para este frente; falta únicamente el release efectivo y su verificación en runtime desplegado.
 
 ### Later
 1. Definición oficial de roadmap por trimestre.

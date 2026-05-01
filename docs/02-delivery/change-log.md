@@ -15,6 +15,13 @@ last_reviewed: 2026-05-01
 # Change log
 
 ## 2026-05-01
+- tipo: feat+qa+docs
+- modulo: ui/ux
+- resumen: se implementó en la fuente canónica el rediseño UI premium mobile-first del core real (`login`, `home`, `onboarding`, `practice`, `dashboard`, `biblioteca`), se alineó la QA UI al nuevo flujo explícito de práctica y quedó validado localmente con build + smoke + E2E UI sobre runtime `:3001`; el release de runtime quedó pendiente por falta de permisos Docker en esta sesión.
+- sprint: SIN SPRINT FORMAL ABIERTO
+- relacionados: docs/01-product/ui-premium-mobile-redesign-proposal.md, docs/01-product/backlog.md, docs/project/status.md
+
+## 2026-05-01
 - tipo: docs+product
 - modulo: ui/ux
 - resumen: se formalizó una propuesta canónica de rediseño UI premium mobile-first con paleta híbrida final, reglas de integración secundaria para `Tutor GCM` y plan de rollout por fases, manteniendo separación explícita entre estado actual validado y propuesta aún no implementada.
