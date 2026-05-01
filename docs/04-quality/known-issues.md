@@ -11,7 +11,7 @@ related:
   - QUAL-DEBT-REGISTER
   - QUAL-QB-LOAD-AUDIT-2026-04-26
   - DEL-QB-LOAD-CLOSE-2026-04-26
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-01
 ---
 
 # Known issues
@@ -43,7 +43,7 @@ Estos issues están consolidados con evidencia local de repo y cierre documental
 - smoke local en verde sobre build `9ed03c0`: `artifacts/qa-smoke-postdeploy-smoke-mojhvmwm-qnypgn`.
 - corrida API local en verde sobre build `9ed03c0`: `artifacts/qa-e2e-api-mojhwbjw-qoudrd`.
 - corrida Chromium local en verde sobre build `9ed03c0`: `artifacts/qa-ui-e2e-ui-mojhxn51-sueeeh`.
-- los runners QA ahora generan identidad única por corrida y purga básica de usuarios QA envejecidos.
+- los runners QA ahora generan identidad única por corrida, purga básica de usuarios QA envejecidos y tolerancia a identidades stale ya borradas (`User not found`).
 - el dashboard ya entrega bloques separados `currentSession` e `historical` cuando recibe `sessionId`.
 - la clasificación `Fuertes` / `Por reforzar` queda validada por QA semántica y por `npm run test:dashboard`.
 
@@ -53,3 +53,5 @@ Estos issues están consolidados con evidencia local de repo y cierre documental
 - smoke postdeploy en verde sobre runtime objetivo `:3000`: `artifacts/qa-smoke-postdeploy-smoke-mojxgij3-5h863c`.
 - E2E API autenticada de `5` turnos en verde sobre runtime objetivo `:3000`: `artifacts/qa-e2e-api-mojxh6aw-ujwp8m`.
 - antes del redeploy final también quedó una E2E UI Chromium verde sobre `:3000`: `artifacts/qa-ui-e2e-ui-mojx7bcg-3fm9rv`.
+- revalidación adicional post-hardening QA sobre `:3000`: smoke `artifacts/qa-smoke-postdeploy-smoke-momyxk5z-v4bm9k` y UI Chromium `artifacts/qa-ui-e2e-ui-momyyjmk-niwgkj`.
+- validación directa del onboarding server-side: el endpoint rechaza `activeAreas=[]` con `400` y mensaje `Debes indicar al menos un área activa.` en runtime objetivo.

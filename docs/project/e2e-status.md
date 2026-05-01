@@ -78,8 +78,8 @@ Bloque técnico de build/arranque cerrado. E2E autenticada real del flujo comple
 Durante una auditoría externa se imprimieron secretos operativos desde el host/contenedor. Esos valores no deben volver a exponerse en salidas de diagnóstico, logs compartidos ni documentación. Corresponde rotarlos si se considera comprometido el material expuesto.
 
 ## Siguiente paso
-- decidir y endurecer si onboarding debe seguir exigiendo `Áreas activas` como requisito funcional explícito
 - formalizar ADR corto del componente de asistentes antes de implementación
 - usar esta validación como baseline para futuros cambios de UX/auth/dashboard
 - mantener fuera de alcance la operación editorial/banco salvo orden ejecutiva explícita
 - mantener el fix de tooling QA (`cleanupOldQaUsers`) como guardrail para evitar falsos rojos por identidades stale en Supabase
+- conservar explícitamente `activeAreas` como requisito funcional obligatorio de onboarding

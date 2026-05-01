@@ -34,11 +34,11 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 ## Prioridad ejecutiva
 
 ### Now
-1. Decidir y endurecer onboarding si `Áreas activas` no debe permitirse vacío.
-2. Corregir trazabilidad de despliegue (`Build/Commit` visibles).
-3. Formalizar mapa de features activas con estado real.
-4. Aplicar disciplina operativa sobre ADR-001 ya aprobado.
-5. Diseñar formalmente la siguiente etapa de asistentes dentro del producto antes de implementación multiagente.
+1. Formalizar mapa de features activas con estado real.
+2. Aplicar disciplina operativa sobre ADR-001 ya aprobado.
+3. Diseñar formalmente la siguiente etapa de asistentes dentro del producto antes de implementación multiagente.
+4. Mantener baseline operativo de QA postdeploy sobre `:3000`.
+5. Evitar reintroducir drift entre producto canónico, deploy y documentación.
 
 ### Next
 1. Definir política operativa para cambios estructurales y releases.

@@ -106,11 +106,11 @@
 
 ## Próximo trabajo recomendado
 
-1. decidir y endurecer la validación de onboarding si `Áreas activas` no debe permitirse vacío
-2. formalizar ADR corto del componente de asistentes antes de implementar capa conversacional
-3. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
-4. conservar el runtime `:3000` y los scripts QA actuales como baseline confiable de validación
-5. evitar regresiones en tooling QA: la limpieza de usuarios stale en Supabase ya quedó endurecida
+1. convertir el ADR de asistentes en decisión aprobada o ajustada antes de implementación conversacional
+2. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
+3. conservar el runtime `:3000` y los scripts QA actuales como baseline confiable de validación
+4. evitar regresiones en tooling QA: la limpieza de usuarios stale en Supabase ya quedó endurecida
+5. seguir cerrando huecos de trazabilidad operativa solo con evidencia real de runtime
 
 ## Remediación de auditoría en curso
 
@@ -123,6 +123,7 @@
 
 ### RA2 — Semántica de flujo y contratos
 - onboarding alineado con restricciones reales de DB
+- `activeAreas` quedó endurecido como requisito obligatorio en UI y API, con rechazo server-side validado en runtime (`400` si viene vacío)
 - `evaluationSource` corregido a `deterministic`
 - máquina de estados reconciliada con reglas mínimas reales del MVP
 - build local validada con éxito
@@ -167,6 +168,6 @@ Pendiente residual no bloqueante:
 - Rama operativa canónica: `master`
 - Commit de producto/deploy validado funcionalmente en runtime `:3000`: `97cc79f`
 - Commit canónico actual en GitHub/product tras hardening de tooling QA: `b3db319`
-- Último cierre técnico validado: navegación core autenticada alineada + práctica a `5` turnos + dashboard por sesión + smoke postdeploy `:3000` + E2E UI Chromium `:3000` + fix de limpieza QA para usuarios stale en Supabase
+- Último cierre técnico validado: navegación core autenticada alineada + onboarding endurecido con `activeAreas` obligatorio en UI/API + práctica a `5` turnos + dashboard por sesión + smoke postdeploy `:3000` + E2E UI Chromium `:3000` + fix de limpieza QA para usuarios stale en Supabase
 
 Mientras no se haga un release formal nuevo, esta es la forma correcta de reportar el estado real para seguir desarrollo sin ambigüedad.
