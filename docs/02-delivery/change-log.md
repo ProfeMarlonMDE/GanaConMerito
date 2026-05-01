@@ -15,6 +15,13 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
+- tipo: product+ux
+- modulo: feature-map/ui-brief
+- resumen: se formalizó el mapa de features activas con estado real y se creó un brief reutilizable para IA de UI mobile-first, alineado al flujo real de producto y a la gobernanza aprobada del futuro `Tutor GCM`.
+- sprint: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
+- relacionados: docs/01-product/active-feature-map.md, docs/01-product/ui-design-brief-mobile-first.md, docs/03-architecture/adrs/ADR-002-assistant-component-governance.md
+
+## 2026-05-01
 - tipo: decision+architecture
 - modulo: assistants/governance
 - resumen: Marlon aprobó ADR-002 con guardrails. Queda autorizada la preparación técnica gobernada del frente de asistentes con `Tutor GCM` como asistente visible único inicial, contrato v1 obligatorio, trazabilidad mínima por turno y QA negativa antes de cualquier despliegue funcional.

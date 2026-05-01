@@ -112,7 +112,7 @@ last_reviewed: 2026-05-01
 
 ## Criterio de terminado del sprint actual
 - [x] worktree residual resuelto o neutralizado
-- [ ] mapa de features activas documentado
+- [x] mapa de features activas documentado
 - [x] ADR-002 cerrado en decisión humana (aprobado con guardrails)
 - [ ] checklist de deploy aplicada sin ambigüedad en al menos un cierre completo
 - [ ] backlog y status alineados al estado real del producto
