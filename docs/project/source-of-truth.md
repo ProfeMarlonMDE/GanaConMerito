@@ -50,6 +50,7 @@ Definir con claridad cuál es la fuente de verdad en cada capa del proyecto para
 **Fuente de verdad de runtime/despliegue:**
 - `/opt/gcm/docker-compose.yml`
 - contenedores Docker activos en este host
+- metadata visible del runtime en `/login` (`commit` + `buildTime`)
 
 ### Estado del servidor real
 **Fuente de verdad de infraestructura:**
@@ -110,6 +111,7 @@ Esto obliga a mantener una disciplina explícita para no perder cambios.
 ### Si GitHub difiere de producción
 - identificar si producción está adelantada o atrasada
 - nunca asumir que GitHub refleja producción sin verificar
+- verificar también si `/opt/gcm/app` y el runtime real (`:3000`) coinciden entre sí; no basta con alinear solo el árbol de deploy
 
 ---
 
@@ -133,7 +135,15 @@ Regla específica para banco de preguntas:
 - toda pieza archivada debe vivir en `docs/archive/**`
 - superficies activas del producto como `/editorial` no deben mostrar inbox temporales ni planes superados
 
-## 7. Regla práctica
+## 7. Regla definitiva de verdad de runtime
+Un deploy solo se considera cerrado cuando coinciden estas 3 capas:
+1. `~/.openclaw/product` en el commit esperado
+2. `/opt/gcm/app` en el mismo commit esperado
+3. `http://127.0.0.1:3000/login` mostrando ese mismo `commit` y un `buildTime` nuevo/coherente
+
+Si falla la capa 3, el deploy sigue incompleto aunque Git esté limpio y `/opt/gcm/app` ya haya sido actualizado.
+
+## 8. Regla práctica
 Cada tarea debe responder estas preguntas:
 - ¿Dónde se diseña?
 - ¿Dónde se implementa?

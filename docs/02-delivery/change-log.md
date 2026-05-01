@@ -15,6 +15,13 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
+- tipo: docs+ops
+- modulo: deploy/runtime
+- resumen: se formaliza la regla definitiva de verdad de runtime: un deploy solo se considera cerrado cuando coinciden `~/.openclaw/product`, `/opt/gcm/app` y la metadata visible del runtime en `/login` (`commit` + `buildTime`).
+- sprint: Sprint siguiente - Normalización operativa y blindaje del core
+- relacionados: docs/project/source-of-truth.md, docs/05-ops/runbook.md, docs/05-ops/deploy-checklist.md
+
+## 2026-05-01
 - tipo: fix+architecture
 - modulo: sessions/qa
 - resumen: se retiró el límite rígido de `5` turnos de la ruta de avance de sesión y se pasó a configuración explícita por entorno mediante `MAX_SESSION_TURNS`, conservando `5` como default controlado para no romper el baseline actual de QA.

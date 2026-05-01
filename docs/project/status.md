@@ -111,7 +111,7 @@
 2. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
 3. conservar el runtime `:3000` y los scripts QA actuales como baseline confiable de validación
 4. evitar regresiones en tooling QA: la limpieza de usuarios stale en Supabase ya quedó endurecida
-5. seguir cerrando huecos de trazabilidad operativa solo con evidencia real de runtime
+5. cerrar la ambigüedad topológica residual del worktree `workspace-product-048-fix` y mantener la triple verificación `product` = `/opt/gcm/app` = runtime visible
 
 ## Remediación de auditoría en curso
 
@@ -167,8 +167,8 @@ Pendiente residual no bloqueante:
 ## Referencia de versionado operativo vigente
 - App declarada: `0.4.8`
 - Rama operativa canónica: `master`
-- Commit de producto/deploy validado funcionalmente en runtime `:3000`: `97cc79f`
-- Commit canónico actual en GitHub/product tras hardening de tooling QA: `b3db319`
-- Último cierre técnico validado: navegación core autenticada alineada + onboarding endurecido con `activeAreas` obligatorio en UI/API + práctica a `5` turnos + dashboard por sesión + smoke postdeploy `:3000` + E2E UI Chromium `:3000` + fix de limpieza QA para usuarios stale en Supabase
+- Commit canónico actual validado en `product`, `/opt/gcm/app` y runtime `:3000`: `ac648c4`
+- Commit posterior de hardening de configuración de sesiones: `1d04637` en GitHub/product (pendiente redeploy explícito si se quiere reflejado en runtime)
+- Último cierre técnico validado: navegación core autenticada alineada + onboarding endurecido con `activeAreas` obligatorio en UI/API + práctica con límite gobernado por `MAX_SESSION_TURNS` + dashboard por sesión + smoke postdeploy `:3000` + E2E UI Chromium/API `:3000` + regla operativa de triple verificación `product` = deploy tree = runtime visible
 
 Mientras no se haga un release formal nuevo, esta es la forma correcta de reportar el estado real para seguir desarrollo sin ambigüedad.

@@ -29,11 +29,13 @@ last_reviewed: 2026-04-29
 
 ### Deploy
 - [ ] `/opt/gcm/app` fue sincronizado desde Git
+- [ ] `~/.openclaw/product` y `/opt/gcm/app` están en el commit esperado
 - [ ] el build usa `APP_COMMIT`
 - [ ] el build usa `APP_BUILD_TIME`
 - [ ] `docker compose` reconstruyó `gcm-app`
 - [ ] `/login` muestra el commit esperado
 - [ ] `/login` muestra build time válido
+- [ ] el runtime visible coincide con `product` y con `/opt/gcm/app`
 - [ ] corrí `npm run qa:smoke:postdeploy` contra el runtime objetivo
 - [ ] si el cambio tocó auth/sesión/dashboard, corrí además la E2E relevante (`qa:e2e:api` y/o `qa:e2e:ui`)
 

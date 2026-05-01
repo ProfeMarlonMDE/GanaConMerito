@@ -89,7 +89,8 @@ Runbook de rollback: `docs/05-ops/rollback-runbook.md`
 4. correr `npm run qa:smoke:postdeploy` contra el runtime objetivo
 5. si el cambio tocó auth, onboarding, sesiones o dashboard, correr además la E2E aplicable
 6. confirmar que producción coincide con el commit esperado
-7. si falla una QA UI, separar primero si el bloqueo es de host, de datos o de contrato funcional del formulario antes de tocar backend
+7. confirmar explícitamente la triple coincidencia: `product` = `/opt/gcm/app` = runtime visible en `/login`
+8. si falla una QA UI, separar primero si el bloqueo es de host, de datos o de contrato funcional del formulario antes de tocar backend
 
 
 ## Procedimiento estándar de deploy
@@ -125,8 +126,10 @@ docker compose -f /opt/gcm/docker-compose.yml up -d gcm-app
 2. confirmar que `Commit desplegado` coincide con `git -C /opt/gcm/app rev-parse --short HEAD`
 3. confirmar que `Build time` está visible y no vacío
 4. confirmar en layout/footer que no aparece `not-set`
-5. si hay divergencia, corregir en `~/.openclaw/product`, no directamente en VPS
-6. cuando el onboarding exija campos obligatorios nuevos, actualizar también la QA UI versionada para evitar drift entre test y regla funcional
+5. confirmar también que `git -C ~/.openclaw/product rev-parse --short HEAD` coincide con ambos si el deploy pretende reflejar lo último canónico
+6. si hay divergencia entre árbol deploy y runtime visible, el contenedor debe reconstruirse/recrearse; no dar el deploy por cerrado
+7. si hay divergencia, corregir en `~/.openclaw/product`, no directamente en VPS
+8. cuando el onboarding exija campos obligatorios nuevos, actualizar también la QA UI versionada para evitar drift entre test y regla funcional
 
 ## Matriz corta de validación
 - deploy/redeploy simple: `qa:smoke:postdeploy`
