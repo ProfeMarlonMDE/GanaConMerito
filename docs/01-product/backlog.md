@@ -11,7 +11,7 @@ related:
   - PROD-VISION
   - DEL-SPRINT-LOG
   - QUAL-DEBT-REGISTER
-last_reviewed: 2026-04-27
+last_reviewed: 2026-05-01
 ---
 
 # Backlog de producto
@@ -20,10 +20,10 @@ last_reviewed: 2026-04-27
 Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de contexto. No se debe marcar como hecho nada que no tenga evidencia en repo, sprint log o validación humana.
 
 ## En curso o altamente probable por evidencia en repo
-- Consolidar y estabilizar módulo editorial administrativo.
-- Endurecer autenticación y flujos de acceso.
-- Mejorar madurez operativa del runtime.
-- Mantener consistencia entre migraciones de Supabase y modelo de datos activo.
+- Mantener y endurecer el core activo real: auth, onboarding, práctica y dashboard.
+- Mejorar madurez operativa del runtime y disciplina de release/deploy.
+- Preparar la base técnica gobernada del frente de asistentes ya aprobado.
+- Mantener consistencia entre migraciones de Supabase, modelo de datos activo y corpus operativo.
 
 ### Frente diferido a deuda técnica: banco de preguntas
 - Estado: DIFERIDO DEL SPRINT / TRATADO COMO DEUDA TÉCNICA.
@@ -34,18 +34,18 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 ## Prioridad ejecutiva
 
 ### Now
-1. Formalizar mapa de features activas con estado real.
-2. Aplicar disciplina operativa sobre ADR-001 ya aprobado.
-3. Diseñar formalmente la siguiente etapa de asistentes dentro del producto antes de implementación multiagente.
-4. Mantener baseline operativo de QA postdeploy sobre `:3000`.
+1. Aplicar disciplina operativa sobre ADR-001 ya aprobado y ADR-002 ya aprobado con guardrails.
+2. Mantener baseline operativo de QA postdeploy sobre `:3000`.
+3. Ejecutar cierres con triple verificación `product` = `/opt/gcm/app` = runtime visible.
+4. Preparar contrato v1, trazabilidad mínima y QA negativa del futuro `Tutor GCM` sin abrir implementación libre.
 5. Evitar reintroducir drift entre producto canónico, deploy y documentación.
 
 ### Next
 1. Definir política operativa para cambios estructurales y releases.
 2. Operativizar known issues con owner, impacto y ruta.
 3. Normalizar documentos críticos de arquitectura, project, database y api.
-4. Alinear backlog funcional con evidencia real de auth, onboarding, práctica, dashboard y editorial.
-5. Preparar el spec funcional/técnico de asistentes visibles del producto (roles, personalidad, intervención, contrato).
+4. Convertir el mapa formal de features activas en referencia estable de producto.
+5. Preparar la especificación técnica ejecutable del contrato de turno v1 para `Tutor GCM`.
 
 ### Later
 1. Definición oficial de roadmap por trimestre.
@@ -59,7 +59,10 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 - TODO: SLA o expectativas de operación.
 
 ## Relación con módulos
-- `editorial`: requiere orden documental y claridad de flujo.
-- `auth`: requiere control de seguridad y decisiones explícitas.
-- `supabase`: requiere coherencia de migraciones, políticas y estado real de carga.
+- `auth`: activo y prioritario como parte del core real.
+- `onboarding`: activo y endurecido; no debe degradarse ni reabrirse sin evidencia.
+- `practice`: activo y núcleo principal del producto; debe seguir siendo practice-first.
+- `dashboard`: activo; debe reflejar progreso real sin inflar capacidades analíticas no implementadas.
+- `editorial`: hoy es biblioteca documental de solo lectura; no tratar como módulo administrativo activo del sprint.
+- `ai`: `Tutor GCM` quedó aprobado a nivel de gobernanza, pero sigue no implementado como feature funcional visible.
 - `question-bank`: queda diferido como deuda técnica; no debe competir en el sprint vigente salvo decisión ejecutiva explícita.

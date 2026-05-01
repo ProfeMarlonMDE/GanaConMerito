@@ -107,11 +107,11 @@
 
 ## Próximo trabajo recomendado
 
-1. convertir el ADR de asistentes en decisión aprobada o ajustada antes de implementación conversacional
-2. formalizar mapa de features activas con estado real
-3. conservar el runtime `:3000` y los scripts QA actuales como baseline confiable de validación
+1. aplicar la checklist de deploy sin ambigüedad en el próximo cierre que toque runtime
+2. conservar el runtime `:3000` y los scripts QA actuales como baseline confiable de validación
+3. preparar contrato v1, trazabilidad mínima y QA negativa del futuro `Tutor GCM`
 4. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
-5. aplicar la checklist de deploy sin ambigüedad en el próximo cierre que toque runtime
+5. usar `docs/01-product/active-feature-map.md` como referencia operativa para evitar sobreprometer features
 
 ## Remediación de auditoría en curso
 
@@ -147,7 +147,7 @@
 
 ## Observación importante
 
-El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada real en Chromium sobre el flujo principal: onboarding, práctica de `5` turnos, dashboard histórico y dashboard por sesión funcionando con persistencia observable. Además, el cierre remoto del bug de sesión quedó validado con `status = completed` y `ended_at != null`, y la QA semántica ya cruza UI, API, dashboard y BD como guardián del negocio. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue, navegación core y continuidad del producto”, mientras la capa de asistentes ya quedó abierta como frente de spec formal y no de implementación libre.
+El plan de remediación ya quedó cerrado. El proyecto ya cuenta con evidencia de E2E autenticada real en Chromium sobre el flujo principal: onboarding, práctica de `5` turnos, dashboard histórico y dashboard por sesión funcionando con persistencia observable. Además, el cierre remoto del bug de sesión quedó validado con `status = completed` y `ended_at != null`, y la QA semántica ya cruza UI, API, dashboard y BD como guardián del negocio. La etapa dominante deja de ser “cerrar si existe flujo real” y pasa a ser “endurecer calidad operativa, trazabilidad de despliegue, navegación core y continuidad del producto”. En paralelo, la capa de asistentes ya quedó **aprobada en gobernanza** vía ADR-002, pero **sigue no implementada** como feature visible funcional y debe avanzar solo mediante contrato v1, trazabilidad y QA negativa.
 
 ## Cierre de remediación de dominios y workspaces
 
@@ -167,8 +167,9 @@ Resultado operativo reciente:
 ## Referencia de versionado operativo vigente
 - App declarada: `0.4.8`
 - Rama operativa canónica: `master`
-- Commit canónico actual validado en `product`, `/opt/gcm/app` y runtime `:3000`: `ac648c4`
+- Commit de documentación canónica local actual: `f5853a8` en `~/.openclaw/product` (pendiente push/deploy si se quiere reflejar fuera del árbol local)
+- Commit canónico último validado en `product`, `/opt/gcm/app` y runtime `:3000`: `ac648c4`
 - Commit posterior de hardening de configuración de sesiones: `1d04637` en GitHub/product (pendiente redeploy explícito si se quiere reflejado en runtime)
-- Último cierre técnico validado: navegación core autenticada alineada + onboarding endurecido con `activeAreas` obligatorio en UI/API + práctica con límite gobernado por `MAX_SESSION_TURNS` + dashboard por sesión + smoke postdeploy `:3000` + E2E UI Chromium/API `:3000` + regla operativa de triple verificación `product` = deploy tree = runtime visible
+- Estado funcional vigente: core real activo = login + onboarding + práctica + dashboard; editorial = solo lectura; `Tutor GCM` = aprobado en gobernanza, no implementado funcionalmente
 
 Mientras no se haga un release formal nuevo, esta es la forma correcta de reportar el estado real para seguir desarrollo sin ambigüedad.

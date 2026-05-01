@@ -15,6 +15,13 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
+- tipo: docs+alignment
+- modulo: backlog/status
+- resumen: se alinearon `backlog.md` y `status.md` con el mapa formal de features activas y con la aprobación de ADR-002, dejando explícita la diferencia entre core activo, editorial solo lectura y `Tutor GCM` aprobado pero aún no implementado.
+- sprint: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
+- relacionados: docs/01-product/active-feature-map.md, docs/01-product/backlog.md, docs/project/status.md
+
+## 2026-05-01
 - tipo: product+ux
 - modulo: feature-map/ui-brief
 - resumen: se formalizó el mapa de features activas con estado real y se creó un brief reutilizable para IA de UI mobile-first, alineado al flujo real de producto y a la gobernanza aprobada del futuro `Tutor GCM`.
