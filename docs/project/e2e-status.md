@@ -54,6 +54,12 @@ Bloque técnico de build/arranque cerrado. E2E autenticada real del flujo comple
   - `QA_BASE_URL=http://127.0.0.1:3000 npm run qa:e2e:ui` ✅
   - `turnCount = 5` ✅
   - artifact root: `artifacts/qa-ui-e2e-ui-mokx9nfj-qf2goy`
+- revalidación adicional sobre runtime objetivo tras fix de tooling QA:
+  - `QA_BASE_URL=http://127.0.0.1:3000 npm run qa:smoke:postdeploy` ✅
+  - artifact root: `artifacts/qa-smoke-postdeploy-smoke-momyxk5z-v4bm9k`
+  - `QA_BASE_URL=http://127.0.0.1:3000 npm run qa:e2e:ui` ✅
+  - `turnCount = 5` ✅
+  - artifact root: `artifacts/qa-ui-e2e-ui-momyyjmk-niwgkj`
 
 ## Hallazgos funcionales de la corrida real
 - el flujo principal `login -> onboarding -> practice -> dashboard` funciona de extremo a extremo
@@ -76,3 +82,4 @@ Durante una auditoría externa se imprimieron secretos operativos desde el host/
 - formalizar ADR corto del componente de asistentes antes de implementación
 - usar esta validación como baseline para futuros cambios de UX/auth/dashboard
 - mantener fuera de alcance la operación editorial/banco salvo orden ejecutiva explícita
+- mantener el fix de tooling QA (`cleanupOldQaUsers`) como guardrail para evitar falsos rojos por identidades stale en Supabase

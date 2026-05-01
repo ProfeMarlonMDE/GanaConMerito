@@ -14,6 +14,13 @@ last_reviewed: 2026-04-28
 
 # Change log
 
+## 2026-05-01
+- tipo: fix+qa
+- modulo: qa/ops
+- resumen: se corrigió la limpieza de usuarios QA para tolerar identidades stale ya borradas en Supabase (`User not found`) y se revalidó el runtime objetivo `:3000` con smoke postdeploy y E2E UI Chromium verdes (`5` turnos).
+- sprint: Sprint siguiente - Hardening de dashboard y estabilidad QA
+- relacionados: QUAL-QA-SEMANTICA-RUNBOOK, docs/project/e2e-status.md, docs/project/status.md
+
 ## 2026-04-29
 - tipo: hardening
 - modulo: dashboard/qa/ops
