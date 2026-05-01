@@ -25,7 +25,7 @@ Definir con claridad cuál es la fuente de verdad en cada capa del proyecto para
 - `docs/project/source-of-truth.md`
 - `docs/project/status.md`
 - `docs/project/current-workflow.md`
-- `docs/banco-preguntas/*`
+- `docs/project/reference/*`
 - `content/*`
 - `sql/*`
 

@@ -140,6 +140,62 @@
       "last_reviewed": "2026-04-24"
     },
     {
+      "id": "ADR-002-assistant-component-governance",
+      "path": "docs/03-architecture/adrs/ADR-002-assistant-component-governance.md",
+      "type": "adr",
+      "status": "proposed",
+      "project": "ganaconmerito",
+      "modules": [
+        "session-orchestrator",
+        "evaluation",
+        "dashboard",
+        "ai"
+      ],
+      "tags": [
+        "adr",
+        "assistant",
+        "tutor",
+        "llm",
+        "governance"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "ARCH-ASSISTANT-COMPONENT-SPEC",
+        "ARCH-SYSTEM-OVERVIEW",
+        "GOV-HUMAN-APPROVAL",
+        "PROD-BACKLOG"
+      ],
+      "last_reviewed": "2026-05-01"
+    },
+    {
+      "id": "ARCH-ASSISTANT-COMPONENT-SPEC",
+      "path": "docs/03-architecture/assistant-component-executive-spec.md",
+      "type": "architecture",
+      "status": "proposed",
+      "project": "ganaconmerito",
+      "modules": [
+        "session-orchestrator",
+        "evaluation",
+        "dashboard",
+        "ai"
+      ],
+      "tags": [
+        "assistant",
+        "tutor",
+        "llm",
+        "governance",
+        "testability"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "ARCH-SYSTEM-OVERVIEW",
+        "PROD-BACKLOG",
+        "GOV-WORKING-AGREEMENT",
+        "GOV-HUMAN-APPROVAL"
+      ],
+      "last_reviewed": "2026-04-30"
+    },
+    {
       "id": "ARCH-SYSTEM-OVERVIEW",
       "path": "docs/03-architecture/system-overview.md",
       "type": "ops",
@@ -263,7 +319,7 @@
         "QUAL-QB-LOAD-AUDIT-2026-04-26",
         "DEL-QB-LOAD-CLOSE-2026-04-26"
       ],
-      "last_reviewed": "2026-04-29"
+      "last_reviewed": "2026-05-01"
     },
     {
       "id": "QUAL-POST-BACKFILL-ACTIVE-BANK",
@@ -392,7 +448,7 @@
         "QUAL-KNOWN-ISSUES",
         "QUAL-DEBT-REGISTER"
       ],
-      "last_reviewed": "2026-04-26"
+      "last_reviewed": "2026-04-30"
     },
     {
       "id": "QUAL-DEBT-REGISTER",
@@ -417,6 +473,30 @@
         "DEL-SPRINT-LOG"
       ],
       "last_reviewed": "2026-04-23"
+    },
+    {
+      "id": "OPS-DOCUMENT-ARCHIVE-NAMING-2026-05-01",
+      "path": "docs/05-ops/2026-05-01-document-archive-and-naming-policy.md",
+      "type": "ops",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [
+        "documentation",
+        "platform",
+        "governance"
+      ],
+      "tags": [
+        "docs",
+        "archive",
+        "naming",
+        "source-of-truth"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "docs/project/source-of-truth.md",
+        "docs/05-ops/runbook.md"
+      ],
+      "last_reviewed": "2026-05-01"
     },
     {
       "id": "OPS-DEPLOY-CHECKLIST",
@@ -665,7 +745,7 @@
     },
     {
       "id": "item-doc-026",
-      "path": "docs/banco-preguntas/ciudadanas.md",
+      "path": "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md",
       "type": "",
       "status": "",
       "project": "",
@@ -701,34 +781,44 @@
     "docs/README.md",
     "docs/api/contracts.md",
     "docs/architecture/decisions.md",
-    "docs/architecture/editorial-admin-consolidated-plan.md",
-    "docs/architecture/editorial-admin-implementation-plan.md",
-    "docs/architecture/editorial-library-temporary-web-module.md",
-    "docs/architecture/editorial-module-plan.md",
-    "docs/architecture/editorial-runtime-paths-fix.md",
     "docs/architecture/overview.md",
     "docs/architecture/project-structure.md",
     "docs/architecture/state-machine.md",
+    "docs/archive/architecture/2026-05-01-editorial-admin-consolidated-plan.md",
+    "docs/archive/architecture/2026-05-01-editorial-admin-implementation-plan.md",
+    "docs/archive/architecture/2026-05-01-editorial-library-temporary-web-module.md",
+    "docs/archive/architecture/2026-05-01-editorial-module-plan.md",
+    "docs/archive/architecture/2026-05-01-editorial-runtime-paths-fix.md",
+    "docs/archive/architecture/2026-05-01-question-bank-technical-architecture.md",
+    "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md :: missing field name",
+    "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md :: missing field project",
+    "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md :: missing field owner",
+    "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md :: missing field status",
+    "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md :: missing field artifact_type",
+    "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md :: missing field modules",
+    "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md :: missing field tags",
+    "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md :: missing field related",
+    "docs/archive/banco-preguntas/2026-05-01-ciudadanas.md :: missing field last_reviewed",
+    "docs/archive/banco-preguntas/2026-05-01-gestion.md",
+    "docs/archive/banco-preguntas/2026-05-01-lectura-critica.md",
+    "docs/archive/banco-preguntas/2026-05-01-matematicas.md",
+    "docs/archive/banco-preguntas/2026-05-01-normatividad.md",
+    "docs/archive/banco-preguntas/2026-05-01-pedagogia.md",
+    "docs/archive/inbox/content/2026-05-01-audit-definitiva-gemini-pro.md",
+    "docs/archive/inbox/misc/2026-05-01-antigravity-pc.md",
+    "docs/archive/inbox/misc/2026-05-01-claude-sonet.md",
+    "docs/archive/inbox/misc/2026-05-01-claude.md",
+    "docs/archive/inbox/misc/2026-05-01-codex-pc.md",
+    "docs/archive/inbox/misc/2026-05-01-gemini-pc.md",
+    "docs/archive/inbox/project/2026-05-01-audit-brief-editorial-segmentation.md",
+    "docs/archive/inbox/project/2026-05-01-dominios.md",
+    "docs/archive/project/2026-05-01-audit-brief-editorial-segmentation.md",
+    "docs/archive/project/2026-05-01-question-bank-implementation-roadmap.md",
     "docs/arquitectura-mvp.md",
-    "docs/banco-preguntas/ciudadanas.md :: missing field name",
-    "docs/banco-preguntas/ciudadanas.md :: missing field project",
-    "docs/banco-preguntas/ciudadanas.md :: missing field owner",
-    "docs/banco-preguntas/ciudadanas.md :: missing field status",
-    "docs/banco-preguntas/ciudadanas.md :: missing field artifact_type",
-    "docs/banco-preguntas/ciudadanas.md :: missing field modules",
-    "docs/banco-preguntas/ciudadanas.md :: missing field tags",
-    "docs/banco-preguntas/ciudadanas.md :: missing field related",
-    "docs/banco-preguntas/ciudadanas.md :: missing field last_reviewed",
-    "docs/banco-preguntas/gestion.md",
-    "docs/banco-preguntas/lectura-critica.md",
-    "docs/banco-preguntas/matematicas.md",
-    "docs/banco-preguntas/normatividad.md",
-    "docs/banco-preguntas/pedagogia.md",
     "docs/database/active-question-bank-contract.md",
     "docs/database/content-model.md",
     "docs/database/schema.md",
     "docs/database/security.md",
-    "docs/project/audit-brief-editorial-segmentation.md",
     "docs/project/auth-hardening-audit.md",
     "docs/project/current-corpus-runtime-activation-map.md",
     "docs/project/current-workflow.md",
@@ -758,16 +848,6 @@
     "docs/project/source-of-truth.md",
     "docs/project/status.md",
     "docs/project/tooling-stack.md",
-    "docs/question-bank-implementation-roadmap.md",
-    "docs/question-bank-technical-architecture.md",
-    "docs/temp/README.md",
-    "docs/temp/inbox/content/audit-definitiva-gemini-pro.md",
-    "docs/temp/inbox/misc/antigravity-pc.md",
-    "docs/temp/inbox/misc/claude-sonet.md",
-    "docs/temp/inbox/misc/claude.md",
-    "docs/temp/inbox/misc/codex-pc.md",
-    "docs/temp/inbox/misc/gemini-pc.md",
-    "docs/temp/inbox/project/audit-brief-editorial-segmentation.md",
-    "docs/temp/inbox/project/dominios.md"
+    "docs/temp/README.md"
   ]
 }

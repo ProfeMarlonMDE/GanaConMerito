@@ -16,6 +16,13 @@ last_reviewed: 2026-04-28
 
 ## 2026-05-01
 - tipo: docs+ops
+- modulo: documentation/question-bank
+- resumen: se archivaron los duplicados documentales de `docs/banco-preguntas/*` con nombres fechados y se reafirmó `content/items/**` como verdad operativa del corpus, ajustando referencias mínimas para evitar que el legado siga compitiendo con la fuente canónica.
+- sprint: Sprint siguiente - Normalización operativa y blindaje del core
+- relacionados: docs/project/source-of-truth.md, docs/04-quality/question-bank-load-phase-audit-2026-04-26.md
+
+## 2026-05-01
+- tipo: docs+ops
 - modulo: documentation/editorial
 - resumen: se limpió la superficie activa `/editorial` para dejar solo documentación canónica vigente, se archivó con nombres fechados el inbox temporal y planes editoriales/question-bank superados, y se regeneró `site-docs` para eliminar referencias activas al legado.
 - sprint: Sprint siguiente - Normalización operativa y blindaje del core

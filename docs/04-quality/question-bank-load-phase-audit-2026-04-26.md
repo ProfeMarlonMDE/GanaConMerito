@@ -21,8 +21,8 @@ Se auditó el cierre documental de la fase cerrada con evidencia local del repo.
 
 Fuentes principales:
 - `docs/02-delivery/question-bank-load-phase-close.md`
-- `docs/banco-preguntas/matematicas.md`
-- `docs/banco-preguntas/lectura-critica.md`
+- `content/items/matematicas/*.md`
+- `content/items/lectura_critica/*.md`
 - `docs/project/reference/taxonomia-y-nomenclatura-del-banco-de-preguntas.md`
 - `/home/ubuntu/.openclaw/workspace/docs/QUESTION-BANK-INDEX.md`
 - `/home/ubuntu/.openclaw/workspace/memory/2026-04-26.md`
