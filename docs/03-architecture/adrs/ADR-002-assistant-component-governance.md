@@ -18,7 +18,7 @@ last_reviewed: 2026-05-01
 # ADR-002: Gobernanza del componente de asistentes
 
 ## Estado
-proposed
+proposed — listo para decisión humana
 
 ## Fecha
 2026-05-01
@@ -73,12 +73,25 @@ Razones:
 - permite pruebas por contrato
 - conserva UX simple para el usuario
 
+## Decisión operativa recomendada
+**Recomendación a aprobar:** aprobar ADR-002 sin abrir implementación libre todavía, pero sí autorizando preparación técnica estrictamente gobernada del frente.
+
+## Condiciones de aprobación recomendadas
+1. **Congelar roster visible inicial:** solo `Tutor GCM`.
+2. **No autorizar multi-asistente visible** sin un ADR posterior y evidencia de beneficio real.
+3. **Exigir contrato de turno v1** antes de cualquier feature conversacional productiva.
+4. **Mantener scoring, avance de sesión, selección de ítems y cierre fuera del LLM visible.**
+5. **Exigir trazabilidad mínima por turno**: input permitido, output estructurado, flags de incertidumbre, versión de prompt/plantilla y decisión del sistema.
+6. **No reabrir editorial/question-bank** como parte encubierta del frente de asistentes.
+7. **No considerar “listo para deploy”** ningún asistente que no tenga casos negativos de contradicción y degradación honesta.
+
 ## Consecuencias
 - la UX del producto debe presentar una sola identidad conversacional consistente
 - cualquier futura expansión a varios asistentes visibles requerirá evidencia y nueva decisión explícita
 - la implementación debe empezar por contrato y trazabilidad, no por proliferación de prompts/personas
 - el motor determinístico conserva autoridad sobre estado y evaluación
 - QA podrá validar el componente por casos positivos, negativos y de incertidumbre declarada
+- el siguiente paso de implementación queda restringido a contrato, trazas, guardrails y pruebas; no a despliegue libre de personalidad conversacional
 
 ## Impacto en módulos
 - `session-orchestrator`: pasa a ser pieza central del turno
@@ -97,7 +110,14 @@ Razones:
 - implementar chequeo de honestidad y contradicción antes de enriquecer personalidad
 - exigir contrato de turno v1 antes de despliegue funcional del componente
 
+## Señales que justificarían ajuste antes de aprobar
+- necesidad real de más de un asistente visible en el MVP inmediato
+- evidencia de que el contrato de turno v1 debe cubrir más acciones de las previstas
+- requerimientos UX que obliguen a separar voz pedagógica y voz operativa en superficie visible
+- restricciones técnicas o de costo que hagan inviable la trazabilidad mínima por turno
+
 ## Aprobación humana
-- Estado de aprobación: PROPUESTO
+- Estado de aprobación: LISTO PARA DECISIÓN
+- Recomendación PM técnica: **APROBAR CON GUARDRAILS**
 - Aprobador requerido: Marlon Arcila
-- Observaciones: este ADR no autoriza implementación productiva por sí solo; fija la propuesta estructural mínima para revisión humana antes de desarrollo del componente.
+- Observaciones: este ADR no autoriza implementación productiva por sí solo; autoriza, si se aprueba, la preparación técnica gobernada del componente bajo contrato v1, trazabilidad mínima y QA negativa explícita antes de cualquier despliegue funcional.

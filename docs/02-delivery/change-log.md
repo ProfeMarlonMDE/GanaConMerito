@@ -15,6 +15,13 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
+- tipo: docs+architecture
+- modulo: assistants/governance
+- resumen: ADR-002 quedó ajustado como paquete listo para decisión humana, con recomendación explícita de aprobar `Tutor GCM` como asistente visible único bajo guardrails de contrato v1, trazabilidad mínima y QA negativa antes de cualquier implementación funcional.
+- sprint: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
+- relacionados: docs/03-architecture/adrs/ADR-002-assistant-component-governance.md, docs/03-architecture/assistant-component-executive-spec.md, docs/02-delivery/sprint-log.md
+
+## 2026-05-01
 - tipo: ops+topology
 - modulo: repo/worktree
 - resumen: se neutralizó el worktree residual `workspace-product-048-fix` tras confirmar que no contenía commits propios frente a `master`, estaba `43` commits detrás y solo arrastraba un `package-lock.json` local obsoleto; se eliminó el worktree y su rama local para cerrar la ambigüedad topológica.

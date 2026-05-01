@@ -258,7 +258,8 @@ Esta spec **no** cubre:
 - expansión de dominios de contenido fuera del flujo actual de práctica/evaluación
 
 ## 13. Siguiente decisión requerida
-Antes de implementar, conviene formalizar en ADR corto:
-- asistente visible único vs varios visibles
-- autoridad exacta del motor determinístico
-- contrato v1 de turno y trazabilidad mínima
+La decisión ejecutiva ya puede cerrarse sobre esta base en ADR-002. La recomendación operativa es:
+- aprobar `Tutor GCM` como único asistente visible inicial
+- congelar la autoridad del motor determinístico fuera del LLM visible
+- exigir contrato v1 de turno y trazabilidad mínima antes de implementación funcional
+- prohibir expansión editorial o multi-asistente visible dentro de este sprint sin nuevo ADR

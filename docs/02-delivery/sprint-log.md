@@ -54,7 +54,7 @@ last_reviewed: 2026-05-01
 - Hecho: worktree residual `workspace-product-048-fix` neutralizado; no tenía commits propios contra `master`, estaba `43` commits detrás y fue removido junto con su rama local para cerrar la ambigüedad topológica.
 
 ## No entregado
-- Pendiente: aprobación humana final de ADR-002.
+- Pendiente: decisión humana final de ADR-002 (ya listo para decisión con recomendación PM técnica de aprobar con guardrails).
 - Pendiente: redeploy explícito del commit posterior `1d04637` si se quiere reflejado inmediatamente en runtime productivo.
 
 ## Fuera de alcance
@@ -114,6 +114,6 @@ last_reviewed: 2026-05-01
 ## Criterio de terminado del sprint actual
 - [x] worktree residual resuelto o neutralizado
 - [ ] mapa de features activas documentado
-- [ ] ADR-002 cerrado en decisión humana (aprobado o ajustado)
+- [ ] ADR-002 cerrado en decisión humana (aprobado o ajustado; paquete ya listo para decisión)
 - [ ] checklist de deploy aplicada sin ambigüedad en al menos un cierre completo
 - [ ] backlog y status alineados al estado real del producto
