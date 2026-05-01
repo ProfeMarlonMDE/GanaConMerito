@@ -15,6 +15,13 @@ last_reviewed: 2026-05-01
 # Change log
 
 ## 2026-05-01
+- tipo: deploy+qa+ops
+- modulo: platform/ui
+- resumen: se cerró el release real del rediseño UI premium mobile-first en runtime con deploy del commit `df8f949`, smoke postdeploy verde y E2E UI Chromium verde contra `:3000`; además se corrigió estructuralmente el manejo de secretos moviendo `env_file` desde `/opt/gcm/app/.env.production` a `/opt/gcm/env/gcm-app.env` para blindar el deploy frente a `git clean -fdx`.
+- sprint: SIN SPRINT FORMAL ABIERTO
+- relacionados: docs/project/status.md, docs/02-delivery/sprint-log.md, docs/01-product/backlog.md
+
+## 2026-05-01
 - tipo: feat+qa+docs
 - modulo: ui/ux
 - resumen: se implementó en la fuente canónica el rediseño UI premium mobile-first del core real (`login`, `home`, `onboarding`, `practice`, `dashboard`, `biblioteca`), se alineó la QA UI al nuevo flujo explícito de práctica y quedó validado localmente con build + smoke + E2E UI sobre runtime `:3001`; el release de runtime quedó pendiente por falta de permisos Docker en esta sesión.

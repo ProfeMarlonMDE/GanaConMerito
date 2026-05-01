@@ -46,13 +46,13 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 3. Normalizar documentos críticos de arquitectura, project, database y api.
 4. Convertir el mapa formal de features activas en referencia estable de producto.
 5. Preparar la especificación técnica ejecutable del contrato de turno v1 para `Tutor GCM`.
-6. Cerrar el release efectivo del rediseño UI premium mobile-first en runtime una vez se complete reconstrucción Docker + verificación final de deploy.
+6. Endurecer el runbook de release para que la QA host-required (como Playwright) tenga bootstrap explícito cuando el worktree se limpia con `git clean -fdx`.
 
-### Implementado en fuente, pendiente release de runtime
-- Rediseño UI premium mobile-first del core real (`login`, `home`, `onboarding`, `practice`, `dashboard`, `biblioteca`) ya aplicado en `~/.openclaw/product` con paleta híbrida final y prioridad explícita en práctica.
+### Implementado y validado en runtime
+- Rediseño UI premium mobile-first del core real (`login`, `home`, `onboarding`, `practice`, `dashboard`, `biblioteca`) ya aplicado en `~/.openclaw/product` y validado en runtime desplegado con commit `df8f949`.
 - Shell compartido migrado hacia navegación móvil más fuerte: top bar consistente, bottom nav persistente y CTA sticky en práctica.
 - `Tutor GCM` quedó visualmente preparado como capa secundaria contextual, sin convertir el producto en chat-first y sin contradecir ADR-002.
-- QA local ya validada para este frente; falta únicamente el release efectivo y su verificación en runtime desplegado.
+- Corrección operativa estable ya aplicada: secretos de deploy movidos fuera del árbol redeployable hacia `/opt/gcm/env/gcm-app.env`.
 
 ### Later
 1. Definición oficial de roadmap por trimestre.

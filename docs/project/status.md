@@ -114,11 +114,12 @@
 5. usar `docs/01-product/active-feature-map.md` como referencia operativa para evitar sobreprometer features
 6. usar `docs/01-product/ui-premium-mobile-redesign-proposal.md` como referencia canónica de dirección visual, paleta híbrida final y rollout de la nueva capa UI
 
-## Rediseño UI premium mobile-first — implementado en fuente, pendiente release de runtime
+## Rediseño UI premium mobile-first — desplegado y validado en runtime
 - La primera implementación real del rediseño ya quedó aplicada en `~/.openclaw/product` sobre el core existente: `login + home + onboarding + práctica + dashboard + biblioteca`.
-- La validación local ya pasó con `npm run build`, `npm run test:dashboard`, `npm run qa:smoke:postdeploy` sobre runtime local `:3001` y `npm run qa:e2e:ui` ajustado al flujo nuevo.
+- El release efectivo de runtime quedó cerrado en commit `df8f949`, con contenedor `gcm-app` arriba y QA postdeploy verde en `:3000` (`qa:smoke:postdeploy` + `qa:e2e:ui`).
 - `Tutor GCM` se mantiene como capa secundaria/contextual; no se convirtió el producto en chat-first ni se abrió multiagente visible.
-- El último runtime triple-verificado que sigue vigente en despliegue es `701ebcf`; el nuevo release quedó **pendiente de reconstrucción Docker** porque esta sesión no tuvo permisos sobre `/var/run/docker.sock`.
+- Corrección operativa estructural aplicada: el `env_file` del compose ya no depende de `/opt/gcm/app/.env.production`; ahora usa la ruta persistente `/opt/gcm/env/gcm-app.env`, evitando que `git clean -fdx` vuelva a romper el deploy.
+- Nota operativa: la QA UI en host requiere dependencias de Playwright disponibles fuera del contenedor si se va a ejecutar directamente en `/opt/gcm/app` después de una limpieza agresiva.
 
 ## Remediación de auditoría en curso
 

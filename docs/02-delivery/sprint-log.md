@@ -139,8 +139,9 @@ last_reviewed: 2026-05-01
 - El backlog sigue funcionando como cola priorizada, pero no equivale a apertura automática de un nuevo sprint.
 - El siguiente sprint debe abrirse solo cuando exista objetivo, alcance y evidencia suficiente para sostenerlo.
 
-## Frente UI ejecutado en fuente, aún sin release de runtime
-- La propuesta canónica de rediseño UI premium mobile-first en `docs/01-product/ui-premium-mobile-redesign-proposal.md` ya se tradujo a una primera implementación real en la fuente canónica del producto.
+## Frente UI ejecutado en fuente y cerrado en runtime
+- La propuesta canónica de rediseño UI premium mobile-first en `docs/01-product/ui-premium-mobile-redesign-proposal.md` ya quedó implementada y liberada sobre el core real del producto.
 - Pantallas/superficies intervenidas: `login`, `home`, `onboarding`, `practice`, `dashboard` y `biblioteca editorial`, más shell compartido y sistema visual global.
-- QA ya aplicada sobre runtime local del build nuevo: `build`, `test:dashboard`, `qa:smoke:postdeploy` y `qa:e2e:ui` verdes tras alinear el automatismo al flujo nuevo de práctica.
-- Sigue pendiente el release efectivo de runtime porque la reconstrucción Docker en `/opt/gcm/app` quedó bloqueada por permisos sobre `/var/run/docker.sock` durante esta sesión.
+- El deploy efectivo quedó validado en runtime con commit `df8f949`, contenedor `gcm-app` arriba, smoke postdeploy verde y `qa:e2e:ui` verde contra `:3000`.
+- Hardening operativo aplicado durante el cierre: el compose ya consume secretos desde `/opt/gcm/env/gcm-app.env` en vez de `/opt/gcm/app/.env.production`, evitando que limpiezas tipo `git clean -fdx` rompan futuros releases.
+- Nota residual: si la QA UI se ejecuta en host tras una limpieza agresiva del worktree, hay que garantizar dependencias de Playwright disponibles fuera del contenedor.
