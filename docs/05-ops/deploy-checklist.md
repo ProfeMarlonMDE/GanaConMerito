@@ -9,7 +9,7 @@ modules: [platform, deploy]
 tags: [deploy, checklist, product, vps]
 related:
   - OPS-RUNBOOK
-last_reviewed: 2026-04-29
+last_reviewed: 2026-05-01
 ---
 
 # Checklist operativo de desarrollo y deploy
@@ -36,6 +36,7 @@ last_reviewed: 2026-04-29
 - [ ] `/login` muestra el commit esperado
 - [ ] `/login` muestra build time válido
 - [ ] el runtime visible coincide con `product` y con `/opt/gcm/app`
+- [ ] si `master` quedó ahead luego del cierre solo por docs, dejé explícito cuál fue el último commit triple-verificado
 - [ ] corrí `npm run qa:smoke:postdeploy` contra el runtime objetivo
 - [ ] si el cambio tocó auth/sesión/dashboard, corrí además la E2E relevante (`qa:e2e:api` y/o `qa:e2e:ui`)
 

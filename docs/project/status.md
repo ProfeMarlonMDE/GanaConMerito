@@ -167,10 +167,11 @@ Resultado operativo reciente:
 ## Referencia de versionado operativo vigente
 - App declarada: `0.4.8`
 - Rama operativa canónica: `master`
-- Commit canónico actual validado en `~/.openclaw/product`, `/opt/gcm/app` y runtime `:3000`: `701ebcf`
-- `buildTime` visible validado en `/login`: `2026-05-01T18:25:50Z`
+- Último cierre de deploy triple-verificado: `701ebcf`
+- `buildTime` visible validado en `/login` para ese cierre: `2026-05-01T18:25:50Z`
+- Existen commits documentales locales posteriores al cierre de runtime (por ejemplo `dc8f832`); esos avances no sustituyen el último deploy validado hasta que `/opt/gcm/app` y `/login` vuelvan a coincidir con el nuevo HEAD.
 - Estado funcional vigente: core real activo = login + onboarding + práctica + dashboard; editorial = solo lectura; `Tutor GCM` = aprobado en gobernanza, no implementado funcionalmente
 
 Mientras no se haga un release formal nuevo, esta es la forma correcta de reportar el estado real para seguir desarrollo sin ambigüedad.
 
-Con la evidencia de deploy validada el 2026-05-01, la triple coincidencia operativa quedó cerrada para `701ebcf`.
+Con la evidencia de deploy validada el 2026-05-01, la triple coincidencia operativa quedó cerrada para `701ebcf`. Sprint 3 queda además cerrado documentalmente; no hay Sprint 4 formal abierto en estos documentos.

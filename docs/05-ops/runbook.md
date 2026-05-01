@@ -10,7 +10,7 @@ tags: [runbook, operacion, soporte]
 related:
   - ARCH-SYSTEM-OVERVIEW
   - COMP-SECURITY-GUARDRAILS
-last_reviewed: 2026-04-23
+last_reviewed: 2026-05-01
 ---
 
 # Runbook operativo
@@ -91,6 +91,7 @@ Runbook de rollback: `docs/05-ops/rollback-runbook.md`
 6. confirmar que producción coincide con el commit esperado
 7. confirmar explícitamente la triple coincidencia: `product` = `/opt/gcm/app` = runtime visible en `/login`
 8. si falla una QA UI, separar primero si el bloqueo es de host, de datos o de contrato funcional del formulario antes de tocar backend
+9. si `master` quedó ahead luego del cierre por commits documentales, registrar por separado cuál fue el último commit triple-verificado y no reportar el HEAD como deploy válido sin nueva verificación
 
 
 ## Procedimiento estándar de deploy
@@ -128,8 +129,9 @@ docker compose -f /opt/gcm/docker-compose.yml up -d gcm-app
 4. confirmar en layout/footer que no aparece `not-set`
 5. confirmar también que `git -C ~/.openclaw/product rev-parse --short HEAD` coincide con ambos si el deploy pretende reflejar lo último canónico
 6. si hay divergencia entre árbol deploy y runtime visible, el contenedor debe reconstruirse/recrearse; no dar el deploy por cerrado
-7. si hay divergencia, corregir en `~/.openclaw/product`, no directamente en VPS
-8. cuando el onboarding exija campos obligatorios nuevos, actualizar también la QA UI versionada para evitar drift entre test y regla funcional
+7. si `~/.openclaw/product` quedó más adelante solo por documentación local, dejar explícito que el último cierre de runtime sigue anclado al commit visible en `/login`
+8. si hay divergencia, corregir en `~/.openclaw/product`, no directamente en VPS
+9. cuando el onboarding exija campos obligatorios nuevos, actualizar también la QA UI versionada para evitar drift entre test y regla funcional
 
 ## Matriz corta de validación
 - deploy/redeploy simple: `qa:smoke:postdeploy`

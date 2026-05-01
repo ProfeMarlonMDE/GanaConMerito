@@ -127,7 +127,7 @@
       "related": [
         "DEL-SPRINT-LOG"
       ],
-      "last_reviewed": "2026-04-28"
+      "last_reviewed": "2026-05-01"
     },
     {
       "id": "DEL-QB-LOAD-CLOSE-2026-04-26",
@@ -578,7 +578,7 @@
       "related": [
         "OPS-RUNBOOK"
       ],
-      "last_reviewed": "2026-04-29"
+      "last_reviewed": "2026-05-01"
     },
     {
       "id": "OPS-QUESTION-BANK-LOAD",
@@ -647,7 +647,7 @@
         "ARCH-SYSTEM-OVERVIEW",
         "COMP-SECURITY-GUARDRAILS"
       ],
-      "last_reviewed": "2026-04-23"
+      "last_reviewed": "2026-05-01"
     },
     {
       "id": "GOV-AGENT-ROSTER",

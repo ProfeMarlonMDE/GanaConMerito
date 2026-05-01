@@ -146,6 +146,8 @@ Un deploy solo se considera cerrado cuando coinciden estas 3 capas:
 
 Si falla la capa 3, el deploy sigue incompleto aunque Git esté limpio y `/opt/gcm/app` ya haya sido actualizado.
 
+Si `master` avanza después con commits documentales o de preparación local, esos commits no reemplazan automáticamente el último deploy triple-verificado: al reportar estado deben separarse el HEAD de repo y el último runtime efectivamente validado.
+
 ## 8. Regla práctica
 Cada tarea debe responder estas preguntas:
 - ¿Dónde se diseña?

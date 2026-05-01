@@ -81,28 +81,30 @@ last_reviewed: 2026-05-01
 
 ---
 
-## Sprint actual
+## Sprint cerrado más reciente
 - Nombre: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
-- Estado: ABIERTO
+- Estado: CERRADO FORMAL Y OPERATIVAMENTE
 - Fecha de inicio: 2026-05-01
+- Fecha de cierre efectiva: 2026-05-01
 - Responsable humano: Marlon Arcila
 
-## Objetivo del sprint actual
+## Objetivo del sprint cerrado más reciente
 - Cerrar la ambigüedad topológica residual, consolidar el mapa real de features/estado operativo y dejar lista la base de gobernanza para abrir implementación del frente de asistentes sin comprometer confiabilidad del core.
 
-## Outcome esperado del sprint actual
+## Outcome esperado del sprint cerrado más reciente
 - topología operativa sin residuos ambiguos
 - mapa actualizado de features activas con estado real
-- ADR-002 aprobado o ajustado
+- ADR-002 aprobado con guardrails
 - disciplina de release/deploy más estable
 - baseline QA mantenido como guardián del core
 
-## Cierre operativo adicional confirmado
+## Cierre operativo confirmado
 - Deploy cerrado con triple verificación en commit `701ebcf`.
 - `~/.openclaw/product` = `701ebcf`
 - `/opt/gcm/app` = `701ebcf`
 - runtime visible en `/login` = `701ebcf`
 - `buildTime` visible validado: `2026-05-01T18:25:50Z`
+- cierre documental local posterior registrado en `dc8f832`, sin cambiar el hecho de que el último runtime triple-verificado sigue siendo `701ebcf`
 
 ## Comprometido
 1. decidir y resolver el destino del worktree `workspace-product-048-fix`
@@ -111,15 +113,28 @@ last_reviewed: 2026-05-01
 4. mantener la triple verificación `product` = `/opt/gcm/app` = runtime visible como regla obligatoria
 5. mantener fuera del sprint el frente editorial/question-bank salvo decisión ejecutiva explícita
 
-## No alcance del sprint actual
+## Entregado
+- Hecho: worktree residual resuelto y ambigüedad topológica cerrada.
+- Hecho: mapa formal de features activas creado y alineado con backlog/status.
+- Hecho: ADR-002 aprobado con guardrails antes de abrir implementación funcional.
+- Hecho: checklist de deploy aplicada en un cierre completo y triple-verificado.
+- Hecho: cierre operativo del deploy fijado en `701ebcf` con evidencia visible de `buildTime`.
+- Hecho: cierre documental adicional consolidado localmente sin reabrir scope funcional del sprint.
+
+## No alcance del sprint cerrado más reciente
 - implementación libre del Tutor GCM
 - expansión del banco editorial
 - migración de rama `master` a `main`
 - nuevos frentes funcionales no respaldados por ADR o evidencia de negocio
 
-## Criterio de terminado del sprint actual
+## Criterio de terminado del sprint cerrado más reciente
 - [x] worktree residual resuelto o neutralizado
 - [x] mapa de features activas documentado
 - [x] ADR-002 cerrado en decisión humana (aprobado con guardrails)
 - [x] checklist de deploy aplicada sin ambigüedad en al menos un cierre completo
 - [x] backlog y status alineados al estado real del producto
+
+## Estado posterior al cierre
+- No queda abierto un Sprint 4 formal en estos documentos.
+- El backlog sigue funcionando como cola priorizada, pero no equivale a apertura automática de un nuevo sprint.
+- El siguiente sprint debe abrirse solo cuando exista objetivo, alcance y evidencia suficiente para sostenerlo.

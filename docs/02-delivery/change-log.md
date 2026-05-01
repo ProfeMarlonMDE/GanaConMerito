@@ -9,10 +9,17 @@ modules: [core, platform]
 tags: [changelog, cambios, entregas]
 related:
   - DEL-SPRINT-LOG
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-01
 ---
 
 # Change log
+
+## 2026-05-01
+- tipo: sprint+closure
+- modulo: delivery/documentation
+- resumen: se cerró formalmente Sprint 3 tras confirmar su cierre operativo efectivo: worktree residual resuelto, mapa de features activas consolidado, ADR-002 aprobado con guardrails y último deploy triple-verificado fijado en `701ebcf`; no se abre un Sprint 4 documental hasta contar con base explícita.
+- sprint: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
+- relacionados: docs/02-delivery/sprint-log.md, docs/01-product/backlog.md, docs/project/status.md
 
 ## 2026-05-01
 - tipo: deploy+verification
@@ -52,7 +59,7 @@ last_reviewed: 2026-04-28
 ## 2026-05-01
 - tipo: delivery+planning
 - modulo: governance/product
-- resumen: se registra el cierre operativo del sprint de maduración del producto y se abre el siguiente sprint centrado en normalización operativa final, resolución de ambigüedad topológica residual y preparación formal del frente de asistentes.
+- resumen: se registra el cierre operativo del Sprint 2 de maduración del producto y la apertura formal de Sprint 3 centrado en normalización operativa final, resolución de ambigüedad topológica residual y preparación formal del frente de asistentes.
 - sprint: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
 - relacionados: docs/02-delivery/sprint-log.md, docs/01-product/backlog.md, ADR-002-assistant-component-governance
 
@@ -60,49 +67,49 @@ last_reviewed: 2026-04-28
 - tipo: docs+ops
 - modulo: deploy/runtime
 - resumen: se formaliza la regla definitiva de verdad de runtime: un deploy solo se considera cerrado cuando coinciden `~/.openclaw/product`, `/opt/gcm/app` y la metadata visible del runtime en `/login` (`commit` + `buildTime`).
-- sprint: Sprint siguiente - Normalización operativa y blindaje del core
+- sprint: Sprint 2 - Maduración operativa del producto
 - relacionados: docs/project/source-of-truth.md, docs/05-ops/runbook.md, docs/05-ops/deploy-checklist.md
 
 ## 2026-05-01
 - tipo: fix+architecture
 - modulo: sessions/qa
 - resumen: se retiró el límite rígido de `5` turnos de la ruta de avance de sesión y se pasó a configuración explícita por entorno mediante `MAX_SESSION_TURNS`, conservando `5` como default controlado para no romper el baseline actual de QA.
-- sprint: Sprint siguiente - Normalización operativa y blindaje del core
+- sprint: Sprint 2 - Maduración operativa del producto
 - relacionados: docs/project/status.md, docs/project/e2e-status.md
 
 ## 2026-05-01
 - tipo: docs+ops
 - modulo: documentation/question-bank
 - resumen: se archivaron los duplicados documentales de `docs/banco-preguntas/*` con nombres fechados y se reafirmó `content/items/**` como verdad operativa del corpus, ajustando referencias mínimas para evitar que el legado siga compitiendo con la fuente canónica.
-- sprint: Sprint siguiente - Normalización operativa y blindaje del core
+- sprint: Sprint 2 - Maduración operativa del producto
 - relacionados: docs/project/source-of-truth.md, docs/04-quality/question-bank-load-phase-audit-2026-04-26.md
 
 ## 2026-05-01
 - tipo: docs+ops
 - modulo: documentation/editorial
 - resumen: se limpió la superficie activa `/editorial` para dejar solo documentación canónica vigente, se archivó con nombres fechados el inbox temporal y planes editoriales/question-bank superados, y se regeneró `site-docs` para eliminar referencias activas al legado.
-- sprint: Sprint siguiente - Normalización operativa y blindaje del core
+- sprint: Sprint 2 - Maduración operativa del producto
 - relacionados: docs/project/source-of-truth.md, docs/05-ops/2026-05-01-document-archive-and-naming-policy.md
 
 ## 2026-05-01
 - tipo: docs+architecture
 - modulo: ai/session-orchestrator
 - resumen: se formaliza ADR propuesto para gobernanza del componente de asistentes, fijando `Tutor GCM` como asistente visible único y manteniendo la lógica crítica fuera del LLM visible.
-- sprint: Sprint siguiente - Hardening de dashboard y estabilidad QA
+- sprint: Sprint 2 - Maduración operativa del producto
 - relacionados: ADR-002-assistant-component-governance, ARCH-ASSISTANT-COMPONENT-SPEC, GOV-HUMAN-APPROVAL
 
 ## 2026-05-01
 - tipo: fix+qa
 - modulo: qa/ops
 - resumen: se corrigió la limpieza de usuarios QA para tolerar identidades stale ya borradas en Supabase (`User not found`) y se revalidó el runtime objetivo `:3000` con smoke postdeploy y E2E UI Chromium verdes (`5` turnos).
-- sprint: Sprint siguiente - Hardening de dashboard y estabilidad QA
+- sprint: Sprint 2 - Maduración operativa del producto
 - relacionados: QUAL-QA-SEMANTICA-RUNBOOK, docs/project/e2e-status.md, docs/project/status.md
 
 ## 2026-04-29
 - tipo: hardening
 - modulo: dashboard/qa/ops
 - resumen: se formaliza el contrato del dashboard, se aísla la lógica de clasificación en módulo reutilizable con prueba determinista, la QA E2E pasa a usar identidades únicas por corrida, se agrega smoke postdeploy mínimo y se actualiza la documentación operativa con evidencia real.
-- sprint: Sprint siguiente - Hardening de dashboard y estabilidad QA
+- sprint: PENDIENTE DE ADSCRIPCIÓN FORMAL
 - relacionados: API-DASHBOARD-SUMMARY-CONTRACT, QUAL-DASHBOARD-HARDENING-2026-04-29, QUAL-QA-SEMANTICA-RUNBOOK
 
 ## 2026-04-28

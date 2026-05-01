@@ -17,7 +17,7 @@ last_reviewed: 2026-05-01
 # Backlog de producto
 
 ## Criterio de uso
-Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de contexto. No se debe marcar como hecho nada que no tenga evidencia en repo, sprint log o validación humana.
+Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de contexto. No se debe marcar como hecho nada que no tenga evidencia en repo, sprint log o validación humana. Tras el cierre de Sprint 3, esta lista queda como prioridad operativa, no como apertura automática de un nuevo sprint.
 
 ## En curso o altamente probable por evidencia en repo
 - Mantener y endurecer el core activo real: auth, onboarding, práctica y dashboard.
@@ -28,7 +28,7 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 ### Frente diferido a deuda técnica: banco de preguntas
 - Estado: DIFERIDO DEL SPRINT / TRATADO COMO DEUDA TÉCNICA.
 - Alcance diferido: validación funcional final del banco activo, alineación documental adicional del banco, segmentación asociada y proceso de gestión/editorial del banco.
-- Criterio operativo actual: no meter este frente dentro del sprint vigente ni hacerlo competir con UX, asistentes, trazabilidad y calidad operativa central.
+- Criterio operativo actual: no meter este frente dentro de un sprint no formalizado ni hacerlo competir con UX, asistentes, trazabilidad y calidad operativa central.
 - Reentrada sugerida: cuando exista un sprint dedicado a datos/editorial o cuando el trabajo de asistentes requiera reabrir explícitamente este dominio.
 
 ## Prioridad ejecutiva
@@ -65,4 +65,4 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 - `dashboard`: activo; debe reflejar progreso real sin inflar capacidades analíticas no implementadas.
 - `editorial`: hoy es biblioteca documental de solo lectura; no tratar como módulo administrativo activo del sprint.
 - `ai`: `Tutor GCM` quedó aprobado a nivel de gobernanza, pero sigue no implementado como feature funcional visible.
-- `question-bank`: queda diferido como deuda técnica; no debe competir en el sprint vigente salvo decisión ejecutiva explícita.
+- `question-bank`: queda diferido como deuda técnica; no debe competir en un sprint futuro salvo decisión ejecutiva explícita.
