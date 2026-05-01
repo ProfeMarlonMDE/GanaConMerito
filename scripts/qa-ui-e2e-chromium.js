@@ -174,7 +174,7 @@ async function getAuthCookies() {
 
   await page.goto('/onboarding', { waitUntil: 'networkidle', timeout: 45000 });
   await page.getByLabel('Meta activa').fill('QA UI E2E con Chromium');
-  await page.getByLabel('Áreas activas (separadas por coma)').fill('analisis de gestion');
+  await page.getByLabel('Áreas activas').fill('analisis de gestion');
   await page.getByRole('button', { name: 'Guardar onboarding' }).click();
   await page.waitForURL('**/practice', { timeout: 45000 });
   await page.screenshot({ path: path.join(artifactRoot, '02-after-onboarding.png'), fullPage: true });
@@ -185,19 +185,19 @@ async function getAuthCookies() {
 
   for (let turn = 1; turn <= 5; turn += 1) {
     const title = await page.locator('article h2').innerText();
-    const stateBefore = (await page.locator('text=Estado actual:').textContent()) || '';
-    const firstRadio = page.locator('input[type="radio"]').first();
-    const selectedOption = await firstRadio.inputValue();
-    await firstRadio.check();
-    await page.getByLabel('Justificación / razonamiento').fill(`Turno ${turn}: selección automatizada en Chromium para validar UI, red y feedback.`);
+    const stateBefore = (await page.locator('main').textContent()) || '';
+    const firstOption = page.locator('button.option-card').first();
+    const selectedOption = (await firstOption.locator('.option-key').textContent())?.trim() || 'A';
+    await firstOption.click();
+    await page.getByLabel('Justificación opcional').fill(`Turno ${turn}: selección automatizada en Chromium para validar UI, red y feedback.`);
     const responsePromise = page.waitForResponse((resp) => resp.url().includes('/api/session/advance') && resp.request().method() === 'POST', { timeout: 45000 });
     await page.getByRole('button', { name: 'Responder' }).click();
     const advanceResponse = await responsePromise;
     let advanceJson = null;
     try { advanceJson = await advanceResponse.json(); } catch {}
     await page.waitForLoadState('networkidle');
-    const feedbackText = await page.locator('text=/Correcta:/').locator('..').textContent().catch(() => null);
-    const stateAfter = (await page.locator('text=Estado actual:').textContent()) || '';
+    const feedbackText = await page.locator('.feedback-card').textContent().catch(() => null);
+    const stateAfter = (await page.locator('main').textContent()) || '';
     const sessionMessage = await page.locator('text=/La sesión terminó correctamente|No hay un siguiente ítem disponible/').textContent().catch(() => null);
     const shotName = `turn-${String(turn).padStart(2, '0')}-${slug(title)}.png`;
     await page.screenshot({ path: path.join(artifactRoot, shotName), fullPage: true });
@@ -215,7 +215,16 @@ async function getAuthCookies() {
       url: page.url(),
     });
     if (turn < 5) {
-      await page.waitForSelector('article h2', { timeout: 45000 });
+      await page.getByRole('button', { name: 'Siguiente pregunta' }).click();
+      await page.waitForFunction(
+        (previousTitle) => {
+          const heading = document.querySelector('article h2');
+          return Boolean(heading && heading.textContent && heading.textContent !== previousTitle);
+        },
+        title,
+        { timeout: 45000 },
+      );
+      await page.locator('button.option-card').first().waitFor({ state: 'visible', timeout: 45000 });
     }
   }
 

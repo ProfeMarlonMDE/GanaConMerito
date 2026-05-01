@@ -3,32 +3,33 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const items = [
+  { href: "/home", label: "Inicio", icon: "H" },
+  { href: "/practice", label: "Práctica", icon: "P" },
+  { href: "/editorial", label: "Biblioteca", icon: "B" },
+  { href: "/dashboard", label: "Métricas", icon: "M" },
+];
+
 export function AppNav() {
   const pathname = usePathname();
-  const items = [
-    { href: "/home", label: "Inicio" },
-    { href: "/onboarding", label: "Onboarding" },
-    { href: "/practice", label: "Práctica" },
-    { href: "/dashboard", label: "Dashboard" },
-  ];
 
   return (
-    <nav aria-label="Navegación principal" style={{ margin: "0 0 16px" }}>
-      <ul style={{ display: "flex", gap: "12px", listStyle: "none", padding: 0, margin: 0, flexWrap: "wrap" }}>
+    <nav className="bottom-nav" aria-label="Navegación principal">
+      <ul className="bottom-nav-list">
         {items.map((item) => {
-          const active = pathname === item.href;
+          const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
 
           return (
             <li key={item.href}>
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                style={{
-                  fontWeight: active ? 700 : 500,
-                  textDecoration: active ? "underline" : "none",
-                }}
+                className={`bottom-nav-link${active ? " active" : ""}`}
               >
-                {item.label}
+                <span className="nav-icon" aria-hidden="true">
+                  {item.icon}
+                </span>
+                <span>{item.label}</span>
               </Link>
             </li>
           );

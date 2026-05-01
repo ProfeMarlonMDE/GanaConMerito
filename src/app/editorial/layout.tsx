@@ -8,7 +8,7 @@ function getInitial(email?: string | null) {
   return email.slice(0, 1).toUpperCase();
 }
 
-export default async function AuthenticatedLayout({ children }: { children: ReactNode }) {
+export default async function EditorialLayout({ children }: { children: ReactNode }) {
   const { user } = await requireAuthenticatedUser();
 
   return (
@@ -21,7 +21,7 @@ export default async function AuthenticatedLayout({ children }: { children: Reac
             </div>
             <div>
               <div className="topbar-title">GanaConMerito</div>
-              <div className="subtle">{user.email ?? "Sesión activa"}</div>
+              <div className="subtle">Biblioteca curada</div>
             </div>
           </div>
           <div className="inline-cluster">

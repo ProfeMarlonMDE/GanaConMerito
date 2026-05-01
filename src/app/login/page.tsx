@@ -16,13 +16,29 @@ export default async function LoginPage() {
   }
 
   return (
-    <main>
-      <h1>Acceso</h1>
-      <p>Inicia sesión con Google para continuar al MVP.</p>
-      <GoogleSignInButton />
-      <p style={{ marginTop: "16px", fontSize: "12px", opacity: 0.7 }}>
-        Commit desplegado: <code>{commit}</code> · Build time: <code>{buildTime}</code>
-      </p>
+    <main className="auth-page">
+      <section className="auth-panel">
+        <div className="brand-mark" aria-hidden="true">
+          <div className="brand-dot" />
+        </div>
+        <p className="eyebrow">Acceso seguro</p>
+        <h1 className="display-title">GanaConMerito</h1>
+        <h2 className="section-title" style={{ marginTop: 14 }}>Preparación académica con foco, claridad y progreso trazable.</h2>
+        <p className="body-lg" style={{ marginTop: 12 }}>
+          Entra con Google para retomar práctica, revisar tu avance y trabajar sobre una superficie móvil más limpia y directa.
+        </p>
+        <div style={{ marginTop: 24 }}>
+          <GoogleSignInButton />
+        </div>
+        <div className="trust-note">
+          <p className="subtle" style={{ margin: 0 }}>
+            Entorno académico autenticado. El acceso conserva build y commit visibles para mantener trazabilidad operativa.
+          </p>
+          <p className="subtle" style={{ marginBottom: 0, marginTop: 10 }}>
+            Commit desplegado: <code>{commit}</code> · Build time: <code>{buildTime}</code>
+          </p>
+        </div>
+      </section>
     </main>
   );
 }

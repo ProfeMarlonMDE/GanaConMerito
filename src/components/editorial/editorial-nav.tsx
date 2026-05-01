@@ -19,6 +19,8 @@ function getCategoryLabel(category: string) {
       return "Base de datos";
     case "api":
       return "API";
+    case "content":
+      return "Contenido";
     default:
       return category;
   }
@@ -28,12 +30,17 @@ export function EditorialNav(props: { docs: EditorialDocDefinition[]; currentSlu
   const grouped = groupDocsByCategory(props.docs);
 
   return (
-    <nav style={{ position: "sticky", top: 16, alignSelf: "start" }}>
-      <h2 style={{ marginTop: 0 }}>Documentos</h2>
+    <aside className="doc-nav">
+      <div className="surface-card" style={{ padding: 18 }}>
+        <p className="eyebrow">Mapa documental</p>
+        <h2 className="section-title" style={{ fontSize: "1.15rem" }}>Colección canónica</h2>
+        <p className="subtle">Solo lectura, organizada por categoría y lista para consulta rápida.</p>
+      </div>
+
       {Object.entries(grouped).map(([category, docs]) => (
-        <section key={category} style={{ marginBottom: 20 }}>
-          <h3 style={{ marginBottom: 8, fontSize: 14, opacity: 0.8 }}>{getCategoryLabel(category)}</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8 }}>
+        <section key={category} className="surface-card" style={{ padding: 18 }}>
+          <p className="metric-label" style={{ margin: 0 }}>{getCategoryLabel(category)}</p>
+          <ul style={{ listStyle: "none", padding: 0, margin: "14px 0 0", display: "grid", gap: 8 }}>
             {docs.map((doc) => {
               const isActive = props.currentSlug === doc.slug;
               return (
@@ -42,11 +49,12 @@ export function EditorialNav(props: { docs: EditorialDocDefinition[]; currentSlu
                     href={`/editorial/${doc.slug}`}
                     style={{
                       display: "block",
-                      padding: "8px 10px",
-                      borderRadius: 8,
+                      padding: "10px 12px",
+                      borderRadius: 14,
                       textDecoration: "none",
-                      background: isActive ? "rgba(0,0,0,0.08)" : "transparent",
-                      fontWeight: isActive ? 600 : 400,
+                      background: isActive ? "var(--accent-premium-soft)" : "var(--surface-secondary)",
+                      color: isActive ? "var(--accent-premium)" : "var(--text-secondary)",
+                      fontWeight: isActive ? 700 : 600,
                     }}
                   >
                     {doc.title}
@@ -57,6 +65,6 @@ export function EditorialNav(props: { docs: EditorialDocDefinition[]; currentSlu
           </ul>
         </section>
       ))}
-    </nav>
+    </aside>
   );
 }

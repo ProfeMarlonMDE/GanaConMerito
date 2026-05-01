@@ -18,11 +18,11 @@ export function CopyDocButton(props: { content: string }) {
   }
 
   return (
-    <div style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
-      <button type="button" onClick={handleCopy}>
-        {copied ? "Copiado" : "Copiar todo el archivo"}
+    <div style={{ display: "inline-flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+      <button type="button" className="secondary-button" onClick={handleCopy}>
+        {copied ? "Copiado" : "Copiar documento"}
       </button>
-      {error ? <span style={{ fontSize: 12, color: "#b00020" }}>{error}</span> : null}
+      {error ? <span className="subtle" style={{ color: "var(--error)" }}>{error}</span> : null}
     </div>
   );
 }

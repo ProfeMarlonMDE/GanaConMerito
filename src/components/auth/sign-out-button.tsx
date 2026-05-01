@@ -27,10 +27,10 @@ export function SignOutButton() {
 
   return (
     <div>
-      <button onClick={handleSignOut} disabled={loading}>
+      <button className="secondary-button signout-inline" onClick={handleSignOut} disabled={loading}>
         {loading ? "Saliendo..." : "Cerrar sesión"}
       </button>
-      {error ? <p>{error}</p> : null}
+      {error ? <p className="subtle" style={{ color: "var(--error)", marginTop: 8 }}>{error}</p> : null}
     </div>
   );
 }

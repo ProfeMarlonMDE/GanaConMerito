@@ -21,10 +21,11 @@ export function GoogleSignInButton() {
 
   return (
     <div>
-      <button onClick={handleSignIn} disabled={loading}>
-        {loading ? "Conectando..." : "Continuar con Google"}
+      <button className="secondary-button google-button" onClick={handleSignIn} disabled={loading}>
+        <span className="google-glyph" aria-hidden="true" />
+        <span>{loading ? "Conectando..." : "Continuar con Google"}</span>
       </button>
-      {error ? <p>{error}</p> : null}
+      {error ? <p className="subtle" style={{ color: "var(--error)", marginTop: 10 }}>{error}</p> : null}
     </div>
   );
 }

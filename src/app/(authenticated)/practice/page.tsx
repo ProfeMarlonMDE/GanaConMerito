@@ -28,9 +28,16 @@ export default async function PracticePage() {
 
   return (
     <>
-      <h1>Práctica</h1>
-      <p>Sesión real conectada a backend, ítems y evaluación.</p>
-      <p><Link href="/home">← Volver a inicio</Link></p>
+      <section className="page-header">
+        <p className="eyebrow">Práctica</p>
+        <h1 className="display-title">La superficie más fuerte: pregunta, decisión y feedback.</h1>
+        <p className="body-lg">
+          Sin chat dominante, sin desorden visual. Aquí vive el núcleo del producto y la señal que luego alimenta el dashboard.
+        </p>
+        <div className="page-actions">
+          <Link href="/home" className="subtle">← Volver a inicio</Link>
+        </div>
+      </section>
       <PracticeSession />
     </>
   );

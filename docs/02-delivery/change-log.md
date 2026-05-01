@@ -15,6 +15,13 @@ last_reviewed: 2026-05-01
 # Change log
 
 ## 2026-05-01
+- tipo: docs+product
+- modulo: ui/ux
+- resumen: se formalizó una propuesta canónica de rediseño UI premium mobile-first con paleta híbrida final, reglas de integración secundaria para `Tutor GCM` y plan de rollout por fases, manteniendo separación explícita entre estado actual validado y propuesta aún no implementada.
+- sprint: SIN SPRINT FORMAL ABIERTO
+- relacionados: docs/01-product/ui-premium-mobile-redesign-proposal.md, docs/01-product/backlog.md, docs/project/status.md
+
+## 2026-05-01
 - tipo: sprint+closure
 - modulo: delivery/documentation
 - resumen: se cerró formalmente Sprint 3 tras confirmar su cierre operativo efectivo: worktree residual resuelto, mapa de features activas consolidado, ADR-002 aprobado con guardrails y último deploy triple-verificado fijado en `701ebcf`; no se abre un Sprint 4 documental hasta contar con base explícita.

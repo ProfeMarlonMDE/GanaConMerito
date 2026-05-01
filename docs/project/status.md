@@ -112,6 +112,13 @@
 3. preparar contrato v1, trazabilidad mínima y QA negativa del futuro `Tutor GCM`
 4. mantener fuera del sprint el frente editorial/banco salvo instrucción ejecutiva explícita
 5. usar `docs/01-product/active-feature-map.md` como referencia operativa para evitar sobreprometer features
+6. si se abre frente formal de UI, usar `docs/01-product/ui-premium-mobile-redesign-proposal.md` como referencia canónica para la nueva dirección visual, la paleta híbrida final y el rollout por fases
+
+## Propuesta en curso, no implementada aún
+- Se dejó formalizada una dirección documental para rediseño UI premium mobile-first del core real del producto.
+- Esa propuesta no cambia el hecho funcional vigente: el core activo sigue siendo `login + onboarding + práctica + dashboard`, con biblioteca editorial de solo lectura.
+- `Tutor GCM` sigue aprobado solo como asistente visible único futuro bajo guardrails; en esta etapa la propuesta visual lo conserva como capa secundaria, no como chat dominante.
+- Mientras no exista implementación validada y release confirmado, el último runtime triple-verificado sigue siendo `701ebcf`.
 
 ## Remediación de auditoría en curso
 

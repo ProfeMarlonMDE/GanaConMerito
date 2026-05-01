@@ -37,9 +37,17 @@ export default async function OnboardingPage() {
 
   return (
     <>
-      <h1>Onboarding</h1>
-      <p>Completa tu perfil inicial para personalizar la práctica.</p>
-      <p><Link href="/home">← Volver a inicio</Link></p>
+      <section className="page-header">
+        <p className="eyebrow">Onboarding</p>
+        <h1 className="display-title">Configura una base corta, útil y sin ansiedad.</h1>
+        <p className="body-lg">
+          Define perfil, meta activa y áreas prioritarias. El objetivo no es llenar formularios: es dejar lista la práctica real.
+        </p>
+        <div className="page-actions">
+          <Link href="/home" className="subtle">← Volver a inicio</Link>
+        </div>
+      </section>
+
       <OnboardingForm
         initialTargetRole={learningProfile?.target_role ?? "docente"}
         initialExamType={learningProfile?.exam_type ?? "docente"}

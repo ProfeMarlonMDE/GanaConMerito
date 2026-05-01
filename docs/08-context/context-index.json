@@ -86,6 +86,41 @@
       "last_reviewed": "2026-05-01"
     },
     {
+      "id": "PROD-UI-PREMIUM-MOBILE-REDESIGN-PROPOSAL",
+      "path": "docs/01-product/ui-premium-mobile-redesign-proposal.md",
+      "type": "product",
+      "status": "proposed",
+      "project": "ganaconmerito",
+      "modules": [
+        "ui",
+        "ux",
+        "mobile",
+        "auth",
+        "onboarding",
+        "practice",
+        "dashboard",
+        "editorial",
+        "ai"
+      ],
+      "tags": [
+        "ui",
+        "ux",
+        "mobile-first",
+        "premium",
+        "proposal",
+        "rollout"
+      ],
+      "owner": "marlon-arcila",
+      "related": [
+        "PROD-UI-DESIGN-BRIEF-MOBILE-FIRST",
+        "PROD-ACTIVE-FEATURE-MAP",
+        "PROD-BACKLOG",
+        "ARCH-ASSISTANT-COMPONENT-SPEC",
+        "ADR-002-assistant-component-governance"
+      ],
+      "last_reviewed": "2026-05-01"
+    },
+    {
       "id": "PROD-VISION",
       "path": "docs/01-product/vision.md",
       "type": "product",

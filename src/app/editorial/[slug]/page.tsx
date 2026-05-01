@@ -16,72 +16,47 @@ export default async function EditorialDocPage(props: { params: Promise<{ slug: 
   }
 
   return (
-    <main>
-      <p><Link href="/editorial">← Volver a biblioteca editorial</Link></p>
-      <div style={{ display: "grid", gap: 24, gridTemplateColumns: "280px 1fr" }}>
+    <div className="content-stack" style={{ paddingTop: 0 }}>
+      <section className="page-header">
+        <p className="eyebrow">Biblioteca / Documento</p>
+        <h1 className="display-title">{doc.title}</h1>
+        <p className="body-lg">{doc.description}</p>
+        <div className="page-actions">
+          <Link href="/editorial" className="subtle">← Volver a biblioteca</Link>
+          <Link href={`/editorial/download/${doc.slug}`} className="subtle">Descargar archivo</Link>
+          {doc.raw ? <CopyDocButton content={doc.raw} /> : null}
+        </div>
+      </section>
+
+      <section className="editorial-layout">
         <EditorialNav docs={docs} currentSlug={slug} />
 
-        <section>
-          <header style={{ marginBottom: 16 }}>
-            <h1 style={{ marginBottom: 8 }}>{doc.title}</h1>
-            <p style={{ marginTop: 0 }}>{doc.description}</p>
-            <p style={{ fontSize: 13, opacity: 0.75 }}>
-              <strong>Categoría:</strong> {doc.category}
-              <br />
-              <strong>Origen:</strong> {doc.source === "inbox" ? "Inbox temporal" : "Docs canónicos"}
-              <br />
-              <strong>Archivo:</strong> <code>docs/{doc.relativePath}</code>
-              <br />
-              <Link href={`/editorial/download/${doc.slug}`}>Descargar archivo</Link>
-              {doc.raw ? (
-                <>
-                  <br />
-                  <CopyDocButton content={doc.raw} />
-                </>
-              ) : null}
-            </p>
-          </header>
+        <article className="surface-card" style={{ padding: 22 }}>
+          <div className="inline-cluster" style={{ marginBottom: 18 }}>
+            <span className="pill">Categoría: {doc.category}</span>
+            <span className="pill">Origen: {doc.source === "inbox" ? "Inbox temporal" : "Docs canónicos"}</span>
+            <span className="pill">Archivo: docs/{doc.relativePath}</span>
+          </div>
 
-          <article
-            style={{
-              border: "1px solid rgba(0,0,0,0.12)",
-              borderRadius: 12,
-              padding: 18,
-              background: "rgba(255,255,255,0.02)",
-            }}
-          >
-            {!doc.available ? (
-              <div>
-                <p>Este archivo aún no está disponible en este entorno de despliegue.</p>
-                <p>
-                  La referencia existe en el catálogo, pero el archivo físico no se encuentra todavía en el servidor actual.
-                </p>
-              </div>
-            ) : isPreviewableDoc(doc) && doc.raw ? (
-              <pre
-                style={{
-                  whiteSpace: "pre-wrap",
-                  overflowX: "auto",
-                  fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-                  lineHeight: 1.55,
-                  margin: 0,
-                }}
-              >
-                {doc.raw}
-              </pre>
-            ) : (
-              <div>
-                <p>Este archivo no tiene previsualización web en esta versión del módulo.</p>
-                <p>
-                  Usa la descarga directa para inspeccionarlo localmente:
-                  {" "}
-                  <Link href={`/editorial/download/${doc.slug}`}>descargar archivo</Link>
-                </p>
-              </div>
-            )}
-          </article>
-        </section>
-      </div>
-    </main>
+          {!doc.available ? (
+            <div className="empty-state">
+              <p className="body-sm" style={{ marginTop: 0 }}>Este archivo aún no está disponible en este entorno.</p>
+              <p className="subtle" style={{ marginBottom: 0 }}>
+                La referencia existe en el catálogo, pero el archivo físico no se encuentra todavía en el servidor actual.
+              </p>
+            </div>
+          ) : isPreviewableDoc(doc) && doc.raw ? (
+            <pre className="doc-preview">{doc.raw}</pre>
+          ) : (
+            <div className="empty-state">
+              <p className="body-sm" style={{ marginTop: 0 }}>Este archivo no tiene previsualización web en esta versión.</p>
+              <p className="subtle" style={{ marginBottom: 0 }}>
+                Usa la descarga directa para inspeccionarlo localmente.
+              </p>
+            </div>
+          )}
+        </article>
+      </section>
+    </div>
   );
 }

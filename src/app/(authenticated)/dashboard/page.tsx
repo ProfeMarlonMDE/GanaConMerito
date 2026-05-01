@@ -11,6 +11,10 @@ interface DashboardPageProps {
   }>;
 }
 
+function getAccuracy(totalCorrect: number, totalAttempts: number) {
+  return totalAttempts > 0 ? Number(((totalCorrect / totalAttempts) * 100).toFixed(1)) : 0;
+}
+
 export default async function DashboardPage({ searchParams }: DashboardPageProps) {
   await requireAuthenticatedUser();
 
@@ -22,74 +26,164 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
   const summary = await getDashboardSummaryForCurrentUser(sessionId);
   const breakdown = await getDashboardTopicBreakdownForCurrentUser(sessionId);
 
-  const renderSummary = (title: string, block: typeof summary.historical) => {
-    const accuracy = block.totalAttempts > 0
-      ? Number(((block.totalCorrect / block.totalAttempts) * 100).toFixed(1))
-      : 0;
+  const historicalAccuracy = getAccuracy(summary.historical.totalCorrect, summary.historical.totalAttempts);
+  const currentAccuracy = summary.currentSession
+    ? getAccuracy(summary.currentSession.totalCorrect, summary.currentSession.totalAttempts)
+    : 0;
 
-    return (
-      <section>
-        <h2>{title}</h2>
-        <ul>
-          <li>Nivel estimado: {block.estimatedLevel}</li>
-          <li>Intentos totales: {block.totalAttempts}</li>
-          <li>Aciertos totales: {block.totalCorrect}</li>
-          <li>Precisión: {accuracy}%</li>
-          <li>Promedio razonamiento: {block.avgReasoningScore}</li>
-          <li>Tendencia: {block.recentTrend}</li>
-          <li>Percentil: {block.percentileSegment ?? "Sin datos"}</li>
-        </ul>
-        <p>Fuertes: {block.strongestCompetencies.length > 0 ? block.strongestCompetencies.join(", ") : "Sin datos suficientes"}</p>
-        <p>Por reforzar: {block.weakestCompetencies.length > 0 ? block.weakestCompetencies.join(", ") : "Sin datos"}</p>
-      </section>
-    );
-  };
+  const currentBlock = summary.currentSession;
+  const topWeak = (isSessionView ? breakdown.currentSession : breakdown.historical).slice(-2).reverse();
+  const topStrong = (isSessionView ? breakdown.currentSession : breakdown.historical).slice(0, 2);
 
-  const renderBreakdown = (title: string, rows: typeof breakdown.historical, emptyLabel: string) => (
-    <section>
-      <h2>{title}</h2>
-      {rows.length === 0 ? (
-        <p>{emptyLabel}</p>
-      ) : (
-        <ul>
-          {rows.map((row) => (
-            <li key={`${title}-${row.area}-${row.competency}`}>
-              <strong>{row.area}</strong> / {row.competency} — intentos: {row.attempts}, aciertos: {row.correct_count}, nivel: {row.estimated_level}, razonamiento: {row.avg_reasoning_score}, dificultad media: {row.avg_difficulty}
-            </li>
-          ))}
-        </ul>
-      )}
-    </section>
-  );
+  const activeRows = isSessionView ? breakdown.currentSession : breakdown.historical;
 
   return (
     <>
-      <h1>Dashboard</h1>
-      <p><Link href="/home">← Volver a inicio</Link></p>
+      <section className="page-header">
+        <p className="eyebrow">Dashboard</p>
+        <h1 className="display-title">Insights útiles antes que tablas.</h1>
+        <p className="body-lg">
+          Vista móvil pensada para entender tendencia, fortalezas y focos de refuerzo sin convertir el progreso en ruido.
+        </p>
+        <div className="inline-cluster">
+          <span className={`segment-pill ${!isSessionView ? "active" : ""}`}>Histórico</span>
+          <span className={`segment-pill ${isSessionView ? "active" : ""}`}>Sesión actual</span>
+          {isSessionView ? <Link href="/dashboard" className="subtle">Ver acumulado →</Link> : null}
+        </div>
+      </section>
 
-      {isSessionView ? (
-        <section>
-          <p>Viendo resultados separados entre la corrida actual y tu histórico acumulado.</p>
-          <p>Session ID: {sessionId}</p>
-          <Link href="/dashboard">Ver dashboard histórico acumulado</Link>
-        </section>
-      ) : (
-        <section>
-          <p>Vista acumulada de tu progreso histórico.</p>
-        </section>
-      )}
+      <section className="metric-grid">
+        <article className="metric-card">
+          <span className="metric-label">Precisión {isSessionView ? "sesión" : "global"}</span>
+          <strong className="metric-value">{isSessionView ? currentAccuracy : historicalAccuracy}%</strong>
+          <span className={`metric-delta ${summary.historical.recentTrend === "up" ? "success" : summary.historical.recentTrend === "down" ? "warning" : ""}`}>
+            Tendencia {summary.historical.recentTrend}
+          </span>
+        </article>
+        <article className="metric-card">
+          <span className="metric-label">Intentos</span>
+          <strong className="metric-value">{isSessionView && currentBlock ? currentBlock.totalAttempts : summary.historical.totalAttempts}</strong>
+          <span className="subtle">Señal efectiva sobre la que ya puedes decidir.</span>
+        </article>
+        <article className="metric-card">
+          <span className="metric-label">Razonamiento promedio</span>
+          <strong className="metric-value">{isSessionView && currentBlock ? currentBlock.avgReasoningScore : summary.historical.avgReasoningScore}</strong>
+          <span className="subtle">Ayuda a leer calidad, no solo acierto bruto.</span>
+        </article>
+        <article className="metric-card">
+          <span className="metric-label">Nivel estimado</span>
+          <strong className="metric-value">{isSessionView && currentBlock ? currentBlock.estimatedLevel : summary.historical.estimatedLevel}</strong>
+          <span className="subtle">Lectura resumida del momento actual.</span>
+        </article>
+      </section>
 
-      {isSessionView && summary.currentSession ? renderSummary("Resumen de la sesión actual", summary.currentSession) : null}
-      {renderSummary(isSessionView ? "Resumen histórico acumulado" : "Resumen general", summary.historical)}
+      <section className="two-column-grid">
+        <article className="surface-card" style={{ padding: 22 }}>
+          <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
+            <div>
+              <p className="eyebrow">Tendencia</p>
+              <h2 className="section-title">{isSessionView ? "Sesión en contexto" : "Progreso histórico acumulado"}</h2>
+            </div>
+            <span className="status-pill premium">High signal</span>
+          </div>
+          <p className="body-sm">
+            {isSessionView
+              ? `Session ID: ${sessionId}. Aquí conviven la lectura puntual de la corrida y el histórico acumulado para evitar conclusiones aisladas.`
+              : "Esta vista resume tu avance general y funciona como mapa para decidir el siguiente frente de práctica."}
+          </p>
+          <div style={{ marginTop: 16 }}>
+            <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
+              <span className="metric-label">Precisión</span>
+              <span className="subtle">{isSessionView ? currentAccuracy : historicalAccuracy}%</span>
+            </div>
+            <div className="progress-rail" style={{ marginTop: 10 }}>
+              <div className="progress-fill" style={{ width: `${Math.min(100, Math.max(8, isSessionView ? currentAccuracy : historicalAccuracy))}%` }} />
+            </div>
+          </div>
+          <div className="tutor-chip" style={{ marginTop: 18 }}>
+            <div>
+              <p className="metric-label" style={{ margin: 0 }}>Tutor GCM</p>
+              <p className="body-sm" style={{ margin: "8px 0 0" }}>
+                {summary.historical.weakestCompetencies.length > 0
+                  ? `Prioridad sugerida: reforzar ${summary.historical.weakestCompetencies[0]} antes de ampliar volumen.`
+                  : "Cuando haya más señal, aquí vivirán recomendaciones estratégicas accionables."}
+              </p>
+            </div>
+            <span className="status-pill premium">Contextual</span>
+          </div>
+        </article>
 
-      {isSessionView
-        ? renderBreakdown("Desglose de la sesión actual", breakdown.currentSession, "Esta sesión todavía no tiene respuestas evaluadas.")
-        : null}
-      {renderBreakdown(
-        isSessionView ? "Desglose histórico acumulado" : "Desglose por tema",
-        breakdown.historical,
-        "Aún no hay datos suficientes.",
-      )}
+        <article className="surface-card" style={{ padding: 22 }}>
+          <p className="eyebrow">Lectura ejecutiva</p>
+          <div className="list-row">
+            <span>Percentil</span>
+            <strong>{isSessionView && currentBlock ? currentBlock.percentileSegment ?? "—" : summary.historical.percentileSegment ?? "—"}</strong>
+          </div>
+          <div className="list-row">
+            <span>Fortaleza principal</span>
+            <strong>{summary.historical.strongestCompetencies[0] ?? "Sin datos"}</strong>
+          </div>
+          <div className="list-row">
+            <span>Refuerzo principal</span>
+            <strong>{summary.historical.weakestCompetencies[0] ?? "Sin datos"}</strong>
+          </div>
+        </article>
+      </section>
+
+      <section className="two-column-grid">
+        <article className="list-card">
+          <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
+            <h2 className="section-title" style={{ fontSize: "1.2rem" }}>Áreas de dominio</h2>
+            <span className="status-pill success">Fuerte</span>
+          </div>
+          {topStrong.length > 0 ? topStrong.map((row) => (
+            <div key={`${row.area}-${row.competency}`} className="list-row">
+              <span>{row.area} / {row.competency}</span>
+              <strong>{getAccuracy(row.correct_count, row.attempts)}%</strong>
+            </div>
+          )) : <p className="subtle">Aún no hay datos suficientes para identificar fortalezas.</p>}
+        </article>
+        <article className="list-card">
+          <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
+            <h2 className="section-title" style={{ fontSize: "1.2rem" }}>Focos de refuerzo</h2>
+            <span className="status-pill warning">Atención</span>
+          </div>
+          {topWeak.length > 0 ? topWeak.map((row) => (
+            <div key={`${row.area}-${row.competency}`} className="list-row">
+              <span>{row.area} / {row.competency}</span>
+              <strong>{getAccuracy(row.correct_count, row.attempts)}%</strong>
+            </div>
+          )) : <p className="subtle">Todavía no hay señal suficiente para priorizar un refuerzo claro.</p>}
+        </article>
+      </section>
+
+      <section className="surface-card" style={{ padding: 22 }}>
+        <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
+          <div>
+            <p className="eyebrow">Desglose</p>
+            <h2 className="section-title">Detalle por tema</h2>
+          </div>
+          <Link href="/practice" className="subtle">Ir a práctica →</Link>
+        </div>
+        {activeRows.length === 0 ? (
+          <p className="subtle">Aún no hay datos suficientes.</p>
+        ) : (
+          <div style={{ marginTop: 10 }}>
+            {activeRows.map((row) => (
+              <div key={`${row.area}-${row.competency}`} className="list-row">
+                <div>
+                  <strong>{row.area}</strong>
+                  <div className="subtle">{row.competency}</div>
+                </div>
+                <div style={{ textAlign: "right" }}>
+                  <strong>{getAccuracy(row.correct_count, row.attempts)}%</strong>
+                  <div className="subtle">{row.attempts} intentos</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
     </>
   );
 }

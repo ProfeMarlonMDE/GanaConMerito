@@ -81,25 +81,27 @@ export function OnboardingForm(props: {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Rol objetivo
-        <input value={targetRole} disabled readOnly />
-      </label>
-      <label>
-        Tipo de prueba
-        <input value={examType} disabled readOnly />
-      </label>
-      <label>
-        Perfil profesional
+    <form className="form-shell" onSubmit={handleSubmit}>
+      <div className="form-grid two">
+        <label className="form-field">
+          <span className="field-label">Rol objetivo</span>
+          <input className="text-input" value={targetRole} disabled readOnly />
+        </label>
+        <label className="form-field">
+          <span className="field-label">Tipo de prueba</span>
+          <input className="text-input" value={examType} disabled readOnly />
+        </label>
+      </div>
+
+      <label className="form-field">
+        <span className="field-label">Perfil profesional</span>
         <select
+          className="select-input"
           value={professionalProfileId}
           onChange={(event) => setProfessionalProfileId(event.target.value)}
           disabled={loading || props.professionalProfiles.length === 0}
         >
-          {props.professionalProfiles.length === 0 ? (
-            <option value="">No hay perfiles disponibles</option>
-          ) : null}
+          {props.professionalProfiles.length === 0 ? <option value="">No hay perfiles disponibles</option> : null}
           {props.professionalProfiles.map((profile) => (
             <option key={profile.id} value={profile.id}>
               {profile.name}
@@ -107,27 +109,51 @@ export function OnboardingForm(props: {
           ))}
         </select>
       </label>
-      <label>
-        Meta activa
-        <input value={activeGoal} onChange={(e) => setActiveGoal(e.target.value)} required />
-      </label>
-      <label>
-        Estilo de feedback
-        <input value={preferredFeedbackStyle} disabled readOnly />
-      </label>
-      <label>
-        Áreas activas (separadas por coma)
+
+      <label className="form-field">
+        <span className="field-label">Meta activa</span>
         <input
-          value={activeAreas}
-          onChange={(e) => setActiveAreas(e.target.value)}
-          aria-invalid={!hasActiveAreas}
-          placeholder="Ej.: matemáticas, lectura crítica"
+          className="text-input"
+          value={activeGoal}
+          onChange={(e) => setActiveGoal(e.target.value)}
+          placeholder="Ej.: Examen de admisión 2026"
+          required
         />
       </label>
-      <button type="submit" disabled={loading || !professionalProfileId || !activeGoalValue || !hasActiveAreas}>
-        {loading ? "Guardando..." : "Guardar onboarding"}
-      </button>
-      {error ? <p>{error}</p> : null}
+
+      <div className="form-grid two">
+        <label className="form-field">
+          <span className="field-label">Estilo de feedback</span>
+          <input className="text-input" value={preferredFeedbackStyle} disabled readOnly />
+        </label>
+        <label className="form-field">
+          <span className="field-label">Áreas activas</span>
+          <input
+            className="text-input"
+            value={activeAreas}
+            onChange={(e) => setActiveAreas(e.target.value)}
+            aria-invalid={!hasActiveAreas}
+            placeholder="Ej.: matemáticas, lectura crítica"
+          />
+        </label>
+      </div>
+
+      <div className="surface-card" style={{ padding: 18 }}>
+        <p className="metric-label" style={{ marginTop: 0 }}>Áreas detectadas</p>
+        <div className="inline-cluster">
+          {parsedActiveAreas.length > 0 ? parsedActiveAreas.map((area) => (
+            <span key={area} className="pill">{area}</span>
+          )) : <span className="subtle">Aún no hay áreas activas válidas.</span>}
+        </div>
+      </div>
+
+      <div className="page-actions">
+        <button type="submit" className="primary-button" disabled={loading || !professionalProfileId || !activeGoalValue || !hasActiveAreas}>
+          {loading ? "Guardando..." : "Guardar onboarding"}
+        </button>
+      </div>
+
+      {error ? <p className="subtle" style={{ color: "var(--error)", margin: 0 }}>{error}</p> : null}
     </form>
   );
 }

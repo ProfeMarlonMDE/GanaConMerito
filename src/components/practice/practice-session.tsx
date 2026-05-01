@@ -37,6 +37,7 @@ export function PracticeSession() {
   const [selectedOption, setSelectedOption] = useState<"A" | "B" | "C" | "D" | null>(null);
   const [userRationale, setUserRationale] = useState("");
   const [feedback, setFeedback] = useState<AdvanceResult | null>(null);
+  const [pendingNextItemId, setPendingNextItemId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sessionMessage, setSessionMessage] = useState<string | null>(null);
@@ -47,6 +48,7 @@ export function PracticeSession() {
   }, [feedback?.currentState, session?.currentState]);
 
   const sessionDashboardHref = session ? `/dashboard?sessionId=${encodeURIComponent(session.sessionId)}` : null;
+  const canStartAnother = sessionEnded || (!item && Boolean(sessionMessage));
 
   async function loadItem(sessionId: string, itemId: string) {
     const response = await fetch(
@@ -61,6 +63,8 @@ export function PracticeSession() {
     setItem(data);
     setSelectedOption(null);
     setUserRationale("");
+    setFeedback(null);
+    setPendingNextItemId(null);
   }
 
   async function handleStart() {
@@ -69,6 +73,7 @@ export function PracticeSession() {
     setFeedback(null);
     setSessionMessage(null);
     setItem(null);
+    setPendingNextItemId(null);
 
     const response = await fetch("/api/session/start", {
       method: "POST",
@@ -136,21 +141,31 @@ export function PracticeSession() {
     setFeedback(data);
 
     if (data.currentState === "session_close") {
-      setItem(null);
+      setPendingNextItemId(null);
       setSessionMessage("La sesión terminó correctamente. Ya puedes revisar esta corrida en el dashboard de la sesión.");
       setLoading(false);
       return;
     }
 
     if (data.nextItemId) {
-      try {
-        await loadItem(session.sessionId, data.nextItemId);
-      } catch (loadError) {
-        setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el siguiente ítem.");
-      }
+      setPendingNextItemId(data.nextItemId);
     } else {
-      setItem(null);
       setSessionMessage("No hay un siguiente ítem disponible en este momento.");
+    }
+
+    setLoading(false);
+  }
+
+  async function handleContinue() {
+    if (!session || !pendingNextItemId) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      await loadItem(session.sessionId, pendingNextItemId);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el siguiente ítem.");
     }
 
     setLoading(false);
@@ -164,90 +179,143 @@ export function PracticeSession() {
     setFeedback(null);
     setError(null);
     setSessionMessage(null);
+    setPendingNextItemId(null);
     setLoading(false);
   }
 
   return (
-    <section>
+    <section className="content-stack" style={{ paddingTop: 0 }}>
       {!session ? (
-        <button onClick={handleStart} disabled={loading}>
-          {loading ? "Iniciando..." : "Iniciar práctica"}
-        </button>
+        <div className="hero-card">
+          <p className="eyebrow">Sesión real conectada</p>
+          <h2 className="section-title">Práctica guiada con backend, evaluación y feedback trazable.</h2>
+          <p className="body-sm">
+            Esta superficie prioriza pregunta, decisión y justificación. Tutor GCM queda como capa futura de ayuda contextual, no como chat dominante.
+          </p>
+          <div className="page-actions" style={{ marginTop: 18 }}>
+            <button onClick={handleStart} className="primary-button" disabled={loading}>
+              {loading ? "Iniciando..." : "Iniciar práctica"}
+            </button>
+          </div>
+        </div>
       ) : null}
 
-      {error ? <p>{error}</p> : null}
-      {sessionMessage ? <p>{sessionMessage}</p> : null}
-      {sessionEnded && sessionDashboardHref ? (
-        <p>
-          <Link href={sessionDashboardHref}>Ver dashboard de esta sesión</Link>
-          {" · "}
-          <Link href="/home">Volver a inicio</Link>
-        </p>
-      ) : null}
+      {error ? <p className="subtle" style={{ color: "var(--error)", margin: 0 }}>{error}</p> : null}
+      {sessionMessage ? <div className="empty-state"><p className="body-sm" style={{ margin: 0 }}>{sessionMessage}</p></div> : null}
 
       {session ? (
-        <div>
-          <p>Sesión: {session.sessionId}</p>
-          <p>Estado actual: {feedback?.currentState ?? session.currentState}</p>
+        <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
+          <div className="inline-cluster">
+            <span className="pill">Sesión {session.sessionId.slice(0, 8)}</span>
+            <span className="pill">Estado: {feedback?.currentState ?? session.currentState}</span>
+            {item ? <span className="pill">{item.area} · {item.competency}</span> : null}
+          </div>
+          {sessionDashboardHref ? <Link href={sessionDashboardHref} className="subtle">Ver sesión →</Link> : null}
         </div>
       ) : null}
 
       {item ? (
-        <article>
-          <h2>{item.title}</h2>
-          <p>{item.stem}</p>
-          <ul>
-            {item.options.map((option) => (
-              <li key={option.key}>
-                <label>
-                  <input
-                    type="radio"
-                    name="selectedOption"
-                    value={option.key}
-                    checked={selectedOption === option.key}
-                    onChange={() => setSelectedOption(option.key)}
-                    disabled={loading}
-                  />
-                  {option.key}. {option.text}
-                </label>
-              </li>
-            ))}
-          </ul>
-          <label>
-            Justificación / razonamiento
+        <article className="surface-card" style={{ padding: 24 }}>
+          <div className="inline-cluster" style={{ justifyContent: "space-between", marginBottom: 18 }}>
+            <div>
+              <p className="eyebrow">Práctica</p>
+              <h2 className="section-title" style={{ fontSize: "1.15rem" }}>{item.title}</h2>
+            </div>
+            <span className="status-pill premium">Foco activo</span>
+          </div>
+
+          <p className="section-title" style={{ fontSize: "1.45rem", lineHeight: 1.35, marginBottom: 22 }}>{item.stem}</p>
+
+          <div className="option-list">
+            {item.options.map((option) => {
+              const isSelected = selectedOption === option.key;
+              const className = [
+                "option-card",
+                isSelected ? "selected" : "",
+                feedback && feedback.evaluation.isCorrect && isSelected ? "correct" : "",
+                feedback && !isSelected ? "dimmed" : "",
+              ].filter(Boolean).join(" ");
+
+              return (
+                <button
+                  key={option.key}
+                  type="button"
+                  className={className}
+                  onClick={() => !feedback && setSelectedOption(option.key)}
+                  disabled={loading || Boolean(feedback)}
+                >
+                  <span className="option-key">{option.key}</span>
+                  <span>{option.text}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="form-field" style={{ marginTop: 22 }}>
+            <label className="field-label" htmlFor="practice-rationale">Justificación opcional</label>
             <textarea
+              id="practice-rationale"
+              className="text-area"
               value={userRationale}
               onChange={(event) => setUserRationale(event.target.value)}
               placeholder="Explica brevemente por qué elegiste esa respuesta"
               rows={5}
-              disabled={loading}
+              disabled={loading || Boolean(feedback)}
             />
-          </label>
-          <button onClick={handleSubmitAnswer} disabled={loading || !selectedOption}>
-            {loading ? "Enviando..." : "Responder"}
-          </button>
+          </div>
+
+          {feedback ? (
+            <div className={`feedback-card ${feedback.evaluation.isCorrect ? "success" : "error"}`} style={{ marginTop: 22 }}>
+              <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
+                <h3 style={{ margin: 0 }}>{feedback.evaluation.isCorrect ? "Respuesta correcta" : "Respuesta enviada"}</h3>
+                <span className={`status-pill ${feedback.evaluation.isCorrect ? "success" : "warning"}`}>
+                  Hint level {feedback.hintLevel}
+                </span>
+              </div>
+              <p className="body-sm" style={{ margin: 0 }}>{feedback.feedbackText}</p>
+              <div className="metric-grid" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))", marginTop: 6 }}>
+                <div className="metric-card" style={{ padding: 14 }}>
+                  <span className="metric-label">Reasoning</span>
+                  <strong className="metric-value" style={{ fontSize: "1.35rem" }}>{feedback.evaluation.reasoningScore}</strong>
+                </div>
+                <div className="metric-card" style={{ padding: 14 }}>
+                  <span className="metric-label">Competency</span>
+                  <strong className="metric-value" style={{ fontSize: "1.35rem" }}>{feedback.evaluation.competencyScore}</strong>
+                </div>
+              </div>
+              {feedback.evaluation.qualitativeFeedback ? <p className="subtle" style={{ margin: 0 }}>{feedback.evaluation.qualitativeFeedback}</p> : null}
+            </div>
+          ) : null}
+
+          <div className="practice-sticky">
+            {feedback && pendingNextItemId ? (
+              <button onClick={handleContinue} className="primary-button" disabled={loading}>
+                {loading ? "Cargando..." : "Siguiente pregunta"}
+              </button>
+            ) : !feedback ? (
+              <button onClick={handleSubmitAnswer} className="primary-button" disabled={loading || !selectedOption}>
+                {loading ? "Enviando..." : "Responder"}
+              </button>
+            ) : null}
+          </div>
         </article>
       ) : null}
 
-      {feedback ? (
-        <div>
-          <p>{feedback.feedbackText}</p>
-          <p>Correcta: {feedback.evaluation.isCorrect ? "Sí" : "No"}</p>
-          <p>Reasoning score: {feedback.evaluation.reasoningScore}</p>
-          <p>Competency score: {feedback.evaluation.competencyScore}</p>
-          <p>Hint level: {feedback.hintLevel}</p>
-          {feedback.evaluation.qualitativeFeedback ? (
-            <p>Nota cualitativa: {feedback.evaluation.qualitativeFeedback}</p>
-          ) : null}
+      {sessionEnded && sessionDashboardHref ? (
+        <div className="page-actions">
+          <Link href={sessionDashboardHref} className="secondary-button" style={{ flex: 1 }}>
+            Ver dashboard de esta sesión
+          </Link>
+          <Link href="/home" className="subtle">Volver a inicio</Link>
         </div>
       ) : null}
 
       {session && !item ? (
-        <div>
-          <button onClick={resetPractice} disabled={loading || !sessionEnded && !sessionMessage}>
+        <div className="page-actions">
+          <button onClick={resetPractice} className="primary-button" disabled={loading || !canStartAnother}>
             Iniciar una nueva sesión
           </button>
-          <p><Link href="/dashboard">Ir al dashboard histórico</Link></p>
+          <Link href="/dashboard" className="subtle">Ir al dashboard histórico</Link>
         </div>
       ) : null}
     </section>

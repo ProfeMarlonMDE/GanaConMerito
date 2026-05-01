@@ -138,3 +138,8 @@ last_reviewed: 2026-05-01
 - No queda abierto un Sprint 4 formal en estos documentos.
 - El backlog sigue funcionando como cola priorizada, pero no equivale a apertura automática de un nuevo sprint.
 - El siguiente sprint debe abrirse solo cuando exista objetivo, alcance y evidencia suficiente para sostenerlo.
+
+## Frente preparado pero aún no abierto formalmente
+- Quedó preparada una propuesta canónica para rediseño UI premium mobile-first en `docs/01-product/ui-premium-mobile-redesign-proposal.md`.
+- Esa preparación documental **no** abre por sí sola un sprint nuevo ni autoriza marcar implementación/despliegue como hechos.
+- Si este frente se convierte en sprint formal, deberá registrar explícitamente: pantallas intervenidas, fases ejecutadas, QA aplicada y evidencia de release si toca runtime.
