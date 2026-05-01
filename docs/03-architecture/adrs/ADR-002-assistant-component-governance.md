@@ -3,7 +3,7 @@ id: ADR-002-assistant-component-governance
 name: adr-assistant-component-governance
 project: ganaconmerito
 owner: marlon-arcila
-status: proposed
+status: approved
 artifact_type: adr
 modules: [session-orchestrator, evaluation, dashboard, ai]
 tags: [adr, assistant, tutor, llm, governance]
@@ -18,7 +18,7 @@ last_reviewed: 2026-05-01
 # ADR-002: Gobernanza del componente de asistentes
 
 ## Estado
-proposed — listo para decisión humana
+approved
 
 ## Fecha
 2026-05-01
@@ -117,7 +117,8 @@ Razones:
 - restricciones técnicas o de costo que hagan inviable la trazabilidad mínima por turno
 
 ## Aprobación humana
-- Estado de aprobación: LISTO PARA DECISIÓN
-- Recomendación PM técnica: **APROBAR CON GUARDRAILS**
-- Aprobador requerido: Marlon Arcila
-- Observaciones: este ADR no autoriza implementación productiva por sí solo; autoriza, si se aprueba, la preparación técnica gobernada del componente bajo contrato v1, trazabilidad mínima y QA negativa explícita antes de cualquier despliegue funcional.
+- Estado de aprobación: APROBADO CON GUARDRAILS
+- Aprobador: Marlon Arcila
+- Fecha de aprobación: 2026-05-01
+- Decisión aprobada: `Tutor GCM` como asistente visible único inicial, con motor determinístico fuera del LLM visible, contrato v1 obligatorio, trazabilidad mínima por turno y QA negativa antes de cualquier despliegue funcional.
+- Observaciones: esta aprobación no autoriza implementación productiva libre; autoriza preparación técnica gobernada del componente bajo contrato v1, trazabilidad mínima y QA negativa explícita antes de cualquier despliegue funcional.

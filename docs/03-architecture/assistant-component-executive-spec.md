@@ -3,7 +3,7 @@ id: ARCH-ASSISTANT-COMPONENT-SPEC
 name: assistant-component-executive-spec
 project: ganaconmerito
 owner: marlon-arcila
-status: proposed
+status: approved
 artifact_type: architecture
 modules: [session-orchestrator, evaluation, dashboard, ai]
 tags: [assistant, tutor, llm, governance, testability]
@@ -12,7 +12,7 @@ related:
   - PROD-BACKLOG
   - GOV-WORKING-AGREEMENT
   - GOV-HUMAN-APPROVAL
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-01
 ---
 
 # Spec ejecutiva — componente de asistentes

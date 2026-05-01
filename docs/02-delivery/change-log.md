@@ -15,9 +15,9 @@ last_reviewed: 2026-04-28
 # Change log
 
 ## 2026-05-01
-- tipo: docs+architecture
+- tipo: decision+architecture
 - modulo: assistants/governance
-- resumen: ADR-002 quedó ajustado como paquete listo para decisión humana, con recomendación explícita de aprobar `Tutor GCM` como asistente visible único bajo guardrails de contrato v1, trazabilidad mínima y QA negativa antes de cualquier implementación funcional.
+- resumen: Marlon aprobó ADR-002 con guardrails. Queda autorizada la preparación técnica gobernada del frente de asistentes con `Tutor GCM` como asistente visible único inicial, contrato v1 obligatorio, trazabilidad mínima por turno y QA negativa antes de cualquier despliegue funcional.
 - sprint: Sprint 3 - Normalización operativa final y preparación del frente de asistentes
 - relacionados: docs/03-architecture/adrs/ADR-002-assistant-component-governance.md, docs/03-architecture/assistant-component-executive-spec.md, docs/02-delivery/sprint-log.md
 
