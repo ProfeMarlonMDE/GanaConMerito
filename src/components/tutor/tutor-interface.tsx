@@ -88,7 +88,7 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
           <p className="body-sm" style={{ whiteSpace: "pre-wrap" }}>{lastResponse.visibleMessage}</p>
           <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "8px" }}>
             <span className="subtle" style={{ fontSize: "10px" }}>
-              {lastResponse.intention === "fallback" ? "Modo limitado" : "Tutoria orientativa"}
+              {lastResponse.intention === "fallback" ? "Modo limitado" : "Tutoría orientativa"}
             </span>
           </div>
         </div>
@@ -103,7 +103,7 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
           <textarea
             className="text-area"
             style={{ minHeight: "80px", fontSize: "14px" }}
-            placeholder="Escribe tu duda aqui..."
+            placeholder="Escribe tu duda aquí..."
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             disabled={loading}
@@ -115,12 +115,12 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
           style={{ minHeight: "44px" }}
           disabled={loading || !message.trim()}
         >
-          {loading ? "Pensando..." : "Consultar tutor"}
+          {loading ? "Pensando..." : "Consultar Tutor"}
         </button>
       </form>
 
       <p className="subtle" style={{ fontSize: "11px", textAlign: "center" }}>
-        El tutor no tiene autoridad sobre tu puntaje ni avance de sesion.
+        El tutor no tiene autoridad sobre tu puntaje ni avance de sesión.
       </p>
     </div>
   );
