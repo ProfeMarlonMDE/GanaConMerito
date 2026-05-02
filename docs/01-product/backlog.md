@@ -11,7 +11,7 @@ related:
   - PROD-VISION
   - DEL-SPRINT-LOG
   - QUAL-DEBT-REGISTER
-last_reviewed: 2026-05-01
+last_reviewed: 2026-05-02
 ---
 
 # Backlog de producto

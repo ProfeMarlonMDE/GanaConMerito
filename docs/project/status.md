@@ -18,7 +18,7 @@ El producto cuenta ahora con una infraestructura de release trazable, con triple
 ## Verdad operativa actual
 - **Versión declarada**: 0.6.0
 - **Rama canónica**: master
-- **HEAD Source / Deploy / Runtime**: `deb265c`
+- **HEAD funcional Source / Deploy / Runtime**: `deb265c`
 - **BuildTime validado**: `2026-05-02T17:46:40Z`
 - **Triple Verificación**: [x] Source coincidente | [x] Deploy Tree coincidente | [x] Runtime Visible coincidente.
 
@@ -47,5 +47,6 @@ El producto cuenta ahora con una infraestructura de release trazable, con triple
 - **Editorial**: superficie interna diferida (solo lectura).
 
 ## Próximos pasos
-1. Iniciar Sprint 7 — Reapertura selectiva de editorial / question-bank.
+1. Consolidar en Git la limpieza documental menor remanente si existe.
 2. Mantener la disciplina de release definida en la nueva checklist.
+3. Abrir Sprint 7 solo después de validar que no queda drift documental ni operativo.

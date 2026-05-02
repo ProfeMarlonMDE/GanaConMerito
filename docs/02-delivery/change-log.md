@@ -9,10 +9,26 @@ modules: [core, platform]
 tags: [changelog, cambios, entregas]
 related:
   - DEL-SPRINT-LOG
-last_reviewed: 2026-05-01
+last_reviewed: 2026-05-02
 ---
 
 # Change log
+
+## 2026-05-02
+- tipo: release+ops+docs
+- modulo: platform/release
+- resumen: se cerró Sprint 6 centrado en disciplina operativa de release; se creó la checklist formal de release, se actualizó la versión a `0.6.0`, se corrigieron permisos de Git en VPS y se ejecutó un deploy con triple verificación (Source=Deploy=Runtime) validado mediante el commit `deb265c` y `buildTime` visible en `/login`.
+- sprint: Sprint 6 - Disciplina operativa de release y runtime
+- commit funcional: `deb265c`
+- relacionados: docs/02-delivery/release-checklist.md, docs/02-delivery/sprint-log.md, docs/project/status.md
+
+## 2026-05-02
+- tipo: feat+qa
+- modulo: tutor/core
+- resumen: se implementó la base técnica gobernada de `Tutor GCM`, incluyendo contrato v1 del turno, reglas explícitas de autoridad, orquestador con fallback y pruebas unitarias de guardrails, sin otorgarle autoridad sobre scoring, avance o cierre de sesión.
+- sprint: Sprint 5 - Tutor GCM: base técnica gobernada
+- commit funcional: `5e918a5`
+- relacionados: docs/project/status.md, docs/02-delivery/sprint-log.md, docs/03-architecture/adrs/ADR-002-assistant-component-governance.md
 
 ## 2026-05-02
 - tipo: feat+docs+closure
@@ -21,7 +37,6 @@ last_reviewed: 2026-05-01
 - sprint: Sprint 4 - Productización del core
 - commit funcional: `304f950`
 - commit documental: `ef13a4f`
-
 
 ## 2026-05-01
 - tipo: deploy+qa+ops
@@ -170,11 +185,4 @@ last_reviewed: 2026-05-01
 - sprint: PENDIENTE
 - relacionados: ADR-001-stack-base, QUAL-DEBT-REGISTER
 
-## 2026-05-02
-- tipo: release+ops+docs
-- modulo: platform/release
-- resumen: se cerró Sprint 6 centrado en la disciplina operativa de release; se creó la checklist formal de release, se actualizó la versión a `0.6.0`, se corrigieron permisos de Git en el VPS y se ejecutó un deploy con triple verificación (Source=Deploy=Runtime) validado mediante el commit `deb265c` y `buildTime` visible en `/login`.
-- sprint: Sprint 6 - Disciplina operativa de release y runtime
-- commit funcional: `deb265c`
-- relacionados: docs/02-delivery/release-checklist.md, docs/02-delivery/sprint-log.md, docs/project/status.md
 

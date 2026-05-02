@@ -11,7 +11,7 @@ related:
   - PROD-BACKLOG
   - DEL-CHANGE-LOG
   - QUAL-RISK-REGISTER
-last_reviewed: 2026-05-01
+last_reviewed: 2026-05-02
 ---
 
 # Sprint log
@@ -195,21 +195,23 @@ last_reviewed: 2026-05-01
 - UI conversacional visible para usuario final
 - autoridad sobre scoring, avance o cierre de sesión
 
-## Sprint activo — Sprint 6: Disciplina operativa de release y runtime
-- **Estado**: EN EJECUCIÓN
-- **Fecha de inicio**: 2026-05-02
+## Sprint cerrado — Sprint 6: Disciplina operativa de release y runtime
+- **Estado**: CERRADO
+- **Fecha**: 2026-05-02
+- **Commit funcional**: `deb265c`
+- **Commit documental de cierre**: `c8309f6`
 - **Objetivo**: endurecer el proceso de release, asegurar triple verificación y reducir drift entre fuente, deploy y runtime.
 
-### Comprometido
-- [ ] checklist formal de release en `docs/02-delivery/release-checklist.md`
-- [ ] triple verificación Source = Deploy = Runtime
-- [ ] actualización de versión a `0.6.0`
-- [ ] auditoría de drift técnico en VPS
-- [ ] cierre documental consolidado
+### Entregado
+- checklist formal de release en `docs/02-delivery/release-checklist.md`
+- actualización de versión a `0.6.0`
+- saneamiento de permisos Git en VPS para pulls limpios
+- deploy validado con triple verificación `Source = Deploy = Runtime`
+- verificación visible de `commit` y `buildTime` en `/login`
+- cierre documental consolidado en `status`, `sprint-log` y `change-log`
 
-### En progreso
-- [x] definición del sprint y plan de ejecución
-- [x] checklist de release creada
-- [x] actualización de versión en `package.json` a `0.6.0`
-- [ ] auditoría de drift en VPS
-- [ ] deploy y validación final
+### No alcance
+- nuevas features funcionales del producto
+- reapertura de editorial/question-bank
+- integración visible adicional de Tutor GCM
+- cambios de schema o migraciones de Supabase
