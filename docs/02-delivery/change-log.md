@@ -19,6 +19,7 @@ last_reviewed: 2026-05-02
 - modulo: tutor/practice
 - resumen: se integró funcionalmente el `Tutor GCM` dentro de la pantalla de práctica. Se creó el componente `TutorInterface` bajo el sistema de diseño premium, se implementó la ruta de API `/api/tutor/turn` con guardrails de autenticación y se conectó al `TutorOrchestrator`. El tutor ahora es visible y capaz de responder con contexto de tema, manteniendo prohibición estricta sobre scoring, avance y cierre de sesión.
 - sprint: Sprint 9 — Integración funcional mínima gobernada de Tutor GCM
+- commit funcional: `bfb26cb`
 - relacionados: docs/01-product/sprint-9.md, src/components/tutor/tutor-interface.tsx, src/app/api/tutor/turn/route.ts
 
 ## 2026-05-02

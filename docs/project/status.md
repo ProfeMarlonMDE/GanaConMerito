@@ -18,7 +18,7 @@ El producto ha integrado la interfaz mínima gobernada del Tutor GCM dentro del 
 ## Verdad operativa actual
 - **Versión declarada**: 0.6.0
 - **Rama canónica**: master
-- **HEAD actual en source**: `c7ec88c`
+- **HEAD actual en source**: `bfb26cb`
 - **HEAD actual en deploy tree (`/opt/gcm/app`)**: `c7ec88c`
 - **Runtime visible validado en `/login`**: `c7ec88c`
 - **BuildTime visible validado en `/login`**: `2026-05-02T18:40:22Z`
