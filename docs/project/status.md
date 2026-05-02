@@ -10,10 +10,10 @@ last_reviewed: 2026-05-02
 
 # Project Status — GanaConMerito
 
-Última actualización: 2026-05-02 (Sprint 9 en source; deploy/runtime pendientes)
+Última actualización: 2026-05-02 (Auditoría de Sprint 9)
 
-## Estado General: Sprint 9 integrado en source, no cerrado operativamente (v0.6.0)
-La integración mínima gobernada de Tutor GCM ya vive en `master`, pero todavía no existe evidencia de deploy alineado ni de runtime visible actualizado para declararla cerrada operativamente.
+## Estado General: Sprint 9 en Source (Pendiente cierre operativo v0.7.0)
+El producto ha integrado la interfaz del Tutor GCM en la fuente canónica. La auditoría técnica exige completar el cierre operativo real en el VPS (carpeta, deploy, docker) antes de declarar el cierre formal.
 
 ## Verdad operativa actual
 - **Versión declarada**: 0.6.0

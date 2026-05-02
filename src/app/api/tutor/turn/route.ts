@@ -34,12 +34,16 @@ export async function POST(request: Request) {
 
     const { data: sessionTurns, error: sessionTurnsError } = await supabase
       .from("session_turns")
-      .select("id")
+      .select("id, is_correct, competency_score")
       .eq("session_id", sessionId);
 
     if (sessionTurnsError) {
       return NextResponse.json({ error: "No se pudo leer el progreso de la sesión" }, { status: 500 });
     }
+
+    // Calculate real score from server data
+    const itemsCompleted = sessionTurns?.length ?? 0;
+    const currentScore = sessionTurns?.reduce((acc, turn) => acc + (turn.competency_score || 0), 0) ?? 0;
 
     let currentTopic: string | undefined;
 
@@ -69,8 +73,8 @@ export async function POST(request: Request) {
         recentErrors: [],
       },
       progressSummary: {
-        itemsCompleted: sessionTurns?.length ?? 0,
-        currentScore: 0,
+        itemsCompleted,
+        currentScore,
       },
     };
 
