@@ -10,15 +10,16 @@ last_reviewed: 2026-05-02
 
 # Project Status — GanaConMerito
 
-Última actualización: 2026-05-02 (Cierre Sprint 9)
+Última actualización: 2026-05-02 (Sprint 9 en source; deploy/runtime pendientes)
 
-## Estado General: Tutor GCM integrado funcionalmente (v0.7.0-dev)
-El producto ha integrado la interfaz mínima gobernada del Tutor GCM dentro del flujo de práctica, manteniendo el control operacional y la disciplina de release.
+## Estado General: Sprint 9 integrado en source, no cerrado operativamente (v0.6.0)
+La integración mínima gobernada de Tutor GCM ya vive en `master`, pero todavía no existe evidencia de deploy alineado ni de runtime visible actualizado para declararla cerrada operativamente.
 
 ## Verdad operativa actual
 - **Versión declarada**: 0.6.0
 - **Rama canónica**: master
-- **HEAD actual en source**: `bfb26cb`
+- **HEAD actual en source (`master`)**: `bd7bd8b`
+- **Commit funcional base de Sprint 9**: `bfb26cb`
 - **HEAD actual en deploy tree (`/opt/gcm/app`)**: `c7ec88c`
 - **Runtime visible validado en `/login`**: `c7ec88c`
 - **BuildTime visible validado en `/login`**: `2026-05-02T18:40:22Z`
@@ -31,27 +32,28 @@ El producto ha integrado la interfaz mínima gobernada del Tutor GCM dentro del 
 
 ## Historial de sprints recientes
 
+### Sprint 9 — Integración funcional mínima gobernada de Tutor GCM (en source, pendiente de cierre operativo)
+- **Foco**: hacer visible y útil al tutor sin soltar el control del sistema.
+- **Estado real**:
+  - integración UI del tutor en práctica publicada en `master`
+  - ruta `/api/tutor/turn` publicada en `master`
+  - hardening posterior de guardrails para no confiar contexto de sesión enviado por el cliente
+  - sin evidencia todavía de deploy alineado ni runtime visible sobre esta integración
+
+### Sprint 8 — Runtime confiable, QA postdeploy y disciplina operativa verificable (cerrado)
+- **Foco**: release hardening, trazabilidad y triple verificación.
+- **Entregables**:
+  - `docs/02-delivery/release-checklist.md`
+  - actualización de versión a `0.6.0`
+  - saneamiento de permisos Git en VPS
+  - triple verificación real sobre `c7ec88c`
+
 ### Sprint 7 — Reapertura selectiva de editorial / question-bank (cerrado)
 - **Foco**: gobernanza del banco de preguntas y trazabilidad de corpus.
 - **Entregables**:
   - `docs/project/current-corpus-runtime-activation-map.md`
   - validación del corpus activo de 27 ítems
   - saneamiento documental de backlog, status y delivery asociado al banco
-
-### Sprint 9 — Integración funcional mínima gobernada de Tutor GCM (Cerrando)
-- **Foco**: hacer visible y útil al tutor sin soltar el control del sistema.
-- **Entregables**: 
-  - `TutorInterface` en el flujo de práctica.
-  - API Route `/api/tutor/turn` conectada al orquestador.
-  - orquestador con respuestas contextuales mínimas.
-  - build validado sin regresiones en el core.
-
-### Sprint 8 — Runtime confiable, QA postdeploy y disciplina operativa verificable (Cerrado)
-- **Foco**: release hardening, trazabilidad y triple verificación.
-- **Entregables**:
-  - `docs/02-delivery/release-checklist.md`
-  - actualización de versión a `0.6.0`
-  - saneamiento de permisos Git en VPS
 
 ### Sprint 6 — Disciplina operativa (cerrado)
 - **Foco**: release hardening, trazabilidad y triple verificación.
@@ -72,10 +74,10 @@ El producto ha integrado la interfaz mínima gobernada del Tutor GCM dentro del 
 
 ## Módulos y features activos
 - **Core**: login, onboarding, práctica y dashboard estables.
-- **Tutor GCM**: base técnica lista, sin integración de LLM ni UI final.
+- **Tutor GCM**: integración mínima visible en `source`; sin verificación todavía de deploy/runtime sobre Sprint 9.
 - **Editorial / question-bank**: frente reabierto selectivamente bajo gobernanza de corpus; no convertido en módulo principal de usuario final.
 
 ## Próximos pasos
-1. Operativizar known issues/riesgos con criterio de tiempo de ejecución, latencia y ownership, no solo histórico documental.
-2. Mantener Sprint 8 como nuevo baseline de release: triple verificación + smoke + E2E API + E2E UI sobre `:3000`.
-3. Evitar que futuros cierres documentales vuelvan a quedar detrás del runtime real.
+1. Alinear `~/.openclaw/product`, `/opt/gcm/app` y runtime visible sobre el HEAD actual de `master`.
+2. Ejecutar build, smoke y la validación funcional mínima del tutor sobre el runtime realmente desplegado.
+3. Cerrar Sprint 9 solo cuando la evidencia de deploy y runtime deje de apuntar a `c7ec88c`.
