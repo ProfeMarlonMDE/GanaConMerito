@@ -194,3 +194,22 @@ last_reviewed: 2026-05-01
 - integración real con proveedor LLM
 - UI conversacional visible para usuario final
 - autoridad sobre scoring, avance o cierre de sesión
+
+## Sprint activo — Sprint 6: Disciplina operativa de release y runtime
+- **Estado**: EN EJECUCIÓN
+- **Fecha de inicio**: 2026-05-02
+- **Objetivo**: endurecer el proceso de release, asegurar triple verificación y reducir drift entre fuente, deploy y runtime.
+
+### Comprometido
+- [ ] checklist formal de release en `docs/02-delivery/release-checklist.md`
+- [ ] triple verificación Source = Deploy = Runtime
+- [ ] actualización de versión a `0.6.0`
+- [ ] auditoría de drift técnico en VPS
+- [ ] cierre documental consolidado
+
+### En progreso
+- [x] definición del sprint y plan de ejecución
+- [x] checklist de release creada
+- [x] actualización de versión en `package.json` a `0.6.0`
+- [ ] auditoría de drift en VPS
+- [ ] deploy y validación final
