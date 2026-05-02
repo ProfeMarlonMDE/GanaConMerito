@@ -219,7 +219,7 @@ last_reviewed: 2026-05-02
 ## Sprint cerrado — Sprint 7: Reapertura selectiva de editorial / question-bank
 - **Estado**: CERRADO
 - **Fecha**: 2026-05-02
-- **Commit documental de cierre**: pendiente de consolidación en Git
+- **Commit documental de cierre**: `c7ec88c`
 - **Objetivo**: reabrir de forma selectiva y gobernada el frente editorial/question-bank, validando el corpus activo y reduciendo drift entre repo, documentación y runtime esperado.
 
 ### Entregado
@@ -233,3 +233,9 @@ last_reviewed: 2026-05-02
 - cambios de UI del core
 - integración visible adicional de Tutor GCM
 - nuevas migraciones o cambios de schema de Supabase
+
+- triple verificación confirmada sobre `c7ec88c`
+- smoke postdeploy verde
+- E2E API de `5` turnos verde
+- E2E UI Chromium verde
+- drift documental corregido en status, sprint-log y change-log

@@ -10,18 +10,24 @@ last_reviewed: 2026-05-02
 
 # Project Status — GanaConMerito
 
-Última actualización: 2026-05-02 (cierre Sprint 7)
+Última actualización: 2026-05-02 (apertura y ejecución Sprint 8)
 
-## Estado General: Gobernanza de contenido y banco activo (v0.6.0)
-El producto cuenta ahora con una capa de contenido más gobernada: corpus activo documentado, validación explícita del banco y trazabilidad más clara entre repo, documentación y runtime esperado.
+## Estado General: Runtime confiable y disciplina operativa verificable (v0.6.0)
+El producto mantiene el corpus activo gobernado y entra en Sprint 8 con foco explícito en confiabilidad de runtime, QA postdeploy y cierre operativo basado en evidencia, no en narrativa.
 
 ## Verdad operativa actual
 - **Versión declarada**: 0.6.0
 - **Rama canónica**: master
-- **HEAD funcional Source / Deploy / Runtime validado previamente**: `deb265c`
-- **BuildTime validado previamente**: `2026-05-02T17:46:40Z`
-- **Triple verificación de release vigente**: cerrada sobre `deb265c`
-- **Corpus activo**: 27 ítems documentados como activos en repo y validados sin drift reportado entre DB y repo durante Sprint 7.
+- **HEAD actual en source**: `c7ec88c`
+- **HEAD actual en deploy tree (`/opt/gcm/app`)**: `c7ec88c`
+- **Runtime visible validado en `/login`**: `c7ec88c`
+- **BuildTime visible validado en `/login`**: `2026-05-02T18:40:22Z`
+- **Triple verificación vigente**: `source = deploy = runtime` validada sobre `c7ec88c`
+- **QA postdeploy validada en `:3000`**:
+  - smoke: verde (`artifacts/qa-smoke-postdeploy-smoke-moop0qmi-a01cb8`)
+  - E2E API 5 turnos: verde (`artifacts/qa-e2e-api-moop0qn2-jsz0fw`)
+  - E2E UI Chromium: verde (`artifacts/qa-ui-e2e-ui-moop0roa-r9tcj6`)
+- **Corpus activo**: 27 ítems documentados como activos en repo; Sprint 7 dejó gobernanza activa consolidada en Git con `c7ec88c`.
 
 ## Historial de sprints recientes
 
@@ -55,6 +61,6 @@ El producto cuenta ahora con una capa de contenido más gobernada: corpus activo
 - **Editorial / question-bank**: frente reabierto selectivamente bajo gobernanza de corpus; no convertido en módulo principal de usuario final.
 
 ## Próximos pasos
-1. Consolidar en Git el cierre documental de Sprint 7.
-2. Mantener la disciplina de release definida en la checklist vigente.
-3. Abrir Sprint 8 con base en este estado ya saneado, sin reintroducir drift documental u operativo.
+1. Operativizar known issues/riesgos con criterio de tiempo de ejecución, latencia y ownership, no solo histórico documental.
+2. Mantener Sprint 8 como nuevo baseline de release: triple verificación + smoke + E2E API + E2E UI sobre `:3000`.
+3. Evitar que futuros cierres documentales vuelvan a quedar detrás del runtime real.

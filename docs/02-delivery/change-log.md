@@ -15,11 +15,18 @@ last_reviewed: 2026-05-02
 # Change log
 
 ## 2026-05-02
+- tipo: runtime+qa+ops
+- modulo: platform/release
+- resumen: se abrió y cerró Sprint 8 con auditoría estricta de runtime; quedó validada la triple coincidencia `source = /opt/gcm/app = runtime visible` sobre `c7ec88c`, con `buildTime=2026-05-02T18:40:22Z`, smoke postdeploy verde, E2E API de 5 turnos verde y E2E UI Chromium verde en `:3000`. Además, se corrigió el drift documental que aún reportaba `deb265c` como último runtime validado y dejaba Sprint 7 como cierre pendiente.
+- sprint: Sprint 8 — Runtime confiable, QA postdeploy y disciplina operativa verificable
+- commit funcional: `c7ec88c`
+- relacionados: docs/project/status.md, docs/02-delivery/sprint-log.md, docs/02-delivery/release-checklist.md
+
 - tipo: content+gov+docs
 - modulo: question-bank/editorial
 - resumen: se ejecutó Sprint 7 de reapertura selectiva de editorial/QB; se validó el corpus activo de 27 ítems en el VPS sin drift con el repo, se creó el mapa de activación de runtime formal (`docs/project/current-corpus-runtime-activation-map.md`) y se actualizó la gobernanza en backlog y status para tratar el banco como frente activo y gobernado.
 - sprint: Sprint 7 — Reapertura selectiva de editorial / QB
-- commit documental: pendiente de consolidación en Git
+- commit documental: `c7ec88c`
 - relacionados: docs/project/current-corpus-runtime-activation-map.md, docs/02-delivery/sprint-log.md, docs/project/status.md
 
 - tipo: release+ops+docs

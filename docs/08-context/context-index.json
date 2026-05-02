@@ -52,7 +52,7 @@
         "DEL-SPRINT-LOG",
         "QUAL-DEBT-REGISTER"
       ],
-      "last_reviewed": "2026-05-01"
+      "last_reviewed": "2026-05-02"
     },
     {
       "id": "PROD-UI-DESIGN-BRIEF-MOBILE-FIRST",
@@ -162,7 +162,7 @@
       "related": [
         "DEL-SPRINT-LOG"
       ],
-      "last_reviewed": "2026-05-01"
+      "last_reviewed": "2026-05-02"
     },
     {
       "id": "DEL-QB-LOAD-CLOSE-2026-04-26",
@@ -209,7 +209,7 @@
         "DEL-CHANGE-LOG",
         "QUAL-RISK-REGISTER"
       ],
-      "last_reviewed": "2026-05-01"
+      "last_reviewed": "2026-05-02"
     },
     {
       "id": "ADR-001-stack-base",
@@ -851,6 +851,23 @@
       "last_reviewed": ""
     },
     {
+      "id": "PROJ-CORPUS-ACTIVATION-MAP",
+      "path": "docs/project/current-corpus-runtime-activation-map.md",
+      "type": "project",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [],
+      "tags": [
+        "corpus",
+        "question-bank",
+        "runtime",
+        "activation"
+      ],
+      "owner": "marlon-arcila",
+      "related": [],
+      "last_reviewed": "2026-05-02"
+    },
+    {
       "id": "PROJ-REAL-BUG-FIX-PLAN-2026-04-28",
       "path": "docs/project/remediation/real-bug-fix-plan-2026-04-28.md",
       "type": "remediation-plan",
@@ -870,9 +887,30 @@
       "owner": "marlon-arcila",
       "related": [],
       "last_reviewed": "2026-04-28"
+    },
+    {
+      "id": "PROJ-STATUS",
+      "path": "docs/project/status.md",
+      "type": "project",
+      "status": "active",
+      "project": "ganaconmerito",
+      "modules": [],
+      "tags": [],
+      "owner": "marlon-arcila",
+      "related": [],
+      "last_reviewed": "2026-05-02"
     }
   ],
   "missing": [
+    "docs/01-product/guardrails.md",
+    "docs/01-product/sprint-master-plan.md",
+    "docs/02-delivery/archive/sprint-4.md",
+    "docs/02-delivery/archive/sprint-5-plan.md",
+    "docs/02-delivery/archive/sprint-5.md",
+    "docs/02-delivery/release-checklist.md",
+    "docs/02-delivery/sprint-6.md",
+    "docs/04-quality/archive/audit-4-v2.md",
+    "docs/04-quality/archive/audit-4.md",
     "docs/README.md",
     "docs/api/contracts.md",
     "docs/architecture/decisions.md",
@@ -915,7 +953,8 @@
     "docs/database/schema.md",
     "docs/database/security.md",
     "docs/project/auth-hardening-audit.md",
-    "docs/project/current-corpus-runtime-activation-map.md",
+    "docs/project/current-corpus-runtime-activation-map.md :: missing field modules",
+    "docs/project/current-corpus-runtime-activation-map.md :: missing field related",
     "docs/project/current-workflow.md",
     "docs/project/docker-e2e-minimum-validation-plan.md",
     "docs/project/e2e-status.md",
@@ -941,7 +980,9 @@
     "docs/project/runtime-maturity-assessment.md",
     "docs/project/segmentation-rollout-checklist.md",
     "docs/project/source-of-truth.md",
-    "docs/project/status.md",
+    "docs/project/status.md :: missing field modules",
+    "docs/project/status.md :: missing field tags",
+    "docs/project/status.md :: missing field related",
     "docs/project/tooling-stack.md",
     "docs/temp/README.md"
   ]
