@@ -76,5 +76,10 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 - `practice`: activo y núcleo principal del producto; debe seguir siendo practice-first.
 - `dashboard`: activo; debe reflejar progreso real sin inflar capacidades analíticas no implementadas.
 - `editorial`: hoy es biblioteca documental de solo lectura; no tratar como módulo administrativo activo del sprint.
-- `ai`: `Tutor GCM` quedó aprobado a nivel de gobernanza, pero sigue no implementado como feature funcional visible.
+- `ai`: `Tutor GCM` integrado funcionalmente de forma mínima en la pantalla de práctica bajo contrato v1 y guardrails de autoridad.
 - `question-bank`: activo y gobernado; corpus de 27 ítems validado y sin drift.
+
+## Sprint 9: Integración funcional mínima gobernada de Tutor GCM (2026-05-02)
+- [x] UI: `TutorInterface` premium integrado en Práctica.
+- [x] API: Ruta `/api/tutor/turn` autenticada y conectada.
+- [x] GOV: Guardrails de autoridad y contexto de tema verificados.

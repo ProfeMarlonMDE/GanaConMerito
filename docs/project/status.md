@@ -10,10 +10,10 @@ last_reviewed: 2026-05-02
 
 # Project Status — GanaConMerito
 
-Última actualización: 2026-05-02 (apertura y ejecución Sprint 8)
+Última actualización: 2026-05-02 (Cierre Sprint 9)
 
-## Estado General: Runtime confiable y disciplina operativa verificable (v0.6.0)
-El producto mantiene el corpus activo gobernado y entra en Sprint 8 con foco explícito en confiabilidad de runtime, QA postdeploy y cierre operativo basado en evidencia, no en narrativa.
+## Estado General: Tutor GCM integrado funcionalmente (v0.7.0-dev)
+El producto ha integrado la interfaz mínima gobernada del Tutor GCM dentro del flujo de práctica, manteniendo el control operacional y la disciplina de release.
 
 ## Verdad operativa actual
 - **Versión declarada**: 0.6.0
@@ -37,6 +37,21 @@ El producto mantiene el corpus activo gobernado y entra en Sprint 8 con foco exp
   - `docs/project/current-corpus-runtime-activation-map.md`
   - validación del corpus activo de 27 ítems
   - saneamiento documental de backlog, status y delivery asociado al banco
+
+### Sprint 9 — Integración funcional mínima gobernada de Tutor GCM (Cerrando)
+- **Foco**: hacer visible y útil al tutor sin soltar el control del sistema.
+- **Entregables**: 
+  - `TutorInterface` en el flujo de práctica.
+  - API Route `/api/tutor/turn` conectada al orquestador.
+  - orquestador con respuestas contextuales mínimas.
+  - build validado sin regresiones en el core.
+
+### Sprint 8 — Runtime confiable, QA postdeploy y disciplina operativa verificable (Cerrado)
+- **Foco**: release hardening, trazabilidad y triple verificación.
+- **Entregables**:
+  - `docs/02-delivery/release-checklist.md`
+  - actualización de versión a `0.6.0`
+  - saneamiento de permisos Git en VPS
 
 ### Sprint 6 — Disciplina operativa (cerrado)
 - **Foco**: release hardening, trazabilidad y triple verificación.

@@ -16,6 +16,28 @@ last_reviewed: 2026-05-02
 
 # Sprint log
 
+## Sprint en ejecución — Sprint 9: Integración funcional mínima gobernada de Tutor GCM
+- **Estado**: EN EJECUCIÓN (CIERRE PENDIENTE DE DEPLOY)
+- **Fecha**: 2026-05-02
+- **Objetivo**: integrar al Tutor GCM en la UX de práctica de forma visible y útil pero estrictamente gobernada.
+
+### Comprometido
+- componente UI `TutorInterface` premium
+- API Route `/api/tutor/turn` autenticada
+- orquestador con guardrails de autoridad y contexto de tema
+- integración en `PracticeSession` sin romper el core
+
+### Entregado
+- Hecho: `src/components/tutor/tutor-interface.tsx` implementado.
+- Hecho: `src/app/api/tutor/turn/route.ts` implementado y probado en build.
+- Hecho: integración en `PracticeSession` verificada con build exitoso.
+- Hecho: `TutorOrchestrator` mejorado con respuestas contextuales.
+
+### No alcance
+- chat libre sin restricciones
+- autoridad sobre scoring o estados de sesión
+- integración con LLM real (pendiente de Sprint 10+)
+
 ## Sprint cerrado — Sprint 4: Productización del core
 - **Estado**: CERRADO
 - **Fecha**: 2026-05-02

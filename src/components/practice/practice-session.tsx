@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { LoadingState } from "@/components/ui/loading-state";
 import { ErrorState } from "@/components/ui/error-state";
 import { EmptyState } from "@/components/ui/empty-state";
+import { TutorInterface } from "@/components/tutor/tutor-interface";
 
 interface PracticeItem {
   id: string;
@@ -295,6 +296,15 @@ export function PracticeSession() {
               {feedback.evaluation.qualitativeFeedback ? <p className="subtle" style={{ margin: 0 }}>{feedback.evaluation.qualitativeFeedback}</p> : null}
             </div>
           ) : null}
+
+          <div style={{ marginTop: 24, marginBottom: 24 }}>
+            <TutorInterface 
+              sessionId={session?.sessionId ?? ""}
+              currentTopic={`${item.area} - ${item.competency}`}
+              itemsCompleted={0}
+              currentScore={0}
+            />
+          </div>
 
           <div className="practice-sticky">
             {feedback && pendingNextItemId ? (

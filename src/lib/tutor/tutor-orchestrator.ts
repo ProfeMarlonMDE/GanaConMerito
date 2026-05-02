@@ -16,9 +16,12 @@ export class TutorOrchestrator {
       return this.createDeniedTurn(input, 'unauthorized_action_requested', traceId, timestamp);
     }
 
+    const topic = input.allowedContext.currentTopic || 'general';
     const output: TutorOutput = {
       intention: 'explain',
-      visibleMessage: `Entendido. Te explico sobre el tema actual: ${input.allowedContext.currentTopic || 'general'}.`,
+      visibleMessage: `Como tu Tutor GCM, estoy aquí para apoyarte con el tema "${topic}". 
+      
+Recuerda que mi función es orientarte sobre el contenido educativo. No puedo calificar tus respuestas ni modificar tu progreso, pero puedo ayudarte a entender mejor los conceptos.`,
       uncertaintyFlags: false,
       structuredMetadata: {
         processedAt: timestamp,

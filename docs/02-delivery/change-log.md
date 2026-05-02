@@ -15,6 +15,13 @@ last_reviewed: 2026-05-02
 # Change log
 
 ## 2026-05-02
+- tipo: feat+ui+gov
+- modulo: tutor/practice
+- resumen: se integró funcionalmente el `Tutor GCM` dentro de la pantalla de práctica. Se creó el componente `TutorInterface` bajo el sistema de diseño premium, se implementó la ruta de API `/api/tutor/turn` con guardrails de autenticación y se conectó al `TutorOrchestrator`. El tutor ahora es visible y capaz de responder con contexto de tema, manteniendo prohibición estricta sobre scoring, avance y cierre de sesión.
+- sprint: Sprint 9 — Integración funcional mínima gobernada de Tutor GCM
+- relacionados: docs/01-product/sprint-9.md, src/components/tutor/tutor-interface.tsx, src/app/api/tutor/turn/route.ts
+
+## 2026-05-02
 - tipo: runtime+qa+ops
 - modulo: platform/release
 - resumen: se abrió y cerró Sprint 8 con auditoría estricta de runtime; quedó validada la triple coincidencia `source = /opt/gcm/app = runtime visible` sobre `c7ec88c`, con `buildTime=2026-05-02T18:40:22Z`, smoke postdeploy verde, E2E API de 5 turnos verde y E2E UI Chromium verde en `:3000`. Además, se corrigió el drift documental que aún reportaba `deb265c` como último runtime validado y dejaba Sprint 7 como cierre pendiente.
