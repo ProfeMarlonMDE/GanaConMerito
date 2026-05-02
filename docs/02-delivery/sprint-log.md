@@ -177,12 +177,20 @@ last_reviewed: 2026-05-01
 - Hardening operativo aplicado durante el cierre: el compose ya consume secretos desde `/opt/gcm/env/gcm-app.env` en vez de `/opt/gcm/app/.env.production`, evitando que limpiezas tipo `git clean -fdx` rompan futuros releases.
 - Nota residual: si la QA UI se ejecuta en host tras una limpieza agresiva del worktree, hay que garantizar dependencias de Playwright disponibles fuera del contenedor.
 
-## Sprint 5 - Tutor GCM Base Técnica Gobernada
-**Fecha**: 2026-05-02
-**Objetivo**: Diseñar e implementar la infraestructura mínima gobernada para Tutor GCM sin darle autoridad sobre negocio.
-**Logros**:
-- Contrato v1 del turno implementado (`TutorInput`, `TutorOutput`, `TutorTrace`).
-- Reglas de autoridad explícitas en `domain/tutor/contract.ts`.
-- Orquestador con fallback y validación en `lib/tutor/tutor-orchestrator.ts`.
-- QA negativa validando que rechaza keywords de avance y calificación.
-- Build del core sin regresiones.
+## Sprint 5 — Tutor GCM: base técnica gobernada
+- **Estado**: CERRADO FUNCIONALMENTE
+- **Fecha**: 2026-05-02
+- **Commit funcional**: `5e918a5`
+- **Objetivo**: diseñar e implementar la infraestructura mínima gobernada para Tutor GCM sin darle autoridad sobre negocio.
+
+### Entregado
+- contrato v1 del turno implementado (`TutorInput`, `TutorOutput`, `TutorTrace`)
+- reglas de autoridad explícitas en `src/domain/tutor/contract.ts`
+- orquestador con fallback y validación en `src/lib/tutor/tutor-orchestrator.ts`
+- QA negativa validando rechazo de acciones no autorizadas
+- build del core sin regresiones
+
+### No alcance
+- integración real con proveedor LLM
+- UI conversacional visible para usuario final
+- autoridad sobre scoring, avance o cierre de sesión

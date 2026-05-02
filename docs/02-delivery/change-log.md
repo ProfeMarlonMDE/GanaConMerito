@@ -170,8 +170,10 @@ last_reviewed: 2026-05-01
 - sprint: PENDIENTE
 - relacionados: ADR-001-stack-base, QUAL-DEBT-REGISTER
 
-### [Unreleased] - 2026-05-02
-**Added**
-- Infraestructura para el módulo `Tutor GCM`.
-- Archivos de contrato de dominio (`src/domain/tutor/contract.ts`), de orquestación (`src/lib/tutor/tutor-orchestrator.ts`) y tipos (`src/types/tutor-turn.ts`).
-- Suite de pruebas unitarias para Tutor GCM (`src/lib/tutor/tutor.test.ts`) con validación de guardrails de autoridad.
+## 2026-05-02
+- tipo: feat+qa
+- modulo: tutor/core
+- resumen: se implementó la base técnica gobernada de `Tutor GCM`, incluyendo contrato v1 del turno, reglas explícitas de autoridad, orquestador con fallback y pruebas unitarias de guardrails, sin otorgarle autoridad sobre scoring, avance o cierre de sesión.
+- sprint: Sprint 5 - Tutor GCM: base técnica gobernada
+- commit funcional: `5e918a5`
+- relacionados: docs/project/status.md, docs/02-delivery/sprint-log.md, docs/03-architecture/adrs/ADR-002-assistant-component-governance.md
