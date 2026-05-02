@@ -15,6 +15,17 @@ last_reviewed: 2026-05-02
 # Change log
 
 ## 2026-05-02
+- tipo: docs+closure+ops
+- modulo: tutor/practice/runtime
+- resumen: se cerró documentalmente Sprint 9 de forma coherente con la evidencia operativa ya registrada: Tutor GCM quedó integrado de forma mínima y gobernada en práctica; la ruta `/api/tutor/turn` quedó autenticada y con contexto derivado del servidor; el cliente no impone `currentTopic`, `itemsCompleted` ni `currentScore`; y la triple verificación reportada queda fijada como `~/.openclaw/product = /opt/gcm/app = runtime visible` sobre `8ec0ee7`, con `buildTime=2026-05-02T20:21:39Z`. Se alinearon `status.md`, `sprint-log.md` y `change-log.md` para eliminar la contradicción de “en ejecución / pendiente de deploy”.
+- sprint: Sprint 9 — Integración funcional mínima gobernada de Tutor GCM
+- commit funcional/deploy verificado: `8ec0ee7`
+- commit documental operativo previo: `da3a8e66c4ce5d38fcf138725c81575836c7dfdd`
+- commit documental de sprint-log: `2fd9319c8745d067131479c35ab61bf155f69999`
+- agente: chatgpt
+- relacionados: docs/project/status.md, docs/02-delivery/sprint-log.md, src/components/tutor/tutor-interface.tsx, src/app/api/tutor/turn/route.ts
+
+## 2026-05-02
 - tipo: feat+ui+gov
 - modulo: tutor/practice
 - resumen: se integró funcionalmente el `Tutor GCM` dentro de la pantalla de práctica. Se creó el componente `TutorInterface` bajo el sistema de diseño premium, se implementó la ruta de API `/api/tutor/turn` con guardrails de autenticación y se conectó al `TutorOrchestrator`. El tutor ahora es visible y capaz de responder con contexto de tema, manteniendo prohibición estricta sobre scoring, avance y cierre de sesión.
@@ -206,5 +217,3 @@ last_reviewed: 2026-05-02
 - resumen: se implanta estructura documental operativa inicial para ganaconmerito.
 - sprint: PENDIENTE
 - relacionados: ADR-001-stack-base, QUAL-DEBT-REGISTER
-
-
