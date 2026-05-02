@@ -16,6 +16,8 @@ last_reviewed: 2026-05-01
 
 # Sprint log
 
+## Sprint cerrado - Sprint 4: Productización del core\n- **Estado**: CERRADO\n- **Fecha**: 2026-05-02\n- **Commit**: 304f950\n- **Objetivo**: Endurecer el core, mejorar UX móvil y eliminar superficies no prioritarias.\n\n### Comprometido\n- Navegación y continuidad entre pantallas.\n- Estados loading/empty/error.\n- Mobile polish y consistencia visual.\n- QA hardening del core.\n\n### Entregado\n- AppNav reducido a Inicio / Práctica / Métricas.\n- Biblioteca/editorial fuera de navegación principal.\n- Componentes LoadingState, EmptyState, ErrorState.\n- Versión 0.5.0.\n- QA runtime/E2E validado en VPS (Verde).\n\n### No alcance\n- Implementación funcional de Tutor GCM.\n- Reapertura de editorial como producto de usuario final.\n
+
 ## Sprint cerrado
 - Nombre: Sprint 2 - Maduración operativa del producto
 - Estado: CERRADO OPERATIVAMENTE

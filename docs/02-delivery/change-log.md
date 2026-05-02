@@ -14,6 +14,8 @@ last_reviewed: 2026-05-01
 
 # Change log
 
+## 2026-05-02\n- tipo: feat\n- modulo: core/ui\n- resumen: Cierre Sprint 4. Nav simplificado, hardening UX con states (loading/empty/error), exclusión de editorial del flujo principal y versión v0.5.0.\n- sprint: Sprint 4 - Productización del core\n- commit: 304f950\n
+
 ## 2026-05-01
 - tipo: deploy+qa+ops
 - modulo: platform/ui

@@ -59,6 +59,12 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 2. Features descartadas o congeladas con criterio explícito.
 3. SLA o expectativas formales de operación.
 
+## Sprint 4: Productización del Core (2026-05-02)
+- [x] Navegación: Editorial fuera del nav principal.
+- [x] UI: Iconografía SVG real y mobile polish.
+- [x] UX: Loading, Empty y Error states implementados.
+- [x] QA: E2E validado localmente.
+
 ## Vacíos de contexto
 - TODO: priorización explícita por impacto de negocio validada por Marlon.
 - TODO: definición oficial de roadmap por trimestre.
