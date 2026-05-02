@@ -239,3 +239,23 @@ last_reviewed: 2026-05-02
 - E2E API de `5` turnos verde
 - E2E UI Chromium verde
 - drift documental corregido en status, sprint-log y change-log
+
+## Sprint 8 — Runtime confiable, QA postdeploy y disciplina operativa verificable
+- **Estado**: CERRADO
+- **Fecha**: 2026-05-02
+- **Commit funcional auditado**: `c7ec88c`
+- **Objetivo**: auditar y endurecer la confiabilidad operativa del runtime con evidencia real, manteniendo release discipline y gates de QA postdeploy sobre `:3000`.
+
+### Evidencia validada (SESIÓN ACTUAL)
+- `~/.openclaw/product` en `c7ec88c`.
+- `/opt/gcm/app` en `c7ec88c`.
+- `/login` visible en runtime mostrando `commit=c7ec88c` y `buildTime=2026-05-02T18:40:22Z`.
+- `qa:smoke:postdeploy` verde (`artifacts/qa-smoke-postdeploy-smoke-mooqapqo-4v9emv`).
+- `qa:e2e:api` verde (`artifacts/qa-e2e-api-mooqbpol-ffih4y`).
+- `qa:e2e:ui` verde (`artifacts/qa-ui-e2e-ui-mooqd69x-up3rxi`).
+
+### Criterio de cierre cumplido
+- [x] Triple verificación confirmada sobre `c7ec88c`.
+- [x] Saneamiento de ruido efímero en Fuente Canónica completado.
+- [x] Evidencia de QA fresca (Smoke, E2E API, E2E UI) persistida en VPS.
+- [x] Drift documental corregido y sincronizado con Git.

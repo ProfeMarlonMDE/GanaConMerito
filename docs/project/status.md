@@ -24,9 +24,9 @@ El producto mantiene el corpus activo gobernado y entra en Sprint 8 con foco exp
 - **BuildTime visible validado en `/login`**: `2026-05-02T18:40:22Z`
 - **Triple verificación vigente**: `source = deploy = runtime` validada sobre `c7ec88c`
 - **QA postdeploy validada en `:3000`**:
-  - smoke: verde (`artifacts/qa-smoke-postdeploy-smoke-moop0qmi-a01cb8`)
-  - E2E API 5 turnos: verde (`artifacts/qa-e2e-api-moop0qn2-jsz0fw`)
-  - E2E UI Chromium: verde (`artifacts/qa-ui-e2e-ui-moop0roa-r9tcj6`)
+  - smoke: verde (`artifacts/qa-smoke-postdeploy-smoke-mooqapqo-4v9emv`)
+  - E2E API 5 turnos: verde (`artifacts/qa-e2e-api-mooqbpol-ffih4y`)
+  - E2E UI Chromium: verde (`artifacts/qa-ui-e2e-ui-mooqd69x-up3rxi`)
 - **Corpus activo**: 27 ítems documentados como activos en repo; Sprint 7 dejó gobernanza activa consolidada en Git con `c7ec88c`.
 
 ## Historial de sprints recientes
