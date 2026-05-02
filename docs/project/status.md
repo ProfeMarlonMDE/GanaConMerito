@@ -39,3 +39,8 @@ El core del producto fue endurecido para una experiencia móvil más clara, más
 - **Dashboard**: operativo y estable.
 - **Tutor GCM**: gobernanza aprobada (ADR-002), funcionalidad **no** implementada.
 - **Editorial**: superficie interna diferida; no forma parte de la navegación principal del usuario final.
+
+## Sprint 5 (Tutor GCM Base Técnica) - 2026-05-02
+- **Estado**: COMPLETADO
+- **Componentes**: src/types/tutor-turn.ts, src/domain/tutor/contract.ts, src/lib/tutor/tutor-orchestrator.ts
+- **Hito**: Se implementó el contrato v1 para Tutor GCM con guardrails de autoridad, garantizando que el asistente no pueda mutar estado de negocio (avanzar, calificar, cerrar sesión). Pruebas unitarias de degradación y autoridad pasadas. Core sin regresiones.

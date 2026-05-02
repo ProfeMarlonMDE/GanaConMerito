@@ -169,3 +169,9 @@ last_reviewed: 2026-05-01
 - resumen: se implanta estructura documental operativa inicial para ganaconmerito.
 - sprint: PENDIENTE
 - relacionados: ADR-001-stack-base, QUAL-DEBT-REGISTER
+
+### [Unreleased] - 2026-05-02
+**Added**
+- Infraestructura para el módulo `Tutor GCM`.
+- Archivos de contrato de dominio (`src/domain/tutor/contract.ts`), de orquestación (`src/lib/tutor/tutor-orchestrator.ts`) y tipos (`src/types/tutor-turn.ts`).
+- Suite de pruebas unitarias para Tutor GCM (`src/lib/tutor/tutor.test.ts`) con validación de guardrails de autoridad.

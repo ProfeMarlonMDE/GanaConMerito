@@ -176,3 +176,13 @@ last_reviewed: 2026-05-01
 - El deploy efectivo quedó validado en runtime con commit `df8f949`, contenedor `gcm-app` arriba, smoke postdeploy verde y `qa:e2e:ui` verde contra `:3000`.
 - Hardening operativo aplicado durante el cierre: el compose ya consume secretos desde `/opt/gcm/env/gcm-app.env` en vez de `/opt/gcm/app/.env.production`, evitando que limpiezas tipo `git clean -fdx` rompan futuros releases.
 - Nota residual: si la QA UI se ejecuta en host tras una limpieza agresiva del worktree, hay que garantizar dependencias de Playwright disponibles fuera del contenedor.
+
+## Sprint 5 - Tutor GCM Base Técnica Gobernada
+**Fecha**: 2026-05-02
+**Objetivo**: Diseñar e implementar la infraestructura mínima gobernada para Tutor GCM sin darle autoridad sobre negocio.
+**Logros**:
+- Contrato v1 del turno implementado (`TutorInput`, `TutorOutput`, `TutorTrace`).
+- Reglas de autoridad explícitas en `domain/tutor/contract.ts`.
+- Orquestador con fallback y validación en `lib/tutor/tutor-orchestrator.ts`.
+- QA negativa validando que rechaza keywords de avance y calificación.
+- Build del core sin regresiones.
