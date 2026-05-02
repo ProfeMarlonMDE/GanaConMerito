@@ -82,6 +82,65 @@ pre {
   font-size: 12px;
 }
 
+/* UI States: Loading, Empty, Error */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.loading-bars {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+  height: 24px;
+}
+
+.loading-bar {
+  width: 5px;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 999px;
+  animation: bar-grow 0.8s ease-in-out infinite;
+}
+
+@keyframes bar-grow {
+  0%, 100% { height: 40%; opacity: 0.4; }
+  50% { height: 100%; opacity: 1; }
+}
+
+.empty-state {
+  padding: 40px 24px;
+  border-radius: 24px;
+  background: var(--surface-secondary);
+  border: 1px dashed var(--border-strong);
+  text-align: center;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+}
+
+/* Nav Improvements */
+.nav-icon svg {
+  display: block;
+}
+
+.bottom-nav-link .nav-icon {
+  transition: transform 0.2s ease;
+}
+
+.bottom-nav-link:active .nav-icon {
+  transform: scale(0.9);
+}
+
+.bottom-nav-link.active .nav-icon {
+  border-color: transparent;
+}
+
+
 .auth-page {
   min-height: 100vh;
   display: flex;

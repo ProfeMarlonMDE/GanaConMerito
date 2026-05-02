@@ -33,137 +33,79 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="page-header">
-        <p className="eyebrow">Home / Hub</p>
-        <h1 className="display-title">Control claro para volver a estudiar en segundos.</h1>
-        <p className="body-lg">
-          GanaConMerito prioriza continuidad, foco y lectura útil del progreso. Entra, continúa y revisa
-          dónde conviene reforzar sin perderte en dashboards pesados.
-        </p>
+      <section className="page-header" style={{ paddingBottom: 0 }}>
+        <p className="eyebrow">Panel de control</p>
+        <h1 className="display-title">Bienvenido, {user.email?.split("@")[0]}</h1>
       </section>
 
       <section className="hero-card">
         <div className="inline-cluster" style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
           <div style={{ maxWidth: 560 }}>
-            <p className="eyebrow">Tu meta activa</p>
-            <h2 className="section-title">{activeGoal}</h2>
-            <p className="body-sm">
+            <p className="eyebrow">{onboardingComplete ? "Tu enfoque actual" : "Acción inmediata"}</p>
+            <h2 className="section-title">
+              {onboardingComplete 
+                ? activeGoal 
+                : "Completa tu configuración para empezar."}
+            </h2>
+            <p className="body-sm" style={{ marginTop: 8 }}>
               {onboardingComplete
-                ? `Áreas activas: ${activeAreas.length > 0 ? activeAreas.join(", ") : "pendientes de definición"}.`
-                : "Todavía falta terminar tu configuración inicial para desbloquear una práctica bien orientada."}
+                ? `Practicando en: ${activeAreas.length > 0 ? activeAreas.join(", ") : "áreas por definir"}.`
+                : "El sistema necesita saber tu perfil y metas para seleccionar las mejores preguntas para ti."}
             </p>
           </div>
-          <div className="status-pill premium">Tutor GCM listo como capa contextual</div>
+          {!onboardingComplete && <span className="status-pill warning">Pendiente</span>}
         </div>
-        <div style={{ marginTop: 18 }}>
-          <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
-            <span className="metric-label">Señal de avance</span>
-            <span className="subtle">{progress}%</span>
-          </div>
-          <div className="progress-rail" style={{ marginTop: 10 }}>
-            <div className="progress-fill" style={{ width: `${progress}%` }} />
-          </div>
-        </div>
-        <div className="page-actions" style={{ marginTop: 22 }}>
+        
+        <div className="page-actions" style={{ marginTop: 28 }}>
           <Link href={primaryHref} className="primary-button" style={{ flex: 1 }}>
-            {primaryLabel}
+            {primaryLabel} →
           </Link>
-          <Link href="/dashboard" className="secondary-button" style={{ flex: 1 }}>
-            Ver métricas
-          </Link>
+          {onboardingComplete && (
+            <Link href="/dashboard" className="secondary-button" style={{ flex: 1 }}>
+              Revisar progreso
+            </Link>
+          )}
         </div>
       </section>
 
       <section className="metric-grid">
         <article className="metric-card">
-          <span className="metric-label">Precisión histórica</span>
+          <span className="metric-label">Precisión</span>
           <strong className="metric-value">{accuracy}%</strong>
-          <span className={`metric-delta ${historical.recentTrend === "up" ? "success" : historical.recentTrend === "down" ? "warning" : ""}`}>
-            Tendencia: {historical.recentTrend}
-          </span>
+          <div className="progress-rail" style={{ height: 4, marginTop: 4 }}>
+            <div className="progress-fill" style={{ width: `${progress}%` }} />
+          </div>
         </article>
         <article className="metric-card">
-          <span className="metric-label">Intentos acumulados</span>
+          <span className="metric-label">Intentos</span>
           <strong className="metric-value">{historical.totalAttempts}</strong>
-          <span className="subtle">Base real para medir progreso.</span>
-        </article>
-        <article className="metric-card">
-          <span className="metric-label">Nivel estimado</span>
-          <strong className="metric-value">{historical.estimatedLevel}</strong>
-          <span className="subtle">Lectura global del rendimiento actual.</span>
-        </article>
-        <article className="metric-card">
-          <span className="metric-label">Percentil</span>
-          <strong className="metric-value">{historical.percentileSegment ?? "—"}</strong>
-          <span className="subtle">Visible cuando ya existe señal suficiente.</span>
         </article>
       </section>
 
       <section className="two-column-grid">
         <article className="surface-card" style={{ padding: 22 }}>
-          <p className="eyebrow">Siguiente mejor acción</p>
-          <h2 className="section-title">{onboardingComplete ? "Retoma una sesión de práctica con foco" : "Cierra la configuración inicial"}</h2>
-          <p className="body-sm">
-            {onboardingComplete
-              ? "La práctica sigue siendo la superficie principal: responde, justifica y revisa feedback sin cambiar de contexto."
-              : "Completa perfil, meta y áreas activas para que la selección de preguntas y el dashboard partan de una base coherente."}
-          </p>
-          <div className="page-actions" style={{ marginTop: 18 }}>
-            <Link href={primaryHref} className="primary-button" style={{ flex: 1 }}>
-              {primaryLabel}
-            </Link>
-          </div>
-        </article>
-
-        <article className="tutor-chip">
-          <div>
-            <p className="metric-label" style={{ margin: 0 }}>Tutor GCM</p>
-            <h3 style={{ margin: "6px 0 8px", fontSize: "1.05rem" }}>Presencia secundaria, no dominante</h3>
-            <p className="subtle" style={{ margin: 0 }}>
-              Queda preparado para recomendaciones, recap y ayuda contextual sin convertir el producto en chat-first.
+          <p className="eyebrow">Tu rendimiento</p>
+          <h2 className="section-title" style={{ fontSize: "1.1rem" }}>{historical.estimatedLevel}</h2>
+          <p className="subtle" style={{ marginTop: 4 }}>Nivel estimado actual</p>
+          
+          <div className="tutor-chip" style={{ marginTop: 20 }}>
+            <p className="body-sm" style={{ margin: 0 }}>
+              {onboardingComplete 
+                ? "Listo para una nueva sesión de práctica." 
+                : "Configura tu perfil para activar el Tutor GCM."}
             </p>
           </div>
-          <span className="status-pill premium">Asistente-ready</span>
-        </article>
-      </section>
-
-      <section className="two-column-grid">
-        <article className="list-card">
-          <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
-            <h2 className="section-title" style={{ fontSize: "1.25rem" }}>Fortalezas</h2>
-            <span className="status-pill success">Señal alta</span>
-          </div>
-          {historical.strongestCompetencies.length > 0 ? historical.strongestCompetencies.map((entry) => (
-            <div key={entry} className="list-row">
-              <span>{entry}</span>
-              <strong>{accuracy}%</strong>
-            </div>
-          )) : <p className="subtle">Aún faltan suficientes respuestas para mostrar áreas fuertes con confianza.</p>}
         </article>
 
-        <article className="list-card">
-          <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
-            <h2 className="section-title" style={{ fontSize: "1.25rem" }}>Áreas por reforzar</h2>
-            <span className="status-pill warning">Prioridad</span>
-          </div>
-          {historical.weakestCompetencies.length > 0 ? historical.weakestCompetencies.map((entry) => (
-            <div key={entry} className="list-row">
-              <span>{entry}</span>
-              <strong>{historical.avgReasoningScore}</strong>
-            </div>
-          )) : <p className="subtle">Todavía no hay suficiente señal para recomendar un frente concreto.</p>}
+        <article className="surface-card" style={{ padding: 22 }}>
+          <p className="eyebrow">Próximo paso</p>
+          <h2 className="section-title" style={{ fontSize: "1.1rem" }}>{onboardingComplete ? "Sesión de práctica" : "Formulario inicial"}</h2>
+          <Link href={primaryHref} className="subtle" style={{ marginTop: 12, display: "inline-block" }}>
+            {primaryLabel} →
+          </Link>
         </article>
-      </section>
-
-      <section className="surface-card" style={{ padding: 22 }}>
-        <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
-          <div>
-            <p className="eyebrow">Biblioteca curada</p>
-            <h2 className="section-title">Documentación y material editorial sin ruido operativo</h2>
-          </div>
-          <Link href="/editorial" className="subtle">Abrir biblioteca →</Link>
-        </div>
       </section>
     </>
   );
 }
+

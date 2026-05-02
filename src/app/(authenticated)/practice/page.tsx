@@ -28,15 +28,9 @@ export default async function PracticePage() {
 
   return (
     <>
-      <section className="page-header">
+      <section className="page-header" style={{ paddingBottom: 0 }}>
         <p className="eyebrow">Práctica</p>
-        <h1 className="display-title">La superficie más fuerte: pregunta, decisión y feedback.</h1>
-        <p className="body-lg">
-          Sin chat dominante, sin desorden visual. Aquí vive el núcleo del producto y la señal que luego alimenta el dashboard.
-        </p>
-        <div className="page-actions">
-          <Link href="/home" className="subtle">← Volver a inicio</Link>
-        </div>
+        <h1 className="display-title">Pregunta, decide y revisa feedback.</h1>
       </section>
       <PracticeSession />
     </>

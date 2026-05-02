@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { LoadingState } from "@/components/ui/loading-state";
+import { ErrorState } from "@/components/ui/error-state";
+import { EmptyState } from "@/components/ui/empty-state";
 
 interface PracticeItem {
   id: string;
@@ -187,21 +190,27 @@ export function PracticeSession() {
     <section className="content-stack" style={{ paddingTop: 0 }}>
       {!session ? (
         <div className="hero-card">
-          <p className="eyebrow">Sesión real conectada</p>
-          <h2 className="section-title">Práctica guiada con backend, evaluación y feedback trazable.</h2>
-          <p className="body-sm">
-            Esta superficie prioriza pregunta, decisión y justificación. Tutor GCM queda como capa futura de ayuda contextual, no como chat dominante.
-          </p>
+          <p className="eyebrow">Sesión real</p>
+          <h2 className="section-title">Pregunta, responde y recibe feedback trazable.</h2>
           <div className="page-actions" style={{ marginTop: 18 }}>
-            <button onClick={handleStart} className="primary-button" disabled={loading}>
-              {loading ? "Iniciando..." : "Iniciar práctica"}
-            </button>
+            {loading ? (
+              <LoadingState message="Iniciando sesión..." />
+            ) : (
+              <button onClick={handleStart} className="primary-button">
+                Iniciar práctica
+              </button>
+            )}
           </div>
         </div>
       ) : null}
 
-      {error ? <p className="subtle" style={{ color: "var(--error)", margin: 0 }}>{error}</p> : null}
-      {sessionMessage ? <div className="empty-state"><p className="body-sm" style={{ margin: 0 }}>{sessionMessage}</p></div> : null}
+      {error ? <ErrorState message={error} onRetry={!session ? handleStart : undefined} /> : null}
+      {sessionMessage && !error ? (
+        <EmptyState
+          title={sessionMessage}
+          description={canStartAnother ? "Puedes iniciar una nueva sesión cuando quieras." : undefined}
+        />
+      ) : null}
 
       {session ? (
         <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
