@@ -215,3 +215,21 @@ last_reviewed: 2026-05-02
 - reapertura de editorial/question-bank
 - integración visible adicional de Tutor GCM
 - cambios de schema o migraciones de Supabase
+
+## Sprint cerrado — Sprint 7: Reapertura selectiva de editorial / question-bank
+- **Estado**: CERRADO
+- **Fecha**: 2026-05-02
+- **Commit documental de cierre**: pendiente de consolidación en Git
+- **Objetivo**: reabrir de forma selectiva y gobernada el frente editorial/question-bank, validando el corpus activo y reduciendo drift entre repo, documentación y runtime esperado.
+
+### Entregado
+- `docs/project/current-corpus-runtime-activation-map.md` con el listado de 27 ítems activos
+- actualización documental de `status`, `backlog` y `change-log` para reflejar el banco activo gobernado
+- validación reportada del corpus activo sin drift entre DB y repo
+- mantenimiento del core sin cambios funcionales ni regresiones reportadas
+
+### No alcance
+- expansión del corpus por encima de 27 ítems
+- cambios de UI del core
+- integración visible adicional de Tutor GCM
+- nuevas migraciones o cambios de schema de Supabase

@@ -25,11 +25,10 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 - Preparar la base técnica gobernada del frente de asistentes ya aprobado.
 - Mantener consistencia entre migraciones de Supabase, modelo de datos activo y corpus operativo.
 
-### Frente diferido a deuda técnica: banco de preguntas
-- Estado: DIFERIDO DEL SPRINT / TRATADO COMO DEUDA TÉCNICA.
-- Alcance diferido: validación funcional final del banco activo, alineación documental adicional del banco, segmentación asociada y proceso de gestión/editorial del banco.
-- Criterio operativo actual: no meter este frente dentro de un sprint no formalizado ni hacerlo competir con UX, asistentes, trazabilidad y calidad operativa central.
-- Reentrada sugerida: cuando exista un sprint dedicado a datos/editorial o cuando el trabajo de asistentes requiera reabrir explícitamente este dominio.
+### Frente gobernado: banco de preguntas
+- Estado: ACTIVO Y GOBERNADO.
+- Alcance: validación funcional del banco activo (27 ítems), alineación documental, mapa de activación y proceso de verificación sin drift.
+- Criterio operativo: se mantiene el corpus en 27 ítems hasta nueva instrucción, asegurando 0 drift reportado entre repo y DB/runtime esperado.
 
 ## Prioridad ejecutiva
 
@@ -78,4 +77,4 @@ Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de 
 - `dashboard`: activo; debe reflejar progreso real sin inflar capacidades analíticas no implementadas.
 - `editorial`: hoy es biblioteca documental de solo lectura; no tratar como módulo administrativo activo del sprint.
 - `ai`: `Tutor GCM` quedó aprobado a nivel de gobernanza, pero sigue no implementado como feature funcional visible.
-- `question-bank`: queda diferido como deuda técnica; no debe competir en un sprint futuro salvo decisión ejecutiva explícita.
+- `question-bank`: activo y gobernado; corpus de 27 ítems validado y sin drift.

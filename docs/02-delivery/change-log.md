@@ -15,6 +15,13 @@ last_reviewed: 2026-05-02
 # Change log
 
 ## 2026-05-02
+- tipo: content+gov+docs
+- modulo: question-bank/editorial
+- resumen: se ejecutó Sprint 7 de reapertura selectiva de editorial/QB; se validó el corpus activo de 27 ítems en el VPS sin drift con el repo, se creó el mapa de activación de runtime formal (`docs/project/current-corpus-runtime-activation-map.md`) y se actualizó la gobernanza en backlog y status para tratar el banco como frente activo y gobernado.
+- sprint: Sprint 7 — Reapertura selectiva de editorial / QB
+- commit documental: pendiente de consolidación en Git
+- relacionados: docs/project/current-corpus-runtime-activation-map.md, docs/02-delivery/sprint-log.md, docs/project/status.md
+
 - tipo: release+ops+docs
 - modulo: platform/release
 - resumen: se cerró Sprint 6 centrado en disciplina operativa de release; se creó la checklist formal de release, se actualizó la versión a `0.6.0`, se corrigieron permisos de Git en VPS y se ejecutó un deploy con triple verificación (Source=Deploy=Runtime) validado mediante el commit `deb265c` y `buildTime` visible en `/login`.
