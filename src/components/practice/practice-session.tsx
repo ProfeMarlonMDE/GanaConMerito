@@ -298,7 +298,7 @@ export function PracticeSession() {
           ) : null}
 
           <div style={{ marginTop: 24, marginBottom: 24 }}>
-            <TutorInterface sessionId={session.sessionId} currentItemId={item.id} />
+            <TutorInterface sessionId={session?.sessionId ?? ""} currentItemId={item.id} />
           </div>
 
           <div className="practice-sticky">
