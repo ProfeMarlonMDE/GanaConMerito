@@ -14,7 +14,14 @@ last_reviewed: 2026-05-01
 
 # Change log
 
-## 2026-05-02\n- tipo: feat\n- modulo: core/ui\n- resumen: Cierre Sprint 4. Nav simplificado, hardening UX con states (loading/empty/error), exclusión de editorial del flujo principal y versión v0.5.0.\n- sprint: Sprint 4 - Productización del core\n- commit: 304f950\n
+## 2026-05-02
+- tipo: feat+docs+closure
+- modulo: core/ui
+- resumen: se cerró Sprint 4 con nav simplificado (`Inicio`, `Práctica`, `Métricas`), hardening UX mediante `LoadingState` / `EmptyState` / `ErrorState`, salida de editorial del flujo principal del usuario y versión declarada `0.5.0`; el cierre documental posterior quedó registrado en `ef13a4f` sobre el cambio funcional `304f950`.
+- sprint: Sprint 4 - Productización del core
+- commit funcional: `304f950`
+- commit documental: `ef13a4f`
+
 
 ## 2026-05-01
 - tipo: deploy+qa+ops

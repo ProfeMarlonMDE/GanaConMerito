@@ -16,7 +16,36 @@ last_reviewed: 2026-05-01
 
 # Sprint log
 
-## Sprint cerrado - Sprint 4: Productización del core\n- **Estado**: CERRADO\n- **Fecha**: 2026-05-02\n- **Commit**: 304f950\n- **Objetivo**: Endurecer el core, mejorar UX móvil y eliminar superficies no prioritarias.\n\n### Comprometido\n- Navegación y continuidad entre pantallas.\n- Estados loading/empty/error.\n- Mobile polish y consistencia visual.\n- QA hardening del core.\n\n### Entregado\n- AppNav reducido a Inicio / Práctica / Métricas.\n- Biblioteca/editorial fuera de navegación principal.\n- Componentes LoadingState, EmptyState, ErrorState.\n- Versión 0.5.0.\n- QA runtime/E2E validado en VPS (Verde).\n\n### No alcance\n- Implementación funcional de Tutor GCM.\n- Reapertura de editorial como producto de usuario final.\n
+## Sprint cerrado — Sprint 4: Productización del core
+- **Estado**: CERRADO
+- **Fecha**: 2026-05-02
+- **Commit funcional**: `304f950`
+- **Commit documental de cierre**: `ef13a4f`
+- **Objetivo**: endurecer el core, mejorar UX móvil y retirar superficies no prioritarias del flujo principal.
+
+### Comprometido
+- navegación y continuidad entre pantallas
+- estados `loading` / `empty` / `error`
+- mobile polish y consistencia visual
+- copy UX y jerarquía de acciones
+- reducción de fricción en onboarding / práctica / dashboard
+- QA hardening del core
+
+### Entregado
+- `AppNav` reducido a `Inicio / Práctica / Métricas`
+- biblioteca/editorial fuera de la navegación principal del usuario
+- componentes `LoadingState`, `EmptyState` y `ErrorState`
+- mejoras de continuidad en `Home` y endurecimiento de flujo en `Practice`
+- versión declarada `0.5.0`
+- build validado y `test:dashboard` verde en fuente canónica
+- validación de runtime/E2E reportada sobre VPS para el runtime funcional del sprint
+
+### No alcance
+- implementación funcional de `Tutor GCM`
+- reapertura de editorial como producto de usuario final
+- cambios de migraciones o schema de Supabase
+- cambios estructurales nuevos de arquitectura fuera del hardening del sprint
+
 
 ## Sprint cerrado
 - Nombre: Sprint 2 - Maduración operativa del producto
