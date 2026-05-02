@@ -18,7 +18,7 @@ La integración mínima gobernada de Tutor GCM ya vive en `master`, pero todaví
 ## Verdad operativa actual
 - **Versión declarada**: 0.6.0
 - **Rama canónica**: master
-- **HEAD actual en source (`master`)**: `bd7bd8b`
+- **HEAD actual en source (`master`)**: `58d8525`
 - **Commit funcional base de Sprint 9**: `bfb26cb`
 - **HEAD actual en deploy tree (`/opt/gcm/app`)**: `c7ec88c`
 - **Runtime visible validado en `/login`**: `c7ec88c`
