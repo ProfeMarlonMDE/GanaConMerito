@@ -61,7 +61,7 @@ export function PracticeSession() {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error ?? "No se pudo cargar el item.");
+      throw new Error(data.error ?? "No se pudo cargar el ítem.");
     }
 
     setItem(data);
@@ -88,7 +88,7 @@ export function PracticeSession() {
     const data = await response.json();
 
     if (!response.ok) {
-      setError(data.error ?? "No se pudo iniciar la sesion.");
+      setError(data.error ?? "No se pudo iniciar la sesión.");
       setLoading(false);
       return;
     }
@@ -96,13 +96,13 @@ export function PracticeSession() {
     setSession(data);
 
     if (data.currentState === "onboarding") {
-      setSessionMessage("Debes completar el onboarding antes de iniciar una practica real.");
+      setSessionMessage("Debes completar el onboarding antes de iniciar una práctica real.");
       setLoading(false);
       return;
     }
 
     if (!data.currentItemId) {
-      setSessionMessage("La sesion fue creada, pero no hay un item disponible todavia para continuar.");
+      setSessionMessage("La sesión fue creada, pero no hay un ítem disponible todavía para continuar.");
       setLoading(false);
       return;
     }
@@ -110,7 +110,7 @@ export function PracticeSession() {
     try {
       await loadItem(data.sessionId, data.currentItemId);
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el item inicial.");
+      setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el ítem inicial.");
     }
 
     setLoading(false);
@@ -137,7 +137,7 @@ export function PracticeSession() {
     const data = await response.json();
 
     if (!response.ok) {
-      setError(data.error ?? "No se pudo avanzar la sesion.");
+      setError(data.error ?? "No se pudo avanzar la sesión.");
       setLoading(false);
       return;
     }
@@ -146,7 +146,7 @@ export function PracticeSession() {
 
     if (data.currentState === "session_close") {
       setPendingNextItemId(null);
-      setSessionMessage("La sesion termino correctamente. Ya puedes revisar esta corrida en el dashboard de la sesion.");
+      setSessionMessage("La sesión terminó correctamente. Ya puedes revisar esta corrida en el dashboard de la sesión.");
       setLoading(false);
       return;
     }
@@ -154,7 +154,7 @@ export function PracticeSession() {
     if (data.nextItemId) {
       setPendingNextItemId(data.nextItemId);
     } else {
-      setSessionMessage("No hay un siguiente item disponible en este momento.");
+      setSessionMessage("No hay un siguiente ítem disponible en este momento.");
     }
 
     setLoading(false);
@@ -169,7 +169,7 @@ export function PracticeSession() {
     try {
       await loadItem(session.sessionId, pendingNextItemId);
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el siguiente item.");
+      setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el siguiente ítem.");
     }
 
     setLoading(false);
@@ -191,14 +191,14 @@ export function PracticeSession() {
     <section className="content-stack" style={{ paddingTop: 0 }}>
       {!session ? (
         <div className="hero-card">
-          <p className="eyebrow">Sesion real</p>
+          <p className="eyebrow">Sesión real</p>
           <h2 className="section-title">Pregunta, responde y recibe feedback trazable.</h2>
           <div className="page-actions" style={{ marginTop: 18 }}>
             {loading ? (
-              <LoadingState message="Iniciando sesion..." />
+              <LoadingState message="Iniciando sesión..." />
             ) : (
               <button onClick={handleStart} className="primary-button">
-                Iniciar practica
+                Iniciar práctica
               </button>
             )}
           </div>
@@ -209,18 +209,18 @@ export function PracticeSession() {
       {sessionMessage && !error ? (
         <EmptyState
           title={sessionMessage}
-          description={canStartAnother ? "Puedes iniciar una nueva sesion cuando quieras." : undefined}
+          description={canStartAnother ? "Puedes iniciar una nueva sesión cuando quieras." : undefined}
         />
       ) : null}
 
       {session ? (
         <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
           <div className="inline-cluster">
-            <span className="pill">Sesion {session.sessionId.slice(0, 8)}</span>
+            <span className="pill">Sesión {session.sessionId.slice(0, 8)}</span>
             <span className="pill">Estado: {feedback?.currentState ?? session.currentState}</span>
             {item ? <span className="pill">{item.area} · {item.competency}</span> : null}
           </div>
-          {sessionDashboardHref ? <Link href={sessionDashboardHref} className="subtle">Ver sesion →</Link> : null}
+          {sessionDashboardHref ? <Link href={sessionDashboardHref} className="subtle">Ver sesión →</Link> : null}
         </div>
       ) : null}
 
@@ -228,7 +228,7 @@ export function PracticeSession() {
         <article className="surface-card" style={{ padding: 24 }}>
           <div className="inline-cluster" style={{ justifyContent: "space-between", marginBottom: 18 }}>
             <div>
-              <p className="eyebrow">Practica</p>
+              <p className="eyebrow">Práctica</p>
               <h2 className="section-title" style={{ fontSize: "1.15rem" }}>{item.title}</h2>
             </div>
             <span className="status-pill premium">Foco activo</span>
@@ -262,13 +262,13 @@ export function PracticeSession() {
           </div>
 
           <div className="form-field" style={{ marginTop: 22 }}>
-            <label className="field-label" htmlFor="practice-rationale">Justificacion opcional</label>
+            <label className="field-label" htmlFor="practice-rationale">Justificación opcional</label>
             <textarea
               id="practice-rationale"
               className="text-area"
               value={userRationale}
               onChange={(event) => setUserRationale(event.target.value)}
-              placeholder="Explica brevemente por que elegiste esa respuesta"
+              placeholder="Explica brevemente por qué elegiste esa respuesta"
               rows={5}
               disabled={loading || Boolean(feedback)}
             />
@@ -318,7 +318,7 @@ export function PracticeSession() {
       {sessionEnded && sessionDashboardHref ? (
         <div className="page-actions">
           <Link href={sessionDashboardHref} className="secondary-button" style={{ flex: 1 }}>
-            Ver dashboard de esta sesion
+            Ver dashboard de esta sesión
           </Link>
           <Link href="/home" className="subtle">Volver a inicio</Link>
         </div>
@@ -327,9 +327,9 @@ export function PracticeSession() {
       {session && !item ? (
         <div className="page-actions">
           <button onClick={resetPractice} className="primary-button" disabled={loading || !canStartAnother}>
-            Iniciar una nueva sesion
+            Iniciar una nueva sesión
           </button>
-          <Link href="/dashboard" className="subtle">Ir al dashboard historico</Link>
+          <Link href="/dashboard" className="subtle">Ir al dashboard histórico</Link>
         </div>
       ) : null}
     </section>
