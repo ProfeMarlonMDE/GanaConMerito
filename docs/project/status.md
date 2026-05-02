@@ -10,35 +10,32 @@ last_reviewed: 2026-05-02
 
 # Project Status — GanaConMerito
 
-Última actualización: 2026-05-02 (Auditoría de Sprint 9)
+Última actualización: 2026-05-02 (Cierre operativo Sprint 9 — triple verificación confirmada)
 
-## Estado General: Sprint 9 en Source (Pendiente cierre operativo v0.7.0)
-El producto ha integrado la interfaz del Tutor GCM en la fuente canónica. La auditoría técnica exige completar el cierre operativo real en el VPS (carpeta, deploy, docker) antes de declarar el cierre formal.
+## Estado General: Sprint 9 CERRADO OPERATIVAMENTE (v0.7.0-dev)
+La integración mínima gobernada de Tutor GCM está en source, deploy y runtime. Triple verificación confirmada sobre `8ec0ee7`.
 
 ## Verdad operativa actual
 - **Versión declarada**: 0.6.0
 - **Rama canónica**: master
-- **Commit funcional base de Sprint 9 presente en source**: `bfb26cb`
-- **Hardening posterior de auditoría**: publicado también en `master`
-- **HEAD actual en deploy tree (`/opt/gcm/app`)**: `c7ec88c`
-- **Runtime visible validado en `/login`**: `c7ec88c`
-- **BuildTime visible validado en `/login`**: `2026-05-02T18:40:22Z`
-- **Triple verificación vigente**: `source = deploy = runtime` validada sobre `c7ec88c`
-- **QA postdeploy validada en `:3000`**:
-  - smoke: verde (`artifacts/qa-smoke-postdeploy-smoke-mooqapqo-4v9emv`)
-  - E2E API 5 turnos: verde (`artifacts/qa-e2e-api-mooqbpol-ffih4y`)
-  - E2E UI Chromium: verde (`artifacts/qa-ui-e2e-ui-mooqd69x-up3rxi`)
-- **Corpus activo**: 27 ítems documentados como activos en repo; Sprint 7 dejó gobernanza activa consolidada en Git con `c7ec88c`.
+- **HEAD actual en source (`~/.openclaw/product`)**: `8ec0ee7`
+- **HEAD actual en deploy tree (`/opt/gcm/app`)**: `8ec0ee7`
+- **Runtime visible validado en `:3000/login`**: `8ec0ee7`
+- **BuildTime visible validado en `:3000/login`**: `2026-05-02T20:21:39Z`
+- **Triple verificación Sprint 9**: `source = deploy = runtime` confirmada sobre `8ec0ee7`
+- **Tutor GCM `/api/tutor/turn`**: visible en build, autenticado, contexto derivado de servidor
+- **Corpus activo**: 27 ítems; gobernanza intacta desde Sprint 7
 
 ## Historial de sprints recientes
 
-### Sprint 9 — Integración funcional mínima gobernada de Tutor GCM (en source, pendiente de cierre operativo)
+### Sprint 9 — Integración funcional mínima gobernada de Tutor GCM (CERRADO)
+- **Commit funcional**: `8ec0ee7`
 - **Foco**: hacer visible y útil al tutor sin soltar el control del sistema.
-- **Estado real**:
-  - integración UI del tutor en práctica publicada en `master`
-  - ruta `/api/tutor/turn` publicada en `master`
-  - hardening posterior de guardrails para no confiar contexto de sesión enviado por el cliente
-  - sin evidencia todavía de deploy alineado ni runtime visible sobre esta integración
+- **Triple verificación**: source = deploy = runtime = `8ec0ee7` / `2026-05-02T20:21:39Z`
+- **Guardrails aplicados**:
+  - contexto de sesión derivado 100% del servidor (Supabase), no del cliente
+  - tutor no tiene autoridad sobre scoring, avance ni cierre
+  - denegación de intentos de acciones no autorizadas verificada en tests
 
 ### Sprint 8 — Runtime confiable, QA postdeploy y disciplina operativa verificable (cerrado)
 - **Foco**: release hardening, trazabilidad y triple verificación.
@@ -74,10 +71,10 @@ El producto ha integrado la interfaz del Tutor GCM en la fuente canónica. La au
 
 ## Módulos y features activos
 - **Core**: login, onboarding, práctica y dashboard estables.
-- **Tutor GCM**: integración mínima visible en `source`; sin verificación todavía de deploy/runtime sobre Sprint 9.
+- **Tutor GCM**: integrado funcionalmente en práctica; deploy y runtime verificados en `8ec0ee7`.
 - **Editorial / question-bank**: frente reabierto selectivamente bajo gobernanza de corpus; no convertido en módulo principal de usuario final.
 
 ## Próximos pasos
-1. Alinear `~/.openclaw/product`, `/opt/gcm/app` y runtime visible sobre el HEAD actual de `master`.
-2. Ejecutar build, smoke y la validación funcional mínima del tutor sobre el runtime realmente desplegado.
-3. Cerrar Sprint 9 solo cuando la evidencia de deploy y runtime deje de apuntar a `c7ec88c`.
+1. Sprint 10: conectar Tutor GCM con proveedor LLM real bajo guardrails (score derivado de servidor, no del modelo).
+2. Correr QA postdeploy formal (smoke + E2E) sobre el runtime de Sprint 9.
+3. Mantener discipline de triple verificación en futuros sprints.
