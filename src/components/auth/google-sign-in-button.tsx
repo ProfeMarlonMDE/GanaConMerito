@@ -18,14 +18,13 @@ export function GoogleSignInButton() {
     setError(null);
 
     try {
-      const { error } = await signInWithGoogle("/");
-
+      const { error } = await signInWithGoogle("/home");
       if (error) {
         setError(error.message);
-        setLoading(false);
       }
-    } catch (signInError) {
-      setError(getErrorMessage(signInError));
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Error inesperado al conectar");
+    } finally {
       setLoading(false);
     }
   }
