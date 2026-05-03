@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert";
 import { TutorOrchestrator } from "./tutor-orchestrator";
+import { selectAnsweredTurnForItem } from "./tutor-evidence-builder";
 import type { TutorEvidence, TutorTurnRequest } from "../../types/tutor-turn";
 
 const baseEvidence: TutorEvidence = {
@@ -107,6 +108,9 @@ test("TutorOrchestrator can explain correct option after user answers", async ()
 
   assert.strictEqual(result.output.canRevealCorrectAnswer, true);
   assert.match(result.output.visibleMessage, /opción correcta registrada es B/i);
+  assert.match(result.output.visibleMessage, /feedback oficial registrado/i);
+  assert.match(result.output.visibleMessage, /distractores/i);
+  assert.strictEqual(result.trace.canRevealCorrectAnswer, true);
 });
 
 test("TutorOrchestrator classifies user rationale without scoring", async () => {
@@ -124,5 +128,67 @@ test("TutorOrchestrator classifies user rationale without scoring", async () => 
 
   assert.strictEqual(result.output.rationaleQuality, "strong");
   assert.match(result.output.visibleMessage, /no cambia el puntaje oficial/i);
+  assert.match(result.output.visibleMessage, /distractores/i);
   assert.ok(result.output.guardrailsApplied.includes("no_score_mutation"));
+});
+
+test("TutorOrchestrator keeps blocking correct answer without answered evidence", async () => {
+  const result = await new TutorOrchestrator().processTurn(makeInput("Cuál era la correcta"));
+
+  assert.strictEqual(result.output.canRevealCorrectAnswer, false);
+  assert.doesNotMatch(result.output.visibleMessage, /clave registrada es B|opción correcta registrada es B/i);
+});
+
+test("TutorOrchestrator maps post-answer feedback phrasing to explain_feedback intent", async () => {
+  const result = await new TutorOrchestrator().processTurn(
+    makeInput("Por qué mi respuesta está bien o mal", {
+      ...baseEvidence,
+      userSession: {
+        ...baseEvidence.userSession,
+        selectedOption: "A",
+        feedback: "La elección no atendió el criterio principal.",
+      },
+    }),
+  );
+
+  assert.strictEqual(result.output.intent, "explain_feedback");
+  assert.strictEqual(result.output.canRevealCorrectAnswer, true);
+  assert.match(result.output.visibleMessage, /puntaje oficial/i);
+});
+
+test("selectAnsweredTurnForItem chooses the matching answered turn for the item", () => {
+  const turn = selectAnsweredTurnForItem(
+    [
+      {
+        id: "turn-3",
+        item_id: "item-2",
+        selected_option: "C",
+        user_rationale: null,
+        model_feedback: "Otro turno",
+        created_at: "2026-01-03T00:00:00.000Z",
+      },
+      {
+        id: "turn-2",
+        item_id: "item-1",
+        selected_option: "A",
+        user_rationale: "Porque descarto distractores",
+        model_feedback: "Feedback correcto",
+        created_at: "2026-01-02T00:00:00.000Z",
+        is_correct: false,
+        competency_score: 60,
+      },
+      {
+        id: "turn-1",
+        item_id: "item-1",
+        selected_option: null,
+        user_rationale: null,
+        model_feedback: null,
+        created_at: "2026-01-01T00:00:00.000Z",
+      },
+    ],
+    "item-1",
+  );
+
+  assert.strictEqual(turn?.id, "turn-2");
+  assert.strictEqual(turn?.selected_option, "A");
 });

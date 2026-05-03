@@ -20,13 +20,23 @@ interface TutorOptionRecord {
 }
 
 interface TutorSessionTurnRecord {
+  id: string;
   item_id: string | null;
   selected_option: string | null;
   user_rationale: string | null;
   model_feedback: string | null;
+  created_at: string;
+}
+
+interface TutorEvaluationEventRecord {
+  session_turn_id: string;
   is_correct: boolean | null;
   competency_score: number | null;
-  created_at: string;
+}
+
+interface TutorSessionTurnWithEvaluation extends TutorSessionTurnRecord {
+  is_correct?: boolean | null;
+  competency_score?: number | null;
 }
 
 interface TutorLearningProfileRecord {
@@ -49,7 +59,7 @@ export async function buildTutorEvidence(params: {
 }): Promise<TutorEvidence> {
   const { supabase, userId, sessionId, itemId } = params;
 
-  const [itemResult, optionsResult, turnsResult, learningProfileResult] = await Promise.all([
+  const [itemResult, optionsResult, turnsResult, currentTurnResult, learningProfileResult] = await Promise.all([
     runWithActiveItemBankFallback<TutorItemRecord>((source) =>
       applyActiveItemBankFilters(
         supabase
@@ -62,21 +72,46 @@ export async function buildTutorEvidence(params: {
     supabase.from("item_options").select("option_key, option_text").eq("item_id", itemId).order("option_key", { ascending: true }),
     supabase
       .from("session_turns")
-      .select("item_id, selected_option, user_rationale, model_feedback, is_correct, competency_score, created_at")
+      .select("id, item_id, selected_option, user_rationale, model_feedback, created_at")
       .eq("session_id", sessionId)
       .order("created_at", { ascending: false })
-      .limit(10),
+      .limit(25),
+    supabase
+      .from("session_turns")
+      .select("id, item_id, selected_option, user_rationale, model_feedback, created_at")
+      .eq("session_id", sessionId)
+      .eq("item_id", itemId)
+      .not("selected_option", "is", null)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
     supabase.from("learning_profiles").select("professional_profile_id").eq("profile_id", userId).single(),
   ]);
 
   const item = itemResult.data;
   const options = (optionsResult.data ?? []) as TutorOptionRecord[];
   const turns = (turnsResult.data ?? []) as TutorSessionTurnRecord[];
+  const currentTurnRecord = (currentTurnResult.data ?? null) as TutorSessionTurnRecord | null;
   const learningProfile = learningProfileResult.data as TutorLearningProfileRecord | null;
+  const relevantTurnIds = [...new Set([...(turns.map((turn) => turn.id)), ...(currentTurnRecord ? [currentTurnRecord.id] : [])])];
+  const evaluationEventsByTurnId = relevantTurnIds.length
+    ? await loadEvaluationEventsByTurnId(supabase, relevantTurnIds)
+    : new Map<string, TutorEvaluationEventRecord>();
+  const turnsWithEvaluation = turns.map((turn) => ({
+    ...turn,
+    is_correct: evaluationEventsByTurnId.get(turn.id)?.is_correct ?? null,
+    competency_score: evaluationEventsByTurnId.get(turn.id)?.competency_score ?? null,
+  }));
+  const currentTurn = currentTurnRecord
+    ? {
+        ...currentTurnRecord,
+        is_correct: evaluationEventsByTurnId.get(currentTurnRecord.id)?.is_correct ?? null,
+        competency_score: evaluationEventsByTurnId.get(currentTurnRecord.id)?.competency_score ?? null,
+      }
+    : selectAnsweredTurnForItem(turnsWithEvaluation, itemId);
 
   const professionalProfile = await loadProfessionalProfile(supabase, learningProfile?.professional_profile_id);
-  const currentTurn = turns.find((turn) => turn.item_id === itemId && turn.selected_option);
-  const recentPerformanceSummary = buildRecentPerformanceSummary(turns);
+  const recentPerformanceSummary = buildRecentPerformanceSummary(turnsWithEvaluation);
   const contestId = "cnsc-docente-directivo-docente-v1";
 
   return {
@@ -141,6 +176,16 @@ export async function buildTutorEvidence(params: {
   };
 }
 
+async function loadEvaluationEventsByTurnId(supabase: SupabaseClient, sessionTurnIds: string[]) {
+  const { data } = await supabase
+    .from("evaluation_events")
+    .select("session_turn_id, is_correct, competency_score")
+    .in("session_turn_id", sessionTurnIds);
+
+  const rows = (data ?? []) as TutorEvaluationEventRecord[];
+  return new Map(rows.map((row) => [row.session_turn_id, row]));
+}
+
 async function loadProfessionalProfile(supabase: SupabaseClient, profileId?: string | null) {
   if (!profileId) return null;
   const { data } = await supabase
@@ -151,13 +196,17 @@ async function loadProfessionalProfile(supabase: SupabaseClient, profileId?: str
   return data as TutorProfessionalProfileRecord | null;
 }
 
-function buildRecentPerformanceSummary(turns: TutorSessionTurnRecord[]): string | undefined {
+function buildRecentPerformanceSummary(turns: TutorSessionTurnWithEvaluation[]): string | undefined {
   if (turns.length === 0) return undefined;
   const answered = turns.filter((turn) => turn.selected_option);
   if (answered.length === 0) return undefined;
   const correct = answered.filter((turn) => turn.is_correct).length;
   const avgScore = answered.reduce((sum, turn) => sum + Number(turn.competency_score ?? 0), 0) / answered.length;
   return `Últimos ${answered.length} intentos registrados: ${correct} correctos; promedio de competencia ${Math.round(avgScore)}.`;
+}
+
+export function selectAnsweredTurnForItem(turns: TutorSessionTurnWithEvaluation[], itemId: string) {
+  return turns.find((turn) => turn.item_id === itemId && Boolean(turn.selected_option));
 }
 
 function buildOptionRationale(optionKey: string, correctOption?: string | null): string {

@@ -109,14 +109,14 @@ export class TutorOrchestrator {
         strong: "fuerte: justifica y contrasta con claridad.",
       };
       return trimToWordLimit(
-        `Tu justificación es ${labels[rationaleQuality]} Esta valoración es pedagógica y no cambia el puntaje oficial. ${session.feedback ? `Feedback registrado: ${session.feedback}` : ""}`,
+        `Tu justificación es ${labels[rationaleQuality]} Esta valoración es pedagógica y no cambia el puntaje oficial. ${session.feedback ? `Feedback registrado: ${session.feedback}` : ""} ${canRevealCorrectAnswer ? `La clave registrada es ${question.correctOption} y los distractores deben descartarse porque no sostienen tan bien la tarea esperada.` : ""}`,
         maxWords,
       );
     }
 
     if (intent === "explain_feedback" && canRevealCorrectAnswer) {
       return trimToWordLimit(
-        `La opción correcta registrada es ${question.correctOption}. ${question.correctExplanation} Si marcaste ${session.selectedOption}, úsalo para revisar qué parte del enunciado confirmaba o descartaba tu elección.`,
+        `La opción correcta registrada es ${question.correctOption}. ${question.correctExplanation} ${session.feedback ? `Feedback oficial registrado: ${session.feedback}` : ""} Si marcaste ${session.selectedOption}, revisa por qué esa elección quedó bien o mal frente al enunciado. Los distractores deben leerse como alternativas que no satisfacen completamente la tarea esperada. Esta explicación es pedagógica y no cambia el puntaje oficial ni avanza la sesión.`,
         maxWords,
       );
     }
@@ -199,6 +199,7 @@ export class TutorOrchestrator {
       evidenceUsed: params.evidenceUsed,
       sourceTruthRefs,
       guardrailsApplied: output.guardrailsApplied,
+      canRevealCorrectAnswer: params.canRevealCorrectAnswer,
       degraded: params.degraded,
       confidence: params.confidence,
       rationaleQuality: params.rationaleQuality,

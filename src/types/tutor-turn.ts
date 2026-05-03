@@ -120,6 +120,7 @@ export interface TutorTurnTrace {
   evidenceUsed: TutorEvidenceKey[];
   sourceTruthRefs: string[];
   guardrailsApplied: string[];
+  canRevealCorrectAnswer: boolean;
   degraded: boolean;
   confidence: number;
   rationaleQuality?: RationaleQuality;
