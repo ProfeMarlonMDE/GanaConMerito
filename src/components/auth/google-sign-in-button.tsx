@@ -3,6 +3,12 @@
 import { useState } from "react";
 import { signInWithGoogle } from "@/lib/supabase/auth";
 
+function getErrorMessage(error: unknown) {
+  if (error instanceof Error) return error.message;
+  if (typeof error === "string") return error;
+  return "No se pudo iniciar sesión. Revisa la configuración de autenticación del entorno.";
+}
+
 export function GoogleSignInButton() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -11,10 +17,15 @@ export function GoogleSignInButton() {
     setLoading(true);
     setError(null);
 
-    const { error } = await signInWithGoogle("/");
+    try {
+      const { error } = await signInWithGoogle("/");
 
-    if (error) {
-      setError(error.message);
+      if (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    } catch (signInError) {
+      setError(getErrorMessage(signInError));
       setLoading(false);
     }
   }
