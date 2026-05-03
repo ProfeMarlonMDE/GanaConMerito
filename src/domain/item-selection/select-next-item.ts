@@ -62,8 +62,11 @@ async function resolveRecentItemIds(profileIdForRotation?: string) {
   const admin = getSupabaseAdminClient();
   const { data, error } = await admin
     .from("session_turns")
-    .select("item_id")
-    .eq("profile_id", profileIdForRotation)
+    .select(`
+      item_id,
+      sessions!inner(profile_id)
+    `)
+    .eq("sessions.profile_id", profileIdForRotation)
     .not("item_id", "is", null)
     .order("created_at", { ascending: false })
     .limit(RECENT_HISTORY_LIMIT);
