@@ -6,6 +6,8 @@ interface SelectNextItemParams {
   activeArea?: string;
   activeCompetency?: string;
   excludeItemIds?: string[];
+  profileIdForRotation?: string;
+  sessionIdForRotation?: string;
 }
 
 interface SelectionScope {
@@ -20,6 +22,57 @@ interface SelectedItem {
   difficulty: number | string | null;
   correct_option: string | null;
   thematic_nucleus_id: string | null;
+}
+
+const CANDIDATE_LIMIT = 20;
+const RECENT_HISTORY_LIMIT = 5;
+
+function hashString(input: string) {
+  let hash = 0;
+  for (let index = 0; index < input.length; index += 1) {
+    hash = (hash * 31 + input.charCodeAt(index)) >>> 0;
+  }
+  return hash;
+}
+
+function buildRotationSeed(params: SelectNextItemParams) {
+  return [
+    params.profileIdForRotation ?? "anon",
+    params.sessionIdForRotation ?? "session",
+    params.activeArea ?? "any-area",
+    params.activeCompetency ?? "any-competency",
+  ].join("|");
+}
+
+export function pickDeterministicCandidate<T extends { id: string }>(candidates: T[], seed: string) {
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  const sortedCandidates = [...candidates].sort((left, right) => left.id.localeCompare(right.id));
+  const startIndex = hashString(seed) % sortedCandidates.length;
+  return sortedCandidates[startIndex] ?? null;
+}
+
+async function resolveRecentItemIds(profileIdForRotation?: string) {
+  if (!profileIdForRotation) {
+    return [];
+  }
+
+  const admin = getSupabaseAdminClient();
+  const { data, error } = await admin
+    .from("session_turns")
+    .select("item_id")
+    .eq("profile_id", profileIdForRotation)
+    .not("item_id", "is", null)
+    .order("created_at", { ascending: false })
+    .limit(RECENT_HISTORY_LIMIT);
+
+  if (error) {
+    throw error;
+  }
+
+  return Array.from(new Set((data ?? []).map((row) => row.item_id).filter(Boolean)));
 }
 
 async function resolveEligibleNucleusIds(professionalProfileId?: string | null) {
@@ -37,8 +90,6 @@ async function resolveEligibleNucleusIds(professionalProfileId?: string | null) 
 
   const universalIds = (universalNuclei ?? []).map((row) => row.id).filter(Boolean);
 
-  // Contrato transitorio: sin perfil profesional solo se consume el banco universal activo.
-  // Esto mantiene el runtime seguro mientras la clasificación fina del banco sigue creciendo.
   if (!professionalProfileId) {
     return Array.from(new Set(universalIds));
   }
@@ -64,13 +115,14 @@ async function resolveEligibleNucleusIds(professionalProfileId?: string | null) 
 async function runSelectionAttempt(params: SelectNextItemParams, scope: SelectionScope, eligibleNucleusIds: string[]) {
   const admin = getSupabaseAdminClient();
 
-  const { data, error } = await runWithActiveItemBankFallback<SelectedItem>((source) => {
+  const { data, error } = await runWithActiveItemBankFallback<SelectedItem[]>((source) => {
     let query = applyActiveItemBankFilters(
       admin
         .from(source)
         .select("id, area, competency, difficulty, correct_option, thematic_nucleus_id")
         .in("thematic_nucleus_id", eligibleNucleusIds)
-        .order("difficulty", { ascending: true }),
+        .order("difficulty", { ascending: true })
+        .order("id", { ascending: true }),
       source,
     );
 
@@ -87,14 +139,24 @@ async function runSelectionAttempt(params: SelectNextItemParams, scope: Selectio
       query = query.not("id", "in", `(${quotedIds})`);
     }
 
-    return query.limit(1).maybeSingle();
+    return query.limit(CANDIDATE_LIMIT);
   });
 
   if (error) {
     throw error;
   }
 
-  return data;
+  const candidates = data ?? [];
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  const recentItemIds = await resolveRecentItemIds(params.profileIdForRotation);
+  const recentSet = new Set(recentItemIds);
+  const withoutRecent = candidates.filter((candidate) => !recentSet.has(candidate.id));
+  const pool = withoutRecent.length > 0 ? withoutRecent : candidates;
+
+  return pickDeterministicCandidate(pool, buildRotationSeed(params));
 }
 
 function buildSelectionScopes(params: SelectNextItemParams): SelectionScope[] {

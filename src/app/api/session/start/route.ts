@@ -36,6 +36,7 @@ export async function POST(request: Request) {
 
   const nextItem = await selectNextItem({
     professionalProfileId: learningProfile.professional_profile_id,
+    profileIdForRotation: profile.id,
     activeArea: body.area,
     activeCompetency: body.competency,
   });
