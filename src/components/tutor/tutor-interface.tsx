@@ -88,7 +88,7 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
           <p className="body-sm" style={{ whiteSpace: "pre-wrap" }}>{lastResponse.visibleMessage}</p>
           <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "8px" }}>
             <span className="subtle" style={{ fontSize: "10px" }}>
-              {lastResponse.intention === "fallback" ? "Modo limitado" : "Tutoría orientativa"}
+              {lastResponse.degraded ? "Modo limitado" : "Tutoría orientativa"}
             </span>
           </div>
         </div>

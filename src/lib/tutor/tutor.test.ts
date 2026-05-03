@@ -1,48 +1,128 @@
-import test from 'node:test';
-import assert from 'node:assert';
-import { TutorOrchestrator } from './tutor-orchestrator';
+import test from "node:test";
+import assert from "node:assert";
+import { TutorOrchestrator } from "./tutor-orchestrator";
+import type { TutorEvidence, TutorTurnRequest } from "../../types/tutor-turn";
 
-test('TutorOrchestrator - Valid Turn', async () => {
-  const orchestrator = new TutorOrchestrator();
-  const result = await orchestrator.processTurn({
-    userId: 'u1',
-    sessionId: 's1',
-    userMessage: 'Por favor explícame este concepto.',
-    allowedContext: { currentTopic: 'Matemáticas' },
-    progressSummary: { itemsCompleted: 5, currentScore: 10 }
-  });
+const baseEvidence: TutorEvidence = {
+  contest: {
+    contestId: "contest-1",
+    contestName: "Concurso docente",
+    agreementId: "agreement-1",
+    methodologicalGuideId: "guide-1",
+    testStructureId: "structure-1",
+    evaluationStructureSummary: "Estructura cargada.",
+    evaluationRulesSummary: "El tutor no modifica puntaje ni avance.",
+    sourceTruthVersion: "test-v1",
+  },
+  aspirationalProfile: {
+    profileId: "profile-1",
+    contestId: "contest-1",
+    jobName: "Docente General",
+    hierarchicalLevel: "Docente",
+    performanceArea: "educacion",
+    purposeSummary: "Propósito cargado.",
+    functionSummary: "Funciones cargadas.",
+    functionalCompetencySummary: "Competencias funcionales cargadas.",
+    behavioralCompetencySummary: "Competencias comportamentales cargadas.",
+    mipgAlignmentSummary: "MIPG cargado.",
+  },
+  question: {
+    itemId: "item-1",
+    area: "pedagogia",
+    competency: "evaluacion",
+    topic: "pedagogia - evaluacion",
+    cognitiveIntent: "Contrastar opciones.",
+    expectedUserTask: "Seleccionar la opción más consistente.",
+    sourceType: "test",
+    sourceRefs: ["item_bank:item-1"],
+    stem: "Caso de evaluación formativa.",
+    options: [
+      { key: "A", text: "Opción A" },
+      { key: "B", text: "Opción B" },
+      { key: "C", text: "Opción C" },
+      { key: "D", text: "Opción D" },
+    ],
+    correctOption: "B",
+    correctExplanation: "B responde mejor al propósito formativo.",
+  },
+  userSession: {
+    sessionId: "session-1",
+    userId: "user-1",
+    selectedContestId: "contest-1",
+    selectedProfileId: "profile-1",
+    currentItemId: "item-1",
+    recentPerformanceSummary: "Últimos 2 intentos: 1 correcto.",
+  },
+};
 
-  assert.strictEqual(result.output.intention, 'explain');
-  assert.strictEqual(result.trace.wasDenied, false);
-  assert.strictEqual(result.trace.wasDegraded, false);
+function makeInput(message: string, evidence: TutorEvidence = baseEvidence): TutorTurnRequest {
+  return {
+    userId: "user-1",
+    sessionId: "session-1",
+    itemId: "item-1",
+    message,
+    evidence,
+  };
+}
+
+test("TutorOrchestrator denies correct answer before user answers", async () => {
+  const result = await new TutorOrchestrator().processTurn(makeInput("Dime la respuesta correcta"));
+
+  assert.strictEqual(result.output.degraded, false);
+  assert.strictEqual(result.output.canRevealCorrectAnswer, false);
+  assert.match(result.output.visibleMessage, /no puedo revelar/i);
+  assert.ok(result.output.guardrailsApplied.includes("no_correct_answer_before_user_answer"));
 });
 
-test('TutorOrchestrator - Denies unauthorized action', async () => {
-  const orchestrator = new TutorOrchestrator();
-  const result = await orchestrator.processTurn({
-    userId: 'u1',
-    sessionId: 's1',
-    userMessage: 'Quiero avanzar a la siguiente pregunta.',
-    allowedContext: {},
-    progressSummary: { itemsCompleted: 5, currentScore: 10 }
-  });
+test("TutorOrchestrator gives hint without revealing correct answer", async () => {
+  const result = await new TutorOrchestrator().processTurn(makeInput("Dame una pista"));
 
-  assert.strictEqual(result.output.intention, 'fallback');
-  assert.strictEqual(result.trace.wasDenied, true);
-  assert.strictEqual(result.output.deniedAction, 'unauthorized_action_requested');
+  assert.strictEqual(result.output.intent, "give_hint");
+  assert.strictEqual(result.output.canRevealCorrectAnswer, false);
+  assert.doesNotMatch(result.output.visibleMessage, /correcta registrada es B|clave registrada es B/i);
 });
 
-test('TutorOrchestrator - Degrades on invalid input', async () => {
-  const orchestrator = new TutorOrchestrator();
-  const result = await orchestrator.processTurn({
-    userId: '',
-    sessionId: 's1',
-    userMessage: 'Hola',
-    allowedContext: {},
-    progressSummary: { itemsCompleted: 0, currentScore: 0 }
-  });
+test("TutorOrchestrator degrades on insufficient source truth", async () => {
+  const result = await new TutorOrchestrator().processTurn(
+    makeInput("Explícame esta pregunta", {
+      userSession: baseEvidence.userSession,
+    }),
+  );
 
-  assert.strictEqual(result.output.intention, 'fallback');
-  assert.strictEqual(result.trace.wasDegraded, true);
-  assert.strictEqual(result.output.degradationReason, 'invalid_input');
+  assert.strictEqual(result.output.degraded, true);
+  assert.match(result.output.visibleMessage, /No tengo evidencia suficiente/i);
+});
+
+test("TutorOrchestrator can explain correct option after user answers", async () => {
+  const result = await new TutorOrchestrator().processTurn(
+    makeInput("Explícame el feedback", {
+      ...baseEvidence,
+      userSession: {
+        ...baseEvidence.userSession,
+        selectedOption: "A",
+        feedback: "Respuesta enviada.",
+      },
+    }),
+  );
+
+  assert.strictEqual(result.output.canRevealCorrectAnswer, true);
+  assert.match(result.output.visibleMessage, /opción correcta registrada es B/i);
+});
+
+test("TutorOrchestrator classifies user rationale without scoring", async () => {
+  const result = await new TutorOrchestrator().processTurn(
+    makeInput("Analiza mi justificación", {
+      ...baseEvidence,
+      userSession: {
+        ...baseEvidence.userSession,
+        selectedOption: "B",
+        userRationale:
+          "Elijo esta porque responde al propósito formativo del caso y descarta una acción sancionatoria. En cambio, las otras opciones no conectan la evaluación con mejora del aprendizaje ni seguimiento pedagógico.",
+      },
+    }),
+  );
+
+  assert.strictEqual(result.output.rationaleQuality, "strong");
+  assert.match(result.output.visibleMessage, /no cambia el puntaje oficial/i);
+  assert.ok(result.output.guardrailsApplied.includes("no_score_mutation"));
 });
