@@ -1,12 +1,7 @@
 import type { ReactNode } from "react";
-import { Manrope } from "next/font/google";
 import { getBuildInfo } from "@/lib/build-info";
 import "./globals.css";
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata = {
   title: "GanaConMerito",
@@ -18,7 +13,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="es">
-      <body className={manrope.className}>
+      <body>
         <div className="app-root">{children}</div>
         <footer className="build-footer">
           <strong>Build</strong>: <code>{commit}</code> · <strong>Built at</strong>: <code>{buildTime}</code>
