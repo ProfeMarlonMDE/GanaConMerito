@@ -1,38 +1,134 @@
-export type TutorIntention = 'explain' | 'orient' | 'suggest' | 'fallback';
+export type TutorMode = "current_question" | "contest_preparation" | "performance_analysis";
 
-export interface TutorInput {
+export type TutorIntent =
+  | "explain_question"
+  | "give_hint"
+  | "compare_options"
+  | "clarify_concept"
+  | "explain_expected_task"
+  | "analyze_user_rationale"
+  | "explain_feedback"
+  | "recommend_next_practice"
+  | "explain_profile_alignment"
+  | "explain_contest_rule";
+
+export type RationaleQuality = "weak" | "acceptable" | "strong";
+
+export type TutorEvidenceKey =
+  | "contest"
+  | "aspirational_profile"
+  | "question"
+  | "user_session"
+  | "recent_performance";
+
+export interface ContestTruth {
+  contestId: string;
+  contestName: string;
+  agreementId: string;
+  methodologicalGuideId: string;
+  testStructureId: string;
+  evaluationStructureSummary: string;
+  evaluationRulesSummary: string;
+  sourceTruthVersion: string;
+}
+
+export interface AspirationalProfileTruth {
+  profileId: string;
+  contestId: string;
+  jobName: string;
+  hierarchicalLevel: string;
+  performanceArea: string;
+  purposeSummary: string;
+  functionSummary: string;
+  functionalCompetencySummary: string;
+  behavioralCompetencySummary: string;
+  mipgAlignmentSummary: string;
+}
+
+export interface QuestionTruthOption {
+  key: string;
+  text: string;
+  rationale?: string;
+  isCorrect?: boolean;
+}
+
+export interface QuestionTruth {
+  itemId: string;
+  area: string;
+  competency: string;
+  topic: string;
+  cognitiveIntent: string;
+  expectedUserTask: string;
+  sourceType: string;
+  sourceRefs: string[];
+  stem: string;
+  options: QuestionTruthOption[];
+  correctOption: string;
+  correctExplanation: string;
+}
+
+export interface UserSessionTruth {
+  sessionId: string;
+  userId: string;
+  selectedContestId: string;
+  selectedProfileId: string;
+  currentItemId: string;
+  selectedOption?: string;
+  userRationale?: string;
+  feedback?: string;
+  recentPerformanceSummary?: string;
+}
+
+export interface TutorEvidence {
+  contest?: ContestTruth;
+  aspirationalProfile?: AspirationalProfileTruth;
+  question?: QuestionTruth;
+  userSession: UserSessionTruth;
+}
+
+export interface TutorTurnRequest {
   userId: string;
   sessionId: string;
-  userMessage: string;
-  allowedContext: {
-    currentTopic?: string;
-    recentErrors?: string[];
-  };
-  progressSummary: {
-    itemsCompleted: number;
-    currentScore: number;
-  };
+  itemId: string;
+  message: string;
+  evidence: TutorEvidence;
 }
 
-export interface TutorOutput {
-  intention: TutorIntention;
+export interface TutorTurnResponse {
+  mode: TutorMode;
+  intent: TutorIntent;
   visibleMessage: string;
-  uncertaintyFlags: boolean;
+  evidenceUsed: TutorEvidenceKey[];
+  sourceTruthRefs: string[];
+  guardrailsApplied: string[];
+  canRevealCorrectAnswer: boolean;
+  confidence: number;
+  degraded: boolean;
   suggestedAction?: string;
-  deniedAction?: string;
-  degradationReason?: string;
-  structuredMetadata: {
-    processedAt: string;
-    contractVersion: string;
-  };
+  rationaleQuality?: RationaleQuality;
 }
 
-export interface TutorTrace {
+export interface TutorTurnTrace {
   traceId: string;
-  timestamp: string;
-  input: TutorInput;
-  output: TutorOutput;
-  appliedGuardrails: string[];
-  wasDenied: boolean;
-  wasDegraded: boolean;
+  userId: string;
+  sessionId?: string;
+  itemId?: string;
+  contestId?: string;
+  profileId?: string;
+  mode: TutorMode;
+  intent: TutorIntent;
+  evidenceUsed: TutorEvidenceKey[];
+  sourceTruthRefs: string[];
+  guardrailsApplied: string[];
+  degraded: boolean;
+  confidence: number;
+  rationaleQuality?: RationaleQuality;
+  createdAt: string;
 }
+
+export interface TutorTurnResult {
+  output: TutorTurnResponse;
+  trace: TutorTurnTrace;
+}
+
+export type TutorOutput = TutorTurnResponse;
