@@ -13,16 +13,21 @@ export function SignOutButton() {
     setLoading(true);
     setError(null);
 
-    const { error } = await signOut();
+    try {
+      const { error } = await signOut();
 
-    if (error) {
-      setError(error.message);
+      if (error) {
+        setError(error.message);
+        setLoading(false);
+        return;
+      }
+
+      router.push("/login");
+      router.refresh();
+    } catch (e: any) {
+      setError(e.message || "Ocurrió un error inesperado al cerrar sesión.");
       setLoading(false);
-      return;
     }
-
-    router.push("/login");
-    router.refresh();
   }
 
   return (

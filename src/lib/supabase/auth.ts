@@ -18,6 +18,6 @@ export async function signInWithGoogle(next = "/home") {
 }
 
 export async function signOut() {
-  const supabase = getSupabaseBrowserClient();
+  const supabase = await getSupabaseBrowserClientAsync();
   return supabase.auth.signOut();
 }
