@@ -30,12 +30,15 @@ export function detectTutorMode(message: string): TutorMode {
 
 export function detectTutorIntent(message: string): TutorIntent {
   const normalized = normalize(message);
+  if (["por que mi respuesta", "porque mi respuesta", "esta bien o mal", "explícame mi feedback", "explicame mi feedback"].some((term) => normalized.includes(term))) {
+    return "explain_feedback";
+  }
   if (["respuesta correcta", "correcta", "cuál es", "cual es"].some((term) => normalized.includes(term))) return "explain_question";
   if (["pista", "ayuda"].some((term) => normalized.includes(term))) return "give_hint";
   if (["compara", "comparar", "diferencia", "opciones"].some((term) => normalized.includes(term))) return "compare_options";
   if (["concepto", "tema", "significa"].some((term) => normalized.includes(term))) return "clarify_concept";
   if (["qué me piden", "que me piden", "tarea", "espera"].some((term) => normalized.includes(term))) return "explain_expected_task";
-  if (["justificación", "justificacion", "mi argumento"].some((term) => normalized.includes(term))) return "analyze_user_rationale";
+  if (["justificación", "justificacion", "mi argumento", "analiza mi razonamiento", "analiza mi justificacion"].some((term) => normalized.includes(term))) return "analyze_user_rationale";
   if (["feedback", "retroalimentación", "retroalimentacion"].some((term) => normalized.includes(term))) return "explain_feedback";
   if (["siguiente práctica", "siguiente practica", "qué practico", "que practico"].some((term) => normalized.includes(term))) return "recommend_next_practice";
   if (["perfil", "empleo", "cargo"].some((term) => normalized.includes(term))) return "explain_profile_alignment";
