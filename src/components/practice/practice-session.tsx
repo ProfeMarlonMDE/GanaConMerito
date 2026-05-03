@@ -6,6 +6,7 @@ import { LoadingState } from "@/components/ui/loading-state";
 import { ErrorState } from "@/components/ui/error-state";
 import { EmptyState } from "@/components/ui/empty-state";
 import { TutorInterface } from "@/components/tutor/tutor-interface";
+import { formatAreaCompetency } from "@/lib/ui/format-label";
 
 interface PracticeItem {
   id: string;
@@ -218,7 +219,7 @@ export function PracticeSession() {
           <div className="inline-cluster">
             <span className="pill">Sesión {session.sessionId.slice(0, 8)}</span>
             <span className="pill">Estado: {feedback?.currentState ?? session.currentState}</span>
-            {item ? <span className="pill">{item.area} · {item.competency}</span> : null}
+            {item ? <span className="pill">{formatAreaCompetency(item.area, item.competency)}</span> : null}
           </div>
           {sessionDashboardHref ? <Link href={sessionDashboardHref} className="subtle">Ver sesión →</Link> : null}
         </div>
@@ -279,17 +280,17 @@ export function PracticeSession() {
               <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
                 <h3 style={{ margin: 0 }}>{feedback.evaluation.isCorrect ? "Respuesta correcta" : "Respuesta enviada"}</h3>
                 <span className={`status-pill ${feedback.evaluation.isCorrect ? "success" : "warning"}`}>
-                  Hint level {feedback.hintLevel}
+                  Nivel de ayuda {feedback.hintLevel}
                 </span>
               </div>
               <p className="body-sm" style={{ margin: 0 }}>{feedback.feedbackText}</p>
               <div className="metric-grid" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))", marginTop: 6 }}>
                 <div className="metric-card" style={{ padding: 14 }}>
-                  <span className="metric-label">Reasoning</span>
+                  <span className="metric-label">Razonamiento</span>
                   <strong className="metric-value" style={{ fontSize: "1.35rem" }}>{feedback.evaluation.reasoningScore}</strong>
                 </div>
                 <div className="metric-card" style={{ padding: 14 }}>
-                  <span className="metric-label">Competency</span>
+                  <span className="metric-label">Competencia</span>
                   <strong className="metric-value" style={{ fontSize: "1.35rem" }}>{feedback.evaluation.competencyScore}</strong>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import {
   getDashboardTopicBreakdownForCurrentUser,
 } from "@/lib/dashboard/summary";
 import { requireAuthenticatedUser } from "@/lib/supabase/guards";
+import { formatAreaCompetency, formatTechnicalLabel } from "@/lib/ui/format-label";
 
 interface DashboardPageProps {
   searchParams?: Promise<{
@@ -138,7 +139,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           </div>
           {topStrong.length > 0 ? topStrong.map((row) => (
             <div key={`${row.area}-${row.competency}`} className="list-row">
-              <span>{row.area} / {row.competency}</span>
+              <span>{formatAreaCompetency(row.area, row.competency)}</span>
               <strong>{getAccuracy(row.correct_count, row.attempts)}%</strong>
             </div>
           )) : <p className="subtle">Aún no hay datos suficientes para identificar fortalezas.</p>}
@@ -150,7 +151,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           </div>
           {topWeak.length > 0 ? topWeak.map((row) => (
             <div key={`${row.area}-${row.competency}`} className="list-row">
-              <span>{row.area} / {row.competency}</span>
+              <span>{formatAreaCompetency(row.area, row.competency)}</span>
               <strong>{getAccuracy(row.correct_count, row.attempts)}%</strong>
             </div>
           )) : <p className="subtle">Todavía no hay señal suficiente para priorizar un refuerzo claro.</p>}
@@ -172,8 +173,8 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             {activeRows.map((row) => (
               <div key={`${row.area}-${row.competency}`} className="list-row">
                 <div>
-                  <strong>{row.area}</strong>
-                  <div className="subtle">{row.competency}</div>
+                  <strong>{formatTechnicalLabel(row.area)}</strong>
+                  <div className="subtle">{formatTechnicalLabel(row.competency)}</div>
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <strong>{getAccuracy(row.correct_count, row.attempts)}%</strong>
