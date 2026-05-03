@@ -1,7 +1,10 @@
-import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import {
+  getSupabaseBrowserClient,
+  getSupabaseBrowserClientAsync,
+} from "@/lib/supabase/client";
 
 export async function signInWithGoogle(next = "/home") {
-  const supabase = getSupabaseBrowserClient();
+  const supabase = await getSupabaseBrowserClientAsync();
   const redirectTo = `${window.location.origin}/api/auth/callback?next=${encodeURIComponent(next)}`;
 
   const { data, error } = await supabase.auth.signInWithOAuth({
