@@ -18,11 +18,11 @@ La integración mínima gobernada de Tutor GCM está en source, deploy y runtime
 ## Verdad operativa actual
 - **Versión declarada**: 0.6.0
 - **Rama canónica**: master
-- **HEAD actual en source (`~/.openclaw/product`)**: `37efc28`
-- **HEAD actual en deploy tree (`/opt/gcm/app`)**: `37efc28`
-- **Runtime visible validado en `:3000/login`**: `37efc28`
-- **BuildTime visible validado en `:3000/login`**: `2026-05-03T04:50:09Z`
-- **Triple verificación Humanización UX**: `source = deploy = runtime` confirmada sobre `37efc28`
+- **HEAD actual en source (`~/.openclaw/product`)**: `47f8a7b`
+- **HEAD actual en deploy tree (`/opt/gcm/app`)**: `47f8a7b`
+- **Runtime visible validado en `:3000/login`**: `47f8a7b`
+- **BuildTime visible validado en `:3000/login`**: `2026-05-03T05:24:24Z`
+- **Triple verificación Rotación de Ítems**: `source = deploy = runtime` confirmada sobre `47f8a7b`
 - **Tutor GCM `/api/tutor/turn`**: visible en build, autenticado, contexto derivado de servidor
 - **Corpus activo**: 27 ítems; gobernanza intacta desde Sprint 7
 
