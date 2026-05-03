@@ -152,6 +152,8 @@ export async function POST(request: Request) {
     ? null
     : await selectNextItem({
         professionalProfileId: learningProfile.professional_profile_id,
+        profileIdForRotation: profile.id,
+        sessionIdForRotation: body.sessionId,
         activeArea: item.area ?? undefined,
         activeCompetency: item.competency ?? undefined,
         excludeItemIds: seenItemIds as string[],
