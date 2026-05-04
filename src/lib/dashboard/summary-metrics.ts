@@ -1,4 +1,4 @@
-import type { DashboardSummaryMetrics } from "@/types/evaluation";
+import type { DashboardSummaryMetrics, MetricSignalLevel } from "@/types/evaluation";
 
 export interface DashboardTopicBreakdownRow {
   area: string;
@@ -12,7 +12,49 @@ export interface DashboardTopicBreakdownRow {
   updated_at?: string | null;
 }
 
+const MIN_ATTEMPTS_FOR_COMPETENCY_CONCLUSION = 3;
+const MIN_ATTEMPTS_FOR_STRONG_CONCLUSION = 5;
+const MIN_ACCURACY_FOR_STRENGTH = 0.6;
+const MAX_ACCURACY_FOR_WEAKNESS = 0.5;
+
+function getSignalLevel(totalAttempts: number): MetricSignalLevel {
+  if (totalAttempts <= 0) return "no_signal";
+  if (totalAttempts <= 2) return "low_signal";
+  if (totalAttempts <= 4) return "emerging_signal";
+  return "usable_signal";
+}
+
+function getSignalCopy(signalLevel: MetricSignalLevel) {
+  switch (signalLevel) {
+    case "no_signal":
+      return {
+        signalLabel: "Sin señal",
+        signalDescription: "Todavía no hay intentos suficientes para interpretar progreso o prioridades.",
+        recommendedAction: "Empieza con algunas respuestas más antes de sacar conclusiones.",
+      };
+    case "low_signal":
+      return {
+        signalLabel: "Señal inicial",
+        signalDescription: "Ya hay actividad, pero la muestra sigue siendo demasiado corta para conclusiones firmes.",
+        recommendedAction: "Suma más intentos comparables antes de priorizar fortalezas o refuerzos.",
+      };
+    case "emerging_signal":
+      return {
+        signalLabel: "Señal emergente",
+        signalDescription: "Empiezan a aparecer patrones útiles, aunque todavía conviene leerlos con prudencia.",
+        recommendedAction: "Usa esta lectura para orientar práctica, pero confirma con más evidencia.",
+      };
+    case "usable_signal":
+      return {
+        signalLabel: "Señal usable",
+        signalDescription: "Ya hay suficiente evidencia para tomar decisiones de práctica con más confianza.",
+        recommendedAction: "Prioriza los focos de refuerzo y consolida las competencias que ya muestran estabilidad.",
+      };
+  }
+}
+
 export function emptyDashboardSummaryMetrics(): DashboardSummaryMetrics {
+  const signal = getSignalCopy("no_signal");
   return {
     estimatedLevel: 0,
     totalAttempts: 0,
@@ -21,6 +63,13 @@ export function emptyDashboardSummaryMetrics(): DashboardSummaryMetrics {
     strongestCompetencies: [],
     weakestCompetencies: [],
     recentTrend: "stable",
+    signalLevel: "no_signal",
+    signalLabel: signal.signalLabel,
+    signalDescription: signal.signalDescription,
+    canShowStrongConclusion: false,
+    canShowTrend: false,
+    canShowPercentile: false,
+    recommendedAction: signal.recommendedAction,
   };
 }
 
@@ -37,9 +86,16 @@ function dedupeCompetencies(rows: DashboardTopicBreakdownRow[]) {
   });
 }
 
+function hasComparableTrendWindow(rows: DashboardTopicBreakdownRow[]) {
+  return rows.filter((row) => row.updated_at && row.attempts > 0).length >= 2;
+}
+
 export function buildDashboardSummaryMetrics(stats: DashboardTopicBreakdownRow[]): DashboardSummaryMetrics {
   const totalAttempts = stats.reduce((sum, row) => sum + row.attempts, 0);
   const totalCorrect = stats.reduce((sum, row) => sum + row.correct_count, 0);
+  const signalLevel = getSignalLevel(totalAttempts);
+  const signalCopy = getSignalCopy(signalLevel);
+  const canShowStrongConclusion = totalAttempts >= MIN_ATTEMPTS_FOR_STRONG_CONCLUSION;
   const avgReasoningScore =
     totalAttempts > 0
       ? Number(
@@ -59,23 +115,25 @@ export function buildDashboardSummaryMetrics(stats: DashboardTopicBreakdownRow[]
     .sort((a, b) => String(b.updated_at).localeCompare(String(a.updated_at)));
 
   let recentTrend: DashboardSummaryMetrics["recentTrend"] = "stable";
-  if (recentWindow.length >= 2) {
+  const canShowTrend = hasComparableTrendWindow(recentWindow);
+  if (canShowTrend) {
     const latest = Number(recentWindow[0].estimated_level);
     const previous = Number(recentWindow[1].estimated_level);
     if (latest > previous) recentTrend = "up";
     else if (latest < previous) recentTrend = "down";
-  } else if (totalAttempts > 0) {
-    recentTrend = "up";
   }
+
+  const canShowPercentile =
+    canShowStrongConclusion && stats.some((row) => typeof row.percentile_segment === "number");
 
   const strongestCompetencies = dedupeCompetencies(
     [...stats]
       .filter(
         (row) =>
-          row.attempts >= 1 &&
+          row.attempts >= MIN_ATTEMPTS_FOR_COMPETENCY_CONCLUSION &&
           row.correct_count > 0 &&
           Number(row.estimated_level) > 0 &&
-          getDashboardAccuracy(row) >= 0.5,
+          getDashboardAccuracy(row) >= MIN_ACCURACY_FOR_STRENGTH,
       )
       .sort((a, b) => {
         const levelDiff = Number(b.estimated_level) - Number(a.estimated_level);
@@ -91,12 +149,17 @@ export function buildDashboardSummaryMetrics(stats: DashboardTopicBreakdownRow[]
   const strongestSet = new Set(strongestCompetencies);
   const weakestCompetencies = dedupeCompetencies(
     [...stats]
-      .filter((row) => row.attempts >= 1 && !strongestSet.has(row.competency))
+      .filter(
+        (row) =>
+          row.attempts >= MIN_ATTEMPTS_FOR_COMPETENCY_CONCLUSION &&
+          !strongestSet.has(row.competency) &&
+          (getDashboardAccuracy(row) < MAX_ACCURACY_FOR_WEAKNESS || Number(row.estimated_level) < 0),
+      )
       .sort((a, b) => {
-        const levelDiff = Number(a.estimated_level) - Number(b.estimated_level);
-        if (levelDiff !== 0) return levelDiff;
         const accuracyDiff = getDashboardAccuracy(a) - getDashboardAccuracy(b);
         if (accuracyDiff !== 0) return accuracyDiff;
+        const levelDiff = Number(a.estimated_level) - Number(b.estimated_level);
+        if (levelDiff !== 0) return levelDiff;
         return b.attempts - a.attempts;
       }),
   )
@@ -112,5 +175,12 @@ export function buildDashboardSummaryMetrics(stats: DashboardTopicBreakdownRow[]
     strongestCompetencies,
     weakestCompetencies,
     recentTrend,
+    signalLevel,
+    signalLabel: signalCopy.signalLabel,
+    signalDescription: signalCopy.signalDescription,
+    canShowStrongConclusion,
+    canShowTrend,
+    canShowPercentile,
+    recommendedAction: signalCopy.recommendedAction,
   };
 }
