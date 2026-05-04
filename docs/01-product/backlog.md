@@ -28,69 +28,72 @@ GanaConMerito tiene activo el core real de producto:
 - dashboard historico y por sesion
 - banco de preguntas activo gobernado
 - Tutor GCM integrado en practica con guardrails
+- fuente normativa sintetizada v1 en estado `synthesized_governed_unverified`
 - metricas prudentes para no vender conclusiones fuertes con poca senal
 - runtime con metadata visible y disciplina de triple verificacion
 
 ## Implementado y validado recientemente
 
-### PR #1 — Fix de login / Supabase runtime public config
-- Estado: CERRADO.
-- Resultado: login Google/Supabase recuperado y fallback runtime de configuracion publica aplicado.
+### Sprint 13 — Fuente de verdad normativa sintetizada v1
+- Estado: CERRADO CON WARN EXPLICITO.
+- Resultado: fuente normativa sintetizada gobernada integrada al Tutor GCM.
+- Advertencia: no equivale a fuente oficial verificada porque los adjuntos normativos previos expiraron y no fueron recargados.
 
-### PR #2 — Humanizacion UX de etiquetas tecnicas
+### Sprint 12.1 — Reconciliacion documental y mapa real del producto
 - Estado: CERRADO.
-- Resultado: slugs tecnicos en practica/dashboard reemplazados por etiquetas legibles.
-
-### PR #3 — Rotacion controlada de seleccion de items
-- Estado: CERRADO.
-- Resultado: nuevas sesiones ya no dependen de primer item fijo por ordenamiento simple.
-
-### Sprint 10 / PR #4 — Tutor GCM fuente de verdad y contrato pedagogico v1
-- Estado: CERRADO.
-- Resultado: contratos, evidence builder, modos, intenciones, guardrails y degradacion honesta implementados.
-
-### Sprint 11 / PR #5 — Tutor GCM sincronizacion post-respuesta
-- Estado: CERRADO.
-- Resultado: Tutor reconoce estado post-respuesta y puede explicar clave/feedback/distractores solo cuando corresponde.
+- Resultado: documentacion canonica alineada con Sprints 10, 11 y 12.
 
 ### Sprint 12 / PR #6 — Metricas confiables y utiles v1
 - Estado: CERRADO CON PASS/WARN MENOR.
 - Resultado: dashboard con contrato de senal, copy prudente, percentil condicionado y recomendaciones accionables.
 
+### Sprint 11 / PR #5 — Tutor GCM sincronizacion post-respuesta
+- Estado: CERRADO.
+- Resultado: Tutor reconoce estado post-respuesta y puede explicar clave/feedback/distractores solo cuando corresponde.
+
+### Sprint 10 / PR #4 — Tutor GCM fuente de verdad y contrato pedagogico v1
+- Estado: CERRADO.
+- Resultado: contratos, evidence builder, modos, intenciones, guardrails y degradacion honesta implementados.
+
+### PR #1 a #3
+- Login/Supabase runtime public config corregido.
+- Etiquetas tecnicas humanizadas.
+- Rotacion controlada de seleccion de items implementada.
+
 ## Now
-1. Cerrar Sprint 12.1: reconciliacion documental y mapa real del producto.
+1. Mantener Sprint 13 como fuente normativa sintetizada no verificada hasta cargar documentos oficiales.
 2. Mantener disciplina de triple verificacion `~/.openclaw/product = /opt/gcm/app = runtime visible`.
-3. Agregar script general `npm test` y baseline local de QA para evitar reportes repetidos de “npm test no existe”.
-4. Mantener dashboard honesto: metricas visibles, pero interpretadas con nivel de senal.
+3. Agregar script general `npm test` y baseline local de QA.
+4. Preparar persistencia de `TutorTurnTrace` para metricas pedagogicas.
 5. Mantener Tutor GCM bajo contrato: sin scoring, sin avance, sin cierre, sin fuente normativa inventada.
 
 ## Next
-1. **Fuente de verdad normativa sintetizada v1**: concurso, acuerdo, guia metodologica, estructura de prueba, perfil/empleo, competencias funcionales/comportamentales y alineacion MIPG en version gobernada.
-2. **Persistencia de trazas del Tutor GCM**: guardar `TutorTurnTrace` para metricas pedagogicas y auditoria.
-3. **UX guiada del Tutor GCM**: reemplazar caja libre dominante por acciones pedagogicas guiadas como pista, explicar enunciado, comparar opciones y explicar feedback.
+1. **Persistencia de trazas del Tutor GCM**: guardar `TutorTurnTrace` para metricas pedagogicas y auditoria.
+2. **Carga verificada de fuente normativa oficial**: acuerdo, guia metodologica, estructura de prueba, perfiles/empleos y versionado de fuente.
+3. **UX guiada del Tutor GCM**: reemplazar caja libre dominante por acciones pedagogicas guiadas.
 4. **CI minimo en GitHub Actions**: build, tests unitarios, validacion documental y validacion de contenido.
 5. **Runtime topology doc**: documentar `docker-compose.yml`, env file, dominio, proxy y politica de secretos.
 
 ## Later
 1. Admin para editar fuente de verdad normativa y perfiles.
 2. Expansion gobernada del banco de preguntas.
-3. LLM real bajo contrato y solo despues de fuente normativa suficiente.
+3. LLM real bajo contrato y solo despues de fuente normativa verificada suficiente.
 4. Dashboard interno de uso del Tutor GCM.
 5. Personalizacion pedagogica avanzada por concurso/perfil.
+6. Refactor liviano de `PracticeSession` segun `docs/01-product/future-practice-session-light-refactor.md`.
 
 ## Deuda tecnica viva
 
 ### Alta prioridad
-- Documentacion de estado aun requiere reconciliacion completa hasta Sprint 12.1.
 - No existe `npm test` como contrato general.
-- Fuente normativa del Tutor GCM sigue con placeholders.
+- Fuente normativa del Tutor GCM aun no esta verificada con documentos oficiales completos.
 - `TutorTurnTrace` no se persiste aun en base de datos.
 
 ### Media prioridad
 - `PracticeSession` crece como componente grande; refactor futuro, no inmediato.
 - `TutorInterface` sigue siendo UI basica de pregunta abierta; evolucionar a acciones guiadas.
 - Falta documento formal de topologia runtime.
-- Falta diagrama oficial de flujos end-to-end.
+- Falta CI minimo.
 
 ## Relacion con modulos
 - `auth`: activo y prioritario; mantener estable.
@@ -98,12 +101,12 @@ GanaConMerito tiene activo el core real de producto:
 - `practice`: nucleo principal del producto; debe seguir siendo practice-first.
 - `dashboard`: activo; debe reflejar progreso real sin inflar capacidades analiticas.
 - `editorial`: biblioteca documental de solo lectura; no tratar como CMS activo.
-- `ai`: Tutor GCM activo con guardrails y contrato de fuente de verdad v1; no es LLM libre.
+- `ai`: Tutor GCM activo con guardrails y fuente normativa sintetizada v1 no verificada.
 - `question-bank`: activo y gobernado; expansion solo con decision ejecutiva.
 
 ## Criterios de priorizacion
 1. Seguridad/auth/datos antes que UX cosmetica.
-2. Fuente de verdad antes que LLM real.
+2. Fuente de verdad verificada antes que LLM real.
 3. Trazabilidad antes que personalizacion avanzada.
 4. Metricas honestas antes que claims de progreso.
 5. Documentacion canonica actualizada antes de abrir nuevos frentes grandes.
