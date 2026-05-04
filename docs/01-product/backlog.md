@@ -11,75 +11,99 @@ related:
   - PROD-VISION
   - DEL-SPRINT-LOG
   - QUAL-DEBT-REGISTER
-last_reviewed: 2026-05-02
+last_reviewed: 2026-05-04
 ---
 
 # Backlog de producto
 
 ## Criterio de uso
-Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacíos de contexto. No se debe marcar como hecho nada que no tenga evidencia en repo, sprint log o validación humana. Tras el cierre de Sprint 3, esta lista queda como prioridad operativa, no como apertura automática de un nuevo sprint.
+Este backlog distingue entre trabajo confirmado, trabajo propuesto y vacios de contexto. No se debe marcar como hecho nada que no tenga evidencia en repo, sprint log, PR cerrado, runtime validado o validacion humana.
 
-## En curso o altamente probable por evidencia en repo
-- Mantener y endurecer el core activo real: auth, onboarding, práctica y dashboard.
-- Mejorar madurez operativa del runtime y disciplina de release/deploy.
-- Preparar la base técnica gobernada del frente de asistentes ya aprobado.
-- Mantener consistencia entre migraciones de Supabase, modelo de datos activo y corpus operativo.
+## Estado ejecutivo actual
+GanaConMerito tiene activo el core real de producto:
 
-### Frente gobernado: banco de preguntas
-- Estado: ACTIVO Y GOBERNADO.
-- Alcance: validación funcional del banco activo (27 ítems), alineación documental, mapa de activación y proceso de verificación sin drift.
-- Criterio operativo: se mantiene el corpus en 27 ítems hasta nueva instrucción, asegurando 0 drift reportado entre repo y DB/runtime esperado.
+- auth/login/logout
+- onboarding
+- practica
+- dashboard historico y por sesion
+- banco de preguntas activo gobernado
+- Tutor GCM integrado en practica con guardrails
+- metricas prudentes para no vender conclusiones fuertes con poca senal
+- runtime con metadata visible y disciplina de triple verificacion
 
-## Prioridad ejecutiva
+## Implementado y validado recientemente
 
-### Now
-1. Aplicar disciplina operativa sobre ADR-001 ya aprobado y ADR-002 ya aprobado con guardrails.
-2. Mantener baseline operativo de QA postdeploy sobre `:3000`.
-3. Ejecutar cierres con triple verificación `product` = `/opt/gcm/app` = runtime visible.
-4. Preparar contrato v1, trazabilidad mínima y QA negativa del futuro `Tutor GCM` sin abrir implementación libre.
-5. Evitar reintroducir drift entre producto canónico, deploy y documentación.
+### PR #1 — Fix de login / Supabase runtime public config
+- Estado: CERRADO.
+- Resultado: login Google/Supabase recuperado y fallback runtime de configuracion publica aplicado.
 
-### Next
-1. Definir política operativa para cambios estructurales y releases.
-2. Operativizar known issues con owner, impacto y ruta.
-3. Normalizar documentos críticos de arquitectura, project, database y api.
-4. Convertir el mapa formal de features activas en referencia estable de producto.
-5. Preparar la especificación técnica ejecutable del contrato de turno v1 para `Tutor GCM`.
-6. Endurecer el runbook de release para que la QA host-required (como Playwright) tenga bootstrap explícito cuando el worktree se limpia con `git clean -fdx`.
+### PR #2 — Humanizacion UX de etiquetas tecnicas
+- Estado: CERRADO.
+- Resultado: slugs tecnicos en practica/dashboard reemplazados por etiquetas legibles.
 
-### Implementado y validado en runtime
-- Rediseño UI premium mobile-first del core real (`login`, `home`, `onboarding`, `practice`, `dashboard`, `biblioteca`) ya aplicado en `~/.openclaw/product` y validado en runtime desplegado con commit `df8f949`.
-- Shell compartido migrado hacia navegación móvil más fuerte: top bar consistente, bottom nav persistente y CTA sticky en práctica.
-- `Tutor GCM` quedó visualmente preparado como capa secundaria contextual, sin convertir el producto en chat-first y sin contradecir ADR-002.
-- Corrección operativa estable ya aplicada: secretos de deploy movidos fuera del árbol redeployable hacia `/opt/gcm/env/gcm-app.env`.
+### PR #3 — Rotacion controlada de seleccion de items
+- Estado: CERRADO.
+- Resultado: nuevas sesiones ya no dependen de primer item fijo por ordenamiento simple.
 
-### Later
-1. Definición oficial de roadmap por trimestre.
-2. Features descartadas o congeladas con criterio explícito.
-3. SLA o expectativas formales de operación.
+### Sprint 10 / PR #4 — Tutor GCM fuente de verdad y contrato pedagogico v1
+- Estado: CERRADO.
+- Resultado: contratos, evidence builder, modos, intenciones, guardrails y degradacion honesta implementados.
 
-## Sprint 4: Productización del Core (2026-05-02)
-- [x] Navegación: Editorial fuera del nav principal.
-- [x] UI: Iconografía SVG real y mobile polish.
-- [x] UX: Loading, Empty y Error states implementados.
-- [x] QA: E2E validado localmente.
+### Sprint 11 / PR #5 — Tutor GCM sincronizacion post-respuesta
+- Estado: CERRADO.
+- Resultado: Tutor reconoce estado post-respuesta y puede explicar clave/feedback/distractores solo cuando corresponde.
 
-## Vacíos de contexto
-- TODO: priorización explícita por impacto de negocio validada por Marlon.
-- TODO: definición oficial de roadmap por trimestre.
-- TODO: features descartadas o congeladas.
-- TODO: SLA o expectativas de operación.
+### Sprint 12 / PR #6 — Metricas confiables y utiles v1
+- Estado: CERRADO CON PASS/WARN MENOR.
+- Resultado: dashboard con contrato de senal, copy prudente, percentil condicionado y recomendaciones accionables.
 
-## Relación con módulos
-- `auth`: activo y prioritario como parte del core real.
-- `onboarding`: activo y endurecido; no debe degradarse ni reabrirse sin evidencia.
-- `practice`: activo y núcleo principal del producto; debe seguir siendo practice-first.
-- `dashboard`: activo; debe reflejar progreso real sin inflar capacidades analíticas no implementadas.
-- `editorial`: hoy es biblioteca documental de solo lectura; no tratar como módulo administrativo activo del sprint.
-- `ai`: `Tutor GCM` integrado funcionalmente de forma mínima en la pantalla de práctica bajo contrato v1 y guardrails de autoridad.
-- `question-bank`: activo y gobernado; corpus de 27 ítems validado y sin drift.
+## Now
+1. Cerrar Sprint 12.1: reconciliacion documental y mapa real del producto.
+2. Mantener disciplina de triple verificacion `~/.openclaw/product = /opt/gcm/app = runtime visible`.
+3. Agregar script general `npm test` y baseline local de QA para evitar reportes repetidos de “npm test no existe”.
+4. Mantener dashboard honesto: metricas visibles, pero interpretadas con nivel de senal.
+5. Mantener Tutor GCM bajo contrato: sin scoring, sin avance, sin cierre, sin fuente normativa inventada.
 
-## Sprint 9: Integración funcional mínima gobernada de Tutor GCM (2026-05-02)
-- [x] UI: `TutorInterface` premium integrado en Práctica.
-- [x] API: Ruta `/api/tutor/turn` autenticada y conectada.
-- [x] GOV: Guardrails de autoridad y contexto de tema verificados.
+## Next
+1. **Fuente de verdad normativa sintetizada v1**: concurso, acuerdo, guia metodologica, estructura de prueba, perfil/empleo, competencias funcionales/comportamentales y alineacion MIPG en version gobernada.
+2. **Persistencia de trazas del Tutor GCM**: guardar `TutorTurnTrace` para metricas pedagogicas y auditoria.
+3. **UX guiada del Tutor GCM**: reemplazar caja libre dominante por acciones pedagogicas guiadas como pista, explicar enunciado, comparar opciones y explicar feedback.
+4. **CI minimo en GitHub Actions**: build, tests unitarios, validacion documental y validacion de contenido.
+5. **Runtime topology doc**: documentar `docker-compose.yml`, env file, dominio, proxy y politica de secretos.
+
+## Later
+1. Admin para editar fuente de verdad normativa y perfiles.
+2. Expansion gobernada del banco de preguntas.
+3. LLM real bajo contrato y solo despues de fuente normativa suficiente.
+4. Dashboard interno de uso del Tutor GCM.
+5. Personalizacion pedagogica avanzada por concurso/perfil.
+
+## Deuda tecnica viva
+
+### Alta prioridad
+- Documentacion de estado aun requiere reconciliacion completa hasta Sprint 12.1.
+- No existe `npm test` como contrato general.
+- Fuente normativa del Tutor GCM sigue con placeholders.
+- `TutorTurnTrace` no se persiste aun en base de datos.
+
+### Media prioridad
+- `PracticeSession` crece como componente grande; refactor futuro, no inmediato.
+- `TutorInterface` sigue siendo UI basica de pregunta abierta; evolucionar a acciones guiadas.
+- Falta documento formal de topologia runtime.
+- Falta diagrama oficial de flujos end-to-end.
+
+## Relacion con modulos
+- `auth`: activo y prioritario; mantener estable.
+- `onboarding`: activo y endurecido.
+- `practice`: nucleo principal del producto; debe seguir siendo practice-first.
+- `dashboard`: activo; debe reflejar progreso real sin inflar capacidades analiticas.
+- `editorial`: biblioteca documental de solo lectura; no tratar como CMS activo.
+- `ai`: Tutor GCM activo con guardrails y contrato de fuente de verdad v1; no es LLM libre.
+- `question-bank`: activo y gobernado; expansion solo con decision ejecutiva.
+
+## Criterios de priorizacion
+1. Seguridad/auth/datos antes que UX cosmetica.
+2. Fuente de verdad antes que LLM real.
+3. Trazabilidad antes que personalizacion avanzada.
+4. Metricas honestas antes que claims de progreso.
+5. Documentacion canonica actualizada antes de abrir nuevos frentes grandes.
