@@ -14,6 +14,8 @@ export type TutorIntent =
 
 export type RationaleQuality = "weak" | "acceptable" | "strong";
 
+export type SourceTruthStatus = "source_verified" | "synthesized_governed_unverified" | "missing";
+
 export type TutorEvidenceKey =
   | "contest"
   | "aspirational_profile"
@@ -30,6 +32,9 @@ export interface ContestTruth {
   evaluationStructureSummary: string;
   evaluationRulesSummary: string;
   sourceTruthVersion: string;
+  sourceTruthStatus?: SourceTruthStatus;
+  sourceTruthRefs?: string[];
+  insufficientSourceReason?: string;
 }
 
 export interface AspirationalProfileTruth {
@@ -43,6 +48,8 @@ export interface AspirationalProfileTruth {
   functionalCompetencySummary: string;
   behavioralCompetencySummary: string;
   mipgAlignmentSummary: string;
+  sourceTruthStatus?: SourceTruthStatus;
+  sourceTruthRefs?: string[];
 }
 
 export interface QuestionTruthOption {
@@ -65,6 +72,10 @@ export interface QuestionTruth {
   options: QuestionTruthOption[];
   correctOption: string;
   correctExplanation: string;
+  evaluatesCompetency?: boolean;
+  userExpectedAnswer?: string;
+  normativeAlignmentSummary?: string;
+  sourceTruthStatus?: SourceTruthStatus;
 }
 
 export interface UserSessionTruth {
