@@ -16,6 +16,12 @@ function getAccuracy(totalCorrect: number, totalAttempts: number) {
   return totalAttempts > 0 ? Number(((totalCorrect / totalAttempts) * 100).toFixed(1)) : 0;
 }
 
+function getTrendLabel(recentTrend: "up" | "stable" | "down") {
+  if (recentTrend === "up") return "al alza";
+  if (recentTrend === "down") return "a la baja";
+  return "estable";
+}
+
 export default async function DashboardPage({ searchParams }: DashboardPageProps) {
   await requireAuthenticatedUser();
 
@@ -33,10 +39,32 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
     : 0;
 
   const currentBlock = summary.currentSession;
-  const topWeak = (isSessionView ? breakdown.currentSession : breakdown.historical).slice(-2).reverse();
-  const topStrong = (isSessionView ? breakdown.currentSession : breakdown.historical).slice(0, 2);
-
   const activeRows = isSessionView ? breakdown.currentSession : breakdown.historical;
+  const activeSummary = isSessionView && currentBlock ? currentBlock : summary.historical;
+  const activeAccuracy = isSessionView ? currentAccuracy : historicalAccuracy;
+  const activePercentile = activeSummary.canShowPercentile ? activeSummary.percentileSegment ?? "—" : "Lectura no concluyente";
+  const strongestLabel = activeSummary.canShowStrongConclusion ? "Fortaleza principal" : "Fortaleza aún no concluyente";
+  const weakestLabel = activeSummary.canShowStrongConclusion ? "Refuerzo principal" : "Refuerzo sugerido inicial";
+  const levelLabel = activeSummary.signalLevel === "usable_signal" ? "Nivel estimado" : "Señal de nivel";
+  const attemptsCopy =
+    activeSummary.signalLevel === "usable_signal"
+      ? "Ya hay una base razonable para decidir el siguiente frente de práctica."
+      : "Muestra útil para observar, pero todavía corta para cerrar conclusiones fuertes.";
+  const trendCopy = activeSummary.canShowTrend
+    ? `Tendencia ${getTrendLabel(activeSummary.recentTrend)}.`
+    : "Aún no hay dos puntos comparables para hablar de tendencia.";
+  const contextCopy = isSessionView
+    ? `Session ID: ${sessionId}. ${activeSummary.signalDescription}`
+    : activeSummary.signalDescription;
+  const activeRowsByCompetency = new Map(activeRows.map((row) => [row.competency, row]));
+  const topStrong = activeSummary.strongestCompetencies
+    .map((competency) => activeRowsByCompetency.get(competency))
+    .filter((row): row is NonNullable<typeof row> => Boolean(row))
+    .slice(0, 2);
+  const topWeak = activeSummary.weakestCompetencies
+    .map((competency) => activeRowsByCompetency.get(competency))
+    .filter((row): row is NonNullable<typeof row> => Boolean(row))
+    .slice(0, 2);
 
   return (
     <>
@@ -56,25 +84,25 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
       <section className="metric-grid">
         <article className="metric-card">
           <span className="metric-label">Precisión {isSessionView ? "sesión" : "global"}</span>
-          <strong className="metric-value">{isSessionView ? currentAccuracy : historicalAccuracy}%</strong>
-          <span className={`metric-delta ${summary.historical.recentTrend === "up" ? "success" : summary.historical.recentTrend === "down" ? "warning" : ""}`}>
-            Tendencia {summary.historical.recentTrend}
+          <strong className="metric-value">{activeAccuracy}%</strong>
+          <span className={`metric-delta ${activeSummary.canShowTrend && activeSummary.recentTrend === "up" ? "success" : activeSummary.canShowTrend && activeSummary.recentTrend === "down" ? "warning" : ""}`}>
+            {trendCopy}
           </span>
         </article>
         <article className="metric-card">
           <span className="metric-label">Intentos</span>
-          <strong className="metric-value">{isSessionView && currentBlock ? currentBlock.totalAttempts : summary.historical.totalAttempts}</strong>
-          <span className="subtle">Señal efectiva sobre la que ya puedes decidir.</span>
+          <strong className="metric-value">{activeSummary.totalAttempts}</strong>
+          <span className="subtle">{attemptsCopy}</span>
         </article>
         <article className="metric-card">
           <span className="metric-label">Razonamiento promedio</span>
-          <strong className="metric-value">{isSessionView && currentBlock ? currentBlock.avgReasoningScore : summary.historical.avgReasoningScore}</strong>
+          <strong className="metric-value">{activeSummary.avgReasoningScore}</strong>
           <span className="subtle">Ayuda a leer calidad, no solo acierto bruto.</span>
         </article>
         <article className="metric-card">
-          <span className="metric-label">Nivel estimado</span>
-          <strong className="metric-value">{isSessionView && currentBlock ? currentBlock.estimatedLevel : summary.historical.estimatedLevel}</strong>
-          <span className="subtle">Lectura resumida del momento actual.</span>
+          <span className="metric-label">{levelLabel}</span>
+          <strong className="metric-value">{activeSummary.estimatedLevel}</strong>
+          <span className="subtle">{activeSummary.signalLevel === "usable_signal" ? "Lectura resumida del momento actual." : "Lectura preliminar del nivel observada hasta ahora."}</span>
         </article>
       </section>
 
@@ -85,29 +113,27 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
               <p className="eyebrow">Tendencia</p>
               <h2 className="section-title">{isSessionView ? "Sesión en contexto" : "Progreso histórico acumulado"}</h2>
             </div>
-            <span className="status-pill premium">High signal</span>
+            <span className="status-pill premium">{activeSummary.signalLevel === "usable_signal" ? "High signal" : activeSummary.signalLabel}</span>
           </div>
           <p className="body-sm">
-            {isSessionView
-              ? `Session ID: ${sessionId}. Aquí conviven la lectura puntual de la corrida y el histórico acumulado para evitar conclusiones aisladas.`
-              : "Esta vista resume tu avance general y funciona como mapa para decidir el siguiente frente de práctica."}
+            {contextCopy}
           </p>
           <div style={{ marginTop: 16 }}>
             <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
               <span className="metric-label">Precisión</span>
-              <span className="subtle">{isSessionView ? currentAccuracy : historicalAccuracy}%</span>
+              <span className="subtle">{activeAccuracy}%</span>
             </div>
             <div className="progress-rail" style={{ marginTop: 10 }}>
-              <div className="progress-fill" style={{ width: `${Math.min(100, Math.max(8, isSessionView ? currentAccuracy : historicalAccuracy))}%` }} />
+              <div className="progress-fill" style={{ width: `${Math.min(100, Math.max(8, activeAccuracy))}%` }} />
             </div>
           </div>
           <div className="tutor-chip" style={{ marginTop: 18 }}>
             <div>
               <p className="metric-label" style={{ margin: 0 }}>Tutor GCM</p>
               <p className="body-sm" style={{ margin: "8px 0 0" }}>
-                {summary.historical.weakestCompetencies.length > 0
-                  ? `Prioridad sugerida: reforzar ${summary.historical.weakestCompetencies[0]} antes de ampliar volumen.`
-                  : "Cuando haya más señal, aquí vivirán recomendaciones estratégicas accionables."}
+                {activeSummary.weakestCompetencies.length > 0
+                  ? `Siguiente foco sugerido: ${activeSummary.weakestCompetencies[0]}. ${activeSummary.recommendedAction}`
+                  : activeSummary.recommendedAction}
               </p>
             </div>
             <span className="status-pill premium">Contextual</span>
@@ -118,15 +144,15 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           <p className="eyebrow">Lectura ejecutiva</p>
           <div className="list-row">
             <span>Percentil</span>
-            <strong>{isSessionView && currentBlock ? currentBlock.percentileSegment ?? "—" : summary.historical.percentileSegment ?? "—"}</strong>
+            <strong>{activePercentile}</strong>
           </div>
           <div className="list-row">
-            <span>Fortaleza principal</span>
-            <strong>{summary.historical.strongestCompetencies[0] ?? "Sin datos"}</strong>
+            <span>{strongestLabel}</span>
+            <strong>{activeSummary.strongestCompetencies[0] ?? "Sin conclusión todavía"}</strong>
           </div>
           <div className="list-row">
-            <span>Refuerzo principal</span>
-            <strong>{summary.historical.weakestCompetencies[0] ?? "Sin datos"}</strong>
+            <span>{weakestLabel}</span>
+            <strong>{activeSummary.weakestCompetencies[0] ?? "Sin prioridad concluyente"}</strong>
           </div>
         </article>
       </section>
@@ -134,20 +160,20 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
       <section className="two-column-grid">
         <article className="list-card">
           <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
-            <h2 className="section-title" style={{ fontSize: "1.2rem" }}>Áreas de dominio</h2>
-            <span className="status-pill success">Fuerte</span>
+            <h2 className="section-title" style={{ fontSize: "1.2rem" }}>Áreas con mejor señal</h2>
+            <span className="status-pill success">{activeSummary.canShowStrongConclusion ? "Fuerte" : "Inicial"}</span>
           </div>
           {topStrong.length > 0 ? topStrong.map((row) => (
             <div key={`${row.area}-${row.competency}`} className="list-row">
               <span>{formatAreaCompetency(row.area, row.competency)}</span>
               <strong>{getAccuracy(row.correct_count, row.attempts)}%</strong>
             </div>
-          )) : <p className="subtle">Aún no hay datos suficientes para identificar fortalezas.</p>}
+          )) : <p className="subtle">Aún no hay evidencia suficiente para hablar de fortalezas consolidadas.</p>}
         </article>
         <article className="list-card">
           <div className="inline-cluster" style={{ justifyContent: "space-between" }}>
             <h2 className="section-title" style={{ fontSize: "1.2rem" }}>Focos de refuerzo</h2>
-            <span className="status-pill warning">Atención</span>
+            <span className="status-pill warning">{activeSummary.canShowStrongConclusion ? "Atención" : "Prudente"}</span>
           </div>
           {topWeak.length > 0 ? topWeak.map((row) => (
             <div key={`${row.area}-${row.competency}`} className="list-row">

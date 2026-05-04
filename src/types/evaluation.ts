@@ -36,7 +36,19 @@ export interface AdvanceSessionResponse {
   shouldTransition: boolean;
 }
 
-export interface DashboardSummaryMetrics {
+export type MetricSignalLevel = "no_signal" | "low_signal" | "emerging_signal" | "usable_signal";
+
+export interface MetricInterpretation {
+  signalLevel: MetricSignalLevel;
+  signalLabel: string;
+  signalDescription: string;
+  canShowStrongConclusion: boolean;
+  canShowTrend: boolean;
+  canShowPercentile: boolean;
+  recommendedAction: string;
+}
+
+export interface DashboardSummaryMetrics extends MetricInterpretation {
   estimatedLevel: number;
   percentileSegment?: number;
   totalAttempts: number;
