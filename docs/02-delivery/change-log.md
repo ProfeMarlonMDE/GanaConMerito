@@ -9,10 +9,69 @@ modules: [core, platform]
 tags: [changelog, cambios, entregas]
 related:
   - DEL-SPRINT-LOG
-last_reviewed: 2026-05-02
+last_reviewed: 2026-05-04
 ---
 
 # Change log
+
+## 2026-05-04
+- tipo: docs+governance
+- modulo: delivery/product-map/status
+- resumen: se ejecuta Sprint 12.1 para reconciliar la documentacion canonica con el estado real posterior a PR #1-#6. Se actualizan `status.md`, `sprint-log.md`, `change-log.md`, `backlog.md` y `active-feature-map.md` para reflejar login corregido, humanizacion UX, rotacion de items, Tutor GCM fuente de verdad v1, sincronizacion post-respuesta y metricas confiables.
+- sprint: Sprint 12.1 — Reconciliacion documental y mapa real del producto
+- commit base reconciliado: `64d78def1d8dd4f98ec9ae5ba55a3fed97e4e4ba`
+- agente: ChatGPT
+- relacionados: docs/project/status.md, docs/02-delivery/sprint-log.md, docs/01-product/backlog.md, docs/01-product/active-feature-map.md
+
+## 2026-05-04
+- tipo: feat+dashboard+metrics+qa
+- modulo: dashboard/metrics
+- resumen: se cerro Sprint 12 con contrato de metricas confiables y utiles. El dashboard ya no presenta conclusiones fuertes con poca senal; incorpora niveles `no_signal`, `low_signal`, `emerging_signal` y `usable_signal`, copy prudente, percentil condicionado, tendencia condicionada y recomendaciones accionables sin promesas de resultado.
+- sprint: Sprint 12 — Metricas confiables y utiles v1
+- pr: #6
+- commit master/runtime: `64d78def1d8dd4f98ec9ae5ba55a3fed97e4e4ba`
+- validacion: E2E online PASS/WARN menor en `https://cnsc.profemarlon.com`, runtime visible `64d78de`, buildTime `2026-05-04T03:24:21Z`
+- relacionados: src/lib/dashboard/summary-metrics.ts, src/app/(authenticated)/dashboard/page.tsx, src/types/evaluation.ts
+
+## 2026-05-03
+- tipo: fix+tutor+qa
+- modulo: tutor/evidence
+- resumen: se cerro Sprint 11 corrigiendo la sincronizacion post-respuesta del Tutor GCM. El tutor mantiene `canRevealCorrectAnswer=false` antes de responder y pasa a `true` despues de respuesta confirmada server-side, permitiendo explicar clave, feedback, distractores y justificacion sin tocar scoring ni avance.
+- sprint: Sprint 11 — Tutor GCM sincronizacion post-respuesta
+- pr: #5
+- commit master/runtime: `1dc454291b22bff41b95125fcbd68e373d8f578a`
+- validacion: E2E online PASS en produccion
+- relacionados: src/lib/tutor/tutor-evidence-builder.ts, src/lib/tutor/tutor-response-policy.ts, src/types/tutor-turn.ts
+
+## 2026-05-03
+- tipo: feat+tutor+contract
+- modulo: tutor/source-of-truth
+- resumen: se cerro Sprint 10 implementando la fuente de verdad y contrato pedagogico v1 de Tutor GCM. Se incorporan modos, intenciones, evidence builder server-side, guardrails de autoridad, degradacion por fuente insuficiente y trazabilidad preparada, sin conectar LLM real.
+- sprint: Sprint 10 — Tutor GCM fuente de verdad y contrato pedagogico v1
+- pr: #4
+- commit master/runtime: `7a380328af9fcb974c9ab6497b35380ce9bd06ed`
+- relacionados: src/types/tutor-turn.ts, src/domain/tutor/contract.ts, src/lib/tutor/tutor-evidence-builder.ts, src/app/api/tutor/turn/route.ts
+
+## 2026-05-03
+- tipo: feat+item-selection
+- modulo: practice/item-selection
+- resumen: se implemento rotacion controlada de seleccion de items para evitar que nuevas sesiones inicien siempre con la misma pregunta. La seleccion usa pool de candidatos, exclusion de items recientes, semilla deterministica y fallback seguro.
+- pr: #3
+- relacionados: src/domain/item-selection/select-next-item.ts, src/app/api/session/start/route.ts, src/app/api/session/advance/route.ts
+
+## 2026-05-03
+- tipo: fix+ux
+- modulo: practice/dashboard
+- resumen: se humanizaron etiquetas tecnicas visibles en practica y dashboard, reemplazando slugs como `gestion · lectura_de_indicadores` por etiquetas legibles como `Gestion · Lectura de indicadores` y ajustando copy tecnico de feedback.
+- pr: #2
+- relacionados: src/lib/ui/format-label.ts, src/components/practice/practice-session.tsx, src/app/(authenticated)/dashboard/page.tsx
+
+## 2026-05-03
+- tipo: fix+auth
+- modulo: auth/supabase
+- resumen: se corrigio el fallo de login causado por ausencia de variables publicas Supabase en el bundle del navegador. Se agrego fallback runtime de configuracion publica y se estabilizo el flujo Google/Supabase.
+- pr: #1
+- relacionados: src/app/api/auth/public-config/route.ts, src/lib/supabase/client.ts, src/lib/supabase/auth.ts
 
 ## 2026-05-02
 - tipo: docs+closure+ops
@@ -181,7 +240,7 @@ last_reviewed: 2026-05-02
 - modulo: qa/ops
 - resumen: se corrigió la limpieza de usuarios QA para tolerar identidades stale ya borradas en Supabase (`User not found`) y se revalidó el runtime objetivo `:3000` con smoke postdeploy y E2E UI Chromium verdes (`5` turnos).
 - sprint: Sprint 2 - Maduración operativa del producto
-- relacionados: QUAL-QA-SEMANTICA-RUNBOOK, docs/project/e2e-status.md, docs/project/status.md
+- relacionados: QUAL-QA-SEMANTICA-RUNBOOK, docs/project/e2e-status.md
 
 ## 2026-04-29
 - tipo: hardening
