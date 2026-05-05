@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireOwnedSession } from "../../../../lib/supabase/guards";
 import { buildTutorEvidence } from "../../../../lib/tutor/tutor-evidence-builder";
 import { TutorOrchestrator } from "../../../../lib/tutor/tutor-orchestrator";
+import { persistTutorTurnTrace } from "../../../../lib/tutor/tutor-trace-repository";
 
 const tutor = new TutorOrchestrator();
 
@@ -39,6 +40,17 @@ export async function POST(request: Request) {
       message: userMessage,
       evidence,
     });
+
+    const traceWrite = await persistTutorTurnTrace({
+      supabase,
+      profileId: profile.id,
+      trace: result.trace,
+    });
+
+    if (!traceWrite.ok) {
+      console.warn("[Tutor Trace Persist Warning]:", traceWrite.error.message);
+    }
+
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
     console.error("[Tutor API Error]:", error);
