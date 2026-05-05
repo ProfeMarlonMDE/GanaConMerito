@@ -16,6 +16,35 @@ last_reviewed: 2026-05-04
 
 # Sprint log
 
+## Sprint cerrado — Sprint 13: Fuente de verdad normativa sintetizada v1
+- **Estado**: CERRADO CON WARN EXPLICITO
+- **Fecha**: 2026-05-04
+- **Base**: `88f997c232dcf2cb1958642e9055e26f0805778d`
+- **Objetivo**: cerrar una fuente de verdad normativa mínima y gobernada para Tutor GCM, evitando construir un sistema gigante y evitando inventar reglas no verificadas.
+
+### Entregado
+- `docs/03-architecture/runtime-flow-map.md` creado.
+- `docs/07-compliance/server-side-service-role-policy.md` creado.
+- `docs/01-product/source-truth/normative-source-truth-v1.md` creado.
+- `src/lib/tutor/normative-source-truth.ts` creado.
+- `src/types/tutor-turn.ts` extendido con `SourceTruthStatus` y campos de trazabilidad normativa.
+- `src/lib/tutor/tutor-evidence-builder.ts` conectado a la fuente normativa sintetizada.
+- `docs/01-product/future-practice-session-light-refactor.md` creado como sprint futuro, no ejecutado.
+
+### Estado de fuente
+- Estado actual: `synthesized_governed_unverified`.
+- Motivo: los adjuntos normativos previos expiraron y no se cargaron de nuevo acuerdos/guías oficiales completos.
+- Criterio: el Tutor GCM puede usar la síntesis para orientación general, pero debe degradar si se le pide una regla normativa específica no cargada.
+
+### Guardrails preservados
+- No se conectó LLM real.
+- No se tocó scoring.
+- No se tocó avance de sesión.
+- No se tocó cierre de sesión.
+- No se tocaron migraciones Supabase.
+- No se tocó VPS ni Docker.
+- No se ejecutó el refactor de `PracticeSession`; solo quedó planificado.
+
 ## Sprint cerrado — Sprint 12: Métricas confiables y útiles v1
 - **Estado**: CERRADO CON PASS/WARN MENOR ACEPTADO
 - **Fecha**: 2026-05-04

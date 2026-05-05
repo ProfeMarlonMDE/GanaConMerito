@@ -10,23 +10,22 @@ last_reviewed: 2026-05-04
 
 # Project Status — GanaConMerito
 
-Ultima actualizacion: 2026-05-04 — Reconciliacion documental Sprint 12.1.
+Ultima actualizacion: 2026-05-04 — Cierre Sprint 13.
 
 ## Estado general
 
-**Estado:** Sprint 12 cerrado con PASS/WARN menor aceptado.  
-**Producto:** MVP avanzado con core operativo, Tutor GCM gobernado y dashboard con metricas prudentes.  
+**Estado:** Sprint 13 cerrado como fuente normativa sintetizada v1 gobernada, no verificada.  
+**Producto:** MVP avanzado con core operativo, Tutor GCM gobernado, dashboard con metricas prudentes y contrato de fuente normativa minima.  
 **Rama canonica:** `master`.  
 **Version declarada en `package.json`:** `0.6.0`.
 
 ## Verdad operativa actual
 
-- **HEAD actual en `master`:** `64d78def1d8dd4f98ec9ae5ba55a3fed97e4e4ba`.
-- **Short hash runtime esperado:** `64d78de`.
-- **Runtime visible validado en produccion:** `64d78de`.
-- **Build time visible validado:** `2026-05-04T03:24:21Z`.
-- **Triple verificacion reportada:** `~/.openclaw/product = /opt/gcm/app = runtime visible` sobre `64d78de`.
+- **HEAD base de Sprint 13:** `88f997c232dcf2cb1958642e9055e26f0805778d`.
+- **Ultimo runtime productivo validado antes de Sprint 13:** `64d78de`.
+- **Build time productivo validado antes de Sprint 13:** `2026-05-04T03:24:21Z`.
 - **Entorno publico validado:** `https://cnsc.profemarlon.com`.
+- **Nota:** Sprint 13 modifica contratos/documentacion y no despliega runtime desde esta ejecucion.
 
 ## Modulos activos
 
@@ -44,6 +43,7 @@ Ultima actualizacion: 2026-05-04 — Reconciliacion documental Sprint 12.1.
 - Persistencia de turnos y eventos de evaluacion.
 - Avance con `advance_session_atomic`.
 - Rotacion controlada de item inicial y siguientes items aplicada en PR #3.
+- Refactor liviano de `PracticeSession` queda planificado como sprint futuro, no ejecutado en Sprint 13.
 
 ### Dashboard / metricas
 - Dashboard historico y por sesion activos.
@@ -59,6 +59,8 @@ Ultima actualizacion: 2026-05-04 — Reconciliacion documental Sprint 12.1.
 - Contexto critico derivado server-side.
 - Contrato de fuente de verdad v1 implementado en PR #4.
 - Sincronizacion post-respuesta corregida en PR #5.
+- Fuente normativa sintetizada v1 integrada al evidence builder en Sprint 13.
+- Estado de fuente normativa actual: `synthesized_governed_unverified`.
 - Antes de responder no revela clave.
 - Despues de responder puede explicar clave, feedback, distractores y justificacion.
 - No tiene autoridad sobre scoring, avance, cierre de sesion ni seleccion de items.
@@ -69,6 +71,11 @@ Ultima actualizacion: 2026-05-04 — Reconciliacion documental Sprint 12.1.
 - Expansion editorial del banco sigue fuera de alcance inmediato salvo decision explicita.
 
 ## Historial reciente reconciliado
+
+### Sprint 13 — Fuente de verdad normativa sintetizada v1
+- **Foco:** cerrar estructura minima de fuente normativa para Tutor GCM sin crear un sistema gigante ni inventar acuerdos/guias oficiales.
+- **Resultado:** contrato extendido, modulo `normative-source-truth.ts`, integracion al evidence builder y documentos de arquitectura/compliance.
+- **Advertencia:** los adjuntos normativos previos expiraron; la fuente queda como sintetizada gobernada no verificada hasta cargar documentos oficiales.
 
 ### PR #6 — Sprint 12: Metricas confiables y utiles v1
 - **Merge en master:** `64d78def1d8dd4f98ec9ae5ba55a3fed97e4e4ba`.
@@ -101,25 +108,26 @@ Ultima actualizacion: 2026-05-04 — Reconciliacion documental Sprint 12.1.
 
 ## Deuda tecnica viva
 
-1. **Fuente normativa real del Tutor GCM:** hoy existen placeholders gobernados para acuerdo, guia metodologica, estructura de prueba y perfil detallado.
+1. **Verificacion normativa real:** cargar acuerdo, guia metodologica, estructura de prueba y perfiles/empleos oficiales para pasar de `synthesized_governed_unverified` a `source_verified`.
 2. **Persistencia de `TutorTurnTrace`:** el contrato existe, pero falta tabla/escritura para metricas del tutor.
 3. **Admin de fuente de verdad:** aun no existe superficie administrativa para editar concursos, guias, perfiles y sintesis normativas.
-4. **Documentacion arquitectonica visual:** falta mapa oficial actualizado de flujos runtime.
-5. **CI y test script general:** falta script `npm test` agregado como contrato general de QA local.
-6. **Runtime topology:** falta documento especifico sobre ubicacion de `docker-compose.yml`, env file, proxy/dominio y politica de secretos.
+4. **CI y test script general:** falta script `npm test` agregado como contrato general de QA local.
+5. **Runtime topology:** falta documento especifico sobre ubicacion de `docker-compose.yml`, env file, proxy/dominio y politica de secretos.
+6. **Refactor liviano de `PracticeSession`:** planificado, no ejecutado.
 
 ## Proximos pasos recomendados
 
-1. Cerrar Sprint 12.1 con PR documental y actualizar este estado como referencia canonica.
-2. Sprint 13 recomendado: Fuente de verdad normativa sintetizada v1.
-3. Sprint 14 recomendado: Persistencia y metricas del Tutor GCM.
-4. Sprint 15 recomendado: UX guiada del Tutor GCM con intenciones pedagogicas.
+1. Sprint 14 recomendado: Persistencia y metricas del Tutor GCM.
+2. Sprint futuro: Refactor liviano de `PracticeSession` con E2E online.
+3. Sprint futuro: Carga verificada de fuentes normativas oficiales.
+4. Sprint futuro: UX guiada del Tutor GCM con intenciones pedagogicas.
 
 ## Criterio de cierre del estado actual
 
-El estado actual se considera reconciliado cuando:
+El estado actual se considera cerrado si:
 
-- `status.md`, `sprint-log.md`, `change-log.md`, `backlog.md` y `active-feature-map.md` reflejan Sprints 10, 11 y 12.
-- El mapa de features reconoce Tutor GCM como activo con guardrails, no como solo aprobado.
-- El dashboard se reconoce como activo con contrato de metricas prudentes.
-- Las deudas vivas quedan diferenciadas de funcionalidades ya implementadas.
+- la fuente normativa sintetizada v1 queda integrada al evidence builder;
+- la fuente queda marcada como no verificada cuando corresponde;
+- el Tutor GCM sigue degradando cuando falta evidencia;
+- no se toca scoring, avance, cierre de sesion, Docker, VPS ni Supabase Dashboard;
+- los documentos `runtime-flow-map.md` y `server-side-service-role-policy.md` quedan creados.

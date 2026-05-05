@@ -29,11 +29,12 @@ Mantener inventario explícito de lo que está activo, activo con guardrails, di
 
 ## Resumen ejecutivo actualizado
 - El core activo real es: **login -> onboarding -> práctica -> dashboard**.
-- El Tutor GCM ya está **activo con guardrails** dentro de práctica.
-- El dashboard ya tiene **contrato de métricas prudentes** para no vender humo.
+- El Tutor GCM está **activo con guardrails** dentro de práctica.
+- El Tutor GCM tiene **fuente normativa sintetizada v1**, marcada como `synthesized_governed_unverified`.
+- El dashboard tiene **contrato de métricas prudentes** para no vender humo.
 - El banco de preguntas está **operativo como corpus activo curado**.
 - Editorial sigue como **biblioteca documental de solo lectura**.
-- La fuente normativa completa del Tutor GCM está **preparada contractualmente, pero no cargada como verdad real completa**.
+- `PracticeSession` sigue funcional; su refactor liviano queda planificado, no ejecutado.
 
 ## 1. Auth y acceso
 
@@ -113,6 +114,11 @@ Mantener inventario explícito de lo que está activo, activo con guardrails, di
   - `hintLevel`
   - enlace al dashboard de sesión
 
+### Refactor liviano de PracticeSession
+- Estado: **Diferido / planificado**
+- Evidencia: `docs/01-product/future-practice-session-light-refactor.md`
+- Regla: no ejecutar sin E2E online disponible; no cambiar scoring, avance ni selección.
+
 ## 4. Dashboard y métricas
 
 ### Dashboard histórico acumulado
@@ -155,8 +161,8 @@ Mantener inventario explícito de lo que está activo, activo con guardrails, di
   - tutor niega autoridad sobre puntaje, avance o cierre
 
 ### Contrato de fuente de verdad v1
-- Estado: **Implementado como base técnica, con fuentes normativas detalladas pendientes**
-- Evidencia: `src/types/tutor-turn.ts`, `src/domain/tutor/contract.ts`, `src/lib/tutor/tutor-evidence-builder.ts`
+- Estado: **Activo con fuente sintetizada no verificada**
+- Evidencia: `src/types/tutor-turn.ts`, `src/domain/tutor/contract.ts`, `src/lib/tutor/tutor-evidence-builder.ts`, `src/lib/tutor/normative-source-truth.ts`, `docs/01-product/source-truth/normative-source-truth-v1.md`
 - Alcance real:
   - `ContestTruth`
   - `AspirationalProfileTruth`
@@ -164,6 +170,8 @@ Mantener inventario explícito de lo que está activo, activo con guardrails, di
   - `UserSessionTruth`
   - `TutorTurnResponse`
   - `TutorTurnTrace`
+  - `SourceTruthStatus`
+  - estado `synthesized_governed_unverified`
   - degradación cuando falta evidencia
 
 ### Sincronización post-respuesta
@@ -175,7 +183,7 @@ Mantener inventario explícito de lo que está activo, activo con guardrails, di
 
 ### Tutor LLM real
 - Estado: **Diferido**
-- Regla: no conectar LLM real antes de fuente normativa suficiente, persistencia de trazas y QA negativa ampliada.
+- Regla: no conectar LLM real antes de fuente normativa verificada suficiente, persistencia de trazas y QA negativa ampliada.
 
 ### Métricas del tutor
 - Estado: **Preparado contractualmente, no persistido**
@@ -216,11 +224,6 @@ Mantener inventario explícito de lo que está activo, activo con guardrails, di
 ### Baseline QA real
 - Estado: **Activo, con oportunidad de consolidación**
 - Evidencia: scripts npm y pruebas E2E ejecutadas por Antigravity
-- Alcance real:
-  - smoke postdeploy
-  - E2E UI
-  - E2E API
-  - test dashboard
 - Pendiente:
   - crear `npm test` como agregador estándar
   - CI mínimo en GitHub Actions
@@ -232,17 +235,18 @@ Mantener inventario explícito de lo que está activo, activo con guardrails, di
 
 ## 9. Lo que NO debe presentarse como feature completa
 - Tutor GCM con LLM real.
-- Tutor GCM con fuente normativa completa cargada.
+- Tutor GCM con fuente normativa oficial verificada.
 - Admin de concursos/perfiles/fuentes.
 - Predicción de aprobación o probabilidad de ganar.
 - Comparación estadística real con otros usuarios.
 - CMS editorial completo.
 - Analítica avanzada longitudinal.
+- Refactor de `PracticeSession` ejecutado.
 - Multi-asistente visible.
 
 ## 10. Prioridades derivadas
-1. Cerrar Sprint 12.1 para que la documentación canónica refleje el producto real.
-2. Crear fuente de verdad normativa sintetizada v1.
-3. Persistir trazas de Tutor GCM para métricas pedagógicas.
-4. Agregar `npm test` y CI mínimo.
-5. Evolucionar TutorInterface hacia acciones pedagógicas guiadas.
+1. Persistir trazas de Tutor GCM para métricas pedagógicas.
+2. Cargar fuentes normativas oficiales para pasar a `source_verified`.
+3. Agregar `npm test` y CI mínimo.
+4. Evolucionar TutorInterface hacia acciones pedagógicas guiadas.
+5. Ejecutar refactor liviano de `PracticeSession` solo con E2E online.

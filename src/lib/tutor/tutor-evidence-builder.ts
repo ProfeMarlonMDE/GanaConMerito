@@ -1,7 +1,11 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { TUTOR_CONTRACT_VERSION } from "../../domain/tutor/contract";
 import { applyActiveItemBankFilters, runWithActiveItemBankFallback } from "../supabase/active-item-bank";
 import type { TutorEvidence } from "../../types/tutor-turn";
+import {
+  buildAspirationalProfileTruthV1,
+  buildContestTruthV1,
+  enrichQuestionTruthWithNormativeSource,
+} from "./normative-source-truth";
 
 interface TutorItemRecord {
   id: string;
@@ -112,61 +116,41 @@ export async function buildTutorEvidence(params: {
 
   const professionalProfile = await loadProfessionalProfile(supabase, learningProfile?.professional_profile_id);
   const recentPerformanceSummary = buildRecentPerformanceSummary(turnsWithEvaluation);
-  const contestId = "cnsc-docente-directivo-docente-v1";
+  const contest = buildContestTruthV1();
+  const aspirationalProfile = buildAspirationalProfileTruthV1(professionalProfile);
+  const question = item
+    ? enrichQuestionTruthWithNormativeSource({
+        itemId: item.id,
+        area: item.area ?? "general",
+        competency: item.competency ?? "competencia no especificada",
+        topic: [item.area, item.competency].filter(Boolean).join(" - ") || "tema no especificado",
+        cognitiveIntent: "Identificar la opción que mejor responde al caso según el enunciado y la competencia evaluada.",
+        expectedUserTask: "Leer el enunciado, contrastar opciones y seleccionar la alternativa más consistente.",
+        sourceType: item.source_type ?? "runtime_item_bank",
+        sourceRefs: item.source_path ? [item.source_path] : [`item_bank:${item.id}`],
+        stem: item.stem ?? "",
+        options: options
+          .filter((option) => option.option_key && option.option_text)
+          .map((option) => ({
+            key: option.option_key as string,
+            text: option.option_text as string,
+            rationale: buildOptionRationale(option.option_key as string, item.correct_option),
+            isCorrect: currentTurn?.selected_option ? option.option_key === item.correct_option : undefined,
+          })),
+        correctOption: item.correct_option ?? "",
+        correctExplanation: item.explanation ?? "",
+      })
+    : undefined;
 
   return {
-    contest: {
-      contestId,
-      contestName: "Concurso docente y directivo docente",
-      agreementId: "pending-source-agreement-v1",
-      methodologicalGuideId: "pending-methodological-guide-v1",
-      testStructureId: "gcm-current-question-bank-structure-v1",
-      evaluationStructureSummary: "Banco GCM activo por áreas y competencias; detalle documental externo pendiente de carga gobernada.",
-      evaluationRulesSummary: "El Tutor GCM orienta el estudio y no modifica puntaje, avance ni cierre de sesión.",
-      sourceTruthVersion: TUTOR_CONTRACT_VERSION,
-    },
-    aspirationalProfile: professionalProfile
-      ? {
-          profileId: professionalProfile.id,
-          contestId,
-          jobName: professionalProfile.name ?? "Perfil docente seleccionado",
-          hierarchicalLevel: "Docente",
-          performanceArea: professionalProfile.area ?? "educacion",
-          purposeSummary: professionalProfile.description ?? "Perfil aspiracional seleccionado por el usuario.",
-          functionSummary: professionalProfile.description ?? "Funciones específicas pendientes de fuente gobernada.",
-          functionalCompetencySummary: "Competencias funcionales pendientes de fuente gobernada detallada.",
-          behavioralCompetencySummary: "Competencias comportamentales pendientes de fuente gobernada detallada.",
-          mipgAlignmentSummary: "Alineación MIPG pendiente de fuente gobernada detallada.",
-        }
-      : undefined,
-    question: item
-      ? {
-          itemId: item.id,
-          area: item.area ?? "general",
-          competency: item.competency ?? "competencia no especificada",
-          topic: [item.area, item.competency].filter(Boolean).join(" - ") || "tema no especificado",
-          cognitiveIntent: "Identificar la opción que mejor responde al caso según el enunciado y la competencia evaluada.",
-          expectedUserTask: "Leer el enunciado, contrastar opciones y seleccionar la alternativa más consistente.",
-          sourceType: item.source_type ?? "runtime_item_bank",
-          sourceRefs: item.source_path ? [item.source_path] : [`item_bank:${item.id}`],
-          stem: item.stem ?? "",
-          options: options
-            .filter((option) => option.option_key && option.option_text)
-            .map((option) => ({
-              key: option.option_key as string,
-              text: option.option_text as string,
-              rationale: buildOptionRationale(option.option_key as string, item.correct_option),
-              isCorrect: currentTurn?.selected_option ? option.option_key === item.correct_option : undefined,
-            })),
-          correctOption: item.correct_option ?? "",
-          correctExplanation: item.explanation ?? "",
-        }
-      : undefined,
+    contest,
+    aspirationalProfile,
+    question,
     userSession: {
       sessionId,
       userId,
-      selectedContestId: contestId,
-      selectedProfileId: professionalProfile?.id ?? "profile-source-missing",
+      selectedContestId: contest.contestId,
+      selectedProfileId: aspirationalProfile?.profileId ?? "profile-source-missing",
       currentItemId: itemId,
       selectedOption: currentTurn?.selected_option ?? undefined,
       userRationale: currentTurn?.user_rationale ?? undefined,
