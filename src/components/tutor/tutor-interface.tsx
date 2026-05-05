@@ -9,7 +9,7 @@ interface TutorInterfaceProps {
 }
 
 export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [message, setMessage] = useState("");
   const [lastResponse, setLastResponse] = useState<TutorOutput | null>(null);
   const [loading, setLoading] = useState(false);
@@ -51,8 +51,10 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
   if (!isOpen) {
     return (
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
         className="tutor-chip"
+        data-testid="tutor-gcm-open-button"
         style={{ width: "100%", cursor: "pointer", textAlign: "left" }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -68,20 +70,33 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
   }
 
   return (
-    <div className="surface-card" style={{ padding: "20px", display: "grid", gap: "16px" }}>
+    <section
+      className="surface-card"
+      data-testid="tutor-gcm-panel"
+      aria-label="Tutor GCM"
+      style={{ padding: "20px", display: "grid", gap: "16px" }}
+    >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <div className="avatar-chip" style={{ width: "32px", height: "32px", fontSize: "14px" }}>T</div>
-          <h3 className="section-title" style={{ fontSize: "1rem" }}>Tutor GCM</h3>
+          <div>
+            <p className="eyebrow" style={{ margin: 0 }}>Tutor GCM</p>
+            <h3 className="section-title" style={{ fontSize: "1rem", margin: 0 }}>Acompañamiento de esta pregunta</h3>
+          </div>
         </div>
         <button
+          type="button"
           onClick={() => setIsOpen(false)}
           className="subtle"
           style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
         >
-          Cerrar
+          Minimizar
         </button>
       </div>
+
+      <p className="body-sm" style={{ margin: 0 }}>
+        Puedes pedir una pista, comparar opciones sin revelar la clave o solicitar explicación del feedback después de responder.
+      </p>
 
       {lastResponse ? (
         <div className="feedback-card" style={{ margin: 0, background: "var(--surface-secondary)" }}>
@@ -98,12 +113,15 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
         <p className="body-sm" style={{ color: "var(--error)", margin: 0 }}>{error}</p>
       ) : null}
 
-      <form onSubmit={handleSendMessage} style={{ display: "grid", gap: "10px" }}>
+      <form onSubmit={handleSendMessage} style={{ display: "grid", gap: "10px" }} data-testid="tutor-gcm-form">
         <div className="form-field">
+          <label className="field-label" htmlFor="tutor-gcm-message">Pregunta al Tutor GCM</label>
           <textarea
+            id="tutor-gcm-message"
+            data-testid="tutor-gcm-message"
             className="text-area"
             style={{ minHeight: "80px", fontSize: "14px" }}
-            placeholder="Escribe tu duda aquí..."
+            placeholder="Ejemplo: Dame una pista sin decirme la respuesta correcta."
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             disabled={loading}
@@ -112,6 +130,7 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
         <button
           type="submit"
           className="primary-button"
+          data-testid="tutor-gcm-submit"
           style={{ minHeight: "44px" }}
           disabled={loading || !message.trim()}
         >
@@ -120,8 +139,8 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
       </form>
 
       <p className="subtle" style={{ fontSize: "11px", textAlign: "center" }}>
-        El tutor no tiene autoridad sobre tu puntaje ni avance de sesión.
+        El tutor no tiene autoridad sobre tu puntaje, avance de sesión ni cierre de sesión.
       </p>
-    </div>
+    </section>
   );
 }
