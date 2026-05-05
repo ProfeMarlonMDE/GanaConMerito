@@ -35,7 +35,5 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          APP_COMMIT: ${{ github.sha }}
-          APP_BUILD_TIME: ${{ github.event.head_commit.timestamp || github.run_started_at }}
+          NEXT_PUBLIC_APP_COMMIT: ${{ github.sha }}
+          NEXT_PUBLIC_APP_BUILD_TIME: ${{ github.event.head_commit.timestamp }}
