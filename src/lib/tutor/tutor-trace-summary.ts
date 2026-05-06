@@ -1,3 +1,5 @@
+import { TUTOR_AUTHORITY_GUARDRAILS, TUTOR_CONTRACT_VERSION } from "../../domain/tutor/contract";
+
 export type TutorTraceSummaryRow = {
   created_at: string;
   mode: string;
@@ -24,6 +26,16 @@ export type TutorTraceSummary = {
 };
 
 const TOP_LIMIT = 5;
+const KNOWN_OPERATIONAL_GUARDRAILS = new Set([
+  ...TUTOR_AUTHORITY_GUARDRAILS,
+  "no_correct_answer_before_user_answer",
+  "degrade_on_missing_evidence",
+  "validate_tutor_turn_request",
+]);
+
+function isOperationalGuardrailTag(tag: string) {
+  return tag !== TUTOR_CONTRACT_VERSION && KNOWN_OPERATIONAL_GUARDRAILS.has(tag);
+}
 
 export function buildTutorTraceSummary(rows: TutorTraceSummaryRow[]): TutorTraceSummary {
   if (!rows.length) {
@@ -57,6 +69,7 @@ export function buildTutorTraceSummary(rows: TutorTraceSummaryRow[]): TutorTrace
     intentCounts.set(row.intent, (intentCounts.get(row.intent) ?? 0) + 1);
 
     for (const guardrail of row.guardrails_applied ?? []) {
+      if (!isOperationalGuardrailTag(guardrail)) continue;
       guardrailCounts.set(guardrail, (guardrailCounts.get(guardrail) ?? 0) + 1);
     }
   }
