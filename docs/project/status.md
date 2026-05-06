@@ -5,26 +5,32 @@ project: ganaconmerito
 owner: marlon-arcila
 status: active
 artifact_type: project
-last_reviewed: 2026-05-04
+last_reviewed: 2026-05-06
 ---
 
 # Project Status — GanaConMerito
 
-Ultima actualizacion: 2026-05-04 — Cierre Sprint 13.
+Ultima actualizacion: 2026-05-06 — Estado confirmado hasta Sprint 13 y continuidad planificada desde Sprint 14.
 
 ## Estado general
 
 **Estado:** Sprint 13 cerrado como fuente normativa sintetizada v1 gobernada, no verificada.  
-**Producto:** MVP avanzado con core operativo, Tutor GCM gobernado, dashboard con metricas prudentes y contrato de fuente normativa minima.  
+**Producto:** producto activo con core operativo, Tutor GCM gobernado, dashboard con metricas prudentes y contrato de fuente normativa minima.  
 **Rama canonica:** `master`.  
 **Version declarada en `package.json`:** `0.6.0`.
 
 ## Verdad operativa actual
 
+- **Fuente de verdad del producto:** `https://github.com/ProfeMarlonMDE/GanaConMerito`.
+- **Copia sincronizada operativa en VPS:** `~/.openclaw/product`.
+- **Arbol de deploy:** `/opt/gcm/app`.
+- **Entorno persistente de deploy:** `/opt/gcm/env/gcm-app.env`.
 - **HEAD base de Sprint 13:** `88f997c232dcf2cb1958642e9055e26f0805778d`.
 - **Ultimo runtime productivo validado antes de Sprint 13:** `64d78de`.
 - **Build time productivo validado antes de Sprint 13:** `2026-05-04T03:24:21Z`.
 - **Entorno publico validado:** `https://cnsc.profemarlon.com`.
+- **Flujo operativo obligatorio:** PR al repo principal -> merge a `master` -> actualizacion de `~/.openclaw/product` -> alineacion de `/opt/gcm/app` -> Docker en VPS OCI -> pruebas en la URL publica.
+- **Nota de ramas:** por el flujo con Pull Requests, el hash de `master` puede diferir del hash de una rama de sprint; la validacion debe hacerse por PR integrado, diff real y runtime visible, no por igualdad ciega de hashes.
 - **Nota:** Sprint 13 modifica contratos/documentacion y no despliega runtime desde esta ejecucion.
 
 ## Modulos activos
@@ -117,10 +123,9 @@ Ultima actualizacion: 2026-05-04 — Cierre Sprint 13.
 
 ## Proximos pasos recomendados
 
-1. Sprint 14 recomendado: Persistencia y metricas del Tutor GCM.
-2. Sprint futuro: Refactor liviano de `PracticeSession` con E2E online.
-3. Sprint futuro: Carga verificada de fuentes normativas oficiales.
-4. Sprint futuro: UX guiada del Tutor GCM con intenciones pedagogicas.
+1. **Sprint 14 recomendado:** persistencia y metricas del Tutor GCM.
+2. **Sprint 15 recomendado:** carga verificada de fuentes normativas oficiales y trazabilidad de versionado.
+3. **Sprint 16 recomendado:** disciplina de release, CI minima y cierre de drift entre repo, VPS y runtime publico.
 
 ## Criterio de cierre del estado actual
 
