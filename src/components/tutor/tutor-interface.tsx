@@ -10,12 +10,12 @@ interface TutorInterfaceProps {
 
 export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps) {
   const guidedActions = [
-    "Dame una pista",
-    "Explícame el enunciado",
-    "Compara opciones sin revelar",
-    "Analiza mi justificación",
-    "Explícame el feedback",
-    "Recomiéndame qué practicar",
+    "Dame una pista inicial sin revelar la clave",
+    "Ayúdame a interpretar el enunciado",
+    "Compara las opciones sin decir cuál es la correcta",
+    "Revisa mi razonamiento y señala mejoras",
+    "Explícame este feedback en palabras simples",
+    "Sugiere qué tema debo reforzar después",
   ];
   const [isOpen, setIsOpen] = useState(true);
   const [message, setMessage] = useState("");
@@ -77,10 +77,10 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
           <div className="avatar-chip" style={{ width: "32px", height: "32px", fontSize: "14px" }}>T</div>
           <div>
             <p className="eyebrow" style={{ margin: 0 }}>Tutor GCM</p>
-            <p className="body-sm" style={{ margin: 0 }}>¿Tienes dudas sobre esta pregunta?</p>
+            <p className="body-sm" style={{ margin: 0 }}>¿Quieres orientación para resolver esta pregunta?</p>
           </div>
         </div>
-        <span className="status-pill premium">Preguntar</span>
+        <span className="status-pill premium">Abrir tutor</span>
       </button>
     );
   }
@@ -97,7 +97,7 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
           <div className="avatar-chip" style={{ width: "32px", height: "32px", fontSize: "14px" }}>T</div>
           <div>
             <p className="eyebrow" style={{ margin: 0 }}>Tutor GCM</p>
-            <h3 className="section-title" style={{ fontSize: "1rem", margin: 0 }}>Acompañamiento de esta pregunta</h3>
+            <h3 className="section-title" style={{ fontSize: "1rem", margin: 0 }}>Guía paso a paso para esta pregunta</h3>
           </div>
         </div>
         <button
@@ -111,12 +111,15 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
       </div>
 
       <p className="body-sm" style={{ margin: 0 }}>
-        Puedes pedir una pista, comparar opciones sin revelar la clave o solicitar explicación del feedback después de responder.
+        Usa una acción guiada si necesitas apoyo puntual. También puedes escribir tu duda en texto libre; el tutor orienta sin revelar la clave antes de que respondas.
       </p>
 
       <div style={{ display: "grid", gap: "8px" }}>
         <p className="eyebrow" style={{ margin: 0 }}>
-          Acciones guiadas sugeridas
+          Acciones guiadas recomendadas
+        </p>
+        <p className="subtle" style={{ fontSize: "11px", margin: 0 }}>
+          Elige la acción que mejor describa tu necesidad actual para recibir una ayuda más precisa.
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
           {guidedActions.map((action) => (
@@ -157,13 +160,13 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
 
       <form onSubmit={handleSendMessage} style={{ display: "grid", gap: "10px" }} data-testid="tutor-gcm-form">
         <div className="form-field">
-          <label className="field-label" htmlFor="tutor-gcm-message">Pregunta al Tutor GCM</label>
+          <label className="field-label" htmlFor="tutor-gcm-message">Escribe tu consulta al Tutor GCM</label>
           <textarea
             id="tutor-gcm-message"
             data-testid="tutor-gcm-message"
             className="text-area"
             style={{ minHeight: "80px", fontSize: "14px" }}
-            placeholder="Ejemplo: Dame una pista sin decirme la respuesta correcta."
+            placeholder="Ejemplo: Estoy entre dos opciones. ¿Qué criterio puedo usar para compararlas sin ver la respuesta?"
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             disabled={loading}
@@ -176,12 +179,12 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
           style={{ minHeight: "44px" }}
           disabled={loading || !message.trim()}
         >
-          {loading ? "Pensando..." : "Consultar Tutor"}
+          {loading ? "Pensando..." : "Pedir orientación"}
         </button>
       </form>
 
       <p className="subtle" style={{ fontSize: "11px", textAlign: "center" }}>
-        El tutor no tiene autoridad sobre tu puntaje, avance de sesión ni cierre de sesión.
+        El tutor no modifica tu puntaje ni el avance de tu sesión; solo te guía para razonar mejor.
       </p>
     </section>
   );
