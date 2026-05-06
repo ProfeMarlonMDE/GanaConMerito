@@ -64,21 +64,53 @@ Si el agente no puede determinar inequívocamente el entorno de trabajo, **debe 
 
 ## Convención de Commits
 
-Todo commit generado por un agente IA debe incluir de forma visible el nombre del agente que realizó la tarea.
+Todo commit generado por un agente IA debe incluir de forma visible:
+
+- el agente que realizó la tarea
+- la vía por la que llegó el cambio
+- el contributor humano o cuenta operativa desde la que se materializa
 
 **Formato obligatorio:**
 ```
-tipo(NOMBRE-DEL-AGENTE): resumen breve
+tipo(AGENTE/VIA): resumen breve
 ```
 
 **Ejemplos:**
 ```
-docs(PM-Gauss): aclara fuente de verdad y disciplina de commits
-feat(PM-Dev): implementa guardrails de tutor en sesión activa
-fix(PM-QA): corrige validación de respuesta en banco de preguntas
+docs(PM-DocControl/codex-marlonmedellin): aclara fuente de verdad y disciplina de commits
+feat(PM-Dev/codex-owner): implementa guardrails de tutor en sesión activa
+fix(PM-QA/chatgpt): corrige validación de respuesta en banco de preguntas
 ```
 
 **Tipos válidos:** `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `governance`
+
+### Trailers obligatorios de commit
+
+Además del subject, el cuerpo del commit debe cerrar con estos trailers:
+
+```text
+Agent: NOMBRE-DEL-AGENTE
+Via: codex-marlonmedellin | codex-owner | chatgpt
+Contributor: NOMBRE-DE-CUENTA-O-PERSONA
+```
+
+**Ejemplo completo:**
+
+```text
+docs(PM-DocControl/codex-marlonmedellin): actualiza reglas de contribucion multiagente
+
+Agent: PM-DocControl
+Via: codex-marlonmedellin
+Contributor: MarlonMedellin (Profe Marlon Arcila)
+```
+
+### Vías operativas reconocidas
+
+- `codex-marlonmedellin`: cambios realizados desde este workspace Codex autenticado con la cuenta `MarlonMedellin`
+- `codex-owner`: cambios realizados desde el Codex operado con la cuenta dueña del repo
+- `chatgpt`: cambios originados en un agente que participa desde ChatGPT y luego se materializan en Git por un contributor humano
+
+Si en el futuro aparece una nueva vía de contribución, debe añadirse primero a la gobernanza antes de usarla en commits productivos.
 
 ---
 
@@ -116,6 +148,7 @@ Al cerrar cualquier tarea relevante, el agente debe reportar:
 - si el runtime fue verificado o no
 - rama real usada
 - commit creado (hash + mensaje)
+- identidad reportada de `Agent`, `Via` y `Contributor`
 
 ---
 
