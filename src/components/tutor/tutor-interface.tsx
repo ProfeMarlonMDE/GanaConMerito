@@ -9,16 +9,22 @@ interface TutorInterfaceProps {
 }
 
 export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps) {
+  const guidedActions = [
+    "Dame una pista",
+    "Explícame el enunciado",
+    "Compara opciones sin revelar",
+    "Analiza mi justificación",
+    "Explícame el feedback",
+    "Recomiéndame qué practicar",
+  ];
   const [isOpen, setIsOpen] = useState(true);
   const [message, setMessage] = useState("");
   const [lastResponse, setLastResponse] = useState<TutorOutput | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function handleSendMessage(e: React.FormEvent) {
-    e.preventDefault();
-    if (!message.trim() || loading) return;
-
+  async function sendMessage(nextMessage: string) {
+    if (!nextMessage.trim() || loading) return;
     setLoading(true);
     setError(null);
 
@@ -29,7 +35,7 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
         body: JSON.stringify({
           sessionId,
           itemId: currentItemId,
-          message: message.trim(),
+          message: nextMessage.trim(),
         }),
       });
 
@@ -46,6 +52,16 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
     } finally {
       setLoading(false);
     }
+  }
+
+  async function handleSendMessage(e: React.FormEvent) {
+    e.preventDefault();
+    await sendMessage(message);
+  }
+
+  async function handleGuidedAction(action: string) {
+    setMessage(action);
+    await sendMessage(action);
   }
 
   if (!isOpen) {
@@ -97,6 +113,32 @@ export function TutorInterface({ sessionId, currentItemId }: TutorInterfaceProps
       <p className="body-sm" style={{ margin: 0 }}>
         Puedes pedir una pista, comparar opciones sin revelar la clave o solicitar explicación del feedback después de responder.
       </p>
+
+      <div style={{ display: "grid", gap: "8px" }}>
+        <p className="eyebrow" style={{ margin: 0 }}>
+          Acciones guiadas sugeridas
+        </p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+          {guidedActions.map((action) => (
+            <button
+              key={action}
+              type="button"
+              className="subtle"
+              style={{
+                border: "1px solid var(--line)",
+                borderRadius: "999px",
+                padding: "6px 10px",
+                background: "var(--surface)",
+                cursor: loading ? "not-allowed" : "pointer",
+              }}
+              disabled={loading}
+              onClick={() => handleGuidedAction(action)}
+            >
+              {action}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {lastResponse ? (
         <div className="feedback-card" style={{ margin: 0, background: "var(--surface-secondary)" }}>
