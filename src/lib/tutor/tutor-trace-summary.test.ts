@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { TUTOR_CONTRACT_VERSION } from "../../domain/tutor/contract";
 import { buildTutorTraceSummary } from "./tutor-trace-summary";
 
 test("buildTutorTraceSummary aggregates metrics and top lists", () => {
@@ -43,6 +44,21 @@ test("buildTutorTraceSummary aggregates metrics and top lists", () => {
     { guardrail: "tone", count: 2 },
   ]);
   assert.equal(summary.recentTurns[0]?.createdAt, "2026-05-03T12:00:00.000Z");
+});
+
+test("buildTutorTraceSummary ignores metadata tags inside guardrails_applied", () => {
+  const summary = buildTutorTraceSummary([
+    {
+      created_at: "2026-05-04T12:00:00.000Z",
+      mode: "practice",
+      intent: "hint",
+      degraded: false,
+      can_reveal_correct_answer: false,
+      guardrails_applied: [TUTOR_CONTRACT_VERSION, "no_free_chat", "non_guardrail_metadata"],
+    },
+  ]);
+
+  assert.deepEqual(summary.topGuardrails, [{ guardrail: "no_free_chat", count: 1 }]);
 });
 
 test("buildTutorTraceSummary returns zeros for empty input", () => {
