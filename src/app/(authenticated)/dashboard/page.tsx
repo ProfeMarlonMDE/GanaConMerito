@@ -45,7 +45,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
   return (
     <>
       <section className="page">
-        <p className="eyebrow">DIAGNÓSTICO ACCIONABLE</p>
+        <p className="eyebrow"><span className="eyebrow-dot" /> DIAGNÓSTICO ACCIONABLE</p>
         <h1>Tu progreso debe decirte qué hacer después.</h1>
         <p className="lead">
           No basta con mostrar precisión. La información del banco de preguntas te permite convertir el desempeño en una ruta de preparación.

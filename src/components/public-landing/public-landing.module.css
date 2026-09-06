@@ -1,8 +1,9 @@
+/* Agent: Google_Antigravity | Model: Gemini 3.6 Flash */
 /* Public Landing CSS Module - Practice Section Theme Sync */
 .shell {
   min-height: 100vh;
-  background-color: #f7f8f4;
-  color: #17231e;
+  background-color: var(--gcm-bg, #f7f8f4);
+  color: var(--gcm-text-primary, #17231e);
   font-family: inherit;
   display: flex;
   flex-direction: column;
@@ -12,12 +13,12 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: #ffffff;
-  border-bottom: 1px solid #dfe4dd;
+  background-color: var(--gcm-surface-card, #ffffff);
+  border-bottom: 1px solid var(--gcm-border-subtle, #dfe4dd);
 }
 
 .headerNav {
-  max-width: 1120px;
+  max-width: var(--gcm-content-width, 1120px);
   margin: 0 auto;
   padding: 0 24px;
   height: 72px;

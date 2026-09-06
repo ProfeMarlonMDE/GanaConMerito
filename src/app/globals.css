@@ -1,33 +1,76 @@
+/* Agent: Google_Antigravity | Model: Gemini 3.6 Flash */
+/* GCM Canonical Design System Tokens - Based on approved Profile/Onboarding page reference */
 :root {
   color-scheme: light;
-  --background: #f4f7fb;
+
+  /* Surfaces & Backgrounds */
+  --gcm-bg: #f7f8f4;
+  --background: #f7f8f4;
+  --gcm-surface-card: #ffffff;
   --surface: #ffffff;
-  --surface-secondary: #eef4ff;
-  --surface-tertiary: #e6efff;
-  --surface-strong: #dbe7ff;
-  --text-primary: #172033;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
+  --gcm-surface-secondary: #eef3ed;
+  --surface-secondary: #eef3ed;
+  --gcm-surface-tertiary: #f4f8f3;
+  --surface-tertiary: #f4f8f3;
+  --gcm-surface-highlight: #edf7d4;
+  --surface-strong: #eef3ed;
+
+  /* Brand Palette */
+  --gcm-forest: #153f32;
+  --gcm-forest-hover: #0f3026;
+  --gcm-lime: #d9f56f;
+  --gcm-lime-hover: #ccee44;
+  --gcm-lime-soft: #edf7d4;
+  --gcm-emerald: #16a34a;
+
+  /* Typography Colors */
+  --gcm-text-primary: #17231e;
+  --text-primary: #17231e;
+  --gcm-text-secondary: #52615a;
+  --text-secondary: #52615a;
+  --gcm-text-muted: #66716c;
+  --text-muted: #66716c;
+  --gcm-text-inverse: #ffffff;
   --text-inverse: #ffffff;
-  --border-subtle: #dbe7ff;
-  --border-strong: #c7d8ff;
-  --primary: #2563eb;
-  --primary-soft: #1d4ed8;
-  --secondary: #2563eb;
-  --secondary-soft: #dbeafe;
-  --accent-premium: #7c3aed;
-  --accent-premium-soft: #ede9fe;
+
+  /* Borders & Shadows */
+  --gcm-border-subtle: #dfe4dd;
+  --border-subtle: #dfe4dd;
+  --gcm-border-strong: #9cb5a8;
+  --border-strong: #9cb5a8;
+  --gcm-border-active: #153f32;
+  --gcm-shadow-card: 0 10px 35px rgba(24, 43, 34, 0.04);
+  --shadow-card: 0 10px 35px rgba(24, 43, 34, 0.04);
+  --gcm-shadow-soft: 0 4px 20px rgba(24, 43, 34, 0.04);
+  --shadow-soft: 0 4px 20px rgba(24, 43, 34, 0.04);
+  --gcm-focus-ring: rgba(21, 63, 50, 0.15);
+
+  /* Actions & Semantics */
+  --gcm-primary: #153f32;
+  --primary: #153f32;
+  --primary-soft: #153f32;
+  --secondary: #eef3ed;
+  --secondary-soft: #eef3ed;
+  --accent-premium: #d9f56f;
+  --accent-premium-soft: #edf7d4;
   --success: #16a34a;
   --success-soft: #d1fae5;
   --warning: #d97706;
   --warning-soft: #fef3c7;
   --error: #dc2626;
   --error-soft: #fee2e2;
-  --shadow-soft: 0 18px 40px rgba(37, 99, 235, 0.08);
-  --shadow-card: 0 10px 26px rgba(23, 32, 51, 0.06);
+
+  /* Border Radii */
+  --gcm-radius-sm: 10px;
   --radius-sm: 10px;
+  --gcm-radius-md: 16px;
   --radius-md: 16px;
+  --gcm-radius-lg: 24px;
   --radius-lg: 24px;
+  --gcm-radius-pill: 999px;
+
+  /* Layout & Spacing */
+  --gcm-content-width: 1120px;
   --content-width: 1120px;
   --space-1: 6px;
   --space-2: 10px;
@@ -1748,10 +1791,12 @@ pre {
 }
 
 
+/* Agent: Google_Antigravity | Model: Gemini 3.6 Flash */
 .login-layout-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--gcm-bg, #f7f8f4);
 }
 
 .auth-page {
@@ -1767,12 +1812,12 @@ pre {
 }
 
 .auth-panel {
-  width: min(100%, 420px);
-  background: rgba(252, 253, 254, 0.92);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: 28px;
-  box-shadow: var(--shadow-soft);
-  padding: 40px 28px 28px;
+  width: min(100%, 440px);
+  background: var(--gcm-surface-card, #ffffff);
+  border: 1px solid var(--gcm-border-subtle, #dfe4dd);
+  border-radius: var(--gcm-radius-lg, 24px);
+  box-shadow: var(--gcm-shadow-card, 0 10px 35px rgba(24, 43, 34, 0.04));
+  padding: 40px 32px 32px;
   position: relative;
   overflow: hidden;
 }
@@ -1784,26 +1829,28 @@ pre {
   width: 180px;
   height: 180px;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.16), transparent 68%);
+  background: radial-gradient(circle, rgba(217, 245, 111, 0.25), transparent 70%);
+  pointer-events: none;
 }
 
 .brand-mark {
-  width: 60px;
-  height: 60px;
-  border-radius: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--border-subtle);
-  background: linear-gradient(180deg, #ffffff, var(--surface-secondary));
-  box-shadow: var(--shadow-card);
+  border: 1px solid var(--gcm-border-subtle, #dfe4dd);
+  background: var(--gcm-surface-secondary, #eef3ed);
+  box-shadow: 0 4px 12px rgba(24, 43, 34, 0.04);
   margin-bottom: 20px;
 }
 
 .brand-dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--primary), var(--accent-premium));
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gcm-lime, #d9f56f);
+  border: 2px solid var(--gcm-forest, #153f32);
 }
 
 .eyebrow {

@@ -44,7 +44,7 @@ export default async function HomePage() {
     <>
       <section className="hero">
         <div>
-          <p className="eyebrow">PREPARACIÓN INTELIGENTE PARA CONCURSOS DE MÉRITO CNSC</p>
+          <p className="eyebrow"><span className="eyebrow-dot" /> PREPARACIÓN INTELIGENTE PARA CONCURSOS DE MÉRITO CNSC</p>
           <h1>No practiques más.<br />Practica mejor.</h1>
           <p className="lead">
             GanaConMérito convierte cada respuesta en una señal para decidir qué reforzar después. Banco de preguntas verificadas con criterios técnicos, feedback explicativo y un Tutor AI 🤖 que acompaña sin regalarte la respuesta.

@@ -26,7 +26,10 @@ export default async function LoginPage() {
           <div className="brand-mark" aria-hidden="true">
             <div className="brand-dot" />
           </div>
-          <p className="eyebrow">Acceso seguro</p>
+// Agent: Google_Antigravity | Model: Gemini 3.6 Flash
+          <p className="eyebrow">
+            <span className="eyebrow-dot" /> ACCESO SEGURO
+          </p>
           <h1 className="display-title">GanaConMérito</h1>
           <h2 className="section-title" style={{ marginTop: 14 }}>Preparación académica con foco, claridad y progreso trazable.</h2>
           <p className="body-lg" style={{ marginTop: 12 }}>
