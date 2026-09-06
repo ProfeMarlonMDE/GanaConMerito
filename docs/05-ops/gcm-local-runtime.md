@@ -63,3 +63,14 @@ Se incluyó un script `start-gcm-local.ps1` en la raíz. Puedes configurar el Pr
 - Si la aplicación devuelve `502 Bad Gateway` tras reiniciar: Revisa que `gcm-local.service` esté encendido (`./scripts/gcm-local-start.sh`).
 - Si los contenedores de Supabase se apagan: Restablécelos abriendo Docker Desktop y reiniciándolos, o usa `npx supabase start`.
 - No cambies variables en el código, el archivo oculto en `~/.config/gcm-local/runtime.env` inyectará la configuración de Playwright y Supabase.
+
+## Gobernanza y Sincronización Automática (Perfil ASUS)
+
+**Esta configuración pertenece a la computadora ASUS. No debe asumirse disponible en otros computadores del usuario. Cada computadora requiere su propio perfil local y una validación independiente.**
+
+El entorno ASUS Windows 11 + Ubuntu-24.04 WSL2 cuenta con un mecanismo de detección:
+- Nombre lógico: ASUS
+- El perfil se define localmente en `/home/mdav/.config/gcm/workstation.env` con `GCM_WORKSTATION_ID=ASUS_WINDOWS11_WSL2`.
+- Para otras computadoras, el script `./scripts/gcm-workstation-detect.sh` retornará que no es aplicable.
+
+**Regla de Actualización:** Después de crear un commit validado que modifique el comportamiento del runtime (código, dependencias), se debe ejecutar `./scripts/gcm-local-sync-if-applicable.sh HEAD`. Si se trata de la ASUS, el script reconstruirá la versión atómica y actualizará `http://localhost:3100`. Si los cambios son solo documentales, se omitirá. Esta sincronización es independiente de flujos Canary o Producción.
