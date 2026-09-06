@@ -352,9 +352,9 @@ test("onboarding feedback style contract: accepts socratic, direct, brief and re
   assert.match(form, /Socrático/);
   assert.match(form, /Directo/);
   assert.match(form, /Breve/);
-  assert.match(form, /preguntas guiadas antes de revelar la clave\./);
-  assert.match(form, /criterios claros y explicación estructurada\./);
-  assert.match(form, /orientación en viñetas sintéticas\./);
+  assert.match(form, /Preguntas guiadas y pistas pedagógicas antes de revelar la clave./);
+  assert.match(form, /Criterios claros y explicación estructurada del error o acierto./);
+  assert.match(form, /Orientación en viñetas sintéticas directas a la regla./);
 });
 
 

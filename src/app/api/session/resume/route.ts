@@ -76,6 +76,9 @@ export async function GET() {
   }
 
   const persisted = await defaultAttemptStore.getActiveAttempt(session.id);
+  if (persisted && Date.parse(persisted.expiresAt) <= Date.now()) {
+    return NextResponse.json({ session: null }, { status: 200 });
+  }
   const nextItem = persisted ? {id:persisted.itemId} : await selectNextItem({
     targetProfileCode: session.target_profile_code,
     targetOpecId: session.target_opec_id,

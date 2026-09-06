@@ -92,38 +92,17 @@ export function OnboardingForm(props: {
   }
 
   return (
-    <form className="card profile-card" onSubmit={handleSubmit}>
-      <div className="field">
-        <label>Perfil objetivo</label>
-        <div className="choice">
-          {compactProfiles.map((profile) => (
-            <button
-              key={profile.code}
-              type="button"
-              className={
-                targetProfileCode === profile.code ||
-                (profile.label === "Docente de aula" && targetProfileCode.includes("docente_aula"))
-                  ? "active"
-                  : ""
-              }
-              onClick={() => { setTargetProfileCode(profile.code); setTargetOpecId(""); }}
-              disabled={loading}
-            >
-              {profile.label}
-            </button>
-          ))}
-          {props.targetProfiles.length === 0 ? <button type="button" disabled>No disponible</button> : null}
-        </div>
-      </div>
-
-      <div className="field">
-        <label>Tu objetivo</label>
-        <div className="choice">
+    <form className="gcm-profile-form" onSubmit={handleSubmit}>
+      <fieldset className="gcm-profile-fieldset">
+        <legend className="gcm-profile-legend">
+          <span>1. Tu objetivo principal</span>
+        </legend>
+        <div className="gcm-profile-choice-group">
           {["Prepararme para concurso", "Diagnosticarme", "Reforzar un tema"].map((goal) => (
             <button
               key={goal}
               type="button"
-              className={activeGoalValue === goal ? "active" : ""}
+              className={`gcm-profile-pill ${activeGoalValue === goal ? "active" : ""}`}
               onClick={() => setActiveGoal(goal)}
               disabled={loading}
             >
@@ -131,71 +110,143 @@ export function OnboardingForm(props: {
             </button>
           ))}
         </div>
-      </div>
+      </fieldset>
 
-      <div className="field">
-        <label>Estilo de acompañamiento</label>
-        <div className="choice style-choice">
-          {[
-            {
-              key: "socratic",
-              initial: "S",
-              name: "Socrático",
-              desc: "preguntas guiadas antes de revelar la clave.",
-            },
-            {
-              key: "direct",
-              initial: "D",
-              name: "Directo",
-              desc: "criterios claros y explicación estructurada.",
-            },
-            {
-              key: "brief",
-              initial: "B",
-              name: "Breve",
-              desc: "orientación en viñetas sintéticas.",
-            },
-          ].map((style) => (
+      <hr className="gcm-profile-divider" />
+
+      <fieldset className="gcm-profile-fieldset">
+        <legend className="gcm-profile-legend">
+          <span>2. Nivel de aplicación</span>
+        </legend>
+        <div className="gcm-profile-choice-group">
+          {compactProfiles.map((profile) => (
             <button
-              key={style.key}
+              key={profile.code}
               type="button"
-              className={`style-option-card${preferredFeedbackStyle === style.key ? " active" : ""}`}
-              onClick={() => setPreferredFeedbackStyle(style.key as "socratic" | "direct" | "brief")}
+              className={`gcm-profile-pill ${
+                targetProfileCode === profile.code ||
+                (profile.label === "Docente de aula" && targetProfileCode.includes("docente_aula"))
+                  ? "active"
+                  : ""
+              }`}
+              onClick={() => { setTargetProfileCode(profile.code); setTargetOpecId(""); }}
               disabled={loading}
             >
-              <span className="style-option-header">
-                <span className="style-option-initial">{style.initial}</span>
-                <strong className="style-option-name">{style.name}</strong>
-              </span>
-              <span className="style-option-desc">{style.desc}</span>
+              {profile.label}
             </button>
           ))}
+          {props.targetProfiles.length === 0 ? <button type="button" className="gcm-profile-pill" disabled>No disponible</button> : null}
         </div>
-      </div>
+      </fieldset>
+
+      <hr className="gcm-profile-divider" />
 
       {compatibleOpecs.length > 0 ? (
-        <div className="field secondary-disclosure">
-          <button type="button" className="ghost" onClick={() => setShowOpec((value) => !value)}>
-            Configurar OPEC específica
-          </button>
-          {showOpec ? (
-            <select className="select-input" value={targetOpecId} onChange={(event) => setTargetOpecId(event.target.value)} disabled={loading}>
-              <option value="">Usar solo el perfil reusable</option>
-              {compatibleOpecs.map((opec) => (
-                <option key={opec.id} value={opec.id}>{opec.position_name}</option>
-              ))}
-            </select>
-          ) : null}
-        </div>
+        <>
+          <fieldset className="gcm-profile-fieldset">
+            <div className="gcm-profile-legend-group">
+              <legend className="gcm-profile-legend">
+                <span>3. Me estoy preparando para</span>
+                <span className="gcm-profile-legend-hint">(Selecciona tu especialidad o cargo directivo/docente)</span>
+              </legend>
+            </div>
+            <div className="gcm-profile-select-wrapper">
+              <select
+                className="gcm-profile-select"
+                value={targetOpecId}
+                onChange={(event) => setTargetOpecId(event.target.value)}
+                disabled={loading}
+              >
+                <option value="">Usar solo el perfil reusable</option>
+                {compatibleOpecs.map((opec) => (
+                  <option key={opec.id} value={opec.id}>{opec.position_name}</option>
+                ))}
+              </select>
+            </div>
+          </fieldset>
+          <hr className="gcm-profile-divider" />
+        </>
       ) : null}
 
-      <div className="actions">
-        <button type="submit" className="primary" disabled={loading || !targetProfileCode || !activeGoalValue}>
-          {loading ? "Guardando..." : props.existing ? "Actualizar mi ruta →" : "Crear mi ruta →"}
+      <fieldset className="gcm-profile-fieldset">
+        <div className="gcm-profile-legend-group tutor-legend-group">
+          <div>
+            <legend className="gcm-profile-legend">
+              <span>{compatibleOpecs.length > 0 ? "4" : "3"}. Estilo de acompañamiento</span>
+              <span className="gcm-profile-badge">AGÉNTICO ACTIVO</span>
+            </legend>
+            <p className="gcm-profile-subtext">Elige cómo interactuará contigo el Tutor IA de juicio situacional durante la prueba.</p>
+          </div>
+        </div>
+
+        <div className="gcm-profile-styles">
+          <div className="gcm-profile-choice-group tutor-styles-group">
+            {[
+              {
+                key: "socratic",
+                initial: "S",
+                name: "Socrático",
+              },
+              {
+                key: "direct",
+                initial: "D",
+                name: "Directo",
+              },
+              {
+                key: "brief",
+                initial: "B",
+                name: "Breve",
+              },
+            ].map((style) => (
+              <button
+                key={style.key}
+                type="button"
+                className={`gcm-profile-style-pill ${preferredFeedbackStyle === style.key ? "active" : ""}`}
+                onClick={() => setPreferredFeedbackStyle(style.key as "socratic" | "direct" | "brief")}
+                disabled={loading}
+              >
+                <span className="style-initial">{style.initial}</span>
+                <span className="style-name">{style.name}</span>
+                {preferredFeedbackStyle === style.key && <span className="style-active-dot"></span>}
+              </button>
+            ))}
+          </div>
+
+          <div className="gcm-profile-style-info">
+            <div className="style-info-header">
+              <div className="style-info-title-group">
+                <span className="style-info-icon">
+                  {preferredFeedbackStyle === "socratic" ? "S" : preferredFeedbackStyle === "direct" ? "D" : "B"}
+                </span>
+                <h4 className="style-info-title">
+                  Modo {preferredFeedbackStyle === "socratic" ? "Socrático" : preferredFeedbackStyle === "direct" ? "Directo" : "Breve"}
+                </h4>
+              </div>
+              <span className="style-info-badge">Activo</span>
+            </div>
+            <p className="style-info-desc">
+              {preferredFeedbackStyle === "socratic"
+                ? "Preguntas guiadas y pistas pedagógicas antes de revelar la clave. Diseñado para reflexionar sobre el caso y descartar distractores según la norma."
+                : preferredFeedbackStyle === "direct"
+                ? "Criterios claros y explicación estructurada del error o acierto."
+                : "Orientación en viñetas sintéticas directas a la regla."}
+            </p>
+          </div>
+        </div>
+      </fieldset>
+
+      <div className="gcm-profile-footer">
+        <button type="submit" className="gcm-profile-submit" disabled={loading || !targetProfileCode || !activeGoalValue}>
+          <span>{loading ? "Guardando..." : props.existing ? "Actualizar mi ruta" : "Crear mi ruta"}</span>
+          <span className="submit-arrow">→</span>
         </button>
+        <div className="gcm-profile-status">
+          <span className="status-icon">✓</span>
+          <span>Configuración modificable en cualquier momento desde el examen</span>
+        </div>
       </div>
 
-      {error ? <p className="muted" style={{ color: "var(--error)", margin: 0 }}>{error}</p> : null}
+      {error ? <p className="gcm-profile-error">{error}</p> : null}
     </form>
   );
 }
