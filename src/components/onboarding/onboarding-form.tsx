@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { PositionSelector } from "./position-selector";
+
 
 interface TargetProfileOption {
   code: string;
@@ -33,8 +35,7 @@ export function OnboardingForm(props: {
     (props.initialPreferredFeedbackStyle as "socratic" | "direct" | "brief") || "socratic",
   );
   const [activeAreas] = useState((props.initialActiveAreas || []).join(", "));
-  const [showOpec, setShowOpec] = useState(Boolean(props.initialTargetOpecId));
-  const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const activeGoalValue = activeGoal.trim();
   const parsedActiveAreas = useMemo(
@@ -49,20 +50,7 @@ export function OnboardingForm(props: {
       ),
     [activeAreas],
   );
-  const compatibleOpecs = useMemo(
-    () => props.opecs.filter((opec) => opec.profile_code === targetProfileCode),
-    [props.opecs, targetProfileCode],
-  );
-  const compactProfiles = useMemo(() => {
-    const currentDocente = props.targetProfiles.find((profile) => profile.code === targetProfileCode && profile.code.includes("docente_aula"));
-    const docente = currentDocente ?? props.targetProfiles.find((profile) => profile.code.includes("docente_aula")) ?? props.targetProfiles[0];
-    const general = props.targetProfiles.find((profile) => profile.code !== docente?.code) ?? props.targetProfiles[1];
-    return [
-      docente ? { label: "Docente de aula", code: docente.code } : null,
-      general ? { label: "General", code: general.code } : null,
-    ].filter((profile): profile is { label: string; code: string } => Boolean(profile));
-  }, [props.targetProfiles, targetProfileCode]);
-
+  
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
@@ -116,74 +104,27 @@ export function OnboardingForm(props: {
 
       <fieldset className="gcm-profile-fieldset">
         <legend className="gcm-profile-legend">
-          <span>2. Nivel de aplicación</span>
+          <span>2. Me estoy preparando para</span>
         </legend>
-        <div className="gcm-profile-choice-group">
-          {compactProfiles.map((profile) => (
-            <button
-              key={profile.code}
-              type="button"
-              className={`gcm-profile-pill ${
-                targetProfileCode === profile.code ||
-                (profile.label === "Docente de aula" && targetProfileCode.includes("docente_aula"))
-                  ? "active"
-                  : ""
-              }`}
-              onClick={() => { setTargetProfileCode(profile.code); setTargetOpecId(""); }}
-              disabled={loading}
-            >
-              {profile.label}
-            </button>
-          ))}
-          {props.targetProfiles.length === 0 ? <button type="button" className="gcm-profile-pill" disabled>No disponible</button> : null}
-        </div>
+        <PositionSelector
+          value={targetProfileCode}
+          onChange={(code) => {
+            setTargetProfileCode(code);
+            setTargetOpecId("");
+          }}
+          disabled={loading}
+        />
       </fieldset>
 
       <hr className="gcm-profile-divider" />
 
-      {compatibleOpecs.length > 0 ? (
-        <>
-          <fieldset className="gcm-profile-fieldset">
-            <div className="gcm-profile-legend-group">
-              <legend className="gcm-profile-legend">
-                <span>3. Me estoy preparando para</span>
-                <span className="gcm-profile-legend-hint">(Selecciona tu especialidad o cargo directivo/docente)</span>
-              </legend>
-            </div>
-            <div className="gcm-profile-select-wrapper">
-              <div className="gcm-profile-select-icon">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 14l9-5-9-5-9 5 9 5z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"></path>
-                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"></path>
-                </svg>
-              </div>
-              <select
-                className="gcm-profile-select"
-                value={targetOpecId}
-                onChange={(event) => setTargetOpecId(event.target.value)}
-                disabled={loading}
-              >
-                <option value="">Usar solo el perfil reusable</option>
-                {compatibleOpecs.map((opec) => (
-                  <option key={opec.id} value={opec.id}>{opec.position_name}</option>
-                ))}
-              </select>
-              <div className="gcm-profile-select-chevron">
-                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                  <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round"></path>
-                </svg>
-              </div>
-            </div>
-          </fieldset>
-          <hr className="gcm-profile-divider" />
-        </>
-      ) : null}
+      
 
       <fieldset className="gcm-profile-fieldset">
         <div className="gcm-profile-legend-group tutor-legend-group">
           <div>
             <legend className="gcm-profile-legend">
-              <span>{compatibleOpecs.length > 0 ? "4" : "3"}. Estilo de acompañamiento</span>
+              <span>3. Estilo de acompañamiento</span>
               <span className="gcm-profile-badge">
                 <span className="eyebrow-dot" style={{ width: 6, height: 6, marginRight: 4, backgroundColor: "var(--gcm-forest)" }}></span> AGÉNTICO ACTIVO
               </span>

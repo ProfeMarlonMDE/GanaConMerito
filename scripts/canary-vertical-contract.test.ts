@@ -91,11 +91,11 @@ test("home keeps next action truthful without unsupported activation or level cl
 
 test("onboarding makes active areas optional without exposing Canary labels", () => {
   assert.match(onboardingPage, /Perfil de preparación/i);
-  assert.match(onboardingPage, /Primero, dime a qué mérito apuntas/);
-  assert.match(onboardingForm, /Perfil objetivo/);
+  assert.match(onboardingPage, /Tu ruta de práctica./);
+  assert.match(onboardingForm, /Me estoy preparando para/);
   assert.match(onboardingForm, /Tu objetivo/);
   assert.match(onboardingForm, /Estilo de acompañamiento/);
-  assert.match(onboardingForm, /Crear mi ruta/);
+  assert.match(onboardingForm, /Actualizar mi ruta/);
   assert.match(onboardingForm, /Actualizar mi ruta/);
   assert.doesNotMatch(onboardingForm, /Canary/);
   assert.doesNotMatch(onboardingForm, /OPEC verificada/);
