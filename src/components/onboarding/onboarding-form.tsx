@@ -151,6 +151,12 @@ export function OnboardingForm(props: {
               </legend>
             </div>
             <div className="gcm-profile-select-wrapper">
+              <div className="gcm-profile-select-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 14l9-5-9-5-9 5 9 5z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"></path>
+                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"></path>
+                </svg>
+              </div>
               <select
                 className="gcm-profile-select"
                 value={targetOpecId}
@@ -162,6 +168,11 @@ export function OnboardingForm(props: {
                   <option key={opec.id} value={opec.id}>{opec.position_name}</option>
                 ))}
               </select>
+              <div className="gcm-profile-select-chevron">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round"></path>
+                </svg>
+              </div>
             </div>
           </fieldset>
           <hr className="gcm-profile-divider" />
@@ -173,7 +184,9 @@ export function OnboardingForm(props: {
           <div>
             <legend className="gcm-profile-legend">
               <span>{compatibleOpecs.length > 0 ? "4" : "3"}. Estilo de acompañamiento</span>
-              <span className="gcm-profile-badge">AGÉNTICO ACTIVO</span>
+              <span className="gcm-profile-badge">
+                <span className="eyebrow-dot" style={{ width: 6, height: 6, marginRight: 4, backgroundColor: "var(--gcm-forest)" }}></span> AGÉNTICO ACTIVO
+              </span>
             </legend>
             <p className="gcm-profile-subtext">Elige cómo interactuará contigo el Tutor IA de juicio situacional durante la prueba.</p>
           </div>
@@ -198,17 +211,18 @@ export function OnboardingForm(props: {
                 name: "Breve",
               },
             ].map((style) => (
-              <button
-                key={style.key}
-                type="button"
-                className={`gcm-profile-style-pill ${preferredFeedbackStyle === style.key ? "active" : ""}`}
-                onClick={() => setPreferredFeedbackStyle(style.key as "socratic" | "direct" | "brief")}
-                disabled={loading}
-              >
-                <span className="style-initial">{style.initial}</span>
-                <span className="style-name">{style.name}</span>
-                {preferredFeedbackStyle === style.key && <span className="style-active-dot"></span>}
-              </button>
+              <label key={style.key} style={{ margin: 0 }}>
+                <button
+                  type="button"
+                  className={`gcm-profile-style-pill ${preferredFeedbackStyle === style.key ? "active" : ""}`}
+                  onClick={() => setPreferredFeedbackStyle(style.key as "socratic" | "direct" | "brief")}
+                  disabled={loading}
+                >
+                  <span className="style-initial">{style.initial}</span>
+                  <span className="style-name">{style.name}</span>
+                  {preferredFeedbackStyle === style.key && <span className="style-active-dot"></span>}
+                </button>
+              </label>
             ))}
           </div>
 
@@ -222,7 +236,9 @@ export function OnboardingForm(props: {
                   Modo {preferredFeedbackStyle === "socratic" ? "Socrático" : preferredFeedbackStyle === "direct" ? "Directo" : "Breve"}
                 </h4>
               </div>
-              <span className="style-info-badge">Activo</span>
+              <span className="style-info-badge">
+                <span className="eyebrow-dot" style={{ width: 6, height: 6, marginRight: 4, backgroundColor: "var(--gcm-forest)" }}></span> Activo
+              </span>
             </div>
             <p className="style-info-desc">
               {preferredFeedbackStyle === "socratic"
@@ -233,15 +249,26 @@ export function OnboardingForm(props: {
             </p>
           </div>
         </div>
+
+        <div className="tutor-note">
+          <span className="tutor-note-icon">🤖</span>
+          <p className="tutor-note-text">
+            <strong>Modo tutor protegido:</strong> Nuestro modelo agéntico cuenta con protección anticopia y entrenamiento específico en competencias funcionales y comportamentales CNSC.
+          </p>
+        </div>
       </fieldset>
 
       <div className="gcm-profile-footer">
         <button type="submit" className="gcm-profile-submit" disabled={loading || !targetProfileCode || !activeGoalValue}>
-          <span>{loading ? "Guardando..." : props.existing ? "Actualizar mi ruta" : "Crear mi ruta"}</span>
-          <span className="submit-arrow">→</span>
+          <span>{loading ? "Guardando..." : props.existing ? "Actualizar mi ruta" : "Actualizar mi ruta"}</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" className="submit-arrow">
+            <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" strokeLinecap="round" strokeLinejoin="round"></path>
+          </svg>
         </button>
         <div className="gcm-profile-status">
-          <span className="status-icon">✓</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" className="status-icon" style={{ color: "var(--gcm-emerald)" }}>
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" strokeLinecap="round" strokeLinejoin="round"></path>
+          </svg>
           <span>Configuración modificable en cualquier momento desde el examen</span>
         </div>
       </div>

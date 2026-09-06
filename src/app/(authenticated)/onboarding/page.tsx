@@ -33,11 +33,15 @@ export default async function OnboardingPage() {
   return (
     <>
       <section className="page onboard">
-        <p className="eyebrow">PERFIL DE PREPARACIÓN</p>
-        <h1>Primero, dime a qué mérito apuntas.</h1>
-        <p className="lead">
-          Una configuración breve debe traducirse inmediatamente en una ruta de práctica.
-        </p>
+        <div className="onboard-hero">
+          <div className="eyebrow">
+            <span className="eyebrow-dot"></span> PERFIL DE PREPARACIÓN
+          </div>
+          <h1>Tu ruta de práctica.</h1>
+          <p className="lead">
+            Configura tus preferencias para que el Tutor IA personalice tus simulacros y retroalimentación.
+          </p>
+        </div>
         <OnboardingForm
           initialTargetProfileCode={learningProfile?.target_profile_code ?? targetProfiles?.[0]?.code ?? ""}
           initialTargetOpecId={learningProfile?.target_opec_id ?? ""}

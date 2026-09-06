@@ -345,7 +345,6 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
       {!initializing ? (
         <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "0.5rem" }}>
           <button type="button" className="ghost" onClick={handleReview} disabled={loading} style={{ fontSize: "14px", fontWeight: 700 }}>
-            Revisar respuesta guardada
           </button>
         </div>
       ) : null}
