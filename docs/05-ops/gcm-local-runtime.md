@@ -1,0 +1,61 @@
+# Runtime Local Permanente GanaConMérito
+
+Este documento describe la arquitectura y uso del runtime local permanente de GanaConMérito.
+
+## Arquitectura Local
+
+El objetivo es mantener una copia estable y comprobable de la aplicación ejecutándose localmente, separada del worktree editable (`gcm-practice-tutor-vnext`), y disponible siempre mediante `http://localhost:3100`.
+
+### Diferencia entre Worktree de Desarrollo y Runtime
+
+- **Worktree**: El repositorio donde se escribe y edita código. Contiene cambios no comprometidos y puede estar en estados inestables.
+- **Runtime**: El directorio `/home/mdav/GIT-ANTIGRAVITY-WSL/OpenClaw-03042026/gcm-local-runtime/` donde reside la aplicación compilada. Se aísla por cada *release* y se ejecuta como un proceso daemonizado.
+
+### URL Fija
+
+El entorno se expone localmente (sin abrir puertos a la LAN) a través de la URL fija:
+`http://localhost:3100`
+
+### Supabase Local y Docker Desktop
+
+El runtime utiliza exclusivamente Supabase Local ejecutado bajo Docker Desktop. No se requiere ni permite la instalación de Docker Engine nativo en la distribución WSL. El entorno de Supabase expone las APIs localmente, y la configuración de este entorno se carga de forma privada.
+
+## Guía Operativa
+
+Las utilidades para manejar este entorno se encuentran en `./scripts/` (dentro del repositorio original):
+
+- **Publicar rama o SHA:**
+  `./scripts/gcm-local-publish.sh <rama-o-sha>`
+  Realiza una compilación aislada, typecheck, y tests dirigidos. Se activa sólo en caso de éxito.
+  
+- **Consultar estado:**
+  `./scripts/gcm-local-status.sh`
+  Muestra la referencia, el origen y si está activo el servicio.
+  
+- **Ver logs:**
+  `./scripts/gcm-local-logs.sh`
+  
+- **Rollback:**
+  `./scripts/gcm-local-rollback.sh`
+  Restaura de forma atómica la versión previamente publicada en caso de fallos.
+  
+- **Smoke test local:**
+  `./scripts/gcm-local-smoke.sh`
+
+### LOCAL_ONLY vs ORIGIN
+
+Al publicar un SHA, el script registra en su estado el origen:
+- `ORIGIN`: El commit existe en el remoto (`origin`).
+- `LOCAL_ONLY`: El commit existe únicamente en la máquina local.
+
+*Nota:* No uses este runtime local como un entorno Canary o de Producción. La base de datos es local.
+
+## Inicio Automático de Windows
+
+Se incluyó un script `start-gcm-local.ps1` en la raíz. Puedes configurar el Programador de Tareas (Task Scheduler) de Windows para que lo ejecute al inicio de sesión y levante todo el stack.
+
+### Errores Habituales y Recuperación
+
+- Si la aplicación devuelve `502 Bad Gateway` tras reiniciar: Revisa que `gcm-local.service` esté encendido (`./scripts/gcm-local-start.sh`).
+- Si los contenedores de Supabase se apagan: Restablécelos abriendo Docker Desktop y reiniciándolos, o usa `npx supabase start`.
+- No cambies variables en el código, el archivo oculto en `~/.config/gcm-local/runtime.env` inyectará la configuración de Playwright y Supabase.
