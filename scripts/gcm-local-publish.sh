@@ -66,6 +66,9 @@ if [ -L "${RUNTIME_DIR}/current" ]; then
 fi
 ln -sfn "$RELEASE_DIR" "${RUNTIME_DIR}/current"
 
+# Asegurar que el servicio systemd usa el binario correcto de node
+"${REPO}/scripts/gcm-local-install-service.sh"
+
 systemctl --user restart gcm-local.service
 echo "Esperando 10 segundos..."
 sleep 10

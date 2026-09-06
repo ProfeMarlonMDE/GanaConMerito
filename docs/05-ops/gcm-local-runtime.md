@@ -20,6 +20,10 @@ El entorno se expone localmente (sin abrir puertos a la LAN) a través de la URL
 
 El runtime utiliza exclusivamente Supabase Local ejecutado bajo Docker Desktop. No se requiere ni permite la instalación de Docker Engine nativo en la distribución WSL. El entorno de Supabase expone las APIs localmente, y la configuración de este entorno se carga de forma privada.
 
+### Versionado de Node.js en systemd
+
+El servicio de systemd no hereda la configuración interactiva de `.bashrc` ni de NVM. Actualmente está configurado para utilizar de forma nativa **Node v22.23.2**. Si Node.js se actualiza o la ruta cambia, el script `./scripts/gcm-local-install-service.sh` auto-detecta la ruta actual del instalador durante la ejecución de publicación y recrea la unidad systemd inyectándole la variable de entorno `PATH` correcta, logrando que el entorno sea totalmente reproducible y no dependa del shell.
+
 ## Guía Operativa
 
 Las utilidades para manejar este entorno se encuentran en `./scripts/` (dentro del repositorio original):
