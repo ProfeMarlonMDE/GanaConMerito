@@ -208,11 +208,19 @@ async function answerItem({ cookie, sessionId, itemId, turnNumber }) {
   const selectedOption = item.json?.options?.[0]?.key;
   assert(selectedOption, `Turn ${turnNumber} has no selectable option.`);
 
+  // Agent: Google_Antigravity | Model: Gemini 3.6 Flash
+  // Supply mandatory attemptId and clientRequestId contract fields for advanceSessionSchema
+  const attemptId = item.json?.attempt?.id ?? item.json?.attemptId ?? sessionId;
+  assert(attemptId, `Turn ${turnNumber} item response does not contain attempt.id`);
+  const clientRequestId = crypto.randomUUID();
+
   const advance = await http({
     method: 'POST',
     pathname: '/api/session/advance',
     cookie,
     body: {
+      attemptId,
+      clientRequestId,
       sessionId,
       itemId,
       selectedOption,

@@ -202,11 +202,18 @@ function ensurePageOrExpectedRedirect(response, label, expectedLocation) {
     if (!itemRes.json?.id) throw new Error(`Could not load item for turn ${turn}: ${itemRes.text}`);
     const options = itemRes.json.options || [];
     const chosenOption = options.find(o => o.key === 'A')?.key || options[0]?.key;
+
+    // Agent: Google_Antigravity | Model: Gemini 3.6 Flash
+    const attemptId = itemRes.json?.attempt?.id ?? itemRes.json?.attemptId ?? sessionId;
+    const clientRequestId = crypto.randomUUID();
+
     const advanceRes = await http({
       method: 'POST',
       pathname: '/api/session/advance',
       cookie,
       body: {
+        attemptId,
+        clientRequestId,
         sessionId,
         itemId: itemRes.json.id,
         selectedOption: chosenOption,
