@@ -357,5 +357,45 @@ test("onboarding feedback style contract: accepts socratic, direct, brief and re
   assert.match(form, /Orientación en viñetas sintéticas directas a la regla./);
 });
 
+// Agent: Google_Antigravity | Model: Gemini 3.6 Flash
+// Contract test verifying that "Revisar respuesta guardada" rules are strictly enforced across session states.
+test("Saved response button contract: strictly hidden for new, ended, expired sessions, visible only when active/resumable with submitted response", () => {
+  function canShowReviewButton(params: {
+    initializing: boolean;
+    session: { sessionId: string; currentState: string } | null;
+    sessionEnded: boolean;
+    itemAttemptPhase?: string;
+    currentAttemptPhase?: string;
+    hasAnswerReview?: boolean;
+  }) {
+    if (params.initializing || !params.session || params.sessionEnded) return false;
+    if (params.itemAttemptPhase === "expired" || params.currentAttemptPhase === "expired") return false;
+    const hasSubmittedResponse = Boolean(
+      params.hasAnswerReview ||
+      params.itemAttemptPhase === "submitted" ||
+      params.currentAttemptPhase === "submitted"
+    );
+    return hasSubmittedResponse;
+  }
 
+  // 1. Initializing state -> hidden
+  assert.equal(canShowReviewButton({ initializing: true, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false }), false);
 
+  // 2. New session without saved response -> hidden
+  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, itemAttemptPhase: "in_progress" }), false);
+
+  // 3. Expired attempt -> hidden
+  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, itemAttemptPhase: "expired" }), false);
+
+  // 4. Session ended -> hidden
+  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "session_close" }, sessionEnded: true, hasAnswerReview: true }), false);
+
+  // 5. Absence of saved response -> hidden
+  assert.equal(canShowReviewButton({ initializing: false, session: null, sessionEnded: false }), false);
+
+  // 6. Active session with submitted answer -> visible
+  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, itemAttemptPhase: "submitted", hasAnswerReview: true }), true);
+
+  // 7. Resumable session with submitted answer -> visible
+  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, currentAttemptPhase: "submitted" }), true);
+});

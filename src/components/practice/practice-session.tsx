@@ -129,6 +129,19 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
     return currentState === "session_close";
   }, [feedback?.currentState, session?.currentState]);
 
+  // Agent: Google_Antigravity | Model: Gemini 3.6 Flash
+  // "Revisar respuesta guardada" must only appear when an active or resumable session has a reusable submitted response,
+  // and must never appear when the session ended, attempt expired, or no saved response exists.
+  const canShowReviewButton = useMemo(() => {
+    if (initializing || !session || sessionEnded) return false;
+    if (currentAttempt?.phase === "expired") return false;
+    const hasSubmittedResponse = Boolean(
+      feedback?.answerReview ||
+      currentAttempt?.phase === "submitted"
+    );
+    return hasSubmittedResponse;
+  }, [initializing, session, sessionEnded, currentAttempt?.phase, feedback?.answerReview]);
+
   const sessionDashboardHref = session ? `/dashboard?sessionId=${encodeURIComponent(session.sessionId)}` : null;
   const canStartAnother = sessionEnded || (!item && Boolean(sessionMessage));
   const hasFeedback = Boolean(feedback);
@@ -342,9 +355,10 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
 
   return (
     <section className="practice-page">
-      {!initializing ? (
+      {canShowReviewButton ? (
         <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "0.5rem" }}>
           <button type="button" className="ghost" onClick={handleReview} disabled={loading} style={{ fontSize: "14px", fontWeight: 700 }}>
+            Revisar respuesta guardada
           </button>
         </div>
       ) : null}
