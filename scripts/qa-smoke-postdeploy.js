@@ -167,11 +167,17 @@ async function getAuthCookie() {
   const selectedOption = item.json?.options?.[0]?.key;
   if (!selectedOption) throw new Error('Smoke no encontró opciones para responder.');
 
+  // Agent: Google_Antigravity | Model: Gemini 3.6 Flash
+  const attemptId = item.json?.attempt?.id ?? item.json?.attemptId ?? sessionId;
+  const clientRequestId = crypto.randomUUID();
+
   const advance = await http({
     method: 'POST',
     pathname: '/api/session/advance',
     cookie,
     body: {
+      attemptId,
+      clientRequestId,
       sessionId,
       itemId: item.json.id,
       selectedOption,

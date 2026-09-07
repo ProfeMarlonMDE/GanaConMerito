@@ -180,6 +180,45 @@ La disciplina operacional sigue dependiendo parcialmente de:
 - revisiones operativas;
 - warnings advisory.
 
+## ASUS Runtime Governance
+
+### Identidad
+- ASUS Windows 11 + Ubuntu-24.04 WSL2 se identifica únicamente mediante `GCM_WORKSTATION_ID=ASUS_WINDOWS11_WSL2`.
+- El runtime `http://localhost:3100` existe solamente en esa workstation.
+- No extrapolar esta configuración a otros computadores. En otra computadora, consultar primero el perfil local. Si el perfil está ausente o es diferente, clasificar el runtime ASUS como `NOT_APPLICABLE` y no hacer referencia a esa URL como entorno disponible.
+
+### Actualización
+Después de completar en la ASUS una tarea que modifique código ejecutable, configuración, dependencias o comportamiento de la aplicación:
+1. Validar el cambio.
+2. Crear el commit.
+3. Ejecutar `./scripts/gcm-local-sync-if-applicable.sh HEAD`.
+4. Verificar que `ACTIVE_SHA=HEAD`.
+5. Ejecutar smoke test.
+6. Incluir estado del runtime en el checkpoint.
+
+No actualizar el runtime:
+- Con el worktree sucio.
+- Antes de terminar las validaciones.
+- Cuando el build falle.
+- Para cambios exclusivamente documentales.
+- Cuando el usuario solicite explícitamente no hacerlo.
+- En otra computadora sin perfil equivalente.
+- Durante una tarea que deba preservar un SHA específico.
+
+La publicación local no implica push, PR, merge, despliegue a Canary o producción.
+
+### Checkpoints
+Añade cuando sea aplicable:
+```text
+COMPUTER=ASUS_WINDOWS11_WSL2|OTHER|UNKNOWN
+LOCAL_RUNTIME_APPLICABLE=true|false
+LOCAL_RUNTIME_SYNC=PASS|FAIL|SKIPPED
+LOCAL_RUNTIME_URL=http://localhost:3100|NOT_APPLICABLE
+LOCAL_RUNTIME_ACTIVE_SHA=...
+LOCAL_RUNTIME_TARGET_SHA=...
+LOCAL_RUNTIME_SMOKE=PASS|FAIL|NOT_APPLICABLE
+```
+
 ---
 
 ## Documentation Synchronization

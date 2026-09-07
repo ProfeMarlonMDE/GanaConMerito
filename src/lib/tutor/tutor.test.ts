@@ -206,16 +206,17 @@ test("TutorOrchestrator keeps guided actions compatible with current intent dete
 });
 
 test("Tutor guided actions separate pre-answer help from post-answer feedback", () => {
-  const preAnswerActions = getTutorGuidedActions(false).join(" ");
-  const postAnswerActions = getTutorGuidedActions(true).join(" ");
+  const preAnswerActions = getTutorGuidedActions(false);
+  const postAnswerActions = getTutorGuidedActions(true);
 
-  assert.match(preAnswerActions, /Dame una pista/);
-  assert.match(preAnswerActions, /comparar opciones/);
-  assert.doesNotMatch(preAnswerActions, /respuesta correcta|feedback|opción no funciona/i);
+  assert.equal(preAnswerActions.length, 3);
+  assert.deepEqual(preAnswerActions, [
+    "¿Cuál es mi rol y competencia aquí?",
+    "¿Cuál es la tarea evaluativa real?",
+    "¿Qué trampa esconden los distractores?",
+  ]);
 
-  assert.match(postAnswerActions, /respuesta correcta/);
-  assert.match(postAnswerActions, /opción no funciona/);
-  assert.doesNotMatch(postAnswerActions, /sin decir cuál es la correcta/i);
+  assert.equal(postAnswerActions.length, 0);
 });
 
 test("selectAnsweredTurnForItem chooses the matching answered turn for the item", () => {

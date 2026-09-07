@@ -14,6 +14,20 @@ last_reviewed: 2026-08-30
 
 Este archivo conserva solo los cambios recientes que afectan el estado vigente. La historia completa permanece en Git, PRs, tags y GitHub Releases.
 
+## 2026-09-05 - Ajuste de distribución del panel Tutor y ciclo de vida de chips (vNext)
+
+<!-- Agent: Antigravity | Model: Gemini 3.7 Flash -->
+
+- Tipo: `frontend+ux+tutor`.
+- Rama: `feat/practice-tutor-experience-vnext`.
+- Estado: Listo para prueba local en PC y móvil.
+- Ajustes principales:
+  - Nueva distribución compacta: Cabecera compacta -> Selector de perfil desplegable -> Descripción de estilo -> Mensaje inicial no duplicado -> Campo de consulta y botón integrados -> Chips de razonamiento -> Conversación progresiva inferior.
+  - Ciclo de vida granular de chips: retiro individual por chip enviado, preservación en consultas libres, ocultación tras responder, y restauración en nuevas preguntas o reintentos tras fallo.
+  - Selector de perfiles desplegable con opciones `Socrático` (S), `Directo` (D) y `Breve` (B). Sin perfil "Balanceado".
+  - Optimización responsiva para Desktop (1440 × 900) y Móvil (390 × 844 y 360 × 800) con accesibilidad completa por teclado y atrapamiento de foco en hoja modal.
+- Backend, persistencia, contratos RPC, banco V4 y Supabase remoto: Preservados al 100% sin modificaciones.
+
 ## 2026-09-01 - v0.12.0 candidata de release
 
 - Tipo: `release-candidate-metadata`.

@@ -70,3 +70,4 @@ Este bloque existe unicamente para conservar contratos automatizados legacy mien
 4. Este archivo para snapshot ejecutivo.
 
 No usar documentos historicos para inferir el estado actual de produccion.
+\n## Updates\n- Unified Cargo/OPEC selector implemented in Profile. Technical debt and Visual Homogenization plan documented in `docs/project/homogenization-and-opec-debt.md`.
