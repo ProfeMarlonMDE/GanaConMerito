@@ -17,7 +17,18 @@ Este skill controla el flujo de actualización del runtime local permanente de G
    - Ejecuta `./scripts/gcm-local-sync-if-applicable.sh HEAD` **únicamente** después de que un commit esté validado.
    - **No** publiques worktrees sucios.
    - **No** ejecutes la sincronización en cambios exclusivamente documentales.
+
 4. **Restricciones Generales**:
    - No confundir publicación local con push, merge o deploy a Canary/Producción. (Solicita autorización separada para esto).
    - Preserva la funcionalidad de rollback (`./scripts/gcm-local-rollback.sh`).
-5. **Checkpoints**: Incluye el estado del runtime en los checkpoints relevantes cuando se trate de la ASUS.
+
+5. **Política de Puertos Canónicos y Rollback Inmutable**:
+   <!-- Agent: Google_Antigravity | Model: Gemini 3.6 Flash -->
+   - **ASUS Local**: Puerto canónico fijo `http://localhost:3100` (`gcm-local.service`). Usar `./scripts/gcm-deploy-local.sh <sha>`.
+   - **VPS Oracle**: Puerto interno canónico `3008` (proxied a `https://ganaconmerito.com`). Usar `./scripts/gcm-deploy-vps.sh <sha>`.
+   - **Rollback en VPS**: Usar `./scripts/gcm-rollback-vps.sh` (reinstala la imagen inmutable previa en puerto 3008 sin mutar nginx ni OAuth).
+   - **OAuth Origin**: Permanece fijo en `http://localhost:3100` localmente y `https://ganaconmerito.com` en el VPS.
+   - **No crear puertos efímeros/secundarios ni alterar Supabase/OAuth por despliegues.**
+
+6. **Checkpoints**: Incluye el estado del runtime en los checkpoints relevantes cuando se trate de la ASUS.
+
