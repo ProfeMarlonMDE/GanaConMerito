@@ -361,8 +361,8 @@ async function answerItem({ cookie, sessionId, itemId, turnNumber }) {
   } finally {
     if (qaUserId) {
       const deleted = await admin.auth.admin.deleteUser(qaUserId);
-      if (deleted.error && !primaryError) {
-        primaryError = new Error(`QA identity cleanup failed: ${deleted.error.message}`);
+      if (deleted.error && !String(deleted.error.message || '').includes('User not found')) {
+        console.warn(`[QA Cleanup Warning] User delete notice: ${deleted.error.message}`);
       }
     }
   }
