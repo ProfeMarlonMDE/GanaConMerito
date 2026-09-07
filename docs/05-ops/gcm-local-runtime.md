@@ -73,4 +73,15 @@ El entorno ASUS Windows 11 + Ubuntu-24.04 WSL2 cuenta con un mecanismo de detecc
 - El perfil se define localmente en `/home/mdav/.config/gcm/workstation.env` con `GCM_WORKSTATION_ID=ASUS_WINDOWS11_WSL2`.
 - Para otras computadoras, el script `./scripts/gcm-workstation-detect.sh` retornará que no es aplicable.
 
-**Regla de Actualización:** Después de crear un commit validado que modifique el comportamiento del runtime (código, dependencias), se debe ejecutar `./scripts/gcm-local-sync-if-applicable.sh HEAD`. Si se trata de la ASUS, el script reconstruirá la versión atómica y actualizará `http://localhost:3100`. Si los cambios son solo documentales, se omitirá. Esta sincronización es independiente de flujos Canary o Producción.
+
+
+## Gobernanza de Túnel Canary SSH (Puerto 3100)
+
+<!-- Agent: Google_Antigravity | Model: Gemini 3.6 Flash -->
+- El origen local autorizado para OAuth es `http://localhost:3100`.
+- Canary se revisa con el túnel SSH `localhost:3100` -> VPS `127.0.0.1:3007`.
+- Durante la revisión de Canary debe pausarse temporalmente el runtime local (`gcm-local.service`).
+- Al finalizar la revisión se debe cerrar el túnel y restaurar `gcm-local.service`.
+- No deben cambiarse los puertos por los costos operativos asociados a Supabase y Google OAuth.
+
+
