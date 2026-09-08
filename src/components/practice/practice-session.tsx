@@ -48,6 +48,26 @@ interface AdvanceResult {
   };
 }
 
+// Agent: Google_Antigravity | Model: Gemini 3.6 Flash
+export function calculateCanShowReviewButton(params: {
+  initializing: boolean;
+  session: { sessionId: string; currentState: string } | null;
+  sessionEnded: boolean;
+  itemAttemptPhase?: string;
+  currentAttemptPhase?: string;
+  hasAnswerReview?: boolean;
+  hasSavedResponse?: boolean;
+}): boolean {
+  if (params.initializing || !params.session || params.sessionEnded) return false;
+  if (params.itemAttemptPhase === "expired" || params.currentAttemptPhase === "expired") return false;
+  return Boolean(
+    params.hasSavedResponse ||
+    params.hasAnswerReview ||
+    params.itemAttemptPhase === "submitted" ||
+    params.currentAttemptPhase === "submitted"
+  );
+}
+
 function getNoItemMessage(session: SessionStartResult) {
   if (session.currentState === "onboarding") {
     return "Debes completar el onboarding antes de iniciar una práctica real.";
@@ -134,14 +154,14 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
   // "Revisar respuesta guardada" must only appear when an active or resumable session has a reusable submitted response,
   // and must never appear when the session ended, attempt expired, or no saved response exists.
   const canShowReviewButton = useMemo(() => {
-    if (initializing || !session || sessionEnded) return false;
-    if (currentAttempt?.phase === "expired") return false;
-    const hasSubmittedResponse = Boolean(
-      hasSavedResponse ||
-      feedback?.answerReview ||
-      currentAttempt?.phase === "submitted"
-    );
-    return hasSubmittedResponse;
+    return calculateCanShowReviewButton({
+      initializing,
+      session,
+      sessionEnded,
+      currentAttemptPhase: currentAttempt?.phase,
+      hasAnswerReview: Boolean(feedback?.answerReview),
+      hasSavedResponse,
+    });
   }, [initializing, session, sessionEnded, currentAttempt?.phase, feedback?.answerReview, hasSavedResponse]);
 
   const sessionDashboardHref = session ? `/dashboard?sessionId=${encodeURIComponent(session.sessionId)}` : null;
