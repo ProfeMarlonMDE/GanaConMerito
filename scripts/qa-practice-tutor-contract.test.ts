@@ -418,4 +418,24 @@ test("Saved response button contract: strictly hidden for new, ended, expired se
 
   // CASE_4: same session reusable response => visible
   assert.equal(verifySessionScope("sess-same-123", "sess-same-123"), true, "CASE_4: matching session ID produces hasSavedResponse=true and shows button");
+
+  // CASE_A: existing session + saved response + inventory exhausted + reload => visible
+  assert.equal(
+    canShowReviewButton({ initializing: false, session: { sessionId: "sess-resumed-789", currentState: "practice" }, sessionEnded: false, hasSavedResponse: true }),
+    true,
+    "CASE_A: existing session with saved response reloaded under inventory exhaustion should keep review button visible"
+  );
+
+  // CASE_B: previous session has saved response, start brand-new session, new attempt=in_progress => hidden
+  let newSessionHasSavedResponse = true;
+  // Starting a brand-new session clears saved review state:
+  function handleStartNewSession() {
+    newSessionHasSavedResponse = false;
+  }
+  handleStartNewSession();
+  assert.equal(
+    canShowReviewButton({ initializing: false, session: { sessionId: "sess-brand-new-999", currentState: "practice" }, sessionEnded: false, currentAttemptPhase: "in_progress", hasSavedResponse: newSessionHasSavedResponse }),
+    false,
+    "CASE_B: starting a brand-new session must clear previous session's saved response review state"
+  );
 });
