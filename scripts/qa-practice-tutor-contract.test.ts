@@ -395,15 +395,27 @@ test("Saved response button contract: strictly hidden for new, ended, expired se
   // 5. Absence of saved response -> hidden
   assert.equal(canShowReviewButton({ initializing: false, session: null, sessionEnded: false }), false);
 
-  // 6. Active session with submitted answer -> visible
-  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, itemAttemptPhase: "submitted", hasAnswerReview: true }), true);
+  // CASE_1: active session, no currentItemId (inventory exhaustion), saved response same session => visible
+  assert.equal(
+    canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, currentAttemptPhase: undefined, hasSavedResponse: true }),
+    true,
+    "CASE_1: active session with inventory exhaustion but saved response in same session should show review button"
+  );
 
-  // 7. Resumable session with submitted answer -> visible
-  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, currentAttemptPhase: "submitted" }), true);
+  // CASE_2: old session has submitted response, new active session has none => hidden
+  assert.equal(
+    canShowReviewButton({ initializing: false, session: { sessionId: "s2", currentState: "practice" }, sessionEnded: false, currentAttemptPhase: "in_progress", hasSavedResponse: false }),
+    false,
+    "CASE_2: new active session without submitted response should hide review button even if old session has submitted response"
+  );
 
-  // 8. Continued to next item (in_progress) but previous attempt submitted (hasSavedResponse: true) -> visible
-  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, currentAttemptPhase: "in_progress", hasSavedResponse: true }), true);
+  // CASE_3: review response sessionId != resumed sessionId => hasSavedResponse false => hidden
+  function verifySessionScope(resumedSessionId: string, reviewedSessionId: string) {
+    const hasSavedResponse = resumedSessionId === reviewedSessionId;
+    return canShowReviewButton({ initializing: false, session: { sessionId: resumedSessionId, currentState: "practice" }, sessionEnded: false, hasSavedResponse });
+  }
+  assert.equal(verifySessionScope("sess-new-123", "sess-old-456"), false, "CASE_3: mismatched session ID produces hasSavedResponse=false and hides button");
 
-  // 9. Reloaded/Resumed session with reusable saved response (hasSavedResponse: true) -> visible
-  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, hasSavedResponse: true }), true);
+  // CASE_4: same session reusable response => visible
+  assert.equal(verifySessionScope("sess-same-123", "sess-same-123"), true, "CASE_4: matching session ID produces hasSavedResponse=true and shows button");
 });
