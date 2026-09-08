@@ -158,7 +158,6 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
     setAssistanceUsed(false);
     setCurrentAttempt(null);
     submissionRef.current = null;
-    setHasSavedResponse(false);
   }
 
   async function loadItem(sessionId: string, itemId: string) {
@@ -213,11 +212,16 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
       setSession(data.session);
       setTurnNumber(1);
 
-      // Check if there is an existing submitted attempt for this profile/session that can be reviewed
+      // Check if there is an existing submitted attempt for this specific active session
       try {
-        const reviewCheck = await fetch("/api/session/review", { cache: "no-store" });
+        const reviewCheck = await fetch(`/api/session/review?sessionId=${encodeURIComponent(data.session.sessionId)}`, { cache: "no-store" });
         if (reviewCheck.ok) {
-          setHasSavedResponse(true);
+          const reviewData = await reviewCheck.json();
+          if (reviewData.sessionId === data.session.sessionId) {
+            setHasSavedResponse(true);
+          } else {
+            setHasSavedResponse(false);
+          }
         } else {
           setHasSavedResponse(false);
         }
@@ -245,9 +249,11 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
   async function handleReview() {
     setLoading(true);
     try {
-      const response = await fetch("/api/session/review", {cache:"no-store"});
+      const reviewUrl = session?.sessionId ? `/api/session/review?sessionId=${encodeURIComponent(session.sessionId)}` : "/api/session/review";
+      const response = await fetch(reviewUrl, {cache:"no-store"});
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
+      if (session?.sessionId && data.sessionId !== session.sessionId) throw new Error("Reviewed session mismatch");
       const itemResponse = await fetch(`/api/session/item?sessionId=${data.sessionId}&attemptId=${data.attemptId}`,{cache:"no-store"});
       const reviewed = await itemResponse.json();
       if (!itemResponse.ok) throw new Error(reviewed.error);
