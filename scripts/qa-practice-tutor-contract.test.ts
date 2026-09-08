@@ -367,10 +367,12 @@ test("Saved response button contract: strictly hidden for new, ended, expired se
     itemAttemptPhase?: string;
     currentAttemptPhase?: string;
     hasAnswerReview?: boolean;
+    hasSavedResponse?: boolean;
   }) {
     if (params.initializing || !params.session || params.sessionEnded) return false;
     if (params.itemAttemptPhase === "expired" || params.currentAttemptPhase === "expired") return false;
     const hasSubmittedResponse = Boolean(
+      params.hasSavedResponse ||
       params.hasAnswerReview ||
       params.itemAttemptPhase === "submitted" ||
       params.currentAttemptPhase === "submitted"
@@ -398,4 +400,10 @@ test("Saved response button contract: strictly hidden for new, ended, expired se
 
   // 7. Resumable session with submitted answer -> visible
   assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, currentAttemptPhase: "submitted" }), true);
+
+  // 8. Continued to next item (in_progress) but previous attempt submitted (hasSavedResponse: true) -> visible
+  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, currentAttemptPhase: "in_progress", hasSavedResponse: true }), true);
+
+  // 9. Reloaded/Resumed session with reusable saved response (hasSavedResponse: true) -> visible
+  assert.equal(canShowReviewButton({ initializing: false, session: { sessionId: "s1", currentState: "practice" }, sessionEnded: false, hasSavedResponse: true }), true);
 });

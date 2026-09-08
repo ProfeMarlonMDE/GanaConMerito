@@ -123,6 +123,7 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
   }
 
   const [currentAttempt, setCurrentAttempt] = useState<{ id: string; phase: string; mode: string } | null>(null);
+  const [hasSavedResponse, setHasSavedResponse] = useState(false);
 
   const sessionEnded = useMemo(() => {
     const currentState = feedback?.currentState ?? session?.currentState;
@@ -136,11 +137,12 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
     if (initializing || !session || sessionEnded) return false;
     if (currentAttempt?.phase === "expired") return false;
     const hasSubmittedResponse = Boolean(
+      hasSavedResponse ||
       feedback?.answerReview ||
       currentAttempt?.phase === "submitted"
     );
     return hasSubmittedResponse;
-  }, [initializing, session, sessionEnded, currentAttempt?.phase, feedback?.answerReview]);
+  }, [initializing, session, sessionEnded, currentAttempt?.phase, feedback?.answerReview, hasSavedResponse]);
 
   const sessionDashboardHref = session ? `/dashboard?sessionId=${encodeURIComponent(session.sessionId)}` : null;
   const canStartAnother = sessionEnded || (!item && Boolean(sessionMessage));
@@ -156,6 +158,7 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
     setAssistanceUsed(false);
     setCurrentAttempt(null);
     submissionRef.current = null;
+    setHasSavedResponse(false);
   }
 
   async function loadItem(sessionId: string, itemId: string) {
@@ -175,6 +178,9 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
       setCurrentAttempt(data.attempt);
       if (data.attempt.mode) {
         setPracticeMode(data.attempt.mode);
+      }
+      if (data.attempt.phase === "submitted") {
+        setHasSavedResponse(true);
       }
     }
     setSelectedOption(null);
@@ -200,11 +206,25 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
 
       if (!data.session) {
         setSession(null);
+        setHasSavedResponse(false);
         return;
       }
 
       setSession(data.session);
       setTurnNumber(1);
+
+      // Check if there is an existing submitted attempt for this profile/session that can be reviewed
+      try {
+        const reviewCheck = await fetch("/api/session/review", { cache: "no-store" });
+        if (reviewCheck.ok) {
+          setHasSavedResponse(true);
+        } else {
+          setHasSavedResponse(false);
+        }
+      } catch {
+        setHasSavedResponse(false);
+      }
+
       if (data.session.currentItemId) {
         await loadItem(data.session.sessionId, data.session.currentItemId);
       } else {
@@ -235,6 +255,7 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
       setItem(reviewed);setCurrentAttempt(reviewed.attempt);setPracticeMode("review");
       setFeedback(data.result);setSelectedOption(data.result.answerReview.selectedOption);
       setAssistanceUsed(reviewed.attempt.assistanceUsed);setPendingNextItemId(null);
+      setHasSavedResponse(true);
     } catch (error) {setError(error instanceof Error ? error.message : "Review unavailable");}
     finally {setLoading(false);}
   }
@@ -309,6 +330,7 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
       if (data.attemptResult?.attemptId !== currentAttempt.id) return;
       setAssistanceUsed(data.attemptResult.assistanceUsed === true);
       setFeedback(data);
+      setHasSavedResponse(true);
 
       if (data.currentState === "session_close") {
         setPendingNextItemId(null);
