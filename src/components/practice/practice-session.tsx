@@ -270,6 +270,7 @@ export function PracticeSession(props: { initialTutorProfile?: "socratic" | "dir
     setLoading(true);
     setError(null);
     setSessionMessage(null);
+    setHasSavedResponse(false);
     resetItemState();
 
     try {
