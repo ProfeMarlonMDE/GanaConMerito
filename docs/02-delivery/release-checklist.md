@@ -36,9 +36,9 @@ Este archivo contiene el baseline vigente y el procedimiento reutilizable para l
 - [x] Production promotion PASS.
 - [x] ReleaseStamp PASS.
 - [x] Public smoke PASS.
-- [x] Authenticated smoke PASS.
-- [x] Dashboard desktop/mobile PASS.
-- [x] Tutor visible PASS.
+- [x] Authenticated smoke PASS (verificado en gate `V0_13_1_PRODUCTION_RELEASE` / `docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`).
+- [x] Dashboard desktop/mobile PASS (verificado en gate `V0_13_1_PRODUCTION_RELEASE` / `docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`).
+- [x] Tutor visible PASS (verificado en gate `V0_13_1_PRODUCTION_RELEASE` / `docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`).
 - [x] Tag `v0.13.1` publicado sobre el release SHA (`e4b34561debdca3439e76ed826c7ddfbf5f1ff85`).
 - [x] GitHub Release publicada (`https://github.com/MarlonMedellin/GanaConMerito/releases/tag/v0.13.1`).
 - [x] Sin migraciones, Content Sync ni cambios Supabase remoto.

@@ -24,6 +24,8 @@ last_reviewed: 2026-09-08
 # Sprint log
 
 ## Current delivery state
+
+<!-- Agent: Google_Antigravity | Model: gemini-3.6-flash -->
 - **Current operational block**: v0.13.1 cerrada y verificada en producción
 - **Baseline futura**: `0001–0003` desde cero, sin `item_bank`, UUID legacy ni
   fallback. La ruta `0029 → 0030` queda histórica/superseded para el cutover.
