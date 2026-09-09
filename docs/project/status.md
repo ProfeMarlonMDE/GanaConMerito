@@ -19,7 +19,7 @@ Este archivo contiene solo el estado operativo vigente. La historia permanece en
 - Version: `0.13.0`.
 - Release date: `2026-09-06`.
 - Final release SHA: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
-- Repository governance HEAD: `c90f21eb31a8cdebc7cbfdc63b7849eeef7c11f7`.
+- Repository governance HEAD: `c90f21ebf3ac2cdd3eb7b78d9c9a93d88d47c95a`.
 - URL: `https://ganaconmerito.com`.
 - Runtime: `gcm-production-9bea4d4`.
 - Puerto canónico interno: `3008`.
@@ -42,6 +42,10 @@ Este archivo contiene solo el estado operativo vigente. La historia permanece en
 - Version candidata: `0.13.1`.
 - Release date candidata: `2026-09-07`.
 - Master SHA candidata: `63b8b52262fa2119c56e624759ce38540db3b2bd`.
+- PR Range (producción -> candidato): `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e` -> `63b8b52262fa2119c56e624759ce38540db3b2bd`.
+- PRs funcionales/experiencia Tutor en candidato: `#137`, `#138`, `#139`, `#140`, `#141`, `#142`.
+- PRs metadata en candidato: `#143` (metadata-only).
+- PRs de cierre documental posterior: `#144` (release docs closeout).
 - Saved response case: `CLOSED`.
 - Validaciones: `PASS`.
 - Producción activa: permanece en `0.13.0` hasta gate `V0_13_1_PRODUCTION_RELEASE`.

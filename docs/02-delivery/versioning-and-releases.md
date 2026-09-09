@@ -42,7 +42,10 @@ No crear una segunda constante editable de version. `package.json.version` no es
 
 - Version candidata: `0.13.1`.
 - Release date candidata: `2026-09-07`.
-- Source PRs funcionales: `#139`, `#140`, `#141`, `#142`, `#143`.
+- PR Range (producción -> candidato): `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e` -> `63b8b52262fa2119c56e624759ce38540db3b2bd`.
+- PRs funcionales/experiencia Tutor en candidato: `#137`, `#138`, `#139`, `#140`, `#141`, `#142`.
+- PRs metadata en candidato: `#143` (metadata-only).
+- PRs de cierre documental posterior: `#144` (release docs closeout).
 - Saved response case: `CLOSED`.
 - Candidate Master SHA: `63b8b52262fa2119c56e624759ce38540db3b2bd`.
 - Estado: `CANDIDATE_METADATA_PREPARED`.
