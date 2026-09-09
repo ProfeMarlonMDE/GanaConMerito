@@ -12,43 +12,34 @@ Este archivo contiene el baseline vigente y el procedimiento reutilizable para l
 
 ## Baseline vigente
 
-- VERSION=`0.11.0`
-- RELEASE_DATE=`2026-08-30`
+- VERSION=`0.13.0`
+- RELEASE_DATE=`2026-09-06`
 - RELEASE_STATUS=`CLOSED`
-- FINAL_RELEASE_SHA=`e3e9b3436f57a0354c7fed941140df468499d624`
+- FINAL_RELEASE_SHA=`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`
 - PRODUCTION_URL=`https://ganaconmerito.com`
-- PRODUCTION_RUNTIME=`gcm-canary-l2-e3e9b34`
-- PRODUCTION_PORT=`3006`
-- PRODUCTION_RUNTIME_SHA=`e3e9b3436f57a0354c7fed941140df468499d624`
+- PRODUCTION_RUNTIME=`gcm-production-9bea4d4`
+- PRODUCTION_PORT=`3008`
+- PRODUCTION_RUNTIME_SHA=`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`
 - RELEASE_STAMP=`PASS`
 - PUBLIC_RUNTIME_SMOKE=`PASS`
 - AUTHENTICATED_SMOKE=`PASS`
-- V4_ACTIVE_COUNT=`248`
-- RELEASE_TAG=`v0.11.0`
+- RELEASE_TAG=`v0.13.0`
 - GITHUB_RELEASE=`published`
-- CLEANUP_3002=`COMPLETE`
-- CLEANUP_3005=`COMPLETE`
 
-## Cierre v0.11.0
+## Cierre v0.13.0
 
-- [x] Release SHA exacto desplegado y verificado.
-- [x] Canary PASS.
+- [x] Release SHA exacto desplegado y verificado (`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`).
 - [x] Production promotion PASS.
 - [x] ReleaseStamp PASS.
 - [x] Public smoke PASS.
 - [x] Authenticated smoke PASS.
 - [x] Dashboard desktop/mobile PASS.
 - [x] Tutor visible PASS.
-- [x] V4 active count 248.
-- [x] Tag `v0.11.0` publicado sobre el release SHA.
+- [x] Tag `v0.13.0` publicado sobre el release SHA.
 - [x] GitHub Release publicada.
-- [x] Runtime antiguo `:3002` retirado.
-- [x] Runtime antiguo `:3005` retirado.
-- [x] Imagenes antiguas asociadas sin uso retiradas.
-- [x] Backup nginx de promocion retirado.
-- [x] Sin migraciones, Content Sync, G6 ni cambios Supabase durante cleanup.
+- [x] Sin migraciones, Content Sync ni cambios Supabase remoto.
 
-Residual operativo: contenedores historicos en `:3003` y `:3004` fueron preservados porque no estaban clasificados/autorizados. No forman parte de la ruta productiva `:3006`.
+Evidencia de cierre: `docs/05-ops/V0.13.0-PRODUCTION-CLOSEOUT-20260906.md`.
 
 ## Procedimiento para la siguiente release
 
@@ -57,7 +48,7 @@ Residual operativo: contenedores historicos en `:3003` y `:3004` fueron preserva
 3. Definir `CANDIDATE_SHA`.
 4. Ejecutar solo validaciones proporcionales al cambio y CI requerido.
 5. Fusionar por PR y registrar `FINAL_RELEASE_SHA`.
-6. Desplegar exactamente ese SHA en Canary.
+6. Desplegar exactamente ese SHA en Canary / Producción.
 7. Promover el mismo artefacto validado cuando sea posible.
 8. Verificar ReleaseStamp, public smoke y gates afectados.
 9. Hacer smoke autenticado cuando cambien superficies autenticadas o sea requerido para retirar rollback.
@@ -66,23 +57,24 @@ Residual operativo: contenedores historicos en `:3003` y `:3004` fueron preserva
 
 No repetir tests, sync, G6, migraciones o deploys si el cambio no los afecta.
 
-## Candidata v0.12.0 - metadata preparada
+## Candidata v0.13.1 - metadata preparada
 
-- VERSION=`0.12.0`
-- RELEASE_DATE=`2026-09-01`
-- RELEASE_STATUS=`CANDIDATE_METADATA`
-- SOURCE_PR=`#128`
-- SOURCE_PR_MERGED=`true`
-- CODE_BASELINE_SHA=`3f2b18a981328f3deaaea41fad869c8cd88a77a5`
-- PRODUCTION_VERSION_REMAINS=`0.11.0`
-- CI=`PENDING`
+- VERSION=`0.13.1`
+- RELEASE_DATE=`2026-09-07`
+- RELEASE_STATUS=`CANDIDATE_METADATA_PREPARED`
+- SOURCE_PRS=`#139, #140, #141, #142, #143`
+- SAVED_RESPONSE_CASE=`CLOSED`
+- CODE_BASELINE_SHA=`63b8b52262fa2119c56e624759ce38540db3b2bd`
+- PRODUCTION_VERSION_REMAINS=`0.13.0`
+- VALIDATIONS=`PASS`
+- CI=`PASS`
 - CANARY=`PENDING`
-- PRODUCTION_PROMOTION=`PENDING`
-- RELEASE_TAG=`PENDING`
+- PRODUCTION_PROMOTION=`PENDING (Gate V0_13_1_PRODUCTION_RELEASE)`
+- RELEASE_TAG=`PENDING (TAG_CREATED=false)`
 - GITHUB_RELEASE=`PENDING`
 - MIGRATIONS=`NO`
 - CONTENT_SYNC=`NO`
 - G6=`NO`
 - SUPABASE_REMOTE_CHANGE=`NO`
 
-Esta seccion prepara metadata candidata. No declara v0.12.0 desplegada, publicada, cerrada ni promovida a produccion.
+Esta seccion prepara metadata candidata. No declara v0.13.1 desplegada, publicada, cerrada ni promovida a produccion.
