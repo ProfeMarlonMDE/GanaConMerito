@@ -22,40 +22,36 @@ Runtime identity:
 
 No crear una segunda constante editable de version. `package.json.version` no es la fuente publica de release salvo decision futura explicita.
 
-## Release vigente
+## Release vigente en producción
 
-- Version: `0.11.0`.
-- Release date: `2026-08-30`.
-- Final release SHA: `e3e9b3436f57a0354c7fed941140df468499d624`.
+- Version: `0.13.0`.
+- Release date: `2026-09-06`.
+- Final release SHA: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
 - Estado: `CLOSED`.
 - Produccion: `https://ganaconmerito.com`.
-- Runtime: `gcm-canary-l2-e3e9b34` en `:3006`.
-- Runtime SHA: `e3e9b3436f57a0354c7fed941140df468499d624`.
-- Tag: `v0.11.0`.
+- Runtime: `gcm-production-9bea4d4` en puerto interno `:3008`.
+- Runtime SHA: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
+- Tag: `v0.13.0`.
 - GitHub Release: `published`.
 - ReleaseStamp: `PASS`.
 - Public smoke: `PASS`.
 - Authenticated smoke: `PASS`.
-- V4 active count: `248`.
-- Rollback `:3002`: retirado.
-- Rollback `:3005`: retirado.
+- Evidencia de cierre: `docs/05-ops/V0.13.0-PRODUCTION-CLOSEOUT-20260906.md`.
 
-El inventario del host todavia reporto contenedores historicos en `:3003` y `:3004`; no forman parte de la produccion verificada y requieren clasificacion antes de eliminarlos.
+## Candidata v0.13.1
 
-## Candidata v0.12.0
-
-- Version candidata: `0.12.0`.
-- Release date candidata: `2026-09-01`.
-- Source PR funcional: `#128`, ya fusionado.
-- Baseline de codigo revisado: `3f2b18a981328f3deaaea41fad869c8cd88a77a5`.
+- Version candidata: `0.13.1`.
+- Release date candidata: `2026-09-07`.
+- Source PRs funcionales: `#139`, `#140`, `#141`, `#142`, `#143`.
+- Saved response case: `CLOSED`.
+- Candidate Master SHA: `63b8b52262fa2119c56e624759ce38540db3b2bd`.
 - Estado: `CANDIDATE_METADATA_PREPARED`.
-- Produccion vigente: `0.11.0` hasta completar promocion.
-- CI: pendiente de PR de metadata candidata.
-- Canary: pendiente.
-- Produccion: pendiente; no desplegada.
-- Tag: pendiente; no creado.
-- GitHub Release: pendiente; no creada.
-- Sin migraciones, Content Sync, G6 ni cambios Supabase.
+- Validaciones: `PASS` (Functional contracts, real production path regression test, typecheck, build, CI).
+- Produccion vigente: `0.13.0` hasta gate `V0_13_1_PRODUCTION_RELEASE` y despliegue.
+- Rollback baseline en produccion: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
+- Tag: pendiente (no creado en este gate; `TAG_CREATED=false`).
+- GitHub Release: pendiente.
+- Sin migraciones, Content Sync ni cambios Supabase remoto.
 
 ## Semantic Versioning
 

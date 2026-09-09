@@ -49,3 +49,13 @@ Runtime publico: `https://ganaconmerito.com`
 
 `docs/05-ops/V0.13.0-PRODUCTION-CLOSEOUT-20260906.md`
 
+## Candidata v0.13.1 - metadata preparada
+
+<!-- Agent: Google_Antigravity | Model: Gemini 3.6 Flash -->
+- Version: `0.13.1`.
+- Candidate Master SHA: `63b8b52262fa2119c56e624759ce38540db3b2bd`.
+- Saved Response Case: `CLOSED`.
+- Validaciones: `PASS` (Functional contracts, production regression test, typecheck, build, CI).
+- Producción vigente: permanece en `0.13.0` (`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`) hasta gate `V0_13_1_PRODUCTION_RELEASE`.
+- Tag: pendiente (`TAG_CREATED=false`).
+
