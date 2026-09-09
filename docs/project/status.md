@@ -15,7 +15,8 @@ Este archivo contiene solo el estado operativo vigente. La historia permanece en
 ## Produccion
 
 <!-- Agent: Google_Antigravity | Model: gemini-3.6-flash -->
-- Estado: `GREEN`.
+- Estado de disponibilidad de runtime: `GREEN` (v0.13.1 HTTP OK).
+- Estado de frontera de datos / Supabase: `DEGRADED` (Exposición de answer-bank previa a migración 0030 pendiente de corte V4).
 - Version: `0.13.1`.
 - Release date: `2026-09-07`.
 - Deployment / Closeout date: `2026-09-08`.
