@@ -51,13 +51,14 @@ Siguiente bloque propuesto:
 - P1: ejecutar OpenRouter shadow real sobre la integración con salida estructurada, ZDR, allowlist y
   fallback deterministico.
 
-Estado beta vigente:
-- **Version objetivo:** `0.6.0`.
-- **Commit de codigo release verificado:** `9695d40`.
-- **Documentación:** commits posteriores al release, sin cambios de código.
-- **Runtime publico verificado:** `9695d40` (`2026-08-19T00:00:00-05:00`).
-- **Evidencia nueva:** 100 items beta visibles en Supabase y E2E autenticada real de 5 turnos con dashboard verificado.
-- **Dictamen:** beta funcional cerrada en `v0.6.0-beta.1`; permanece deuda editorial no bloqueante.
+Estado vigente en producción:
+
+<!-- Agent: Google_Antigravity | Model: gemini-3.6-flash -->
+- **Version vigente:** `0.13.1`.
+- **Commit de codigo release verificado (`DEPLOYED_APPLICATION_SHA`):** `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`.
+- **Runtime publico verificado:** `https://ganaconmerito.com` (`gcm-production-e4b3456` en `:3008`).
+- **Tag:** `v0.13.1`.
+- **Evidencia:** `docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`.
 
 ## Implementado y validado recientemente
 

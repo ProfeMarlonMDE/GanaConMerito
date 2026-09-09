@@ -11,32 +11,31 @@ related:
   - PROD-BACKLOG
   - DEL-CHANGE-LOG
   - QUAL-RISK-REGISTER
-last_reviewed: 2026-08-23
+last_reviewed: 2026-09-08
 ---
 
 ## Document control
 - Status: operational
 - Owner: PM-Governance
-- Last reviewed: 2026-08-23
+- Last reviewed: 2026-09-08
 - Related files: docs/project/status.md, docs/02-delivery/sprint-log.md, docs/02-delivery/change-log.md, docs/project/canonical-docs.md
 - Update trigger: governance, delivery, documentation, drift
 
 # Sprint log
 
 ## Current delivery state
-- **Current operational block**: rebaseline V4 limpio implementado y validado
-  localmente, publicado en `codex/v4-clean-rebaseline-sync` con checkpoint técnico
-  `92a12ab6e69b1db98ab0e6b46f2f19e2516a1f35`; base/merge-base
-  `master@544ebf883dc72fe474afe7d13be355d8f9e846b1`, `5` commits adelante y `0`
-  atrás. El draft PR todavía no se ha abierto.
+
+<!-- Agent: Google_Antigravity | Model: gemini-3.6-flash -->
+- **Current operational block**: v0.13.1 cerrada y verificada en producción
 - **Baseline futura**: `0001–0003` desde cero, sin `item_bank`, UUID legacy ni
   fallback. La ruta `0029 → 0030` queda histórica/superseded para el cutover.
 - **Sync**: motor GitHub → Supabase con validate/plan/diff/apply/verify/status,
   API admin, guards, atomicidad, idempotencia y drift.
 - **Corte editorial congelado y validado**: `content/question-bank-v4/MANIFEST.json`
   gobierna conteo, inventario y hashes en `master`.
-- **Public runtime canonico**: `https://ganaconmerito.com`; commit visible
-  `e1dc63b`, smoke publico PASS el 2026-08-22, sin nueva E2E autenticada.
+- **Public runtime canonico**: `https://ganaconmerito.com`; version `v0.13.1`
+  (`e4b34561debdca3439e76ed826c7ddfbf5f1ff85`), smoke publico y autenticado PASS en
+  puerto `:3008` (`gcm-production-e4b3456`).
 - **Supabase productivo**: `0028` aplicada; 163 V4, 652 opciones, cero activas,
   publicadas o en piloto; lote de 248 no ejecutado.
 - **V4 local**: 248 preguntas y 992 opciones reconciliadas; segunda ejecución sin
