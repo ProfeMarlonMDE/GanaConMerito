@@ -14,6 +14,21 @@ last_reviewed: 2026-08-30
 
 Este archivo conserva solo los cambios recientes que afectan el estado vigente. La historia completa permanece en Git, PRs, tags y GitHub Releases.
 
+## 2026-09-08 - v0.13.1 cerrada y publicada en producción
+
+<!-- Agent: Google_Antigravity | Model: gemini-3.6-flash -->
+
+- Tipo: `release+runtime`.
+- Version: `0.13.1`.
+- Release date: `2026-09-07`.
+- Deployment / Closeout date: `2026-09-08`.
+- Deployed Application SHA (`DEPLOYED_APPLICATION_SHA` / `RUNTIME_SHA`): `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`.
+- Public runtime: `https://ganaconmerito.com` (`gcm-production-e4b3456` en `:3008`).
+- Tag: `v0.13.1` (publicado sobre `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`).
+- GitHub Release: `published` (`https://github.com/MarlonMedellin/GanaConMerito/releases/tag/v0.13.1`).
+- Rollback disponible: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e` (`v0.13.0`).
+- Evidencia de cierre: `docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`.
+
 ## 2026-09-05 - Ajuste de distribución del panel Tutor y ciclo de vida de chips (vNext)
 
 <!-- Agent: Antigravity | Model: Gemini 3.7 Flash -->
