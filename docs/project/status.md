@@ -14,12 +14,13 @@ Este archivo contiene solo el estado operativo vigente. La historia permanece en
 
 ## Produccion
 
-<!-- Agent: Google_Antigravity | Model: gemini-2.5-pro -->
+<!-- Agent: Google_Antigravity | Model: gemini-3.6-flash -->
 - Estado: `GREEN`.
 - Version: `0.13.1`.
-- Release date: `2026-09-08`.
+- Release date: `2026-09-07`.
+- Deployment / Closeout date: `2026-09-08`.
 - Deployed Application SHA (`DEPLOYED_APPLICATION_SHA` / `RUNTIME_SHA`): `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`.
-- Repository governance HEAD: `594083b0922b70b086d894b5094cc6892af4380a`.
+- Repository governance HEAD: `877ed251c821e59466747cdbc69f8f743aff67c3`.
 - URL: `https://ganaconmerito.com`.
 - Runtime: `gcm-production-e4b3456`.
 - Puerto canónico interno: `3008`.

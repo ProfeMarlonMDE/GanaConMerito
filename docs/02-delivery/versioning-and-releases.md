@@ -24,11 +24,12 @@ No crear una segunda constante editable de version. `package.json.version` no es
 
 ## Release vigente en producción
 
-<!-- Agent: Google_Antigravity | Model: gemini-2.5-pro -->
+<!-- Agent: Google_Antigravity | Model: gemini-3.6-flash -->
 - Version: `0.13.1`.
-- Release date: `2026-09-08`.
+- Release date: `2026-09-07`.
+- Deployment / Closeout date: `2026-09-08`.
 - Deployed Application SHA (`DEPLOYED_APPLICATION_SHA` / `RUNTIME_SHA`): `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`.
-- Repository governance HEAD: `594083b0922b70b086d894b5094cc6892af4380a`.
+- Repository governance HEAD: `877ed251c821e59466747cdbc69f8f743aff67c3`.
 - Estado: `CLOSED`.
 - Produccion: `https://ganaconmerito.com`.
 - Runtime: `gcm-production-e4b3456` en puerto interno `:3008`.
@@ -39,13 +40,6 @@ No crear una segunda constante editable de version. `package.json.version` no es
 - Authenticated smoke: `PASS`.
 - Rollback disponible: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e` (v0.13.0).
 - Evidencia de cierre: `docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`.
-- Estado: `CANDIDATE_METADATA_PREPARED`.
-- Validaciones: `PASS` (Functional contracts, real production path regression test, typecheck, build, CI).
-- Produccion vigente: `0.13.0` hasta gate `V0_13_1_PRODUCTION_RELEASE` y despliegue.
-- Rollback baseline en produccion: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
-- Tag: pendiente (no creado en este gate; `TAG_CREATED=false`).
-- GitHub Release: pendiente.
-- Sin migraciones, Content Sync ni cambios Supabase remoto.
 
 ## Semantic Versioning
 

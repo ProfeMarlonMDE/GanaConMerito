@@ -12,12 +12,13 @@ Este archivo contiene el baseline vigente y el procedimiento reutilizable para l
 
 ## Baseline vigente
 
-<!-- Agent: Google_Antigravity | Model: gemini-2.5-pro -->
+<!-- Agent: Google_Antigravity | Model: gemini-3.6-flash -->
 - VERSION=`0.13.1`
-- RELEASE_DATE=`2026-09-08`
+- RELEASE_DATE=`2026-09-07`
+- CLOSEOUT_DATE=`2026-09-08`
 - RELEASE_STATUS=`CLOSED`
 - DEPLOYED_APPLICATION_SHA=`e4b34561debdca3439e76ed826c7ddfbf5f1ff85`
-- REPOSITORY_GOVERNANCE_HEAD=`594083b0922b70b086d894b5094cc6892af4380a`
+- REPOSITORY_GOVERNANCE_HEAD=`877ed251c821e59466747cdbc69f8f743aff67c3`
 - PRODUCTION_URL=`https://ganaconmerito.com`
 - PRODUCTION_RUNTIME=`gcm-production-e4b3456`
 - PRODUCTION_PORT=`3008`
@@ -61,27 +62,27 @@ Evidencia de cierre: `docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`.
 
 No repetir tests, sync, G6, migraciones o deploys si el cambio no los afecta.
 
-## Candidata v0.13.1 - metadata preparada
+## Historial de la candidata v0.13.1 (CERRADA)
 
 - VERSION=`0.13.1`
 - RELEASE_DATE=`2026-09-07`
-- RELEASE_STATUS=`CANDIDATE_METADATA_PREPARED`
+- RELEASE_STATUS=`CLOSED`
 - PR_RANGE=`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e -> 63b8b52262fa2119c56e624759ce38540db3b2bd`
 - FUNCTIONAL_PRS=`#137, #138, #139, #140, #141, #142`
 - CANDIDATE_METADATA_PRS=`#143 (metadata-only)`
-- POST_BASELINE_CLOSEOUT_PRS=`#144 (release docs closeout)`
+- POST_BASELINE_CLOSEOUT_PRS=`#144, #145, #147, #148`
 - SAVED_RESPONSE_CASE=`CLOSED`
 - CODE_BASELINE_SHA=`63b8b52262fa2119c56e624759ce38540db3b2bd`
-- PRODUCTION_VERSION_REMAINS=`0.13.0`
+- PRODUCTION_VERSION=`0.13.1`
 - VALIDATIONS=`PASS`
 - CI=`PASS`
-- CANARY=`PENDING`
-- PRODUCTION_PROMOTION=`PENDING (Gate V0_13_1_PRODUCTION_RELEASE)`
-- RELEASE_TAG=`PENDING (TAG_CREATED=false)`
-- GITHUB_RELEASE=`PENDING`
+- CANARY=`PASS`
+- PRODUCTION_PROMOTION=`PASS (Desplegado en produccion v0.13.1)`
+- RELEASE_TAG=`v0.13.1` (publicado)
+- GITHUB_RELEASE=`published`
 - MIGRATIONS=`NO`
 - CONTENT_SYNC=`NO`
 - G6=`NO`
 - SUPABASE_REMOTE_CHANGE=`NO`
 
-Esta seccion prepara metadata candidata. No declara v0.13.1 desplegada, publicada, cerrada ni promovida a produccion.
+Esta seccion documenta el historial de la release v0.13.1, la cual ha sido desplegada, publicada y cerrada en produccion.
