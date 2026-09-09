@@ -2,7 +2,7 @@
 
 Status: canonical
 Owner: PM-Governance
-Last reviewed: 2026-08-19
+Last reviewed: 2026-09-08 (v0.13.1 Production Release Closeout)
 Related files:
 - AGENTS.md
 - docs/project/status.md

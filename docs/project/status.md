@@ -10,22 +10,22 @@ last_reviewed: 2026-08-19
 
 # Estado del Proyecto - GanaConMerito
 
-Ultima actualizacion: 2026-08-19 — Cierre documental de Beta Candidate 0.6.0 con evidencia runtime diferenciada.
+Ultima actualizacion: 2026-09-08 — Cierre de Release v0.13.1 desplegado y verificado en produccion.
 
 ---
 
 # Executive Operational Snapshot
 
 ## Current Sprint
-Beta Candidate 0.6.0 — Cierre documental y preparacion del release.
+v0.13.1 Production Release — Finalizado y Desplegado en Produccion.
 
 ## Current Runtime State
-Runtime publico verificado en `https://cnsc.profemarlon.com` mostrando `ad6ad35` y build time `2026-08-19T04:20:00Z`.
+Runtime publico verificado en `https://ganaconmerito.com` mostrando `e4b3456` y build time 2026-09-08.
 
-El HEAD actual del repo principal es `b0207e9`. `~/.openclaw/product` y `/opt/gcm/app` estan en `ad6ad35`; Supabase tiene aplicadas las migraciones `0013` a `0017` y expone 100 items beta en `v_item_bank_active`.
+El HEAD actual del repo principal es `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`. VPS `/opt/gcm/app` corre la imagen `gcm-canary-app:e4b3456` en el puerto canonico 3008.
 
 ## Last Verified Commit
-`ad6ad35` como ultimo commit visible en el runtime publico. La corrida E2E autenticada real fue ejecutada sobre ese runtime y completo 5/5 turnos, cierre de sesion y dashboard.
+`e4b34561debdca3439e76ed826c7ddfbf5f1ff85` como ultimo commit verificado en produccion.
 
 ## Current Sprint Status
 **BETA CANDIDATE CON QA POSTDEPLOY PASS**: smoke publico, API E2E y UI Chromium estan verificados; falta alinear el commit del runtime con el HEAD principal y completar el cierre de release.
