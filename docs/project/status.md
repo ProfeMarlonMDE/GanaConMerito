@@ -8,19 +8,24 @@ artifact_type: project
 last_reviewed: 2026-08-30
 ---
 
-# Estado actual - GanaConMerito
+# Estado del Proyecto - GanaConMerito
 
-Este archivo contiene solo el estado operativo vigente. La historia permanece en Git, tags, GitHub Releases y documentos archivados.
+Ultima actualizacion: 2026-09-08 — Cierre de Release v0.13.1 desplegado y verificado en produccion.
 
-## Produccion
+---
 
-<!-- Agent: Google_Antigravity | Model: Gemini 3.6 Flash -->
-- Estado: `GREEN`.
-- Version: `0.13.0`.
-- Release date: `2026-09-06`.
-- Final release SHA: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
-- Repository governance HEAD: `c90f21ebf3ac2cdd3eb7b78d9c9a93d88d47c95a`.
-- URL: `https://ganaconmerito.com`.
+# Executive Operational Snapshot
+
+## Current Sprint
+v0.13.1 Production Release — Finalizado y Desplegado en Produccion.
+
+## Current Runtime State
+Runtime publico verificado en `https://ganaconmerito.com` mostrando `e4b3456` y build time 2026-09-08.
+
+El HEAD actual del repo principal es `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`. VPS `/opt/gcm/app` corre la imagen `gcm-canary-app:e4b3456` en el puerto canonico 3008.
+
+## Last Verified Commit
+`e4b34561debdca3439e76ed826c7ddfbf5f1ff85` como ultimo commit verificado en produccion.com`.
 - Runtime: `gcm-production-9bea4d4`.
 - Puerto canónico interno: `3008`.
 - Imagen: `gcm-canary-app:9bea4d4`.
