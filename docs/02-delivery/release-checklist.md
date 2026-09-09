@@ -64,7 +64,8 @@ No repetir tests, sync, G6, migraciones o deploys si el cambio no los afecta.
 - RELEASE_STATUS=`CANDIDATE_METADATA_PREPARED`
 - PR_RANGE=`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e -> 63b8b52262fa2119c56e624759ce38540db3b2bd`
 - FUNCTIONAL_PRS=`#137, #138, #139, #140, #141, #142`
-- RELEASE_METADATA_PRS=`#143 (metadata-only), #144 (release docs closeout)`
+- CANDIDATE_METADATA_PRS=`#143 (metadata-only)`
+- POST_BASELINE_CLOSEOUT_PRS=`#144 (release docs closeout)`
 - SAVED_RESPONSE_CASE=`CLOSED`
 - CODE_BASELINE_SHA=`63b8b52262fa2119c56e624759ce38540db3b2bd`
 - PRODUCTION_VERSION_REMAINS=`0.13.0`

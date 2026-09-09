@@ -43,8 +43,9 @@ Este archivo contiene solo el estado operativo vigente. La historia permanece en
 - Release date candidata: `2026-09-07`.
 - Master SHA candidata: `63b8b52262fa2119c56e624759ce38540db3b2bd`.
 - PR Range (producción -> candidato): `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e` -> `63b8b52262fa2119c56e624759ce38540db3b2bd`.
-- PRs funcionales/experiencia Tutor: `#137`, `#138`, `#139`, `#140`, `#141`, `#142`.
-- PRs metadata y gobernanza de release: `#143` (metadata-only), `#144` (release docs closeout).
+- PRs funcionales/experiencia Tutor en candidato: `#137`, `#138`, `#139`, `#140`, `#141`, `#142`.
+- PRs metadata en candidato: `#143` (metadata-only).
+- PRs de cierre documental posterior: `#144` (release docs closeout).
 - Saved response case: `CLOSED`.
 - Validaciones: `PASS`.
 - Producción activa: permanece en `0.13.0` hasta gate `V0_13_1_PRODUCTION_RELEASE`.
