@@ -14,41 +14,39 @@ Este archivo contiene solo el estado operativo vigente. La historia permanece en
 
 ## Produccion
 
+<!-- Agent: Google_Antigravity | Model: Gemini 3.6 Flash -->
 - Estado: `GREEN`.
-- Version: `0.11.0`.
-- Release date: `2026-08-30`.
-- Final release SHA: `e3e9b3436f57a0354c7fed941140df468499d624`.
+- Version: `0.13.0`.
+- Release date: `2026-09-06`.
+- Final release SHA: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
+- Repository governance HEAD: `c90f21eb31a8cdebc7cbfdc63b7849eeef7c11f7`.
 - URL: `https://ganaconmerito.com`.
-- Runtime: `gcm-canary-l2-e3e9b34`.
-- Puerto: `3006`.
-- Imagen: `sha256:01eefe55cb6b024ac5a7adce5ca4fe0b724583ce9db4b3521ef442f5ecb8b76f`.
+- Runtime: `gcm-production-9bea4d4`.
+- Puerto canónico interno: `3008`.
+- Imagen: `gcm-canary-app:9bea4d4`.
 - ReleaseStamp: `PASS`.
 - Public smoke: `PASS`.
 - Authenticated smoke: `PASS`.
 - Dashboard desktop/mobile: `PASS`.
 - Tutor visible: `PASS`.
-- OpenRouter visible LLM: `false`.
-- V4 active count: `248`.
 
 ## Publicacion
 
-- Tag: `v0.11.0`.
-- Tag target: `e3e9b3436f57a0354c7fed941140df468499d624`.
+- Tag: `v0.13.0`.
+- Tag target: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
 - GitHub Release: `published`.
-- Release closeout: `docs/05-ops/V0.11.0-PRODUCTION-CLOSEOUT-20260830.md`.
+- Release closeout: `docs/05-ops/V0.13.0-PRODUCTION-CLOSEOUT-20260906.md`.
 
-## Limpieza de runtime
+## Candidata v0.13.1
 
-- Runtime antiguo `:3002` (`gcm-canary-app`, v0.10.0): retirado.
-- Runtime antiguo `:3005` (`gcm-canary-l2-0e710b7`): retirado.
-- Imagenes asociadas sin uso: retiradas.
-- Backup nginx de promocion v0.11.0: retirado.
-- `:3002`: libre.
-- `:3005`: libre.
-- `:3006`: activo.
-- nginx: `127.0.0.1:3006`.
-- `nginx -t`: `PASS`.
-- No hubo deploy, rebuild, migraciones, Content Sync, G6 ni cambios Supabase durante el cleanup.
+- Version candidata: `0.13.1`.
+- Release date candidata: `2026-09-07`.
+- Master SHA candidata: `63b8b52262fa2119c56e624759ce38540db3b2bd`.
+- Saved response case: `CLOSED`.
+- Validaciones: `PASS`.
+- Producción activa: permanece en `0.13.0` hasta gate `V0_13_1_PRODUCTION_RELEASE`.
+- Tag: pendiente (`TAG_CREATED=false`).
+
 
 ## Residual por clasificar
 
