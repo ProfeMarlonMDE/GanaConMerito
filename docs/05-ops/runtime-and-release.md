@@ -28,38 +28,23 @@ Runtime publico: `https://ganaconmerito.com`
 
 ## Producción vigente
 
-<!-- Agent: Google_Antigravity | Model: Gemini 3.6 Flash -->
-- Version: `0.13.0`.
-- Release date: `2026-09-06`.
-- Application release SHA: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
-- Repository governance HEAD: `c90f21ebf3ac2cdd3eb7b78d9c9a93d88d47c95a`.
-- Container: `gcm-production-9bea4d4`.
+<!-- Agent: Google_Antigravity | Model: gemini-2.5-pro -->
+- Version: `0.13.1`.
+- Release date: `2026-09-08`.
+- Application release SHA (`DEPLOYED_APPLICATION_SHA` / `RUNTIME_SHA`): `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`.
+- Repository governance HEAD: `594083b0922b70b086d894b5094cc6892af4380a`.
+- Container: `gcm-production-e4b3456`.
 - Puerto canónico interno: `3008`.
-- Imagen inmutable: `gcm-canary-app:9bea4d4`.
-- Build time: `2026-09-07T01:13:10Z`.
+- Imagen inmutable: `gcm-canary-app:e4b3456`.
+- Build time: `2026-09-08`.
 - nginx upstream: `127.0.0.1:3008`.
-- Rollback SHA disponible: `ccf57a671c715ced0697bbb14744c59b19b569e3` (`gcm-canary-app:ccf57a67`).
+- Rollback SHA disponible: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e` (`v0.13.0`).
 - ReleaseStamp: `PASS`.
 - Public smoke: `PASS`.
 - Authenticated smoke: `PASS`.
-- Tag: `v0.13.0` -> `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
-- GitHub Release: `published tag`.
+- Tag: `v0.13.1` -> `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`.
+- GitHub Release: `published` (`https://github.com/MarlonMedellin/GanaConMerito/releases/tag/v0.13.1`).
 
 ## Evidencia de cierre
 
-`docs/05-ops/V0.13.0-PRODUCTION-CLOSEOUT-20260906.md`
-
-## Candidata v0.13.1 - metadata preparada
-
-<!-- Agent: Google_Antigravity | Model: Gemini 3.6 Flash -->
-- Version: `0.13.1`.
-- Candidate Master SHA: `63b8b52262fa2119c56e624759ce38540db3b2bd`.
-- PR Range (producción -> candidato): `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e` -> `63b8b52262fa2119c56e624759ce38540db3b2bd`.
-- PRs funcionales/experiencia Tutor en candidato: `#137`, `#138`, `#139`, `#140`, `#141`, `#142`.
-- PRs metadata en candidato: `#143` (metadata-only).
-- PRs de cierre documental posterior: `#144` (release docs closeout).
-- Saved Response Case: `CLOSED`.
-- Validaciones: `PASS` (Functional contracts, production regression test, typecheck, build, CI).
-- Producción vigente: permanece en `0.13.0` (`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`) hasta gate `V0_13_1_PRODUCTION_RELEASE`.
-- Tag: pendiente (`TAG_CREATED=false`).
-
+`docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`

@@ -24,30 +24,21 @@ No crear una segunda constante editable de version. `package.json.version` no es
 
 ## Release vigente en producción
 
-- Version: `0.13.0`.
-- Release date: `2026-09-06`.
-- Final release SHA: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
+<!-- Agent: Google_Antigravity | Model: gemini-2.5-pro -->
+- Version: `0.13.1`.
+- Release date: `2026-09-08`.
+- Deployed Application SHA (`DEPLOYED_APPLICATION_SHA` / `RUNTIME_SHA`): `e4b34561debdca3439e76ed826c7ddfbf5f1ff85`.
+- Repository governance HEAD: `594083b0922b70b086d894b5094cc6892af4380a`.
 - Estado: `CLOSED`.
 - Produccion: `https://ganaconmerito.com`.
-- Runtime: `gcm-production-9bea4d4` en puerto interno `:3008`.
-- Runtime SHA: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`.
-- Tag: `v0.13.0`.
-- GitHub Release: `published`.
+- Runtime: `gcm-production-e4b3456` en puerto interno `:3008`.
+- Tag: `v0.13.1`.
+- GitHub Release: `published` (`https://github.com/MarlonMedellin/GanaConMerito/releases/tag/v0.13.1`).
 - ReleaseStamp: `PASS`.
 - Public smoke: `PASS`.
 - Authenticated smoke: `PASS`.
-- Evidencia de cierre: `docs/05-ops/V0.13.0-PRODUCTION-CLOSEOUT-20260906.md`.
-
-## Candidata v0.13.1
-
-- Version candidata: `0.13.1`.
-- Release date candidata: `2026-09-07`.
-- PR Range (producción -> candidato): `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e` -> `63b8b52262fa2119c56e624759ce38540db3b2bd`.
-- PRs funcionales/experiencia Tutor en candidato: `#137`, `#138`, `#139`, `#140`, `#141`, `#142`.
-- PRs metadata en candidato: `#143` (metadata-only).
-- PRs de cierre documental posterior: `#144` (release docs closeout).
-- Saved response case: `CLOSED`.
-- Candidate Master SHA: `63b8b52262fa2119c56e624759ce38540db3b2bd`.
+- Rollback disponible: `9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e` (v0.13.0).
+- Evidencia de cierre: `docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`.
 - Estado: `CANDIDATE_METADATA_PREPARED`.
 - Validaciones: `PASS` (Functional contracts, real production path regression test, typecheck, build, CI).
 - Produccion vigente: `0.13.0` hasta gate `V0_13_1_PRODUCTION_RELEASE` y despliegue.

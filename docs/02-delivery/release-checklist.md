@@ -12,34 +12,38 @@ Este archivo contiene el baseline vigente y el procedimiento reutilizable para l
 
 ## Baseline vigente
 
-- VERSION=`0.13.0`
-- RELEASE_DATE=`2026-09-06`
+<!-- Agent: Google_Antigravity | Model: gemini-2.5-pro -->
+- VERSION=`0.13.1`
+- RELEASE_DATE=`2026-09-08`
 - RELEASE_STATUS=`CLOSED`
-- FINAL_RELEASE_SHA=`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`
+- DEPLOYED_APPLICATION_SHA=`e4b34561debdca3439e76ed826c7ddfbf5f1ff85`
+- REPOSITORY_GOVERNANCE_HEAD=`594083b0922b70b086d894b5094cc6892af4380a`
 - PRODUCTION_URL=`https://ganaconmerito.com`
-- PRODUCTION_RUNTIME=`gcm-production-9bea4d4`
+- PRODUCTION_RUNTIME=`gcm-production-e4b3456`
 - PRODUCTION_PORT=`3008`
-- PRODUCTION_RUNTIME_SHA=`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`
+- PRODUCTION_RUNTIME_SHA=`e4b34561debdca3439e76ed826c7ddfbf5f1ff85`
 - RELEASE_STAMP=`PASS`
 - PUBLIC_RUNTIME_SMOKE=`PASS`
 - AUTHENTICATED_SMOKE=`PASS`
-- RELEASE_TAG=`v0.13.0`
+- RELEASE_TAG=`v0.13.1`
 - GITHUB_RELEASE=`published`
+- ROLLBACK_AVAILABLE=`true` (`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`)
 
-## Cierre v0.13.0
+## Cierre v0.13.1
 
-- [x] Release SHA exacto desplegado y verificado (`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`).
+- [x] Release SHA exacto desplegado y verificado (`e4b34561debdca3439e76ed826c7ddfbf5f1ff85`).
 - [x] Production promotion PASS.
 - [x] ReleaseStamp PASS.
 - [x] Public smoke PASS.
 - [x] Authenticated smoke PASS.
 - [x] Dashboard desktop/mobile PASS.
 - [x] Tutor visible PASS.
-- [x] Tag `v0.13.0` publicado sobre el release SHA.
-- [x] GitHub Release publicada.
+- [x] Tag `v0.13.1` publicado sobre el release SHA (`e4b34561debdca3439e76ed826c7ddfbf5f1ff85`).
+- [x] GitHub Release publicada (`https://github.com/MarlonMedellin/GanaConMerito/releases/tag/v0.13.1`).
 - [x] Sin migraciones, Content Sync ni cambios Supabase remoto.
+- [x] Rollback a v0.13.0 preservado (`9bea4d4959f11231c4c2e61f7f1eda5fe5caf87e`).
 
-Evidencia de cierre: `docs/05-ops/V0.13.0-PRODUCTION-CLOSEOUT-20260906.md`.
+Evidencia de cierre: `docs/05-ops/V0.13.1-PRODUCTION-CLOSEOUT-20260908.md`.
 
 ## Procedimiento para la siguiente release
 
