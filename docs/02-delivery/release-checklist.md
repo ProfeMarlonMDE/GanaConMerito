@@ -76,7 +76,7 @@ No repetir tests, sync, G6, migraciones o deploys si el cambio no los afecta.
 - PRODUCTION_VERSION=`0.13.1`
 - VALIDATIONS=`PASS`
 - CI=`PASS`
-- CANARY=`PASS`
+- CANARY=`NOT_APPLICABLE (Despliegue directo a produccion v0.13.1)`
 - PRODUCTION_PROMOTION=`PASS (Desplegado en produccion v0.13.1)`
 - RELEASE_TAG=`v0.13.1` (publicado)
 - GITHUB_RELEASE=`published`
